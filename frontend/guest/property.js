@@ -375,55 +375,6 @@ async function checkAuthStatus(heartEmpty, heartFilled, propertyActionFavorite, 
     }
 }
 
-async function addToFavorites(propertyData){
-	try {
-
-		const propertyId = propertyData.property_id
-
-		const response = await fetch(`/api/favorites/${propertyId}`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"x-csrf-token": window.getCsrfToken()
-			},
-			credentials: "include",
-			body: JSON.stringify(propertyData)
-		})
-
-		if(!response.ok){
-			throw new Error('Failed to add property to favorites')
-		}
-
-		window.loadFavoritesMini()
-
-	}catch(error){
-		console.error(error)
-		showToast('Failed to add property to favorites. Please try again later.', 'error')
-	}
-}
-
-async function removeFavorites(propertyId){
-	try {
-		const response = await fetch(`/api/favorites/${propertyId}`, {
-			method: "DELETE",
-			credentials: "include",
-			headers: {
-				"x-csrf-token": window.getCsrfToken()
-			}
-		})
-
-		if(!response.ok){
-			throw new Error('Failed to remove property from favorites')
-		}
-
-		window.loadFavoritesMini()
-
-	}catch(error){
-		console.error(error)
-		showToast('Failed to remove property from favorites. Please try again later.', 'error')
-	}
-}
-
 async function populateFormFields(user){
     
     const firstName = user.first_name
@@ -433,14 +384,6 @@ async function populateFormFields(user){
 
     document.getElementById('name').value = name || ''
     document.getElementById('email').value = user.email || ''
-}
-
-function getPropertyStatus(status, element) {
-    if (!element) return;
-    element.classList.add(
-      status === 'Available' ? 'available' :
-      status === 'Sold' ? 'sold' : 'rented'
-    );
 }
 
 async function inquiryFormSubmit(propertyId, agentEmail) {

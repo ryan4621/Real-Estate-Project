@@ -276,36 +276,6 @@ async function loadFavorites(page = currentPage){
 	}
 }
 
-async function removeFavorites(propertyId){
-	try {
-		const response = await fetch(`/api/favorites/${propertyId}`, {
-			method: "DELETE",
-			credentials: "include",
-			headers: {
-				"x-csrf-token": window.getCsrfToken()
-			}
-		})
-
-		if(!response.ok){
-			throw new Error('Failed to remove property from favorites')
-		}
-
-        window.loadFavoritesMini()
-
-	}catch(error){
-		console.error(error)
-		showToast('Failed to remove property from favorites. Please try again later.', 'error')
-	}
-}
-
-function getPropertyStatus(status, element) {
-    if (!element) return;
-    element.classList.add(
-      status === 'Sale' ? 'sale' :
-      status === 'Sold' ? 'sold' : 'rent'
-    );
-}
-
 // Apply filters from UI
 function applyFilters() {
 	currentFilters = {
@@ -374,7 +344,6 @@ async function loadSavedSearches(){
                             <span class="ss-filters">Bedrooms: ${escapeHtml(filters.bedrooms_min || 'No min')} - ${escapeHtml(filters.bedrooms_max || 'No max')}</span>
                             <span class="ss-filters">Bathrooms: ${escapeHtml(filters.bathrooms_min || 'No min')} - ${escapeHtml(filters.bathrooms_max || 'No max')}</span>
                         </div>
-                        <a href="#" class="ss-edit-link">Edit</a>
                     </div>
                     
                     <div class="ss-card-footer">
@@ -437,7 +406,7 @@ async function loadSavedSearches(){
 
 function runSavedSearch(search) {
     const filters = JSON.parse(search.filters);
-    const category = search.category.toLowerCase(); // 'sale', 'rent', or 'sold'
+    const category = search.category.toLowerCase();
     
     // Build URL with all filters
     const params = new URLSearchParams();

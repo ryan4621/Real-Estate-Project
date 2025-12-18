@@ -360,6 +360,62 @@ async function logOutUser(){
     }
 }
 
+async function addToFavorites(propertyData){
+	try {
+		const propertyId = propertyData.property_id
+
+		const response = await fetch(`/api/favorites/${propertyId}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"x-csrf-token": window.getCsrfToken()
+			},
+			credentials: "include",
+			body: JSON.stringify(propertyData)
+		})
+
+		if(!response.ok){
+			throw new Error('Failed to add property to favorites')
+		}
+
+		window.loadFavoritesMini()
+
+	}catch(error){
+		console.error(error)
+		showToast('Failed to add property to favorites. Please try again later.', 'error')
+	}
+}
+
+async function removeFavorites(propertyId){
+	try {
+		const response = await fetch(`/api/favorites/${propertyId}`, {
+			method: "DELETE",
+			credentials: "include",
+			headers: {
+				"x-csrf-token": window.getCsrfToken()
+			}
+		})
+
+		if(!response.ok){
+			throw new Error('Failed to remove property from favorites')
+		}
+
+		window.loadFavoritesMini()
+
+	}catch(error){
+		console.error(error)
+		showToast('Failed to remove property from favorites. Please try again later.', 'error')
+	}
+}
+
+function getPropertyStatus(status, element) {
+    if (!element) return;
+    element.classList.add(
+      status === 'Sale' ? 'sale' :
+      status === 'Sold' ? 'sold' : 'rent'
+    );
+}
+
 function debounce(func, wait) {
 	let timeout;
 	return function executedFunction(...args) {

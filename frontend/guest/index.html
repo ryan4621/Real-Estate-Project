@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
+    <!-- <link rel="stylesheet" href="/frontend/guest/for-sale.css"> -->
     <link rel="stylesheet" href="/frontend/guest/styles.css">
 </head>
-<body>
+<body data-page="home">
     <!-- Navbar -->
     <nav class="main-navbar">
         <div class="navbar-container" id="navbar-container">
@@ -26,7 +26,7 @@
             
             <div class="navbar-links">
                 <div class="nav-link-item">
-                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <a href="/frontend/guest/buy.html" class="nav-link">Buy</a>
                     <div class="dropdown-menu">
                         <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
                         <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
@@ -277,17 +277,19 @@
     <!-- Featured Properties Section -->
     <section class="featured-section">
         <div class="section-container">
-            <h2 class="section-title">Browse Homes in Los Angeles, California</h2>
-            <p class="section-description">Explore our handpicked selection of premium properties</p>
+            <div class="section-header">
+                <h2 class="section-title">Browse Homes in Los Angeles, California</h2>
+                <p class="section-description">Explore our handpicked selection of premium properties</p>
+            </div>
 
             <!-- Properties Grid -->
             <div class="properties-grid" id="propertiesGrid"></div>
 
-            <div class="alert empty-alert" id="empty-alert">
+            <div class="empty-alert" id="empty-alert">
                 <i class="fas fa-info-circle"></i> No properties to show
             </div>
 
-            <div class="alert error-alert" id="error-alert">
+            <div class="error-alert" id="error-alert">
                 <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
             </div>
         </div>
@@ -296,8 +298,10 @@
     <!-- Latest Properties Section -->
     <section class="latest-section">
         <div class="section-container">
-            <h2 class="section-title">Discover New Listings</h2>
-            <p class="section-description">Be the first to see properties hitting the market.</p>
+            <div class="section-header">
+                <h2 class="section-title">Discover New Listings</h2>
+                <p class="section-description">Be the first to see properties hitting the market.</p>
+            </div>
 
             <!-- Properties Grid -->
             <div class="properties-grid" id="latestGrid"></div>

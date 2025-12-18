@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/frontend/guest/for-sale.css">
     <link rel="stylesheet" href="/frontend/guest/styles.css">
 </head>
-<body>
+<body data-page="buy">
     <!-- Navbar -->
     <nav class="main-navbar">
         <div class="navbar-container" id="navbar-container">
@@ -26,7 +26,7 @@
             
             <div class="navbar-links">
                 <div class="nav-link-item">
-                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <a href="/frontend/guest/buy.html" class="nav-link">Buy</a>
                     <div class="dropdown-menu">
                         <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
                         <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
@@ -253,7 +253,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section buy-hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">Find Your Dream Home</h1>
@@ -274,20 +274,22 @@
         </div>
     </section>
 
-    <!-- Featured Properties Section -->
-    <section class="featured-section">
+    <!-- Expensive Properties Section -->
+    <section class="expensive-section">
         <div class="section-container">
-            <h2 class="section-title">Browse Homes in Los Angeles, California</h2>
-            <p class="section-description">Explore our handpicked selection of premium properties</p>
+            <div class="section-header">
+                <h2 class="section-title">Homes around $1,199,000</h2>
+                <a href="#" data-id="expensive" class="section-link">View all in Los Angeles, CA</a>
+            </div>
 
             <!-- Properties Grid -->
-            <div class="properties-grid" id="propertiesGrid"></div>
+            <div class="properties-grid" id="expensiveGrid"></div>
 
-            <div class="alert empty-alert" id="empty-alert">
+            <div class="alert empty-alert" id="expensive-empty-alert">
                 <i class="fas fa-info-circle"></i> No properties to show
             </div>
 
-            <div class="alert error-alert" id="error-alert">
+            <div class="alert error-alert" id="expensive-error-alert">
                 <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
             </div>
         </div>
@@ -296,8 +298,10 @@
     <!-- Latest Properties Section -->
     <section class="latest-section">
         <div class="section-container">
-            <h2 class="section-title">Discover New Listings</h2>
-            <p class="section-description">Be the first to see properties hitting the market.</p>
+            <div class="section-header">
+                <h2 class="section-title">Newest Listings</h2>
+                <a href="#" data-id="latest" class="section-link">View all in Los Angeles, CA</a>
+            </div>
 
             <!-- Properties Grid -->
             <div class="properties-grid" id="latestGrid"></div>
@@ -307,6 +311,48 @@
             </div>
 
             <div class="alert error-alert" id="latest-error-alert">
+                <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
+            </div>
+        </div>
+    </section>
+
+    <!-- Affordable Homes Section -->
+    <section class="affordable-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Affordable Homes</h2>
+                <a href="#" data-id="affordable" class="section-link">View all in Los Angeles, CA</a>
+            </div>
+
+            <!-- Properties Grid -->
+            <div class="properties-grid" id="affordableGrid"></div>
+
+            <div class="alert empty-alert" id="affordable-empty-alert">
+                <i class="fas fa-info-circle"></i> No properties to show
+            </div>
+
+            <div class="alert error-alert" id="affordable-error-alert">
+                <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Houses Section -->
+    <section class="open-houses-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Open Houses</h2>
+                <a href="#" data-id="open-houses" class="section-link">View all in Los Angeles, CA</a>
+            </div>
+
+            <!-- Properties Grid -->
+            <div class="properties-grid" id="openHousesGrid"></div>
+
+            <div class="alert empty-alert" id="open-houses-empty-alert">
+                <i class="fas fa-info-circle"></i> No properties to show
+            </div>
+
+            <div class="alert error-alert" id="open-houses-error-alert">
                 <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
             </div>
         </div>

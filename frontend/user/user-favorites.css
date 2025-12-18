@@ -1,17 +1,8 @@
 .favorites-top {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
-    /* border: 1px solid #000; */
-    /* display: none; */
-    /* max-width: 1296px;
-    margin: 0 auto; */
+    margin-bottom: 30px;
 }
-
-/* 
-.favorites-top.active {
-    display: flex;
-} */
 
 .favorites-title {
     font-size: 1.7rem;
@@ -22,7 +13,6 @@
 .favorites-filter-sort {
     display: flex;
     gap: 12px;
-    /* margin-bottom: 30px; */
 }
 
 .favorites-filter-select {
@@ -75,7 +65,7 @@
     display: flex;
     gap: 40px;
     border-bottom: 2px solid #e0e0e0;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .saved-tab {
@@ -196,24 +186,6 @@
     color: #1e1e1e;
 }
 
-.ss-edit-link {
-    width: fit-content;
-    color: #1e1e1e;
-    font-size: .9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.ss-edit-link:hover {
-    color: #d92228;
-}
-
-.ss-edit-btn i {
-    font-size: 16px;
-    color: #666;
-}
-
 /* Card Footer */
 .ss-card-footer {
     display: flex;
@@ -224,11 +196,11 @@
 .ss-search-btn {
     padding: 12px 32px;
     background: #fff;
-    border: 1px solid #333;
+    border: 1px solid #929292;
     border-radius: 50px;
     font-size: 15px;
     font-weight: 600;
-    color: #000;
+    color: #1e1e1e;
     cursor: pointer;
     transition: all 0.2s ease;
 }
