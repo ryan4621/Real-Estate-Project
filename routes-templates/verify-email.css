@@ -1,0 +1,100 @@
+/* Verification Page Styles */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.verification-container {
+    background: white;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+/* Success state */
+.verification-container.success {
+    border-top: 4px solid #198754;
+}
+
+/* Error state */
+.verification-container.error {
+    border-top: 4px solid #dc3545;
+}
+
+/* Warning state */
+.verification-container.warning {
+    border-top: 4px solid #ffc107;
+}
+
+/* Icon colors */
+.icon-success {
+    color: #198754;
+}
+
+.icon-error {
+    color: #dc3545;
+}
+
+.icon-warning {
+    color: #ffc107;
+}
+
+/* Heading styles */
+.verification-container h2 {
+    color: #212529;
+    font-weight: 600;
+    margin-top: 1.5rem;
+}
+
+/* Message styles */
+.verification-container p {
+    color: #6c757d;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Button styles */
+.verification-container .btn {
+    padding: 0.75rem 2rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.verification-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+i {
+    font-size: 5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .verification-container {
+        padding: 2rem 1.5rem;
+        width: 95%;
+    }
+
+    .verification-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .verification-container p {
+        font-size: 0.9rem;
+    }
+
+    .verification-container i {
+        font-size: 4rem !important;
+    }
+}

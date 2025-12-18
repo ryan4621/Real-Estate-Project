@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Inquiry Request</title>
+    <style>
+        /* STYLES_PLACEHOLDER */
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header {{requestTour === 'Yes' ? 'high-priority' : ''}}">
+        <h1>New Inquiry Request on property #{{propertyId}}</h1>
+    </div>
+    
+    <div class="customer-info">
+        <h3 style="margin-top: 0; color: #2c3e50;">Buyer Information</h3>
+        <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value">{{buyerName}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value">{{buyerEmail}}</span>
+        </div>
+    </div>
+    
+    <div class="ticket-details">
+        <h3 style="margin-top: 0; color: #2c3e50;">Inquiry Details</h3>
+        <div class="info-row">
+            <span class="label">Inquiry ID:</span>
+            <span class="value">#{{inquiryId}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Request Tour:</span>
+            <span class="value">
+            <span class="priority-badge">{{requestTour}}</span>
+            </span>
+        </div>
+        <div class="info-row">
+            <span class="label">Property ID:</span>
+            <span class="value">{{propertyId}}</span>
+            </span>
+        </div>
+        <div class="info-row">
+            <span class="label">Submitted:</span>
+            <span class="value">{{submittedDate}}</span>
+        </div>
+    </div>
+    
+    <div class="message-box">
+        <h4 style="margin-top: 0; color: #e74c3c;">Buyer Message:</h4>
+        <p style="margin-bottom: 0; white-space: pre-line;">{{message}}</p>
+    </div>
+    
+    <div class="action-buttons">
+        <a href="mailto:{{buyerEmail}}" class="btn">Email buyer</a>
+    </div>
+    
+    <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e9ecef; font-size: 0.9rem; color: #7f8c8d; text-align: center;">
+        This notification was sent automatically when a new inquiry request was submitted.
+    </p>
+</div>
+</body>
+</html>

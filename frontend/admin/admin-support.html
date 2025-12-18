@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin users</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-support.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-sidebar-logo">
+                    <i class="fas fa-home"></i>
+                    <span>PrimeHomes Admin</span>
+                </div>
+            </div>
+    
+            <nav class="admin-sidebar-nav">
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-dashboard.html" class="admin-nav-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-users.html" class="admin-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-properties.html" class="admin-nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>Properties</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-inquiries.html" class="admin-nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Inquiries</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-notifications.html" class="admin-nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-support.html" class="admin-nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-password-change.html" class="admin-nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+            </nav>
+    
+            <div class="admin-sidebar-footer">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <button class="admin-sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-page-title">
+                        <i class="fa-solid fa-user"></i>
+                        Support Management
+                    </h1>
+                    <div class="admin-header-actions">
+                        <button type="button" id="exportCsv" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <button type="button" id="exportPdf" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </header>
+    
+            <div class="admin-content">
+                 <!-- Statistics Cards -->
+                <div class="support-stats" id="supportStats">
+                    <div class="support-stat-card pending">
+                        <h3 class="support-stat-number" id="pendingCount">-</h3>
+                        <p class="support-stat-label">Pending Tickets</p>
+                    </div>
+                    <div class="support-stat-card in-progress">
+                        <h3 class="support-stat-number" id="inProgressCount">-</h3>
+                        <p class="support-stat-label">In Progress</p>
+                    </div>
+                    <div class="support-stat-card resolved">
+                        <h3 class="support-stat-number" id="resolvedCount">-</h3>
+                        <p class="support-stat-label">Resolved</p>
+                    </div>
+                    <div class="support-stat-card high-priority">
+                        <h3 class="support-stat-number" id="highPriorityCount">-</h3>
+                        <p class="support-stat-label">High Priority</p>
+                    </div>
+                    <div class="support-stat-card closed">
+                        <h3 class="support-stat-number" id="closedCount">-</h3>
+                        <p class="support-stat-label">Closed</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="admin-filters">
+                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Status</label>
+                        <select id="status-filter" class="support-filter-select">
+                            <option value="all">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="in_progress">In Progress</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+    
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Priority</label>
+                        <select id="priority-filter" class="support-filter-select">
+                            <option value="all">All Priorities</option>
+                            <option value="low">Low</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Subject</label>
+                        <select id="subject-filter" class="support-filter-select">
+                            <option value="all">All Subjects</option>
+                            <option value="general">General</option>
+                            <option value="account">Account</option>
+                            <option value="listings">Listings</option>
+                            <option value="technical">Technical</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-overlay"></div>
+
+                <!-- Action Buttons -->
+                <div class="notification-actions">
+                    <button class="support-refresh-btn" id="support-refresh-btn">
+                        Refresh Data
+                    </button>
+                </div>
+            
+                <!-- Tickets Table -->
+                <div class="support-tickets-container">
+                    <div class="support-tickets-header">
+                        <h3 class="support-tickets-title">Support Tickets</h3>
+                        <span class="support-tickets-count" id="displayedTicketsCount">0 tickets</span>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div class="support-loading" id="loadingState">
+                        <div class="support-loading-spinner"></div>
+                        <p>Loading support tickets...</p>
+                    </div>
+            
+                    <!-- Empty State -->
+                    <div class="support-empty" id="emptyState" style="display: none;">
+                        <div class="support-empty-icon">📭</div>
+                        <h3>No support tickets found</h3>
+                        <p>No tickets match your current filters.</p>
+                    </div>
+            
+                    <!-- Tickets Table -->
+                    <table class="support-tickets-table" id="ticketsTable" style="display: none;">
+                        <thead>
+                            <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Subject</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ticketsTableBody"></tbody>
+                    </table>
+                </div>
+            
+                <!-- Ticket Detail Modal -->
+                <div id="ticketModal" class="support-modal">
+                    <div class="support-modal-content">
+                        <div class="support-modal-header">
+                            <h3 class="support-modal-title" id="modalTitle">Ticket Details</h3>
+                            <button class="support-modal-close" id="closeModalBtn">&times;</button>
+                        </div>
+                        <div class="support-modal-body" id="modalBody">
+                            <div class="support-loading">
+                                <div class="support-loading-spinner"></div>
+                                <p>Loading ticket details...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="pagination"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend//general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/admin/admin-global"></script>
+    <script src="/frontend/admin/admin-support.js"></script>
+</body>
+</html>

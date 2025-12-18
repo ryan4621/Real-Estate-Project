@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Inquiry Request</title>
+    <style>
+        /* STYLES_PLACEHOLDER */
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header {{requestTour === 'Yes' ? 'high-priority' : ''}}">
+        <h1>New Support Request</h1>
+        <p style="margin: 0; opacity: 0.9;">Inquiry #{{inquiryId}} requires attention</p>
+    </div>
+    
+    <div class="customer-info">
+        <h3 style="margin-top: 0; color: #2c3e50;">Buyer Information</h3>
+        <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value">{{buyerName}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value">{{buyerEmail}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Account Type:</span>
+            <span class="value">{{buyerType}}</span>
+        </div>
+        {{#if userName}}
+            <div class="info-row">
+                <span class="label">User Name:</span>
+                <span class="value">{{userName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">User Email:</span>
+                <span class="value">{{userEmail}}</span>
+            </div>
+        {{/if}}
+    </div>
+    
+    <div class="ticket-details">
+        <h3 style="margin-top: 0; color: #2c3e50;">Inquiry Details</h3>
+        <div class="info-row">
+            <span class="label">Inquiry ID:</span>
+            <span class="value">#{{inquiryId}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Request Tour:</span>
+            <span class="value">
+            <span class="priority-badge">{{requestTour}}</span>
+            </span>
+        </div>
+        <div class="info-row">
+            <span class="label">Submitted:</span>
+            <span class="value">{{submittedDate}}</span>
+        </div>
+    </div>
+    
+    <div class="message-box">
+        <h4 style="margin-top: 0; color: #e74c3c;">Customer Message:</h4>
+        <p style="margin-bottom: 0; white-space: pre-line;">{{message}}</p>
+    </div>
+    
+    <div class="action-buttons">
+        <a href="{{adminPanelUrl}}" class="btn">View in Admin Panel</a>
+    </div>
+    
+    <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e9ecef; font-size: 0.9rem; color: #7f8c8d; text-align: center;">
+        This notification was sent automatically when a new inquiry request was submitted.
+    </p>
+</div>
+</body>
+</html>

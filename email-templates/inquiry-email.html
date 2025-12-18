@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Inquiry Confirmation</title>
+    <style>
+        /* STYLES_PLACEHOLDER */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Inquiry Request Received</h1>
+            <p style="margin: 0; opacity: 0.9;">We've received your message and will respond shortly</p>
+        </div>
+        
+        <p>Dear {{buyerName}},</p>
+        
+        <p>Thank you for making an inquiry on this property. We have created a inquiry ticket for your inquiry and will connect you with a local real estate {{bodyParagraph}}.</p>
+        
+        <div class="ticket-info">
+            <h3 style="margin-top: 0; color: #2c3e50;">Inquiry Information</h3>
+            <div class="info-row">
+                <span class="label">Ticket ID:</span>
+                <span class="value"> #{{inquiryId}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Request Tour:</span>
+                <span class="value">
+                    <span class="priority-badge priority-${priority}"> {{requestTour}}</span>
+                </span>
+            </div>
+            <div class="info-row">
+                <span class="label">Expected Response:</span>
+                <span class="value"> {{estimatedResponse}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Status:</span>
+                <span class="value"> Pending Review</span>
+            </div>
+        </div>
+        
+        <div class="message-box">
+            <h4 style="margin-top: 0; color: #27ae60;">Your Message:</h4>
+            <p style="margin-bottom: 0;">{{message}}</p>
+        </div>
+        
+        <p><strong>What happens next?</strong></p>
+        <ul>
+            <li>Your request will be sent to the property agent</li>
+            <li>You'll receive a response within {{estimatedResponse}}</li>
+            <li>All communication will be sent to this email address</li>
+            <li>Please keep your ticket ID (#{{inquiryId}}) for reference</li>
+        </ul>
+        
+        <p><strong>Need urgent assistance?</strong> If this is a critical issue, please mention "URGENT" in any follow-up emails.</p>
+        
+        <div class="footer">
+            <p>This is an automated confirmation email. Please do not reply directly to this message.</p>
+            <p>If you need to add more information to your ticket, please submit a new support request and reference ticket #{{inquiryId}}.</p>
+            <p>&copy; {{year}} Your Website. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

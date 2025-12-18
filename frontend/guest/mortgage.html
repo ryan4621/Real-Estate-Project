@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Tools & Terms</title>
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <link rel="stylesheet" href="/frontend/guest/mortgage.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="main-navbar">
+        <div class="navbar-container" id="navbar-container">
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
+            </div>
+            
+            <div class="navbar-links">
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
+                        <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
+                        <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
+                        <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
+                        <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-rent.html" class="nav-link">Rent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
+                        <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
+                        <a href="/frontend/guest/for-rent.html" class="dropdown-item">All Rental Listings</a>
+                        <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/sell-property.html" class="nav-link">Sell</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
+                        <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
+                        <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                    </div>
+                </div>
+
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
+                        <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
+                        <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
+                        <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
+                        <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
+                        <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
+                        <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
+                        <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+                    </div>
+                </div>
+                
+                <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
+            </div>
+            
+            <button class="nav-signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- Sign Up Modal -->
+    <div class="signup-overlay"></div>
+    <div class="signup-modal">   
+        <div class="signup-modal-content">
+            <div class="signup-modal-header">
+                <h2 class="signup-modal-title">Log in or create an account</h2>   
+                <i class="bi bi-x signup-close-modal"></i>
+            </div>
+            <form class="signup-form">
+                <div class="signup-form-group">
+                    <label class="signup-form-label">Email address <span class="required-text">required</span></label>
+                    <input type="email" class="email signup-form-input" placeholder="Enter your email">
+                    <p>Enter a valid email address</p>
+                </div>
+                <div class="signup-form-group first-name-input-group">
+                    <label class="signup-form-label">First name</label>
+                    <input type="name" class="first-name signup-form-input" placeholder="Enter your first name">
+                </div>
+                <div class="signup-form-group last-name-input-group">
+                    <label class="signup-form-label">Last name</label>
+                    <input type="name" class="last-name signup-form-input" placeholder="Enter your last name">
+                </div>
+                <div class="signup-form-group password-input-group">
+                    <label class="signup-form-label">Password</label>
+                    <input type="password" class="password signup-form-input" placeholder="Enter your password">
+                    <i class="bi bi-eye-slash"></i>
+                    <i class="bi bi-eye"></i>
+                    <p>Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</p>
+                </div>
+                <div class="signup-form-group gender-input-group">
+                    <label class="signup-form-label">Gender</label>
+                    <select class="gender-select signup-form-input">
+                        <option selected disabled>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <p>Select Gender</p>
+                </div>
+                <div class="signup-form-group country-input-group">
+                    <label class="signup-form-label">Country</label>
+                    <select class="country-select signup-form-input">
+                        <option selected disabled>Select Country</option>
+                    </select>
+                    <p>Select Country</p>
+                </div>
+                
+                <button type="button" class="continue-btn">Continue</button>
+                <button type="button" class="login-btn">Login</button>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            
+            <div class="signup-form-divider">
+                <span>or</span>
+            </div>
+            
+            <div class="social-buttons">
+                <button class="social-button google-button">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+                        <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9.003 18z" fill="#34A853"/>
+                        <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                        <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.002 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+                
+                <button class="social-button facebook-button">
+                    <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                    <span>Continue with Facebook</span>
+                </button>
+                
+                <button class="social-button apple-button">
+                    <i class="bi bi-apple" style="font-size: 20px;"></i>
+                    <span>Continue with Apple</span>
+                </button>
+            </div>
+            
+            <div class="professional-option">
+                <p>Are you a real estate agent?</p>
+                <a href="#" class="professional-link">Log in</a> or 
+                <a href="#" class="professional-link">create an account</a>
+                <br>
+            </div>
+            
+            <p class="terms-text">
+                By creating an account you agree to PrimeHomes' <br><a href="#" class="terms-link">Terms of Use</a> and <a href="#" class="terms-link">Privacy Policy.</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"></a><span>PrimeHomes</span></a>
+
+            </div>
+            <button class="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Buy</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Browse Homes</a>
+                    <a href="#" class="sidebar-dropdown-item">New Listings</a>
+                    <a href="#" class="sidebar-dropdown-item">Open Houses</a>
+                    <a href="#" class="sidebar-dropdown-item">Virtual Tours</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Rent</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Apartments</a>
+                    <a href="#" class="sidebar-dropdown-item">Houses</a>
+                    <a href="#" class="sidebar-dropdown-item">Condos</a>
+                    <a href="#" class="sidebar-dropdown-item">Townhomes</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Sell</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">List Your Property</a>
+                    <a href="#" class="sidebar-dropdown-item">Find an Agent</a>
+                    <a href="#" class="sidebar-dropdown-item">Home Value Estimate</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Agents</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Find Agents</a>
+                    <a href="#" class="sidebar-dropdown-item">Top Agents</a>
+                    <a href="#" class="sidebar-dropdown-item">Agent Reviews</a>
+                </div>
+            </div>
+            
+            <a href="#" class="sidebar-link">Contact</a>
+            
+            <button class="sidebar-signup-button">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Get Pre-Approved</h1>
+            <p class="hero-subtitle">Find a lender who can offer you competitive mortgage rates</p>
+
+            <!-- Search Bar -->
+            <div class="hero-search-bar">
+                <input type="text" class="hero-search-input" placeholder="90046, Los Angeles, CA" value="90046, Los Angeles, CA">
+                <button class="hero-clear-btn">
+                    <i class="bi bi-x"></i>
+                </button>
+                <button class="hero-search-btn">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="tools-container">
+            <h1 class="tools-heading">Tools</h1>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Mortgage calculator</h3>
+                        <p class="tool-description">Calculate your monthly mortgage payment.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="bi bi-piggy-bank"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Affordability calculator</h3>
+                        <p class="tool-description">Calculate the price of a home you can afford.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="bi bi-house-check"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Rent or buy calculator</h3>
+                        <p class="tool-description">Estimate when it makes sense to buy or rent.</p>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="bi bi-arrow-repeat"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3 class="tool-title">Refinance calculator</h3>
+                        <p class="tool-description">Decide if mortgage refinancing is right for you.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <button class="tools-toggle-btn">
+                <span>Less tools</span>
+                <i class="bi bi-chevron-up"></i>
+            </button> -->
+        </div>
+    </section>
+
+    <!-- Common Terms Section -->
+    <section class="common-terms-section">
+        <div class="common-terms-container">
+            <h2 class="common-terms-heading">Common terms</h2>
+
+            <div class="term-item">
+                <h3 class="term-title">Assumable mortgage</h3>
+                <p class="term-description">Unlike a traditional mortgage, an assumable mortgage is passed directly from seller to buyer, bringing its remaining balance and interest rate with it. Only FHA, VA, and USDA mortgages can be assumed. Some eligibility requirements may apply, and down payments can often exceed 20% if a property has appreciated in value since the start of its mortgage.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Bi-weekly mortgage</h3>
+                <p class="term-description">A bi-weekly mortgage is a mortgage in which the borrower makes half of their monthly mortgage payment every two weeks, rather than paying the full payment amount once every month. So if you paid monthly and your monthly mortgage payment was $1,000, then for a year you would make 12 payments of $1,000 each, for a total of $12,000. But with a bi-weekly mortgage, you would make 26 payments of $500 each, for a total of $13,000 for the year. This can help the borrower pay off their mortgage loan sooner and reduces the total amount of interest paid over the life of the loan.).</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Borrower</h3>
+                <p class="term-description">A borrower is a person who takes out a loan from a lender. For a mortgage loan, the borrower often is also referred to as the mortgagor (and the bank or lender the mortgagee).</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Conventional loan</h3>
+                <p class="term-description">A conventional loan is a type of mortgage that is not insured or guaranteed by the government.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Debt-to-income ratio</h3>
+                <p class="term-description">A debt-to-income ratio is a factor looked at by lenders when qualifying a borrower for a mortgage loan.  The DTI is a number that lenders use to determine how well a borrower can handle their monthly debts. Your debt-to-income ratio is the number you get when you divide your monthly debt payments by your monthly gross income.  Many lenders will want to see that your DTI is 36% or lower.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Down payment</h3>
+                <p class="term-description">A down payment is that portion of the purchase price of a home that the buyer pays upfront; usually the balance of the purchase price that is needed to buy the home is borrowed from a lender by way of a mortgage loan.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Homeowners insurance</h3>
+                <p class="term-description">Homeowners insurance is a type of property insurance. It protects you from damage (for example, from fire) to your home or possessions. Homeowners insurance also provides liability insurance against claims by people who might be injured due to accidents in your home or on the property.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Interest-only mortgage</h3>
+                <p class="term-description">An interest-only mortgage is a type of loan in which the borrower only pays interest on the principal balance for a set time, usually five to seven years. At the end of the interest-only period, the borrower must either pay the principal back entirely or begin making payments of both principal and interest.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Loan, and Mortgage Loan</h3>
+                <p class="term-description">A loan is money that is borrowed by one person or company from another, under an agreement whereby the borrower promises to re-pay the loan amount to the lender, usually plus interest.  A mortgage loan is a type of loan for buying or financing real estate, where the borrower agrees that if they fail to repay the loan as promised then the lender may sell the real estate in order to recover the un-paid loan amount(s) out of the sale proceeds (in a process called foreclosure).</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Payment</h3>
+                <p class="term-description">A payment is an action that transfers money from one person or entity to another. Payments can be made in various ways, such as with physical currency, such as coins or bills, with a check (personal, cahiers, or otherwise) or with electronic forms of payment, such as debit or credit cards or electronic funds transfers (a transfer effected digitally, from one bank account to another).</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Real estate</h3>
+                <p class="term-description">Real estate is land, or a parcel of land, either vacant (un-improved) or improved with structures such as a house, apartment building, commercial building, etc. Real estate, especially once it is thus “improved,” can serve as a place of business or residence and can be used to produce income, such as through renting or leasing.  Real estate also can refer to a particular kind of legal interest in a land parcel (whether or not improved), such as ownership or entitlement to occupancy under a lease.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Reverse mortgage</h3>
+                <p class="term-description">A reverse mortgage is a type of loan that allows seniors to borrow against the value of their homes. The loan does not have to be repaid until the borrower moves, sells, or dies.</p>
+            </div>
+
+            <div class="term-item">
+                <h3 class="term-title">Step-by-step Guide</h3>
+                <p class="term-description">A step-by-step guide is a guide that takes you through the process of doing something, usually in a series of easy-to-follow, sequential steps.</p>
+            </div>
+        </div>
+
+        <div class="pre-approval-banner">
+            <p class="pre-approval-text">Find a lender who can offer you competitive mortgage rates.</p>
+            <button class="pre-approval-btn">Get pre-approved</button>
+        </div>
+    </section>
+
+    <div class="note">
+        <p class="note-description">Looking for the best mortgage? Let primehomes.com® help you successfully navigate the world of home finance. Our mortgage center offers several <a href="#">financial calculators</a>, free tools, and lending products to help you through the mortgage process. Use our <a href="#">home affordability calculator</a> to help you figure out how much home you can afford. With our <a href="#">mortgage calculator</a>, you can estimate your monthly payments. Is it better to rent or buy? primehomes.com® can help you make the best home finance decision with our useful <a href="#">rent vs. buy calculator</a>, which helps you estimate the difference between renting a property or buying a home over time. Before you start searching for the perfect home loan, find the best <a href="#">mortgage rates and loans</a> at primehomes.com®. For <a href="#">additional resources</a> and advice, browse our extensive library of <a href="#">finance articles</a> and get the information needed about mortgage rates, mortgage lenders, credit scores, home insurance and refinance.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-heading">About PrimeHomes</h4>
+                <p class="footer-text">We're committed to helping you find your perfect home. With thousands of listings and expert agents, your dream property is just a click away.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Browse Properties</a></li>
+                    <li><a href="#" class="footer-link">Find an Agent</a></li>
+                    <li><a href="#" class="footer-link">Mortgage Calculator</a></li>
+                    <li><a href="#" class="footer-link">Market Trends</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Buyer's Guide</a></li>
+                    <li><a href="#" class="footer-link">Seller's Guide</a></li>
+                    <li><a href="#" class="footer-link">Investment Tips</a></li>
+                    <li><a href="#" class="footer-link">FAQs</a></li>
+                    <li><a href="#" class="footer-link">Support Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@primehomes.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 100 Main Street<br>Suite 200, New York, NY 10001</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 PrimeHomes. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#" class="legal-link">Privacy Policy</a>
+                <a href="#" class="legal-link">Terms of Service</a>
+                <a href="#" class="legal-link">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/user/user-global.js"></script>
+    <script src="/frontend/guest/register.js"></script>
+</body>
+</html>

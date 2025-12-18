@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Support Request</title>
+    <style>
+        /* STYLES_PLACEHOLDER */
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header {{priority === 'urgent' ? 'urgent-priority' : priority === 'high' ? 'high-priority' : ''}}">
+        <h1>New Support Request</h1>
+        <p style="margin: 0; opacity: 0.9;">Ticket #{{submissionId}} requires attention</p>
+    </div>
+
+    <div class="customer-info">
+        <h3 style="margin-top: 0; color: #2c3e50;">Customer Information</h3>
+        <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value">{{customerName}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value">{{customerEmail}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Account Type:</span>
+            <span class="value">{{customerType}}</span>
+        </div>
+        {{#if userFullName}}
+            <div class="info-row">
+                <span class="label">Account Name:</span>
+                <span class="value">{{userFullName}}</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Account Email:</span>
+                <span class="value">{{userEmail}}</span>
+            </div>
+        {{/if}}
+    </div>
+
+    <div class="ticket-details">
+        <h3 style="margin-top: 0; color: #2c3e50;">Ticket Details</h3>
+        <div class="info-row">
+            <span class="label">Ticket ID:</span>
+            <span class="value">#{{submissionId}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Subject:</span>
+            <span class="value">{{formattedSubject}}</span>
+        </div>
+        <div class="info-row">
+            <span class="label">Priority:</span>
+            <span class="value">
+                <span class="priority-badge priority-{{priority}}">{{priority}}</span>
+            </span>
+        </div>
+        <div class="info-row">
+            <span class="label">Submitted:</span>
+            <span class="value">{{submitted}}</span>
+        </div>
+    </div>
+
+    <div class="message-box">
+        <h4 style="margin-top: 0; color: #e74c3c;">Customer Message:</h4>
+        <p style="margin-bottom: 0; white-space: pre-line;">{{message}}</p>
+    </div>
+
+    <div class="action-buttons">
+        <a href="{{adminPanelUrl}}" class="btn">View in Admin Panel</a>
+    </div>
+
+    <p style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e9ecef; font-size: 0.9rem; color: #7f8c8d; text-align: center;">
+        This notification was sent automatically when a new support request was submitted.
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin users</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-users.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-sidebar-logo">
+                    <i class="fas fa-home"></i>
+                    <span>PrimeHomes Admin</span>
+                </div>
+            </div>
+    
+            <nav class="admin-sidebar-nav">
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-dashboard.html" class="admin-nav-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-users.html" class="admin-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-properties.html" class="admin-nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>Properties</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-inquiries.html" class="admin-nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Inquiries</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-notifications.html" class="admin-nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-support.html" class="admin-nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-password-change.html" class="admin-nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+            </nav>
+    
+            <div class="admin-sidebar-footer">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <button class="admin-sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-page-title">
+                        <i class="fa-solid fa-user"></i>
+                        Users Management
+                    </h1>
+                    <div class="admin-header-actions">
+                        <button type="button" id="exportCsv" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <button type="button" id="exportPdf" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </header>
+    
+            <div class="admin-content">
+                <!-- Filters -->
+                <div class="admin-filters">
+                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Type</label>
+                        <select id="users-role-filter">
+                            <option value="all">All roles</option>
+                            <option value="Buyer">Buyer</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Super Admin">Super Admin</option>
+                        </select>
+                    </div>
+    
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Gender</label>
+                        <select id="users-gender-filter">
+                            <option value="all">All gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-overlay"></div>
+    
+                <!-- Form Section -->
+                <div class="col-lg-4 user-modal">
+                    <div class="card-header bg-primary text-white modal-header-custom">
+                        <h5 class="mb-0">
+                            <i class="fas fa-plus-circle"></i> 
+                            <span id="form-title">Edit User</span>
+                        </h5>
+                        <button class="close-modal-icon">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="card-body modal-body-custom">
+                        <form id="userForm">
+    
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label">First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="first-name" name="firstName" placeholder="John">
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="last-name" name="lastName" placeholder="Doe">
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="johndoe@example.com">
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="role" class="form-label">User Role <span class="text-danger">*</span></label>
+                                <select class="form-select" id="role" name="role" required>
+                                    <option value="" selected disabled>Select Role</option>
+                                    <option value="Buyer">Buyer</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Super Admin">Super Admin</option>
+                                </select>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone number">
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">Gender <span class="text-danger">*</span></label>
+                                <select class="form-select" id="gender" name="gender">
+                                    <option value="" selected disabled>Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                                <select class="form-select country-select" id="country" name="country" >
+                                    <option selected disabled>Select Country</option>
+                                </select>
+                            </div>
+    
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save"></i> Update User
+                                </button>
+                                <button type="button" class="btn btn-secondary cancel-form-btn"
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+    
+    
+                <div class="container-fluid py-4 users-table">
+                    <div class="row">
+                        <!-- Table Section -->
+                        <div class="col-lg-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-list"></i> Users List
+                                    </h5>
+                                    <button class="btn btn-light btn-sm" id="refresh-btn">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover" id="users-table">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>First Name</th>
+                                                    <th>Last Name</th>
+                                                    <th>Email</th>
+                                                    <th>Role</th>
+                                                    <th>Phone</th>
+                                                    <th>Gender</th>
+                                                    <th>Country</th>
+                                                    <th>Email verified</th>
+                                                    <th>Last verification sent</th>
+                                                    <th>Verification token</th>
+                                                    <th>Verification token expires</th>
+                                                    <th>Created at</th>
+                                                    <th>Updated at</th>
+                                                    <th>Deactivated at</th>
+                                                    <th>Suspended at</th>
+                                                    <th>Deleted at</th>                                       
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="users-table-body">
+                                                <!-- Data will be inserted here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+    
+                                    <div class="alert alert-warning" id="empty-alert" style="display: none;">
+                                        <i class="fas fa-info-circle"></i> No users found.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="pagination"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../general/csrf-helper.js"></script>
+    <script src="../general/toast-helper.js"></script>
+    <script src="../general/confirmation-modal.js"></script>
+    <script src="/frontend/admin/admin-users.js"></script>
+    <script src="/frontend/admin/admin-global"></script>
+</body>
+</html>

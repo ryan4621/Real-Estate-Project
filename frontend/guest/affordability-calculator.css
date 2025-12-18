@@ -1,0 +1,707 @@
+/* Affordability Calculator Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #2d3748;
+    background-color: #ffffff;
+}
+
+.tools-section {
+    background-color: #fff;
+}
+
+.note {
+    padding: 30px 100px;
+    background-color: #f5f5f5;
+}
+
+.note-description > span {
+    font-weight: 700;
+}
+
+.note-description {
+    font-size: .8rem;
+}
+
+/* Hero Section */
+.affordability-hero-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.affordability-hero-content {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.affordability-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 120px 20px 80px;
+    color: #ffffff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.affordability-hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: -1px;
+    line-height: 1.1;
+}
+
+.affordability-hero-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    max-width: 600px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.5;
+}
+
+/* Calculator Card */
+.affordability-calculator-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-width: 1150px;
+    width: 70%;
+    margin-top: -90px;
+    position: relative;
+    z-index: 10;
+}
+
+.calculator-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+}
+
+/* Form Styles */
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-prefix {
+    position: absolute;
+    left: 16px;
+    font-size: 16px;
+    color: #1a1a1a;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 40px 14px 36px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #1a1a1a;
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: color 0.2s ease;
+}
+
+.clear-btn:hover {
+    color: #1a1a1a;
+}
+
+.clear-btn i {
+    font-size: 22px;
+}
+
+.form-help-text {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.checkbox-input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin-top: 2px;
+    accent-color: #1a1a1a;
+}
+
+.checkbox-label {
+    font-size: 14px;
+    color: #1a1a1a;
+    font-weight: 500;
+    cursor: pointer;
+    line-height: 1.5;
+}
+
+.checkbox-help-text {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: -13px;
+    margin-left: 30px;
+    /* line-height: 1.4; */
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 30%;
+    padding: 16px 22px;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+.submit-btn:hover {
+    background: #b81d22;
+}
+
+.submit-btn:active {
+    transform: scale(0.99);
+}
+
+/* Affordability Result Styles */
+.affordability-result {
+    padding: 0;
+}
+
+.affordability-result-header {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+    padding-right: 80px;
+}
+
+.edit-container {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.edit-container:hover {
+    opacity: 0.7;
+}
+
+.edit-icon {
+    font-size: 16px;
+    color: #000000;
+}
+
+.edit-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: underline;
+}
+
+.affordability-result-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.affordability-result-item {
+    background: white;
+    border: 1px solid #e6e6e6;
+    border-radius: 20px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.affordability-result-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.affordability-label {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+}
+
+.affordability-result-item:nth-child(1) .affordability-label {
+    background-color: #00672b;
+    color: white;
+}
+
+.affordability-result-item:nth-child(2) .affordability-label {
+    background-color: #e4be00;
+    color: white;
+}
+
+.affordability-result-item:nth-child(3) .affordability-label {
+    background-color: #b20000;
+    color: white;
+}
+
+.affordability-price-range {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin-top: 4px;
+}
+
+.affordability-budget {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 400;
+}
+
+.affordability-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 8px;
+}
+
+.affordability-btn-container button {
+    padding: 12px 28px;
+    background: white;
+    color: #000000;
+    border: 2px solid #1a1a1a;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.affordability-btn-container button:hover {
+    background: #1a1a1a;
+    color: white;
+}
+
+.affordability-btn-container button:active {
+    transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .affordability-result-content {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .affordability-result-header {
+        font-size: 20px;
+        padding-right: 70px;
+    }
+
+    .edit-container {
+        top: 28px;
+        right: 28px;
+    }
+
+    .edit-icon {
+        font-size: 14px;
+    }
+
+    .edit-text {
+        font-size: 14px;
+    }
+
+    .affordability-result-item {
+        padding: 20px 18px;
+    }
+
+    .affordability-price-range {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .affordability-result-header {
+        font-size: 18px;
+        padding-right: 60px;
+    }
+
+    .edit-container {
+        top: 24px;
+        right: 20px;
+    }
+
+    .affordability-result-item {
+        padding: 18px 16px;
+    }
+
+    .affordability-price-range {
+        font-size: 20px;
+    }
+
+    .affordability-budget {
+        font-size: 13px;
+    }
+
+    .affordability-btn-container button {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .affordability-result-header {
+        font-size: 16px;
+        padding-right: 50px;
+    }
+
+    .edit-container {
+        top: 20px;
+        right: 16px;
+    }
+
+    .edit-icon {
+        font-size: 13px;
+    }
+
+    .edit-text {
+        font-size: 13px;
+    }
+
+    .affordability-label {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+
+    .affordability-price-range {
+        font-size: 18px;
+    }
+
+    .affordability-result-item {
+        padding: 16px 14px;
+    }
+
+    .affordability-btn-container {
+        justify-content: stretch;
+    }
+
+    .affordability-btn-container button {
+        width: 100%;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .affordability-hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .affordability-calculator-card {
+        padding: 32px 24px;
+        margin-top: -150px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* Next Step Section */
+.next-step-section {
+    background: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.next-step-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* Affordability Info Section */
+.affordability-info-section {
+    background: white;
+    padding: 40px 20px 60px;
+}
+
+.affordability-info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Accordion Styles */
+.accordion-item {
+    border: 1px solid #e6e6e6;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover .accordion-title{
+    color: #606060;
+}
+
+.accordion-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: left;
+}
+
+.accordion-icon {
+    font-size: 20px;
+    color: #1a1a1a;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.collapsed .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    /* max-height: 1000px; */
+    overflow: hidden;
+    /* margin-bottom: none; */
+    transition: max-height 0.4s ease;
+}
+
+.accordion-content.collapsed {
+    max-height: 0;
+}
+
+.accordion-body {
+    padding: 20px 28px 32px;
+}
+
+.accordion-intro {
+    font-size: 15px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.accordion-list {
+    list-style: disc;
+    padding-left: 24px;
+    margin-bottom: 24px;
+}
+
+.accordion-list li {
+    font-size: 15px;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.accordion-numbered-list {
+    list-style: decimal;
+    padding-left: 24px;
+    margin-bottom: 5px;
+}
+
+.accordion-numbered-list li {
+    font-size: 15px;
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.accordion-link {
+    color: #4a5568;
+    text-decoration: underline;
+}
+
+.accordion-link:hover {
+    color: #000000;
+}
+
+.term-item {
+    margin-bottom: 25px;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .affordability-hero-section {
+        padding: 40px 16px;
+    }
+
+    .affordability-hero-title {
+        font-size: 36px;
+    }
+
+    .affordability-hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 32px;
+    }
+
+    .affordability-calculator-card {
+        padding: 28px 20px;
+    }
+
+    .calculator-heading {
+        font-size: 20px;
+        margin-bottom: 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .form-input {
+        padding: 12px 40px 12px 32px;
+        font-size: 15px;
+    }
+
+    .submit-btn {
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+
+    .accordion-header {
+        padding: 20px;
+    }
+
+    .accordion-title {
+        font-size: 20px;
+    }
+
+    .accordion-body {
+        padding: 0 20px 24px;
+    }
+
+    .next-step-heading {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .affordability-hero-title {
+        font-size: 28px;
+    }
+
+    .affordability-hero-subtitle {
+        font-size: 15px;
+    }
+
+    .affordability-calculator-card {
+        padding: 24px 16px;
+    }
+
+    .calculator-heading {
+        font-size: 18px;
+    }
+
+    .accordion-title {
+        font-size: 18px;
+    }
+}

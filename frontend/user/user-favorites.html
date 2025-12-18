@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved listings</title>
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
+    <link rel="stylesheet" href="/frontend/user/user-favorites.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="main-navbar">
+        <div class="navbar-container" id="navbar-container">
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
+            </div>
+            
+            <div class="navbar-links">
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
+                        <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
+                        <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
+                        <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
+                        <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-rent.html" class="nav-link">Rent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
+                        <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
+                        <a href="/frontend/guest/for-rent.html" class="dropdown-item">All Rental Listings</a>
+                        <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/sell-property.html" class="nav-link">Sell</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
+                        <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
+                        <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                    </div>
+                </div>
+
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
+                        <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
+                        <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
+                        <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
+                        <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
+                        <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
+                        <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
+                        <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+                    </div>
+                </div>
+                
+                <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
+            </div>
+            
+            <button class="nav-signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="properties-listing-container">
+        <!-- Properties Grid -->
+        <main class="properties-main-content">
+            <button class="favorites-back-btn" id="favorites-back-btn">
+                <i class="bi bi-arrow-left"></i>
+            </button>
+            <h2 class="favorites-title">My listings</h2>
+
+            <div class="tabs-container">
+                <button class="saved-tab active" data-tab="listings">Saved Listings</button>
+                <button class="saved-tab" data-tab="searches">Saved Searches</button>
+            </div>
+            
+            <!-- Properties Grid -->
+            <div class="saved-tab-content active" data-content="listings">
+                <div class="favorites-top">
+                    <aside class="favorites-filter-sort">
+                        <select class="favorites-filter-select" id="properties-status-filter">
+                            <option value="all">All</option>
+                            <option value="Available">Available</option>
+                            <option value="Sold">Sold</option>
+                            <option value="Rented">Rented</option>
+                        </select>
+            
+                        <select class="favorites-sort-select" id="properties-sort-select">
+                            <option value="newest">Newest listings</option>
+                            <option value="price_low">Lowest price</option>
+                            <option value="price_high">Highest price</option>
+                        </select>
+            
+                        <button class="favorites-filters-reset" id="filters-reset-btn">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </button>
+                    </aside>
+
+                    <!-- Display Mode -->
+                    <div class="display-mode">
+                        <div class="display-mode-container">
+                            <span class="list-display-mode" id="list-display-mode">List</span>
+                        </div>
+            
+                        <div class="display-mode-container">
+                            <span class="map-display-mode" id="map-display-mode">Map</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="properties-grid" id="propertiesGrid"></div>
+
+                <div class="alert empty-alert" id="empty-alert">
+                    <i class="fas fa-info-circle"></i> No saved listings.
+                </div>
+
+                <div class="alert error-alert">
+                    <i class="fas fa-exclamation-circle"></i> Failed to load favorites. Please try again later.
+                </div>
+            </div>
+
+            <!-- Saved Searches Grid -->
+            <div class="saved-tab-content" data-content="searches">
+                <div class="saved-searches-grid" id="saved-searches-grid"></div>
+
+                <div class="alert empty-alert" id="ss-empty-alert">
+                    <i class="fas fa-info-circle"></i> No saved searches.
+                </div>
+    
+                <div class="alert error-alert" id="ss-error-alert">
+                    <i class="fas fa-exclamation-circle"></i> Failed to load saved searches. Please try again later.
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="properties-pagination">
+                <button class="properties-pagination-btn" id="previous-btn" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                    Previous
+                </button>
+                <button class="properties-pagination-btn active">1</button>
+                <button class="properties-pagination-btn">2</button>
+                <button class="properties-pagination-btn">3</button>
+                <button class="properties-pagination-btn">4</button>
+                <button class="properties-pagination-btn">5</button>
+                <button class="properties-pagination-btn" id="next-btn">
+                    Next
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <!-- <script src="/frontend/guest/for-sale.js"></script> -->
+    <script src="/frontend/user/user-global.js"></script>
+    <script src="/frontend/user/user-favorites.js"></script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin notifications</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-notifications.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-sidebar-logo">
+                    <i class="fas fa-home"></i>
+                    <span>PrimeHomes Admin</span>
+                </div>
+            </div>
+    
+            <nav class="admin-sidebar-nav">
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-dashboard.html" class="admin-nav-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-users.html" class="admin-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-properties.html" class="admin-nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>Properties</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-inquiries.html" class="admin-nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Inquiries</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-notifications.html" class="admin-nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-support.html" class="admin-nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-password-change.html" class="admin-nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+            </nav>
+    
+            <div class="admin-sidebar-footer">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <button class="admin-sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-page-title">
+                        <i class="fa-solid fa-user"></i>
+                        Notifications Management
+                    </h1>
+                    <div class="admin-header-actions">
+                        <button type="button" id="exportCsv" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <button type="button" id="exportPdf" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </header>
+    
+            <div class="admin-content">
+                <!-- Statistics Cards -->
+                <div class="notification-stats" id="notification-stats">
+                    <div class="notification-stat-card sent">
+                        <h3 class="notification-stat-number" id="sent-notifications-count">-</h3>
+                        <p class="notification-stat-label">Sent Notifications</p>
+                    </div>
+                    <div class="notification-stat-card draft">
+                        <h3 class="notification-stat-number" id="draft-notifications-count">-</h3>
+                        <p class="notification-stat-label">Drafted Notifications</p>
+                    </div>
+                    <div class="notification-stat-card">
+                        <h3 class="notification-stat-number" id="total-recipients-count">-</h3>
+                        <p class="notification-stat-label">Total Recipients</p>
+                    </div>
+                    <div class="notification-stat-card engagement">
+                        <h3 class="notification-stat-number" id="read-rate-percentage">-</h3>
+                        <p class="notification-stat-label">Average Read Rate</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="admin-filters">
+                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Category</label>
+                        <select id="notifications-category-filter">
+                            <option value="all">All categories</option>
+                            <option value="general">General</option>
+                            <option value="saved_listings">Saved listings</option>
+                            <option value="marketing_emails">Marketing Emails</option>
+                        </select>
+                    </div>
+    
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Status</label>
+                        <select id="notifications-status-filter">
+                            <option value="all">All statuses</option>
+                            <option value="draft">Drafted</option>
+                            <option value="scheduled">Scheduled</option>
+                            <option value="sent">Sent</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-overlay"></div>
+
+                 <!-- Action Buttons -->
+                <div class="notification-actions">
+                    <button class="notification-btn notification-btn-primary" id="notification-create-btn">
+                        Create New Notification
+                    </button>
+                    <button class="notification-btn notification-btn-success" id="notification-refresh-btn">
+                        Refresh Data
+                    </button>
+                </div>
+    
+                <!-- Create Notification Form -->
+                <div class="notification-create-form" id="notification-create-form">
+                    <h2 class="notification-form-title">Create New Notification</h2>
+                    
+                    <form id="notification-form">
+                        <div class="notification-form-grid">
+                            <!-- Title -->
+                            <div class="notification-form-group">
+                                <label for="notification-title" class="notification-form-label required">Title</label>
+                                <input 
+                                    type="text" 
+                                    id="notification-title" 
+                                    name="title" 
+                                    class="notification-form-input"
+                                    required
+                                    placeholder="Enter notification title"
+                                >
+                            </div>
+                
+                            <!-- Category -->
+                            <div class="notification-form-group">
+                                <label for="notification-category" class="notification-form-label required">Category</label>
+                                <select id="notification-category" name="category" class="notification-form-select" required>
+                                    <option value="">Select category...</option>
+                                    <option value="general">General</option>
+                                    <option value="saved_listings">Saved Listings</option>
+                                    <option value="marketing_emails">Marketing Emails</option>
+                                </select>
+                            </div>
+                
+                            <!-- Message -->
+                            <div class="notification-form-group full-width">
+                                <label for="notification-message" class="notification-form-label required">Message</label>
+                                <textarea 
+                                    id="notification-message" 
+                                    name="message" 
+                                    class="notification-form-textarea"
+                                    required
+                                    placeholder="Enter your message here..."
+                                    rows="6"
+                                ></textarea>
+                            </div>
+                        </div>
+                
+                        <!-- Targeting Section -->
+                        <div class="notification-targeting-section">
+                            <h3 class="notification-targeting-title">Target Audience</h3>
+                            <div class="notification-form-grid">
+                                <div class="notification-form-group">
+                                    <div class="notification-form-checkbox">
+                                        <input type="checkbox" id="notification-target-all" name="target_all_users" checked>
+                                        <label for="notification-target-all" class="notification-form-label">Send to all users</label>
+                                    </div>
+                                </div>
+                                <div class="notification-form-group">
+                                    <label for="notification-user-roles" class="notification-form-label">Target User Roles</label>
+                                    <select id="notification-user-roles" name="target_user_roles" class="notification-form-select" multiple>
+                                        <option value="buyer">Regular Users</option>
+                                        <option value="admin">Regular Admin</option>
+                                        <option value="super_admin">Super Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                
+                        <!-- Channels Section -->
+                        <!-- <div class="notification-channels-section">
+                            <h3 class="notification-channels-title">Delivery Channels</h3>
+                            <div class="notification-form-grid">
+                            <div class="notification-form-group">
+                                <div class="notification-form-checkbox">
+                                <input type="checkbox" id="notification-send-email" name="send_email" checked>
+                                <label for="notification-send-email" class="notification-form-label">Send Email</label>
+                                </div>
+                            </div>
+                            <div class="notification-form-group">
+                                <div class="notification-form-checkbox">
+                                <input type="checkbox" id="notification-send-push" name="send_push" checked>
+                                <label for="notification-send-push" class="notification-form-label">Send In-App Notification</label>
+                                </div>
+                            </div>
+                            </div>
+                        </div> -->
+                
+                        <!-- Form Actions -->
+                        <div class="notification-form-actions">
+                            <button type="button" class="notification-btn notification-btn-secondary" id="notification-cancel-btn">
+                            Cancel
+                            </button>
+                            <button type="button" class="notification-btn notification-btn-draft" id="notification-draft-btn">
+                                Save draft
+                            </button>
+                            <button type="submit" class="notification-btn notification-btn-primary">
+                            Send Notification
+                            </button>
+                        </div>
+                    </form>
+                </div>
+  
+                <!-- Notifications List -->
+                <div class="notification-list-container">
+                    <div class="notification-list-header">
+                        <h3 class="notification-list-title">Recent Notifications</h3>
+                        <span class="notification-list-count" id="notification-list-count">0 notifications</span>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div class="notification-loading" id="notification-loading-state">
+                        <div class="notification-loading-spinner"></div>
+                        <p>Loading notifications...</p>
+                    </div>
+            
+                    <!-- Empty State -->
+                    <div class="notification-empty" id="notification-empty-state" style="display: none;">
+                        <div class="notification-empty-icon">📬</div>
+                        <h3>No notifications found</h3>
+                        <p>Create your first notification to get started.</p>
+                    </div>
+            
+                    <!-- Notifications Table -->
+                    <table class="notification-table" id="notification-table" style="display: none;">
+                        <thead>
+                            <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Recipients</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="notification-table-body"></tbody>
+                    </table>
+                </div>
+
+                <div id="pagination"></div>
+            </div>
+
+            <div id="notification-modal" class="notification-modal">
+                <div class="notification-modal-content">
+                  <div class="notification-modal-header">
+                    <h3 class="notification-modal-title" id="notification-modal-title">Notification Details</h3>
+                    <button class="notification-modal-close" id="notification-modal-close">&times;</button>
+                  </div>
+                  <div class="notification-modal-body" id="notification-modal-body">
+                    <div class="notification-loading">
+                      <div class="notification-loading-spinner"></div>
+                      <p>Loading notification details...</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/admin/admin-global"></script>
+    <script src="/frontend/admin/admin-notifications.js"></script>
+</body>
+</html>

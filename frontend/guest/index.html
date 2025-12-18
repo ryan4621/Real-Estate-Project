@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeHomes - Find Your Dream Property</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="main-navbar">
+        <div class="navbar-container" id="navbar-container">
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
+            </div>
+            
+            <div class="navbar-links">
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
+                        <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
+                        <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
+                        <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
+                        <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-rent.html" class="nav-link">Rent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
+                        <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
+                        <a href="/frontend/guest/for-rent.html" class="dropdown-item">All Rental Listings</a>
+                        <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/sell-property.html" class="nav-link">Sell</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
+                        <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
+                        <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                    </div>
+                </div>
+
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
+                        <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
+                        <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
+                        <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
+                        <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
+                        <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
+                        <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
+                        <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+                    </div>
+                </div>
+                
+                <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
+            </div>
+            
+            <button class="nav-signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- Sign Up Modal -->
+    <div class="signup-overlay"></div>
+    <div class="signup-modal">   
+        <div class="signup-modal-content">
+            <div class="signup-modal-header">
+                <h2 class="signup-modal-title">Log in or create an account</h2>   
+                <i class="bi bi-x signup-close-modal"></i>
+            </div>
+            <form class="signup-form">
+                <div class="signup-form-group">
+                    <label class="signup-form-label">Email address <span class="required-text">required</span></label>
+                    <input type="email" class="email signup-form-input" placeholder="Enter your email">
+                    <p>Enter a valid email address</p>
+                </div>
+                <div class="signup-form-group first-name-input-group">
+                    <label class="signup-form-label">First name</label>
+                    <input type="name" class="first-name signup-form-input" placeholder="Enter your first name">
+                </div>
+                <div class="signup-form-group last-name-input-group">
+                    <label class="signup-form-label">Last name</label>
+                    <input type="name" class="last-name signup-form-input" placeholder="Enter your last name">
+                </div>
+                <div class="signup-form-group password-input-group">
+                    <label class="signup-form-label">Password</label>
+                    <input type="password" class="password signup-form-input" placeholder="Enter your password">
+                    <i class="bi bi-eye-slash"></i>
+                    <i class="bi bi-eye"></i>
+                    <p>Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</p>
+                </div>
+                <div class="signup-form-group gender-input-group">
+                    <label class="signup-form-label">Gender</label>
+                    <select class="gender-select signup-form-input">
+                        <option selected disabled>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <p>Select Gender</p>
+                </div>
+                <div class="signup-form-group country-input-group">
+                    <label class="signup-form-label">Country</label>
+                    <select class="country-select signup-form-input">
+                        <option selected disabled>Select Country</option>
+                    </select>
+                    <p>Select Country</p>
+                </div>
+                
+                <button type="button" class="continue-btn">Continue</button>
+                <button type="button" class="login-btn">Login</button>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            
+            <div class="signup-form-divider">
+                <span>or</span>
+            </div>
+            
+            <div class="social-buttons">
+                <button class="social-button google-button">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+                        <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9.003 18z" fill="#34A853"/>
+                        <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                        <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.002 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+                
+                <button class="social-button facebook-button">
+                    <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                    <span>Continue with Facebook</span>
+                </button>
+                
+                <button class="social-button apple-button">
+                    <i class="bi bi-apple" style="font-size: 20px;"></i>
+                    <span>Continue with Apple</span>
+                </button>
+            </div>
+            
+            <div class="professional-option">
+                <p>Are you a real estate agent?</p>
+                <a href="#" class="professional-link">Log in</a> or 
+                <a href="#" class="professional-link">create an account</a>
+                <br>
+            </div>
+            
+            <p class="terms-text">
+                By creating an account you agree to PrimeHomes' <br><a href="#" class="terms-link">Terms of Use</a> and <a href="#" class="terms-link">Privacy Policy.</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"></a><span>PrimeHomes</span></a>
+
+            </div>
+            <button class="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Buy</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Browse Homes</a>
+                    <a href="#" class="sidebar-dropdown-item">New Listings</a>
+                    <a href="#" class="sidebar-dropdown-item">Open Houses</a>
+                    <a href="#" class="sidebar-dropdown-item">Virtual Tours</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Rent</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Apartments</a>
+                    <a href="#" class="sidebar-dropdown-item">Houses</a>
+                    <a href="#" class="sidebar-dropdown-item">Condos</a>
+                    <a href="#" class="sidebar-dropdown-item">Townhomes</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Sell</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">List Your Property</a>
+                    <a href="#" class="sidebar-dropdown-item">Find an Agent</a>
+                    <a href="#" class="sidebar-dropdown-item">Home Value Estimate</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Agents</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Find Agents</a>
+                    <a href="#" class="sidebar-dropdown-item">Top Agents</a>
+                    <a href="#" class="sidebar-dropdown-item">Agent Reviews</a>
+                </div>
+            </div>
+            
+            <a href="#" class="sidebar-link">Contact</a>
+            
+            <button class="sidebar-signup-button">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Dream Home</h1>
+            <p class="hero-subtitle">Discover the perfect place to call home from thousands of listings</p>
+
+            <!-- Search Bar -->
+            <div class="hero-search-wrapper">
+                <div class="hero-search-bar">
+                    <input type="text" class="hero-search-input" value="Los Angeles, CA">
+                    <button class="hero-clear-btn">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    <button class="hero-search-btn">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="featured-section">
+        <div class="section-container">
+            <h2 class="section-title">Browse Homes in Los Angeles, California</h2>
+            <p class="section-description">Explore our handpicked selection of premium properties</p>
+
+            <!-- Properties Grid -->
+            <div class="properties-grid" id="propertiesGrid"></div>
+
+            <div class="alert empty-alert" id="empty-alert">
+                <i class="fas fa-info-circle"></i> No properties to show
+            </div>
+
+            <div class="alert error-alert" id="error-alert">
+                <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Properties Section -->
+    <section class="latest-section">
+        <div class="section-container">
+            <h2 class="section-title">Discover New Listings</h2>
+            <p class="section-description">Be the first to see properties hitting the market.</p>
+
+            <!-- Properties Grid -->
+            <div class="properties-grid" id="latestGrid"></div>
+
+            <div class="alert empty-alert" id="latest-empty-alert">
+                <i class="fas fa-info-circle"></i> No properties to show
+            </div>
+
+            <div class="alert error-alert" id="latest-error-alert">
+                <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="help-container">
+            <h2 class="help-title">Discover how we can help</h2>
+            
+            <div class="help-tabs">
+                <button class="help-tab active" data-tab="buying">Buying</button>
+                <button class="help-tab" data-tab="renting">Renting</button>
+                <button class="help-tab" data-tab="selling">Selling</button>
+            </div>
+    
+            <div class="help-content">
+                <!-- Buying Content -->
+                <div class="help-cards active" data-content="buying">
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Find out how much you can afford</h3>
+                                <p class="card-description">We'll help you estimate your budget range. Save to your buyer profile to help in your search.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Try our affordability calculator</a>
+                    </div>
+    
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Understand your monthly costs</h3>
+                                <p class="card-description">Get an in-depth look at what your monthly and closing costs will look like based on your financial situation and goals.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-calculator-fill"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Try our mortgage calculator</a>
+                    </div>
+    
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Get help with your down payment</h3>
+                                <p class="card-description">You may be able to buy a home with just 3.5% down. Saving for that can be challenging—down payment assistance programs can help.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Find down payment help</a>
+                    </div>
+                </div>
+    
+                <!-- Renting Content -->
+                <div class="help-cards" data-content="renting">
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Find out if it's better to rent or buy</h3>
+                                <p class="card-description">Try our rent or buy calculator to determine if buying or renting a home makes more financial sense for your situation.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-signpost-2-fill"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Try our rent or buy calculator</a>
+                    </div>
+    
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Search for Nearby Opportunities</h3>
+                                <p class="card-description">See apartments available in your area or a location you choose. Narrow your search by price, amenities, and more.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-flag-fill"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">View apartments near me</a>
+                    </div>
+    
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Discover Your Dream Apartment</h3>
+                                <p class="card-description">Explore thousands of apartment listings. Find the perfect place to call home.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-houses-fill"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Start your apartment search</a>
+                    </div>
+                </div>
+    
+                <!-- Selling Content -->
+                <div class="help-cards" data-content="selling">
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Buy now, sell later</h3>
+                                <p class="card-description">Skip the repairs and showings. Our partners can help you buy your new home first, then sell your old one.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="fa-solid fa-sign-hanging"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Search options from our partners</a>
+                    </div>
+    
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Track your home value</h3>
+                                <p class="card-description">See your RealEstimate℠ valuation information over time compared to homes in your area.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-house-heart-fill"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Get your RealEstimate℠</a>
+                    </div>
+    
+                    <div class="help-card">
+                        <div class="card-header">
+                            <div class="card-text">
+                                <h3 class="card-title">Get offers for your home</h3>
+                                <p class="card-description">Visit Seller’s Marketplace to find out how you can sell without listing or stay in your home while you finance the purchase of your next one.</p>
+                            </div>
+                            <div class="card-icon">
+                                <i class="bi bi-tags-fill"></i>
+                            </div>
+                        </div>
+                        <a href="#" class="card-link">Explore my offers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loan Section -->
+    <section class="loan-section">
+        <div class="loan-container">
+          <div class="loan-image">
+            <img src="/images/hp-hero-mortgage-desktop-cube.avif" alt="Person working on laptop">
+          </div>
+          <div class="loan-content">
+            <h2>Need a home loan? Get pre-approved</h2>
+            <p>Find a lender who can offer competitive mortgage rates and help you with pre-approval.</p>
+            <button class="cta-button">Get pre-approved now</button>
+            <a href="#" class="disclosure-link">Advertising disclosure</a>
+          </div>
+        </div>
+    </section>
+
+    <!-- Disclosure Modal -->
+    <div class="disclosure-modal-overlay" id="disclosure-modal">
+        <div class="disclosure-modal-content">
+            <button class="disclosure-modal-close-icon" id="disclosure-modal-close-icon">
+                <i class="bi bi-x"></i>
+            </button>
+            <h3 class="disclosure-modal-title">Advertising disclosure</h3>
+            <p class="disclosure-modal-text">
+                All specific rates advertised on primehomes.com or pre-approvals are offered by unaffiliated third parties; primehomes.com does not solicit, broker or make mortgage loans. All rates listed without a third party identified are based on averages provided by a third-party data aggregator and are provided for information purposes only.
+            </p>
+
+            <p class="disclosure-modal-text">
+                This tool is for general estimation purposes.
+            </p>
+            <button class="disclosure-modal-btn" id="disclosure-modal-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-heading">About PrimeHomes</h4>
+                <p class="footer-text">We're committed to helping you find your perfect home. With thousands of listings and expert agents, your dream property is just a click away.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Browse Properties</a></li>
+                    <li><a href="#" class="footer-link">Find an Agent</a></li>
+                    <li><a href="#" class="footer-link">Mortgage Calculator</a></li>
+                    <li><a href="#" class="footer-link">Market Trends</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Buyer's Guide</a></li>
+                    <li><a href="#" class="footer-link">Seller's Guide</a></li>
+                    <li><a href="#" class="footer-link">Investment Tips</a></li>
+                    <li><a href="#" class="footer-link">FAQs</a></li>
+                    <li><a href="#" class="footer-link">Support Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@primehomes.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 100 Main Street<br>Suite 200, New York, NY 10001</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 PrimeHomes. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#" class="legal-link">Privacy Policy</a>
+                <a href="#" class="legal-link">Terms of Service</a>
+                <a href="#" class="legal-link">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/guest/homepage.js"></script>
+    <script src="/frontend/user/user-global.js"></script>
+    <script src="/frontend/guest/register.js"></script>
+</body>
+</html>

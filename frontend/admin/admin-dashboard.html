@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-sidebar-logo">
+                    <i class="fas fa-home"></i>
+                    <span>Prime Homes Admin</span>
+                </div>
+            </div>
+
+            <nav class="admin-sidebar-nav">
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-dashboard.html" class="admin-nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-users.html" class="admin-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-properties.html" class="admin-nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>Properties</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-inquiries.html" class="admin-nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Inquiries</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-notifications.html" class="admin-nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-support.html" class="admin-nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-password-change.html" class="admin-nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Mobile Toggle -->
+        <button class="admin-sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Main Content -->
+        <main class="admin-main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-page-title">
+                        <i class="fas fa-chart-line"></i>
+                        Dashboard
+                    </h1>
+                    <div class="admin-header-actions">
+                        <button class="admin-btn admin-btn-light">
+                            <i class="fas fa-download"></i>
+                            Export Report
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="admin-content">
+                <!-- Stats Grid -->
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="admin-stat-label">Total Users</div>
+                        <div class="admin-stat-value" id="users-stat-value">-</div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon green">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="admin-stat-label">Total Properties</div>
+                        <div class="admin-stat-value" id="properties-stat-value">-</div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon purple">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="admin-stat-label">New Inquiries</div>
+                        <div class="admin-stat-value" id="inquiries-stat-value">-</div>
+                    </div>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon orange">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="admin-stat-label">Total Revenue</div>
+                        <div class="admin-stat-value" id="revenue-stat-value">$45.2K</div>
+                    </div>
+                </div>
+
+                <!-- Additional content here -->
+            </div>
+        </main>
+    </div>
+    <script src="../general/csrf-helper.js"></script>
+    <script src="../general/toast-helper.js"></script>
+    <script src="../general/confirmation-modal.js"></script>
+    <script src="/frontend/admin/admin-global"></script>
+    <script src="/frontend/admin/admin-dashboard.js"></script>
+</body>
+</html>

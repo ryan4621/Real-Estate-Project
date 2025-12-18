@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Real Estate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/user/user-settings.css">
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="main-navbar">
+        <div class="navbar-container" id="navbar-container">
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
+            </div>
+            
+            <div class="navbar-links">
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
+                        <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
+                        <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
+                        <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
+                        <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-rent.html" class="nav-link">Rent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
+                        <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
+                        <a href="/frontend/guest/for-rent.html" class="dropdown-item">All Rental Listings</a>
+                        <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/sell-property.html" class="nav-link">Sell</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
+                        <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
+                        <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                    </div>
+                </div>
+
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
+                        <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
+                        <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
+                        <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
+                        <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
+                        <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
+                        <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
+                        <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+                    </div>
+                </div>
+                
+                <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
+            </div>
+            
+            <button class="nav-signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <div class="settings-container" id="settings-container">
+        <div class="settings-header" id="settings-header">
+            <h1 class="settings-greeting" id="settings-greeting"></h1>
+        </div>
+
+        <nav class="settings-tabs" id="settings-tabs">
+            <div class="settings-tab" id="buyer-profile-tab" data-section="buyer-profile">Buyer profile</div>
+            <div class="settings-tab" id="renter-tools-tab" data-section="renter-tools">Renter tools</div>
+            <div class="settings-tab active" id="settings-tab" data-section="settings">Settings</div>
+            <div class="settings-tab" id="collaborate-tab" data-section="collaborate">Collaborate</div>
+        </nav>
+
+        <div class="settings-content" id="settings-content">
+            <!-- Buyer Profile Section -->
+            <section class="settings-section buyer-profile-section" id="buyer-profile-section">
+                <div class="dummy-content" id="buyer-profile-dummy">
+                    <p>Buyer Profile Content - To be styled separately</p>
+                </div>
+            </section>
+
+            <!-- Renter Tools Section -->
+            <section class="settings-section renter-tools-section" id="renter-tools-section">
+                <div class="dummy-content" id="renter-tools-dummy">
+                    <p>Renter Tools Content - To be styled separately</p>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="settings-section active" id="settings-section">
+                <!-- Profile Section -->
+                <div class="profile-section" id="profile-section">
+                    <div class="profile-photo-container" id="profile-photo-container">
+                        <div class="profile-photo" id="profile-photo">
+                            <svg class="profile-photo-icon" id="profile-photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <a class="change-profile-photo" id="change-profile-photo">Change profile photo</a>
+
+                        <div class="profile-upload-area" id="profileUploadArea" style="display: none;">
+                            <div class="profile-upload-icon">📁</div>
+                            <div class="profile-upload-text">Click to upload or drag and drop</div>
+                            <div class="profile-upload-subtext">PNG, JPG, JPEG up to 5MB</div>
+                            <input type="file" id="profileFileInput" accept="image/png,image/jpg,image/jpeg" />
+                        </div>
+                        <div class="profile-preview-area" id="profilePreviewArea" style="display: none;">
+                            <img class="profile-preview-image" id="profilePreviewImage" alt="Preview" />
+                            <div class="profile-preview-info">
+                                <p>Image ready for upload</p>
+                                <button class="profile-btn upload-btn-secondary" id="profileReuploadBtn">Choose Different Photo</button>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-error-message" id="profileErrorMessage"></div>
+                        <div class="profile-success-message" id="profileSuccessMessage"></div>
+
+                        <div class="profile-progress-container" id="profileProgressContainer">
+                            <div class="profile-progress-bar">
+                                <div class="profile-progress-fill" id="profileProgressFill"></div>
+                            </div>
+                            <div class="profile-progress-text" id="profileProgressText">Uploading...</div>
+                        </div>
+                        <div class="profile-upload-buttons" id="profileUploadButtons" style="display: none;">
+                            <button class="profile-btn upload-btn-secondary" id="profileCancelUploadBtn">Cancel</button>
+                            <button class="profile-btn profile-btn-primary" id="profileUploadBtn">Upload Photo</button>
+                        </div>
+                    </div>
+
+                    <div class="profile-info-container" id="profile-info-container"></div>
+                </div>
+
+                <!-- Edit Profile Modal Overlay -->
+                <div class="edit-profile-overlay" id="edit-profile-overlay"></div>
+
+                <!-- Edit Profile Modal -->
+                <div class="edit-profile-modal" id="edit-profile-modal">
+                    <div class="edit-profile-content" id="edit-profile-content">
+                        <div class="edit-profile-header" id="edit-profile-header">
+                            <h2 class="edit-profile-title" id="edit-profile-title">Edit Profile</h2>
+                            <button class="edit-profile-close" id="edit-profile-close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+
+                        <form class="edit-profile-form" id="edit-profile-form">
+                            <div class="edit-profile-form-row" id="name-row">
+                                <div class="edit-profile-form-group" id="first-name-group">
+                                    <label class="edit-profile-label" id="first-name-label" for="first-name-input">First Name</label>
+                                    <input 
+                                        type="text" 
+                                        class="edit-profile-input" 
+                                        id="first-name-input" 
+                                        name="first_name"
+                                        placeholder="Enter first name"
+                                    >
+                                </div>
+
+                                <div class="edit-profile-form-group" id="last-name-group">
+                                    <label class="edit-profile-label" id="last-name-label" for="last-name-input">Last Name</label>
+                                    <input 
+                                        type="text" 
+                                        class="edit-profile-input" 
+                                        id="last-name-input" 
+                                        name="last_name"
+                                        placeholder="Enter last name"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="edit-profile-form-row" id="location-row">
+                                <div class="edit-profile-form-group" id="zip-group">
+                                    <label class="edit-profile-label" id="zip-label" for="zip-input">Zip</label>
+                                    <input 
+                                        type="text" 
+                                        class="edit-profile-input" 
+                                        id="zip-input" 
+                                        name="zip"
+                                        placeholder="Enter zip code"
+                                    >
+                                </div>
+
+                                <div class="edit-profile-form-group" id="city-group">
+                                    <label class="edit-profile-label" id="city-label" for="city-input">City</label>
+                                    <input 
+                                        type="text" 
+                                        class="edit-profile-input" 
+                                        id="city-input" 
+                                        name="city"
+                                        placeholder="Enter city"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="edit-profile-form-row" id="state-country-row">
+                                <div class="edit-profile-form-group" id="state-group">
+                                    <label class="edit-profile-label" id="state-label" for="state-input">State</label>
+                                    <input 
+                                        class="edit-profile-input" 
+                                        id="state-input" 
+                                        name="state"
+                                        placeholder="Enter state"
+                                    >
+                                </div>
+
+                                <div class="edit-profile-form-group" id="country-group">
+                                    <label class="edit-profile-label" id="country-label" for="country-select">Country</label>
+                                    <select 
+                                        class="edit-profile-select" 
+                                        id="country-select" 
+                                        name="country"
+                                    >
+                                        <option selected disabled>Choose an option...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="edit-profile-form-row" id="phone-row">
+                                <div class="edit-profile-form-group" id="gender-group">
+                                    <label class="edit-profile-label" id="area-code-label" for="gender-select">Gender</label>
+                                    <select 
+                                        class="edit-profile-select" 
+                                        id="gender-select" 
+                                        name="gender"
+                                    >
+                                        <option selected disabled>Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value=Other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="edit-profile-form-group" id="phone-group">
+                                    <label class="edit-profile-label" id="phone-label" for="phone-input">Phone</label>
+                                    <input 
+                                        type="text" 
+                                        class="edit-profile-input" 
+                                        id="phone-input" 
+                                        name="phone"
+                                        placeholder="e.g. 999-9999"
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="edit-profile-delete-section" id="delete-section">
+                                <a href="#" class="edit-profile-delete-link" id="delete-account-link">Delete my account</a>
+                            </div>
+
+                            <div class="edit-profile-actions" id="edit-profile-actions">
+                                <button type="submit" class="edit-profile-save-btn" id="edit-profile-save-btn">Save Changes</button>
+                                <button type="button" class="edit-profile-cancel-btn" id="edit-profile-cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="settings-separator" id="separator-1"></div>
+
+                <!-- Email Section -->
+                <div class="email-section" id="email-section">
+                    <div class="email-info" id="email-info">
+                        <svg class="email-icon" id="email-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span class="user-email" id="user-email"></span>
+                    </div>
+
+                    <div class="email-actions" id="email-actions"></div>
+                </div>
+
+                <!-- Change Email Modal Overlay -->
+                <div class="email-modal-overlay" id="email-modal-overlay"></div>
+
+                <!-- Change Email Modal -->
+                <div class="email-modal" id="email-modal">
+                    <div class="email-modal-content" id="email-modal-content">
+                        <div class="email-modal-header" id="email-modal-header">
+                            <h2 class="email-modal-title" id="email-modal-title">Change email address</h2>
+                            <button class="email-modal-close" id="email-modal-close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+
+                        <div class="email-modal-body" id="email-modal-body">
+                            <p class="email-modal-description" id="email-modal-description">
+                                Enter your new email address below and a verification email message will be sent. Click on the link in the email message to verify ownership of the email address and complete the change.
+                            </p>
+
+                            <form class="email-modal-form" id="email-modal-form">
+                                <div class="email-modal-form-group" id="email-modal-form-group">
+                                    <div class="email-modal-label-wrapper" id="email-modal-label-wrapper">
+                                        <label class="email-modal-label" id="email-modal-label" for="email-modal-input">Email address</label>
+                                        <span class="email-modal-required" id="email-modal-required">required</span>
+                                    </div>
+                                    <input 
+                                        type="email" 
+                                        class="email-modal-input" 
+                                        id="email-modal-input" 
+                                        name="email"
+                                        placeholder="Enter your new email address"
+                                        required
+                                    >
+                                </div>
+
+                                <button type="submit" class="email-modal-submit-btn" id="email-modal-submit-btn">
+                                    Send Email
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-separator" id="separator-2"></div>
+
+                <!-- Password Section -->
+                <div class="password-section" id="password-section">
+                    <svg class="password-icon" id="password-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                    </svg>
+
+                    <div class="password-actions" id="password-actions">
+                        <a class="password-action-link" id="change-password-link">Change password</a>
+                        <a class="password-action-link" id="reset-password-link">Reset password</a>
+                    </div>
+                </div>
+
+                <!-- Password Reset Modal Overlay -->
+                <div class="password-reset-modal-overlay" id="password-reset-modal-overlay"></div>
+
+                <!-- Password Reset Modal -->
+                <div class="password-reset-modal" id="password-reset-modal">
+                    <div class="password-reset-modal-content" id="password-reset-modal-content">
+                        <div class="password-reset-modal-header" id="password-reset-modal-header">
+                            <h2 class="password-reset-modal-title" id="password-reset-modal-title">Almost done!</h2>
+                            <button class="password-reset-modal-close" id="password-reset-modal-close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+
+                        <div class="password-reset-modal-body" id="password-reset-modal-body">
+                            <p class="password-reset-modal-text" id="password-reset-modal-email-text">
+                                Email sent to <strong id="password-reset-modal-email">emmanuelryan4621@gmail.com</strong>
+                            </p>
+                            
+                            <p class="password-reset-modal-text" id="password-reset-modal-instruction">
+                                The email message includes a secure link to reset your password.
+                            </p>
+
+                            <button class="password-reset-modal-close-btn" id="password-reset-modal-close-btn">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password Change Modal -->
+                <div class="change-password-modal" id="change-password-modal">
+                    <div class="change-password-modal-content" id="change-password-modal-content">
+                        <div class="change-password-modal-header" id="change-password-modal-header">
+                            <h2 class="change-password-modal-title" id="change-password-modal-title">Change Password</h2>
+                            <button class="change-password-modal-close" id="change-password-modal-close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                        </div>
+            
+                        <div class="change-password-modal-body" id="change-password-modal-body">
+            
+                            <form class="change-password-form" id="change-password-form">
+                                <div class="change-password-form-group" id="new-password-group">
+                                    <label class="change-password-label" id="new-password-label" for="new-password-input">New password</label>
+                                    <div class="change-password-input-wrapper" id="new-password-wrapper">
+                                        <input 
+                                            type="password" 
+                                            class="change-password-input" 
+                                            id="new-password-input" 
+                                            name="newPasswordValue"
+                                            placeholder="New password"
+                                            required
+                                        >
+                                        <button type="button" class="change-password-toggle-btn" id="toggle-new-password">
+                                            <i class="bi bi-eye" id="new-password-eye-open"></i>
+                                            <i class="bi bi-eye-slash" id="new-password-eye-closed" style="display: none;"></i>
+                                        </button>
+                                    </div>
+                                    <p class="change-password-hint" id="new-password-hint">
+                                        Use 8 or more characters with a combination of uppercase, lowercase, a number, and a symbol.
+                                    </p>
+                                </div>
+            
+                                <div class="change-password-form-group" id="confirm-password-group">
+                                    <label class="change-password-label" id="confirm-password-label" for="confirm-password-input">Confirm password</label>
+                                    <div class="change-password-input-wrapper" id="confirm-password-wrapper">
+                                        <input 
+                                            type="password" 
+                                            class="change-password-input" 
+                                            id="confirm-password-input" 
+                                            name="confirmPasswordValue"
+                                            placeholder="Confirm password"
+                                            required
+                                        >
+                                        <button type="button" class="change-password-toggle-btn" id="toggle-confirm-password">
+                                            <i class="bi bi-eye" id="confirm-password-eye-open"></i>
+                                            <i class="bi bi-eye-slash" id="confirm-password-eye-closed" style="display: none;"></i>
+                                        </button>
+                                    </div>
+                                    <p class="change-password-hint" id="confirm-password-hint">
+                                        Use 8 or more characters with a combination of uppercase, lowercase, a number, and a symbol.
+                                    </p>
+                                </div>
+            
+                                <button type="submit" class="change-password-submit-btn" id="change-password-submit-btn">
+                                    Submit
+                                </button>
+            
+                                <a class="change-password-cancel-link" id="change-password-cancel-link" href="#">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-separator" id="separator-3"></div>
+
+                <!-- User Notification Section -->
+                <div class="notification-section" id="notification-section">
+                    <div class="notification-header" id="notification-header">
+                        <svg class="notification-icon" id="notification-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                        </svg>
+                        <h2 class="notification-title" id="notification-title">Notification settings</h2>
+                    </div>
+
+                    <div class="notification-content" id="notification-content">
+                        <div class="notification-group" id="notification-group-1">
+                            <p class="notification-group-title" id="notification-group-title-1">Email me saved listings and searches</p>
+                            
+                            <div class="notification-radio-group" id="notification-radio-group-1">
+                                <label class="notification-radio-item" id="notification-radio-item-1">
+                                    <input type="radio" name="saved-listings" value="realtime" class="notification-radio-input" id="notification-radio-realtime">
+                                    <span class="notification-radio-label" id="notification-radio-label-1">In realtime</span>
+                                </label>
+
+                                <label class="notification-radio-item" id="notification-radio-item-2">
+                                    <input type="radio" name="saved-listings" value="once_a_day" class="notification-radio-input" id="notification-radio-once-day" checked>
+                                    <span class="notification-radio-label" id="notification-radio-label-2">Once a day</span>
+                                </label>
+
+                                <label class="notification-radio-item" id="notification-radio-item-3">
+                                    <input type="radio" name="saved-listings" value="no_thanks" class="notification-radio-input" id="notification-radio-no-thanks">
+                                    <span class="notification-radio-label" id="notification-radio-label-3">No, thanks</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="notification-group" id="notification-group-2">
+                            <p class="notification-group-title" id="notification-group-title-2">Send me real estate and moving related updates, tips, promos and news from primehomesestate.com®.</p>
+                            
+                            <div class="notification-radio-group" id="notification-radio-group-2">
+                                <label class="notification-radio-item" id="notification-radio-item-4">
+                                    <input type="radio" name="marketing_emails" value="yes" class="notification-radio-input" id="notification-radio-yes">
+                                    <span class="notification-radio-label" id="notification-radio-label-4">Yes</span>
+                                </label>
+
+                                <label class="notification-radio-item" id="notification-radio-item-5">
+                                    <input type="radio" name="marketing_emails" value="no" class="notification-radio-input" id="notification-radio-no" checked>
+                                    <span class="notification-radio-label" id="notification-radio-label-5">No</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collaborate Section -->
+            <section class="settings-section" id="collaborate-section">
+                <div class="dummy-content" id="collaborate-dummy">
+                    <p>Collaborate Content - To be styled separately</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-heading">About PrimeHomes</h4>
+                <p class="footer-text">We're committed to helping you find your perfect home. With thousands of listings and expert agents, your dream property is just a click away.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Browse Properties</a></li>
+                    <li><a href="#" class="footer-link">Find an Agent</a></li>
+                    <li><a href="#" class="footer-link">Mortgage Calculator</a></li>
+                    <li><a href="#" class="footer-link">Market Trends</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Buyer's Guide</a></li>
+                    <li><a href="#" class="footer-link">Seller's Guide</a></li>
+                    <li><a href="#" class="footer-link">Investment Tips</a></li>
+                    <li><a href="#" class="footer-link">FAQs</a></li>
+                    <li><a href="#" class="footer-link">Support Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@primehomes.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 100 Main Street<br>Suite 200, New York, NY 10001</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 PrimeHomes. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#" class="legal-link">Privacy Policy</a>
+                <a href="#" class="legal-link">Terms of Service</a>
+                <a href="#" class="legal-link">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/user/user-global.js"></script>
+    <script src="/frontend/user/user-settings.js"></script>
+    <script src="/frontend/user/user-settings-photo.js"></script>
+    <script src="/frontend/user/user-settings-profile-update.js"></script>
+    <script src="/frontend/user/user-settings-email.js"></script>
+    <script src="/frontend/user/user-settings-password.js"></script>
+    <script src="/frontend/user/user-settings-notifications.js"></script>
+</body>
+</html>

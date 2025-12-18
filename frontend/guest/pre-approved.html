@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Affordability Calculator</title>
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <!-- <link rel="stylesheet" href="/frontend/guest/mortgage.css"> -->
+    <link rel="stylesheet" href="/frontend/guest/pre-approved.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="main-navbar">
+        <div class="navbar-container" id="navbar-container">
+            <button class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
+            </div>
+            
+            <div class="navbar-links">
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-sale.html" class="nav-link">Buy</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
+                        <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
+                        <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
+                        <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
+                        <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/for-rent.html" class="nav-link">Rent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
+                        <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
+                        <a href="/frontend/guest/for-rent.html" class="dropdown-item">All Rental Listings</a>
+                        <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/sell-property.html" class="nav-link">Sell</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
+                        <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
+                        <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                    </div>
+                </div>
+
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
+                        <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
+                        <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
+                        <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
+                        <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                    </div>
+                </div>
+                
+                <div class="nav-link-item">
+                    <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
+                    <div class="dropdown-menu">
+                        <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
+                        <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
+                        <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
+                        <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+                    </div>
+                </div>
+                
+                <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
+            </div>
+            
+            <button class="nav-signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- Sign Up Modal -->
+    <div class="signup-overlay"></div>
+    <div class="signup-modal">   
+        <div class="signup-modal-content">
+            <div class="signup-modal-header">
+                <h2 class="signup-modal-title">Log in or create an account</h2>   
+                <i class="bi bi-x signup-close-modal"></i>
+            </div>
+            <form class="signup-form">
+                <div class="signup-form-group">
+                    <label class="signup-form-label">Email address <span class="required-text">required</span></label>
+                    <input type="email" class="email signup-form-input" placeholder="Enter your email">
+                    <p>Enter a valid email address</p>
+                </div>
+                <div class="signup-form-group first-name-input-group">
+                    <label class="signup-form-label">First name</label>
+                    <input type="name" class="first-name signup-form-input" placeholder="Enter your first name">
+                </div>
+                <div class="signup-form-group last-name-input-group">
+                    <label class="signup-form-label">Last name</label>
+                    <input type="name" class="last-name signup-form-input" placeholder="Enter your last name">
+                </div>
+                <div class="signup-form-group password-input-group">
+                    <label class="signup-form-label">Password</label>
+                    <input type="password" class="password signup-form-input" placeholder="Enter your password">
+                    <i class="bi bi-eye-slash"></i>
+                    <i class="bi bi-eye"></i>
+                    <p>Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number.</p>
+                </div>
+                <div class="signup-form-group gender-input-group">
+                    <label class="signup-form-label">Gender</label>
+                    <select class="gender-select signup-form-input">
+                        <option selected disabled>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <p>Select Gender</p>
+                </div>
+                <div class="signup-form-group country-input-group">
+                    <label class="signup-form-label">Country</label>
+                    <select class="country-select signup-form-input">
+                        <option selected disabled>Select Country</option>
+                    </select>
+                    <p>Select Country</p>
+                </div>
+                
+                <button type="button" class="continue-btn">Continue</button>
+                <button type="button" class="login-btn">Login</button>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            
+            <div class="signup-form-divider">
+                <span>or</span>
+            </div>
+            
+            <div class="social-buttons">
+                <button class="social-button google-button">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+                        <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9.003 18z" fill="#34A853"/>
+                        <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                        <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.002 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+                
+                <button class="social-button facebook-button">
+                    <i class="bi bi-facebook" style="font-size: 20px;"></i>
+                    <span>Continue with Facebook</span>
+                </button>
+                
+                <button class="social-button apple-button">
+                    <i class="bi bi-apple" style="font-size: 20px;"></i>
+                    <span>Continue with Apple</span>
+                </button>
+            </div>
+            
+            <div class="professional-option">
+                <p>Are you a real estate agent?</p>
+                <a href="#" class="professional-link">Log in</a> or 
+                <a href="#" class="professional-link">create an account</a>
+                <br>
+            </div>
+            
+            <p class="terms-text">
+                By creating an account you agree to PrimeHomes' <br><a href="#" class="terms-link">Terms of Use</a> and <a href="#" class="terms-link">Privacy Policy.</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <i class="fas fa-home"></i>
+                <a href="/frontend/guest/index.html" class="logo"></a><span>PrimeHomes</span></a>
+
+            </div>
+            <button class="close-sidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Buy</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Browse Homes</a>
+                    <a href="#" class="sidebar-dropdown-item">New Listings</a>
+                    <a href="#" class="sidebar-dropdown-item">Open Houses</a>
+                    <a href="#" class="sidebar-dropdown-item">Virtual Tours</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Rent</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Apartments</a>
+                    <a href="#" class="sidebar-dropdown-item">Houses</a>
+                    <a href="#" class="sidebar-dropdown-item">Condos</a>
+                    <a href="#" class="sidebar-dropdown-item">Townhomes</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Sell</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">List Your Property</a>
+                    <a href="#" class="sidebar-dropdown-item">Find an Agent</a>
+                    <a href="#" class="sidebar-dropdown-item">Home Value Estimate</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-link-item">
+                <div class="sidebar-link-header">
+                    <a href="#" class="sidebar-link">Agents</a>
+                    <button class="sidebar-arrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+                <div class="sidebar-dropdown">
+                    <a href="#" class="sidebar-dropdown-item">Find Agents</a>
+                    <a href="#" class="sidebar-dropdown-item">Top Agents</a>
+                    <a href="#" class="sidebar-dropdown-item">Agent Reviews</a>
+                </div>
+            </div>
+            
+            <a href="#" class="sidebar-link">Contact</a>
+            
+            <button class="sidebar-signup-button">Sign Up</button>
+        </div>
+    </div>
+
+    <!-- Pre-Approval Section -->
+    <section class="preapproval-section">
+        <div class="preapproval-container">
+
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div class="progress-step active">
+                    <div class="progress-circle">
+                        <svg class="progress-svg" width="36" height="36">
+                            <circle class="progress-ring" cx="18" cy="18" r="15" />
+                        </svg>
+                        <i class="fa-solid fa-check progress-check"></i>
+                    </div>
+                    <span class="progress-label">Property</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="progress-circle">
+                        <svg class="progress-svg" width="36" height="36">
+                            <circle class="progress-ring" cx="18" cy="18" r="15" />
+                        </svg>
+                        <i class="fa-solid fa-check progress-check"></i>
+                    </div>
+                    <span class="progress-label">Timeline</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="progress-circle">
+                        <svg class="progress-svg" width="36" height="36">
+                            <circle class="progress-ring" cx="18" cy="18" r="15" />
+                        </svg>
+                        <i class="fa-solid fa-check progress-check"></i>
+                    </div>
+                    <span class="progress-label">Details</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="progress-circle">
+                        <svg class="progress-svg" width="36" height="36">
+                            <circle class="progress-ring" cx="18" cy="18" r="15" />
+                        </svg>
+                        <i class="fa-solid fa-check progress-check"></i>
+                    </div>
+                    <span class="progress-label">Wrap-Up</span>
+                </div>
+            </div>
+
+            <div class="slides-wrapper">
+                <div class="preapproval-home-type">
+                    <h1 class="preapproval-title">Get pre-approved</h1>
+                    <p class="preapproval-subtitle">Connect with a lender who can help you with pre-approval.</p>
+                    
+                    <h2 class="preapproval-question">What type of home are you looking for?</h2>
+                    
+                    <div class="home-type-grid">
+                        <button class="home-type-card">
+                            <i class="bi bi-house"></i>
+                            <span class="home-type-label">Single Family</span>
+                        </button>
+                        
+                        <button class="home-type-card">
+                            <i class="bi bi-houses"></i>
+                            <span class="home-type-label">Town Home</span>
+                        </button>
+                        
+                        <button class="home-type-card">
+                            <i class="bi bi-building"></i>
+                            <span class="home-type-label">Condominium</span>
+                        </button>
+                        
+                        <button class="home-type-card">
+                            <i class="bi bi-buildings"></i>
+                            <span class="home-type-label">Multi-Family</span>
+                        </button>
+                        
+                        <button class="home-type-card">
+                            <i class="bi bi-house-door"></i>
+                            <span class="home-type-label">Mobile / Manufactured</span>
+                        </button>
+                        
+                        <button class="home-type-card">
+                            <i class="bi bi-hammer"></i>
+                            <span class="home-type-label">New Construction</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container property">
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Where are you looking to buy?</h2>
+                        <p class="step-subtitle">City or Zip Code</p>
+                        
+                        <form class="step-form">
+                            <input type="text" class="step-input" placeholder="City or Zip Code">
+                            <button type="submit" class="next-step-btn">Next</button>
+                        </form>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container property">           
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">How do you plan to use your new home?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Primary Residence</button>
+                            <button class="property-usage-btn">Vacation Property</button>
+                            <button class="property-usage-btn">Investment Property</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container timeline">           
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Where are you in the home buying process?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Found a home</button>
+                            <button class="property-usage-btn">Looking to buy within one month</button>
+                            <button class="property-usage-btn">Looking to buy within 1 to 3 months</button>
+                            <button class="property-usage-btn">Looking to buy within 3 to 6 months</button>
+                            <button class="property-usage-btn">Looking to buy in more than 6 months</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container timeline">          
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Are you actively working with a real estate agent?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Yes</button>
+                            <button class="property-usage-btn">No</button>
+                        </div>
+    
+                        <p class="step-subtitle">If you select “No” above, you may be contacted by a real estate agent.</p>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container timeline">           
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Do you currently own a home?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Yes, I currently own a home</button>
+                            <button class="property-usage-btn">No, I am currently renting</button>
+                            <button class="property-usage-btn">No, I have other living arrangements</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mortgage-flow-container timeline">           
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Do you plan to sell your current home before purchasing a new one?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Yes</button>
+                            <button class="property-usage-btn">No</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container timeline">
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Is this your first time purchasing a home?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Yes</button>
+                            <button class="property-usage-btn">No</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container timeline">          
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Have you or your spouse served in the US military?</h2>
+                        <p class="step-subtitle">Veterans and active US military may be eligible for a $0 down VA loan.</p>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Yes</button>
+                            <button class="property-usage-btn">No</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container details">         
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">What is your price range?</h2>
+                        <p class="step-subtitle">Use the slider to select the price range of homes you're interested in (it's OK to estimate)</p>
+                        
+                        <div class="price-range-display">
+                            <span id="priceRangeText">$300,000 - $350,000</span>
+                        </div>
+            
+                        <div class="slider-container">
+                            <input type="range" id="priceSlider" class="price-slider" min="100000" max="2000000" value="300000" step="10000">
+                        </div>
+    
+                        <div class="bottom-nav">
+                            <button type="button" class="next-step-btn">Next</button>
+                            <button class="step-back-btn">
+                                <i class="bi bi-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container details">            
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">How much do you have for a down payment?</h2>
+                        <p class="step-subtitle">(it's OK to estimate)</p>
+                        
+                        <div class="price-range-display">
+                            <span id="downPaymentRangeText">$60,000 (20% Down)</span>
+                        </div>
+                
+                        <div class="slider-container">
+                            <input type="range" id="downPaymentSlider" class="price-slider" min="1" max="100" value="20" step="1">
+                        </div>
+                
+                        <p class="step-link">Why do you ask for this?</p>
+                
+                        <div class="bottom-nav">
+                            <button type="button" class="next-step-btn">Next</button>
+                            <button class="step-back-btn">
+                                <i class="bi bi-arrow-left"></i>
+                                <span>Back</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container details">           
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">What is your current employment status?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Employed</button>
+                            <button class="property-usage-btn">Self-Employed</button>
+                            <button class="property-usage-btn">Retired</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container details">      
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">What is your household gross (before taxes) annual income?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Greater than $100,000</button>
+                            <button class="property-usage-btn">$75,000 - $100,000</button>
+                            <button class="property-usage-btn">$50,000 - $75,000</button>
+                            <button class="property-usage-btn">$30,000 - $50,000</button>
+                            <button class="property-usage-btn">less than $30,000</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container details">        
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">What is your credit score?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Excellent (720+)</button>
+                            <button class="property-usage-btn">Good (680 to 719)</button>
+                            <button class="property-usage-btn">Fair (620 to 679)</button>
+                            <button class="property-usage-btn">Poor (619 and below)</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="mortgage-flow-container details">        
+                    <!-- Step Content -->
+                    <div class="step-content">
+                        <h2 class="step-title">Have you had a bankruptcy or foreclosure in the past 3 years?</h2>
+                        
+                        <div class="property-usage-options">
+                            <button class="property-usage-btn">Yes</button>
+                            <button class="property-usage-btn">No</button>
+                        </div>
+            
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Name Input -->
+                <div class="mortgage-flow-container wrapup">
+                    <div class="step-content">
+                        <h2 class="step-title">What is your name?</h2>
+                        
+                        <form class="step-form name-form">
+                            <div class="name-inputs">
+                                <div class="input-secure-wrapper">
+                                    <input type="text" class="step-input" placeholder="First" id="firstName">
+                                    <span class="secure-badge"><i class="bi bi-lock-fill"></i> SECURE</span>
+                                </div>
+                                <div class="input-secure-wrapper">
+                                    <input type="text" class="step-input" placeholder="Last" id="lastName">
+                                    <span class="secure-badge"><i class="bi bi-lock-fill"></i> SECURE</span>
+                                </div>
+                            </div>
+                            <button type="button" class="next-step-btn">Next</button>
+                        </form>
+    
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Email Input -->
+                <div class="mortgage-flow-container wrapup">
+                    <div class="step-content">
+                        <h2 class="step-title">What is your email address?</h2>
+                        
+                        <form class="step-form">
+                            <div class="input-secure-wrapper">
+                                <input type="email" class="step-input" placeholder="example@example.com" id="emailAddress">
+                                <span class="secure-badge"><i class="bi bi-lock-fill"></i> SECURE</span>
+                            </div>
+                            <button type="button" class="next-step-btn" id="submit-email">Next</button>
+                        </form>
+    
+                        <button class="step-back-btn">
+                            <i class="bi bi-arrow-left"></i>
+                            <span>Back</span>
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Email Verification -->
+                <div class="mortgage-flow-container wrapup">
+                    <div class="step-content">
+                        <h2 class="step-title">Verify your email address</h2>
+                        <p class="step-subtitle">We've sent a verification code to your email</p>
+                        
+                        <form class="step-form">
+                            <div class="input-secure-wrapper">
+                                <input type="text" class="step-input" placeholder="Enter verification code" id="verificationCode">
+                                <span class="secure-badge"><i class="bi bi-lock-fill"></i> SECURE</span>
+                            </div>
+                            <button type="button" class="next-step-btn final-btn">Show My Result</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="mortgage-flow-container result-container">
+                    <div class="result-content">
+                        <h2 class="step-title" id="step-title"></h2>
+                        <div class="pre-approval-result" id="pre-approval-result"></div>
+                        
+                        <button type="button" class="next-step-btn restart-request">Restart request</button>
+                    </div>
+                </div>
+
+                <div class="continue-request-step" id="continue-request-step">            
+                    <!-- Step Content -->
+                    <div class="continue-content">
+                        <p class="step-header">Welcome back!</p>
+                        <h2 class="continue-title">Finish your pre-approval request</h2>
+                        
+                        <span class="continue-question">Would you like to continue your request to get pre-approved for a home?</span>
+                
+                        <div class="bottom-nav continue-bottom-nav">
+                            <button type="button" class="next-step-btn continue-request-btn" id="continue-request">Continue My Request</button>
+                            <p class="step-link" id="begin-new-request">Begin a new request</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preapproval-footer">
+                <p class="footer-text">Provided by</p>
+                <div class="mrc-logo">
+                    <span class="mrc-text">MRC</span>
+                    <span class="mrc-subtext">Mortgage Research Center</span>
+                </div>
+                <p class="footer-disclaimer">
+                    Mortgage Research Center, LLC: A mortgage licensee. 
+                    <a href="#" class="footer-link">NMLS ID 1907</a> Equal Housing Opportunity. Lender advertisers 
+                    are not recommended or endorsed by realtor.com® or Mortgage Research Center, LLC, and are not the only providers 
+                    of mortgage loan services of the kinds they offer.
+                </p>
+                <a href="#" class="footer-disclosure">Advertising disclosure</a>
+            </div>
+
+            <!-- Down Payment Info Modal -->
+            <div class="modal-overlay" id="downPaymentModal">
+                <div class="modal-content">
+                    <button class="modal-close" id="modalClose">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    <h3 class="modal-title">How down payments work</h3>
+                    <p class="modal-text">
+                        A down payment is the primary upfront home purchase payment. Requirements and amounts vary depending on the type of home loan.
+                    </p>
+
+                    <p class="modal-text">
+                        The amount of cash you have available for a down payment will help the lender evaluate your options and determine your next steps.
+                    </p>
+                    <button class="modal-btn" id="modalGotIt">Got it</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4 class="footer-heading">About PrimeHomes</h4>
+                <p class="footer-text">We're committed to helping you find your perfect home. With thousands of listings and expert agents, your dream property is just a click away.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Browse Properties</a></li>
+                    <li><a href="#" class="footer-link">Find an Agent</a></li>
+                    <li><a href="#" class="footer-link">Mortgage Calculator</a></li>
+                    <li><a href="#" class="footer-link">Market Trends</a></li>
+                    <li><a href="#" class="footer-link">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link">Buyer's Guide</a></li>
+                    <li><a href="#" class="footer-link">Seller's Guide</a></li>
+                    <li><a href="#" class="footer-link">Investment Tips</a></li>
+                    <li><a href="#" class="footer-link">FAQs</a></li>
+                    <li><a href="#" class="footer-link">Support Center</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h4 class="footer-heading">Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fas fa-envelope"></i> info@primehomes.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 100 Main Street<br>Suite 200, New York, NY 10001</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 PrimeHomes. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#" class="legal-link">Privacy Policy</a>
+                <a href="#" class="legal-link">Terms of Service</a>
+                <a href="#" class="legal-link">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/user/user-global.js"></script>
+    <script src="/frontend/guest/register.js"></script>
+    <script src="/frontend/guest/pre-approved.js"></script>
+</body>
+</html>

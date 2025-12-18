@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties Admin</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-properties.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-sidebar-logo">
+                    <i class="fas fa-home"></i>
+                    <span>PrimeHomes Admin</span>
+                </div>
+            </div>
+    
+            <nav class="admin-sidebar-nav">
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-dashboard.html" class="admin-nav-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-users.html" class="admin-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-properties.html" class="admin-nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>Properties</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-inquiries.html" class="admin-nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Inquiries</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-notifications.html" class="admin-nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-support.html" class="admin-nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-password-change.html" class="admin-nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+            </nav>
+    
+            <div class="admin-sidebar-footer">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+    
+        <button class="admin-sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-page-title">
+                        <i class="fas fa-building"></i>
+                        Properties Management
+                    </h1>
+                    <div class="admin-header-actions">
+                        <button type="button" id="exportCsv" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <button type="button" id="exportPdf" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </header>
+    
+            <div class="admin-content">
+                <div class="admin-filters">
+                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Type</label>
+                        <select id="properties-type-filter">
+                            <option value="all">All types</option>
+                            <option value="Single Family">Single Family</option>
+                            <option value="Town House">Town House</option>
+                            <option value="Multi Family">Multi Family</option>
+                            <option value="Modular Home">Modular Home</option>
+                            <option value="Bungalow">Bungalow</option>
+                            <option value="Ranch Home">Ranch Home</option>
+                            <option value="Condominium">Condominium</option>
+                        </select>
+                    </div>
+    
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Status</label>
+                        <select id="properties-status-filter">
+                            <option value="all">All</option>
+                            <option value="Available">Available</option>
+                            <option value="Sold">Sold</option>
+                            <option value="Rented">Rented</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-overlay"></div>
+    
+                <div class="property-images"></div>
+    
+                <div class="upload-container">
+                    <div class="upload-headers">
+                        <h2 style="margin-bottom: 10px; color: #333;">Property Images</h2>
+                        <p style="color: #666; font-size: 14px;">Upload property images</p>
+                    </div>
+                    <button class="close-images-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="upload-area" id="upload-area">
+                        <div class="upload-icon">📁</div>
+                        <div class="upload-text">Click to upload or drag and drop</div>
+                        <div class="upload-subtext">PNG, JPG, JPEG up to 5MB</div>
+                        <input type="file" id="fileInput" accept="image/png,image/jpg,image/jpeg,video/mp4,video/mov" multiple />
+                    </div>
+                    <div class="property-section-container">
+                        <label class="property-section-label">Select Property Section</label>
+                        <select class="property-section" id="property-section">
+                            <option value="exterior">Exterior</option>
+                            <option value="living_room">Living room</option>
+                            <option value="kitchen">Kitchen</option>
+                            <option value="dining_room">Dining room</option>
+                            <option value="bedroom">Bedroom</option>
+                            <option value="bathroom">Bathroom</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                    <div class="error-message" id="errorMessage"></div>
+                    <div class="success-message" id="successMessage"></div>
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Uploading...</div>
+                    </div>
+                    <div class="upload-btns" id="uploadBtns" style="display: none;">
+                        <button class="cancel-btn" id="cancelBtn">Cancel</button>
+                        <button class="upload-btn" id="uploadBtn">Upload Photo</button>
+                    </div>
+                </div>
+    
+                <!-- Form Section -->
+                <div class="col-lg-4 property-modal">
+                    <div class="card-header bg-primary text-white modal-header-custom">
+                        <h5 class="mb-0">
+                            <i class="fas fa-plus-circle"></i> 
+                            <span id="form-title"></span>
+                        </h5>
+                        <button class="close-modal-icon">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="card-body modal-body-custom">
+                        <form id="propertyForm">
+    
+                            <!-- Property Type -->
+                            <div class="mb-3">
+                                <label for="propertyType" class="form-label">Property Type <span class="text-danger">*</span></label>
+                                <select class="form-select" id="propertyType" name="propertyType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="Single Family">Single Family</option>
+                                    <option value="Town House">Town House</option>
+                                    <option value="Multi Family">Multi Family</option>
+                                    <option value="Modular Home">Modular Home</option>
+                                    <option value="Bungalow">Bungalow</option>
+                                    <option value="Ranch Home">Ranch Home</option>
+                                    <option value="Condominium">Condominium</option>
+                                </select>
+                            </div>
+    
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter property description"></textarea>
+                            </div>
+    
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <label for="status" class="form-label">Status <span class="text-danger">*</span></label>
+                                <select class="form-select" id="status" name="status">
+                                    <option value="">Select Status</option>
+                                    <option value="Available">Available</option>
+                                    <option value="Sold">Sold</option>
+                                    <option value="Rented">Rented</option>
+                                </select>
+                            </div>
+    
+                            <!-- Price -->
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="price" name="price" placeholder="0.00" step="0.01" required>
+                                </div>
+                            </div>
+    
+                            <!-- Price Per Sqft -->
+                            <div class="mb-3">
+                                <label for="pricePerSqft" class="form-label">Price Per Sqft <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text">$</span>
+                                    <input type="number" class="form-control" id="pricePerSqft" name="pricePerSqft" placeholder="0.00" step="0.01">
+                                </div>
+                            </div>
+    
+                            <!-- Row: Bedrooms & Bathrooms -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="bedrooms" class="form-label">Bedrooms <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="bedrooms" name="bedrooms" placeholder="0" min="0">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="bathrooms" class="form-label">Bathrooms <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="bathrooms" name="bathrooms" placeholder="0" min="0" step="0.5">
+                                </div>
+                            </div>
+    
+                            <!-- Row: Area & Acre Lot -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="area" class="form-label">Area (sqft) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="area" name="area" placeholder="0" min="0">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="acreLot" class="form-label">Acre Lot</label>
+                                    <input type="number" class="form-control" id="acreLot" name="acreLot" placeholder="0.00" step="0.01" min="0">
+                                </div>
+                            </div>
+    
+                            <!-- Row: Garage & Year Built -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="garageSpace" class="form-label">Garage Space <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="garageSpace" name="garageSpace" placeholder="0" min="0" max="6">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="yearBuilt" class="form-label">Year Built <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="yearBuilt" name="yearBuilt" placeholder="2024" min="1900" max="2025">
+                                </div>
+                            </div>
+    
+                            <!-- Street -->
+                            <div class="mb-3">
+                                <label for="street-number" class="form-label">Street Number <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="456">
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="street-name" class="form-label">Street Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="streetName" name="streetName" placeholder="Main Street">
+                            </div>
+    
+                            <!-- Row: City & State -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="city" class="form-label">City <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="New York">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="state" class="form-label">State <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="state" name="state" placeholder="NY">
+                                </div>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label for="zip" class="form-label">Zip code <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="zip" name="zip" placeholder="382992">
+                            </div>
+    
+                            <!-- Country -->
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="country" name="country" placeholder="USA">
+                            </div>
+    
+                            <!-- Row: Latitude & Longitude -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="latitude" class="form-label">Latitude</label>
+                                    <input type="number" class="form-control" id="latitude" name="latitude" placeholder="40.7128" step="0.000001">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="longitude" class="form-label">Longitude</label>
+                                    <input type="number" class="form-control" id="longitude" name="longitude" placeholder="-74.0060" step="0.000001">
+                                </div>
+                            </div>
+    
+                            <!-- Agent Name -->
+                            <div class="mb-3">
+                                <label for="agentName" class="form-label">Agent Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="agentName" name="agentName" placeholder="John Doe">
+                            </div>
+    
+                            <!-- Agent Email -->
+                            <div class="mb-3">
+                                <label for="agentEmail" class="form-label">Agent Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="agentEmail" name="agentEmail" placeholder="agent@example.com">
+                            </div>
+    
+                            <!-- Broker -->
+                            <div class="mb-3">
+                                <label for="broker" class="form-label">Broker</label>
+                                <input type="text" class="form-control" id="broker" name="broker" placeholder="ABC Realty">
+                            </div>
+    
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save"></i> Create Property
+                                </button>
+                                <button type="button" class="btn btn-secondary cancel-form-btn"
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+    
+    
+                <div class="container-fluid py-4 properties-table">
+                    <div class="row">
+                        <!-- Table Section -->
+                        <div class="col-lg-12">
+                            <div class="card shadow-sm">
+                                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-list"></i> Properties List
+                                    </h5>
+                                    <button class="btn btn-primary btn-sm" id="add-property-btn">
+                                        <i class="fas fa-plus-circle"></i> Add property
+                                    </button>
+                                    <button class="btn btn-light btn-sm" id="refresh-btn">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                </div>
+                                <div class="card-body">
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover" id="properties-table">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>Property ID</th>
+                                                    <th>Type</th>
+                                                    <th>Description</th>
+                                                    <th>Status</th>
+                                                    <th>Price</th>
+                                                    <th>Price per sqft</th>
+                                                    <th>Garage Space</th>
+                                                    <th>Year Built</th>
+                                                    <th>Bathrooms</th>
+                                                    <th>Bedrooms</th>
+                                                    <th>Area</th>
+                                                    <th>Acre lot</th>
+                                                    <th>Street Number</th>
+                                                    <th>Street Name</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Country</th>
+                                                    <th>Zip</th>
+                                                    <th>Latitude</th>
+                                                    <th>Longitude</th>
+                                                    <th>Agent name</th>
+                                                    <th>Agent email</th>
+                                                    <th>Broker</th>
+                                                    <th>Created at</th>
+                                                    <th>Updated at</th>
+                                                    <th>Actions</th>
+                                                    <th>Images</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="properties-table-body">
+                                                <!-- Data will be inserted here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+    
+                                    <div class="alert alert-warning" id="empty-alert" style="display: none;">
+                                        <i class="fas fa-info-circle"></i> No properties found.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="pagination"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../general/csrf-helper.js"></script>
+    <script src="../general/toast-helper.js"></script>
+    <script src="../general/confirmation-modal.js"></script>
+    <script src="/frontend/admin/admin-properties.js"></script>
+    <script src="/frontend/admin/admin-global"></script>
+</body>
+</html>

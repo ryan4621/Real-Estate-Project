@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - User Dashboard</title>
+  <!-- <link rel="stylesheet" href="/frontend/user/dashboard.css"> -->
+  <link rel="stylesheet" href="/frontend/guest/get-help.css">
+</head>
+<body>
+    <button class="hamburger-menu" id="hamburger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="dashboard-container">
+        <!-- Main Content -->
+        <main class="content">
+        <div class="support-content">
+            <!-- Header Section -->
+            <div class="support-header">
+            <h1>Get Support</h1>
+            <p>Need help? We're here to assist you. Send us a message and we'll get back to you as soon as possible.</p>
+            </div>
+
+            <!-- Success Message -->
+            <div id="contact-success-message" class="contact-form-success">
+            <strong>Message sent successfully!</strong> We've received your inquiry and will respond within 24 hours.
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+            <h2 class="contact-form-title">Contact Us</h2>
+            
+            <form id="contact-support-form" class="contact-form">
+                <!-- Name Field -->
+                <div class="contact-form-group">
+                <label for="contact-name" class="contact-form-label required">Full Name</label>
+                <input 
+                    type="text" 
+                    id="contact-name" 
+                    name="name" 
+                    class="contact-form-input"
+                    required
+                    placeholder="Enter your full name"
+                >
+                <div class="contact-form-error" id="contact-name-error"></div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="contact-form-group">
+                <label for="contact-email" class="contact-form-label required">Email Address</label>
+                <input 
+                    type="email" 
+                    id="contact-email" 
+                    name="email" 
+                    class="contact-form-input"
+                    required
+                    placeholder="youremail@example.com"
+                >
+                <div class="contact-form-error" id="contact-email-error"></div>
+                </div>
+
+                <!-- Subject Field -->
+                <div class="contact-form-group">
+                <label for="contact-subject" class="contact-form-label required">Subject</label>
+                <select id="contact-subject" name="subject" class="contact-form-select" required>
+                    <option value="">Choose a topic...</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="account">Account Issues</option>
+                    <option value="listings">Property Listings</option>
+                    <option value="technical">Technical Support</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="contact-form-error" id="contact-subject-error"></div>
+                </div>
+
+                <!-- Message Field -->
+                <div class="contact-form-group">
+                <label for="contact-message" class="contact-form-label required">Message</label>
+                <textarea 
+                    id="contact-message" 
+                    name="message" 
+                    class="contact-form-textarea"
+                    required
+                    placeholder="Please describe your issue or question in detail..."
+                    rows="6"
+                ></textarea>
+                <div class="contact-form-error" id="contact-message-error"></div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="contact-form-group">
+                <button type="submit" id="support-submit-button" class="support-submit-btn">
+                    Send Message
+                </button>
+                </div>
+            </form>
+            </div>
+
+            <!-- Additional Support Information -->
+            <div class="support-info-section">
+            <h3 class="support-info-title">Other Ways to Get Help</h3>
+            <ul class="support-info-list">
+                <li class="support-info-item">Check our FAQ section for quick answers to common questions</li>
+                <li class="support-info-item">Browse our knowledge base for detailed guides and tutorials</li>
+                <li class="support-info-item">Response time: We typically respond within 24 hours</li>
+                <li class="support-info-item">For urgent issues, please mention "URGENT" in your subject line</li>
+            </ul>
+            </div>
+        </div>
+        </main>
+    </div>
+
+    <script src="/frontend/general/csrf-helper.js"></script>
+    <script src="/frontend/general/toast-helper.js"></script>
+    <script src="/frontend/general/confirmation-modal.js"></script>
+    <script type="module" src="/frontend/guest/get-help.js"></script>
+</body>
+</html>

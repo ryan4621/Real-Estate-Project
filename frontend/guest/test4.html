@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/frontend/guest/pre-approved.css"> -->
+    <style>
+        .mortgage-flow-container {
+            /* position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; */
+            padding: 48px 60px 0;
+            /* transform: translateX(100%); */
+            /* visibility: hidden;
+            transition: transform 0.4s linear, visibility 0s 0.4s;
+            pointer-events: none; */
+            background: white;
+            /* text-align: center; */
+            /* box-sizing: border-box; */
+        }
+
+        
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .step-subtitle {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 28px;
+        }
+
+        .step-link {
+            font-size: 13px;
+            color: #000000;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .step-link:hover {
+            color: #767676;
+        }
+
+        .step-next-btn {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            padding: 14px 28px;
+            background: #2d2d2d;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .step-next-btn:hover {
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="mortgage-flow-container">
+        <div class="step-content result-content">
+            <h2 class="step-title">Your pre-approval request has been approved</h2>
+            <div class="pre-approval-result" id="pre-approval-result">  
+                <span class="result-item result-status"><b>Pre-approval status:</b><br> APPROVED</span>
+                <span class="result-item result-max-purchase-price"><b>Maximum purchase price:</b><br>$1,670,000</span>
+                <span class="result-item result-loan-amount"><b>Loan amount:</b><br>$500,000</span>
+                <span class="result-item result-interest-rate"><b>Interest rate:</b><br>6.50%</span>
+            </div>
+            
+            <button type="button" class="step-next-btn">Restart request</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1408 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.settings-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.settings-header {
+  margin-bottom: 30px;
+}
+
+.settings-greeting {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.greeting-name{
+  font-weight: 300;
+}
+
+.user-email {
+  font-size: 1rem;
+  color: #333;
+}
+
+.settings-tabs {
+  display: flex;
+  gap: 40px;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 40px;
+}
+
+.settings-tab {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 15px 0;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s;
+  color: #666;
+}
+
+.settings-tab.active {
+  border-bottom-color: #000;
+  color: #000;
+}
+
+.settings-tab:hover {
+  color: #000;
+}
+
+.settings-content {
+  padding: 20px 0;
+}
+
+.settings-section {
+  display: none;
+}
+
+.settings-section.active {
+  display: block;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 40px;
+}
+
+.profile-photo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #d0d0d0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.profile-photo-icon {
+  width: 60px;
+  height: 60px;
+  fill: #999;
+}
+
+.change-profile-photo {
+  font-size: 0.95rem;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.change-profile-photo:hover {
+  color: #333;
+}
+
+.profile-info-container {
+  flex: 1;
+}
+
+.profile-info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.profile-info-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 20px;
+  fill: #666;
+}
+
+.profile-info-data {
+  font-size: 1rem;
+  color: #000;
+  /* text-decoration: underline; */
+  /* cursor: pointer; */
+  font-weight: 500;
+}
+
+.profile-info-data:hover {
+  color: #333;
+}
+
+.edit-profile-button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.edit-profile-button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.settings-separator {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 40px 0;
+}
+
+/* Email Section */
+.email-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.email-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.email-icon {
+  width: 24px;
+  height: 24px;
+  fill: #666;
+}
+
+.email-actions {
+  display: block;
+  /* display: flex;
+  flex-direction: column; */
+  /* gap: 30px; */
+}
+
+.email-actions-links {
+  display: flex;
+  gap: 30px;
+}
+
+.email-action-link {
+  font-size: 1rem;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.email-action-link:hover {
+  color: #333;
+}
+
+.profile-resend-cooldown {
+  display: none;
+  margin-top: 10px;
+}
+
+/* Password Section */
+.password-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.password-icon {
+  width: 24px;
+  height: 24px;
+  fill: #666;
+}
+
+.password-actions {
+  display: flex;
+  gap: 30px;
+}
+
+.password-action-link {
+  font-size: 1rem;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.password-action-link:hover {
+  color: #333;
+}
+
+/* Notification Section */
+.notification-section {
+  margin-bottom: 40px;
+}
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.notification-icon {
+  width: 24px;
+  height: 24px;
+  fill: #666;
+}
+
+.notification-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.notification-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.notification-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.notification-group-title {
+  font-size: 15px;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.notification-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 0;
+}
+
+.notification-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.notification-radio-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin: 0;
+  accent-color: #1a1a1a;
+}
+
+.notification-radio-label {
+  font-size: 15px;
+  color: #1a1a1a;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notification-title {
+    font-size: 18px;
+  }
+
+  .notification-group-title {
+    font-size: 14px;
+  }
+
+  .notification-radio-label {
+    font-size: 14px;
+  }
+}
+
+/* Buyer Profile & Renter Tools Sections */
+.buyer-profile-section,
+.renter-tools-section {
+  padding: 20px;
+}
+
+.dummy-content {
+  padding: 40px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  text-align: center;
+  color: #999;
+  font-size: 1rem;
+}
+
+
+
+
+
+/* Profile Upload Styles */
+.profile-upload-container {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.profile-current-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  border: 4px solid #e3f2fd;
+  object-fit: cover;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-current-photo:hover {
+  border-color: #667eea;
+  transform: scale(1.05);
+}
+
+.profile-upload-instructions {
+  margin: 10px 0;
+}
+
+.profile-upload-area {
+  border: 3px dashed #ddd;
+  border-radius: 15px;
+  padding: 40px 20px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: #fafafa;
+}
+
+.profile-upload-area:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+  transform: translateY(-2px);
+}
+
+.profile-upload-area.profile-dragover {
+  border-color: #667eea;
+  background: #e8f0ff;
+  border-style: solid;
+}
+
+.profile-upload-icon {
+  font-size: 48px;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.profile-upload-text {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.profile-upload-subtext {
+  color: #999;
+  font-size: 14px;
+}
+
+#profileFileInput {
+  display: none;
+}
+
+.profile-preview-area {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.profile-preview-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  margin: 0 auto 15px;
+  border: 3px solid #667eea;
+  display: block;
+}
+
+.profile-preview-info {
+  background: #f8f9ff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.profile-preview-info p {
+  color: #666;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.profile-upload-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.profile-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.profile-btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.upload-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.upload-btn-secondary {
+  background: #bbbbbb;
+  color: #fff;
+}
+
+.upload-btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-progress-container {
+  margin: 20px 0;
+  display: none;
+}
+
+.profile-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.profile-progress-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.profile-progress-text {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.profile-error-message {
+  background: #fee;
+  color: #c33;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  display: none;
+}
+
+.profile-success-message {
+  background: #efe;
+  color: #3c3;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  display: none;
+}
+
+
+/* Edit Profile Modal Overlay */
+.edit-profile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.edit-profile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Edit Profile Modal */
+.edit-profile-modal {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  overflow-y: auto;
+  transition: top 0.4s ease;
+}
+
+.edit-profile-modal.active {
+  top: 5%;
+}
+
+/* Edit Profile Content */
+.edit-profile-content {
+  padding: 32px;
+}
+
+/* Edit Profile Header */
+.edit-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.edit-profile-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.edit-profile-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.edit-profile-close:hover {
+  background-color: #f5f5f5;
+}
+
+/* Edit Profile Form */
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-profile-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.edit-profile-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-profile-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.edit-profile-input,
+.edit-profile-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+}
+
+.edit-profile-input:focus,
+.edit-profile-select:focus {
+  border-color: #d92228;
+}
+
+.edit-profile-input::placeholder {
+  color: #999;
+}
+
+.edit-profile-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23666' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.edit-profile-select option {
+  color: #1a1a1a;
+}
+
+.edit-profile-hint {
+  font-size: 13px;
+  color: #666;
+  display: none;
+}
+
+/* Delete Account Section */
+.edit-profile-delete-section {
+  padding-top: 8px;
+}
+
+.edit-profile-delete-link {
+  font-size: 14px;
+  color: #1a1a1a;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.edit-profile-delete-link:hover {
+  color: #d92228;
+}
+
+/* Edit Profile Actions */
+.edit-profile-actions {
+  display: flex;
+  /* gap: 7px; */
+  padding-top: 8px;
+}
+
+.edit-profile-save-btn,
+.edit-profile-cancel-btn {
+  border-radius: 24px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.edit-profile-save-btn {
+  padding: 14px 32px;
+  font-weight: 600;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.edit-profile-save-btn:hover {
+  background-color: #000000;
+}
+
+.edit-profile-cancel-btn {
+  padding: 14px 15px;
+  font-weight: 400;
+  background-color: transparent;
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+.edit-profile-cancel-btn:hover {
+  color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .edit-profile-modal {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .edit-profile-modal.active {
+    top: 2.5%;
+  }
+
+  .edit-profile-content {
+    padding: 24px;
+  }
+
+  .edit-profile-title {
+    font-size: 24px;
+  }
+
+  .edit-profile-form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .edit-profile-actions {
+    flex-direction: column-reverse;
+  }
+
+  .edit-profile-save-btn,
+  .edit-profile-cancel-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-profile-content {
+    padding: 20px;
+  }
+
+  .edit-profile-title {
+    font-size: 20px;
+  }
+
+  .edit-profile-form {
+    gap: 20px;
+  }
+}
+
+
+
+
+
+
+/* Email Modal Overlay */
+.email-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.email-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Email Modal */
+.email-modal {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 480px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  transition: top 0.4s ease;
+}
+
+.email-modal.active {
+  top: 15%;
+}
+
+/* Email Modal Content */
+.email-modal-content {
+  padding: 32px;
+}
+
+/* Email Modal Header */
+.email-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.email-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.email-modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.email-modal-close:hover {
+  background-color: #f5f5f5;
+}
+
+/* Email Modal Body */
+.email-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.email-modal-description {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Email Modal Form */
+.email-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.email-modal-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.email-modal-label-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email-modal-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.email-modal-required {
+  font-size: 13px;
+  color: #666;
+  font-weight: 400;
+}
+
+.email-modal-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+}
+
+.email-modal-input:focus {
+  border-color: #1a1a1a;
+}
+
+.email-modal-input::placeholder {
+  color: #999;
+}
+
+/* Email Modal Submit Button */
+.email-modal-submit-btn {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.email-modal-submit-btn:hover {
+  background-color: #000000;
+}
+
+.email-modal-submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .email-modal {
+    width: 95%;
+    max-width: 90%;
+  }
+
+  .email-modal.active {
+    top: 10%;
+  }
+
+  .email-modal-content {
+    padding: 28px 24px;
+  }
+
+  .email-modal-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .email-modal {
+    width: 95%;
+  }
+
+  .email-modal.active {
+    top: 8%;
+  }
+
+  .email-modal-content {
+    padding: 24px 20px;
+  }
+
+  .email-modal-title {
+    font-size: 20px;
+  }
+
+  .email-modal-description {
+    font-size: 13px;
+  }
+}
+
+
+/* Password Reset Modal Overlay */
+.password-reset-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  /* overflow: hidden; */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.password-reset-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Password Reset Modal */
+.password-reset-modal {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 480px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  transition: top 0.4s ease;
+}
+
+.password-reset-modal.active {
+  top: 20%;
+}
+
+/* Password Reset Modal Content */
+.password-reset-modal-content {
+  padding: 32px;
+}
+
+/* Password Reset Modal Header */
+.password-reset-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.password-reset-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  flex: 1;
+}
+
+.password-reset-modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.password-reset-modal-close:hover {
+  background-color: #f5f5f5;
+}
+
+/* Password Reset Modal Body */
+.password-reset-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.password-reset-modal-text {
+  font-size: 15px;
+  color: #1a1a1a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.password-reset-modal-text strong {
+  font-weight: 600;
+}
+
+/* Password Reset Modal Close Button */
+.password-reset-modal-close-btn {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: transparent;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+  border-radius: 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.password-reset-modal-close-btn:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.password-reset-modal-close-btn:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .password-reset-modal {
+      width: 95%;
+      max-width: 90%;
+  }
+
+  .password-reset-modal.active {
+      top: 15%;
+  }
+
+  .password-reset-modal-content {
+      padding: 28px 24px;
+  }
+
+  .password-reset-modal-title {
+      font-size: 22px;
+  }
+
+  .password-reset-modal-text {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .password-reset-modal {
+      width: 95%;
+  }
+
+  .password-reset-modal.active {
+      top: 12%;
+  }
+
+  .password-reset-modal-content {
+      padding: 24px 20px;
+  }
+
+  .password-reset-modal-title {
+      font-size: 20px;
+  }
+}
+
+/* Change Password Modal */
+.change-password-modal {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  transition: top 0.4s ease;
+}
+
+.change-password-modal.active {
+  top: 10%;
+}
+
+/* Password Modal Content */
+.change-password-modal-content {
+  padding: 40px 32px 32px;
+}
+
+/* Password Modal Header */
+.change-password-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.change-password-modal-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.change-password-modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.change-password-modal-close:hover {
+  background-color: #f5f5f5;
+}
+
+/* Password Modal Body */
+.change-password-modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Password Modal Form */
+.change-password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.change-password-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.change-password-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.change-password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.change-password-input {
+  width: 100%;
+  padding: 14px 48px 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.2s ease;
+  font-family: inherit;
+}
+
+#new-password-input:focus {
+  border-color: #1a1a1a;
+}
+
+#confirm-password-input:focus {
+  border-color: #1a1a1a;
+}
+
+.change-password-input::placeholder {
+  color: #b3b3b3;
+}
+
+.change-password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 20px;
+  transition: color 0.2s ease;
+}
+
+.change-password-toggle-btn:hover {
+  color: #1a1a1a;
+}
+
+.change-password-hint {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Password Modal Submit Button */
+.change-password-submit-btn {
+  width: 100%;
+  padding: 16px 24px;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 28px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 8px;
+}
+
+.change-password-submit-btn:hover {
+  background-color: #000000;
+}
+
+.change-password-submit-btn:active {
+  transform: scale(0.98);
+}
+
+.change-password-cancel-link {
+  color: #000;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.change-password-cancel-link:hover {
+  color: #626060;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .change-password-modal {
+    width: 95%;
+    max-width: 90%;
+  }
+
+  .change-password-modal.active {
+    top: 8%;
+  }
+
+  .change-password-modal-content {
+    padding: 32px 24px 24px;
+  }
+
+  .change-password-modal-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .change-password-modal {
+    width: 95%;
+  }
+
+  .change-password-modal.active {
+    top: 5%;
+  }
+
+  .change-password-modal-content {
+    padding: 28px 20px 20px;
+  }
+
+  .change-password-modal-title {
+    font-size: 22px;
+  }
+
+  .change-password-form {
+    gap: 20px;
+  }
+}

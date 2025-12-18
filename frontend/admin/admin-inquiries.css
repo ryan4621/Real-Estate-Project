@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.users-section {
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.inquiries-filters {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+#searchInput {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+.inquiries-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inquiries-filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.inquiries-filter-group select {
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  min-width: 150px;
+}
+
+.inquiries-filter-group select:focus, .inquiry-status-select:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+.inquiries-filter-group select:hover, .inquiry-status-select:hover {
+  border-color: #0066cc;
+}
+
+.inquiry-status-select {
+  padding: 10px 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  /* font-weight: 500; */
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 0 15px 23px;
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+  
+#pagination button {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+}
+  
+#pagination button:hover {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+  
+#pagination button:disabled {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+  cursor: default;
+  opacity: 0.8;
+}
+  
+
+@media (max-width: 768px) {
+  .inquiries-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  #searchInput {
+    min-width: 100%;
+  }
+  
+  .inquiries-filter-group select {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+.inquiry-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.inquiry-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  opacity: 0;
+}
+
+.inquiry-modal-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.inquiry-modal.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.status-modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #212529;
+}
+
+.status-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.status-modal-close:hover {
+  background: #f8f9fa;
+}
+
+.status-modal-body {
+  padding: 1.5rem;
+  font-size: 1rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.status-modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.status-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.status-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.status-cancel:hover {
+  background: #5a6268;
+}
+
+.status-confirm {
+  background: #5020c0;
+  color: white;
+}
+
+.status-confirm:hover {
+  background: #4500bc;
+}
