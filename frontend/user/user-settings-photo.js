@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function setupPhotoEventListeners() {
 
-    changeProfilePhoto.addEventListener("click", () => {
-        if (!profileUploadInProgress) {
-            showProfileUploadArea();
-        }
-    });
+    // changeProfilePhoto.addEventListener("click", () => {
+    //     if (!profileUploadInProgress) {
+    //         showProfileUploadArea();
+    //     }
+    // });
 
     profileUploadArea.addEventListener("click", () => {
         if (!profileUploadInProgress) {
@@ -99,23 +99,23 @@ async function loadCurrentProfilePhoto() {
     }
 }
 
-// Show upload area and instructions
-function showProfileUploadArea() {
-    // profileUploadInstructions.style.display = "block";
-    changeProfilePhoto.style.display = "none";
-    profileUploadArea.style.display = "block";
-    profilePreviewArea.style.display = "none";
-    profileUploadButtons.style.display = "none";
-}
+// // Show upload area and instructions
+// function showProfileUploadArea() {
+//     // profileUploadInstructions.style.display = "block";
+//     changeProfilePhoto.style.display = "none";
+//     profileUploadArea.style.display = "block";
+//     profilePreviewArea.style.display = "none";
+//     profileUploadButtons.style.display = "none";
+// }
 
-// Hide upload area and instructions
-function hideProfileUploadArea() {
-    // profileUploadInstructions.style.display = "none";
-    changeProfilePhoto.style.display = "block";
-    profileUploadArea.style.display = "none";
-    profilePreviewArea.style.display = "none";
-    profileUploadButtons.style.display = "none";
-}
+// // Hide upload area and instructions
+// function hideProfileUploadArea() {
+//     // profileUploadInstructions.style.display = "none";
+//     changeProfilePhoto.style.display = "block";
+//     profileUploadArea.style.display = "none";
+//     profilePreviewArea.style.display = "none";
+//     profileUploadButtons.style.display = "none";
+// }
 
 // Handle file selection
 function handleProfileFileSelect(file) {
@@ -130,18 +130,18 @@ function handleProfileFileSelect(file) {
 }
 
 // Show preview area
-function showProfilePreview(file) {
-    const reader = new FileReader();
+// function showProfilePreview(file) {
+//     const reader = new FileReader();
 
-    reader.onload = (e) => {
-        profilePreviewImage.src = e.target.result;
-        profileUploadArea.style.display = "none";
-        profilePreviewArea.style.display = "block";
-        profileUploadButtons.style.display = "flex";
-    };
+//     reader.onload = (e) => {
+//         profilePreviewImage.src = e.target.result;
+//         profileUploadArea.style.display = "none";
+//         profilePreviewArea.style.display = "block";
+//         profileUploadButtons.style.display = "flex";
+//     };
 
-    reader.readAsDataURL(file);
-}
+//     reader.readAsDataURL(file);
+// }
 
 // Validate file
 function validateProfileFile(file) {
@@ -162,85 +162,85 @@ function validateProfileFile(file) {
 }
 
 // Upload file using ImageKit
-async function uploadProfileFile() {
-    if (!profileSelectedFile) return;
+// async function uploadProfileFile() {
+//     if (!profileSelectedFile) return;
 
-    profileUploadInProgress = true;
-    profileUploadBtn.disabled = true;
-    profileUploadBtn.textContent = "Uploading...";
-    profileProgressContainer.style.display = "block";
-    hideProfileMessages();
+//     profileUploadInProgress = true;
+//     profileUploadBtn.disabled = true;
+//     profileUploadBtn.textContent = "Uploading...";
+//     profileProgressContainer.style.display = "block";
+//     hideProfileMessages();
 
-    try {
-        simulateProfileProgress();
+//     try {
+//         simulateProfileProgress();
 
-        const sigRes = await fetch(`/api/profile/upload-signature?fileType=${encodeURIComponent(profileSelectedFile.type)}&fileSize=${profileSelectedFile.size}`, {
-            credentials: "include",
-        });
+//         const sigRes = await fetch(`/api/profile/upload-signature?fileType=${encodeURIComponent(profileSelectedFile.type)}&fileSize=${profileSelectedFile.size}`, {
+//             credentials: "include",
+//         });
 
-        if (!sigRes.ok) {
-            throw new Error("Failed to get upload token");
-        }
+//         if (!sigRes.ok) {
+//             throw new Error("Failed to get upload token");
+//         }
 
-        const sigData = await sigRes.json();
+//         const sigData = await sigRes.json();
 
-        // Upload to ImageKit
-        const formData = new FormData();
-        formData.append("file", profileSelectedFile);
-        formData.append("publicKey", "public_dXrYyuRIBWgHZeg7s3EoL1xNlZQ=");
-        formData.append("signature", sigData.signature);
-        formData.append("expire", sigData.expire);
-        formData.append("token", sigData.token);
-        formData.append(
-            "fileName", `profile-${Date.now()}-${profileSelectedFile.name}`
-        );
+//         // Upload to ImageKit
+//         const formData = new FormData();
+//         formData.append("file", profileSelectedFile);
+//         formData.append("publicKey", "public_dXrYyuRIBWgHZeg7s3EoL1xNlZQ=");
+//         formData.append("signature", sigData.signature);
+//         formData.append("expire", sigData.expire);
+//         formData.append("token", sigData.token);
+//         formData.append(
+//             "fileName", `profile-${Date.now()}-${profileSelectedFile.name}`
+//         );
 
-        const uploadRes = await fetch("https://upload.imagekit.io/api/v1/files/upload", {
-            method: "POST",
-            body: formData,
-        });
+//         const uploadRes = await fetch("https://upload.imagekit.io/api/v1/files/upload", {
+//             method: "POST",
+//             body: formData,
+//         });
 
-        const uploadData = await uploadRes.json();
+//         const uploadData = await uploadRes.json();
 
-        if (uploadData.url) {
-            // Update user profile with new image URL
-            const updateRes = await fetch(`/api/update-profile-photo`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-csrf-token": window.getCsrfToken(),
-                },
-                credentials: "include",
-                body: JSON.stringify({ profile_image: uploadData.url }),
-            });
+//         if (uploadData.url) {
+//             // Update user profile with new image URL
+//             const updateRes = await fetch(`/api/update-profile-photo`, {
+//                 method: "PUT",
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                     "x-csrf-token": window.getCsrfToken(),
+//                 },
+//                 credentials: "include",
+//                 body: JSON.stringify({ profile_image: uploadData.url }),
+//             });
 
-            if (updateRes.ok) {
-                showProfileSuccess("Profile photo uploaded successfully!");
-                updateCurrentProfilePhoto(uploadData.url);
+//             if (updateRes.ok) {
+//                 showProfileSuccess("Profile photo uploaded successfully!");
+//                 updateCurrentProfilePhoto(uploadData.url);
 
-                // Hide everything except the profile photo circle after successful upload
-                setTimeout(() => {
-                    resetProfileUpload();
-                }, 2000);
-            } else {
-                const errorData = await updateRes.json();
-                showProfileError(errorData.message || "Failed to update profile");
-            }
-        } else {
-            showProfileError("Image upload failed. Please try again.");
-        }
-    } catch (error) {
-        console.error("Upload error:", error);
-        showProfileError(
-            "Network error. Please check your connection and try again."
-        );
-    } finally {
-        profileUploadInProgress = false;
-        profileUploadBtn.disabled = false;
-        profileUploadBtn.textContent = "Upload Photo";
-        profileProgressContainer.style.display = "none";
-    }
-}
+//                 // Hide everything except the profile photo circle after successful upload
+//                 setTimeout(() => {
+//                     resetProfileUpload();
+//                 }, 2000);
+//             } else {
+//                 const errorData = await updateRes.json();
+//                 showProfileError(errorData.message || "Failed to update profile");
+//             }
+//         } else {
+//             showProfileError("Image upload failed. Please try again.");
+//         }
+//     } catch (error) {
+//         console.error("Upload error:", error);
+//         showProfileError(
+//             "Network error. Please check your connection and try again."
+//         );
+//     } finally {
+//         profileUploadInProgress = false;
+//         profileUploadBtn.disabled = false;
+//         profileUploadBtn.textContent = "Upload Photo";
+//         profileProgressContainer.style.display = "none";
+//     }
+// }
 
 // Simulate upload progress
 function simulateProfileProgress() {
@@ -257,13 +257,13 @@ function simulateProfileProgress() {
 }
 
 // Reset upload state
-function resetProfileUpload() {
-    profileSelectedFile = null;
-    profileFileInput.value = "";
-    hideProfileUploadArea();
-    hideProfileMessages();
-    profileProgressFill.style.width = "0%";
-}
+// function resetProfileUpload() {
+//     profileSelectedFile = null;
+//     profileFileInput.value = "";
+//     hideProfileUploadArea();
+//     hideProfileMessages();
+//     profileProgressFill.style.width = "0%";
+// }
 
 // Update current photo display (persists after reload)
 function updateCurrentProfilePhoto(photoUrl) {
@@ -286,4 +286,155 @@ function showProfileSuccess(message) {
 function hideProfileMessages() {
     profileErrorMessage.style.display = "none";
     profileSuccessMessage.style.display = "none";
+}
+
+
+const profileModalOverlay = document.querySelector('.profile-modal-overlay');
+const profileModal = document.querySelector('.profile-picture-modal');
+const modalCloseBtn = document.getElementById('photo-modal-close-btn');
+// const changeProfilePhoto = document.getElementById('change-profile-photo');
+// const profileCancelUploadBtn = document.getElementById('profileCancelUploadBtn');
+
+// Open modal
+function openProfileModal() {
+    profileModalOverlay.classList.add('active');
+    profileModal.classList.add('active');
+    document.body.classList.add('modal-open');
+}
+
+// Close modal
+function closeProfileModal() {
+    profileModalOverlay.classList.remove('active');
+    profileModal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    
+    // Reset upload state
+    resetProfileUpload();
+}
+
+// Event listeners for opening/closing modal
+changeProfilePhoto.addEventListener('click', openProfileModal);
+modalCloseBtn.addEventListener('click', closeProfileModal);
+profileModalOverlay.addEventListener('click', closeProfileModal);
+profileCancelUploadBtn.addEventListener('click', closeProfileModal);
+
+// Prevent modal from closing when clicking inside it
+profileModal.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+
+
+// Update the showProfileUploadArea function
+function showProfileUploadArea() {
+    profileUploadArea.style.display = "block";
+    profilePreviewArea.style.display = "none";
+    profileUploadButtons.style.display = "none";
+    profileCancelUploadBtn.style.display = "block";
+}
+
+// Update the hideProfileUploadArea function
+function hideProfileUploadArea() {
+    profileUploadArea.style.display = "none";
+    profilePreviewArea.style.display = "none";
+    profileUploadButtons.style.display = "none";
+}
+
+// Update showProfilePreview to show upload buttons
+function showProfilePreview(file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        profilePreviewImage.src = e.target.result;
+        profileUploadArea.style.display = "none";
+        profilePreviewArea.style.display = "block";
+        profileUploadButtons.style.display = "flex";
+        profileCancelUploadBtn.style.display = "none";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+// Update uploadProfileFile to close modal and reload after success
+async function uploadProfileFile() {
+    if (!profileSelectedFile) return;
+
+    profileUploadInProgress = true;
+    profileUploadBtn.disabled = true;
+    profileUploadBtn.textContent = "Uploading...";
+    profileProgressContainer.style.display = "block";
+    hideProfileMessages();
+
+    try {
+        simulateProfileProgress();
+
+        const sigRes = await fetch(`/api/profile/upload-signature?fileType=${encodeURIComponent(profileSelectedFile.type)}&fileSize=${profileSelectedFile.size}`, {
+            credentials: "include",
+        });
+
+        if (!sigRes.ok) {
+            throw new Error("Failed to get upload token");
+        }
+
+        const sigData = await sigRes.json();
+
+        const formData = new FormData();
+        formData.append("file", profileSelectedFile);
+        formData.append("publicKey", "public_dXrYyuRIBWgHZeg7s3EoL1xNlZQ=");
+        formData.append("signature", sigData.signature);
+        formData.append("expire", sigData.expire);
+        formData.append("token", sigData.token);
+        formData.append("fileName", `profile-${Date.now()}-${profileSelectedFile.name}`);
+
+        const uploadRes = await fetch("https://upload.imagekit.io/api/v1/files/upload", {
+            method: "POST",
+            body: formData,
+        });
+
+        const uploadData = await uploadRes.json();
+
+        if (uploadData.url) {
+            const updateRes = await fetch(`/api/update-profile-photo`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-csrf-token": window.getCsrfToken(),
+                },
+                credentials: "include",
+                body: JSON.stringify({ profile_image: uploadData.url }),
+            });
+
+            if (updateRes.ok) {
+                showProfileSuccess("Profile photo uploaded successfully!");
+                
+                // Close modal and reload page after 1 second
+                setTimeout(() => {
+                    closeProfileModal();
+                    window.location.reload();
+                }, 1000);
+            } else {
+                const errorData = await updateRes.json();
+                showProfileError(errorData.message || "Failed to update profile");
+            }
+        } else {
+            showProfileError("Image upload failed. Please try again.");
+        }
+    } catch (error) {
+        console.error("Upload error:", error);
+        showProfileError("Network error. Please check your connection and try again.");
+    } finally {
+        profileUploadInProgress = false;
+        profileUploadBtn.disabled = false;
+        profileUploadBtn.textContent = "Upload Photo";
+        profileProgressContainer.style.display = "none";
+    }
+}
+
+// Update resetProfileUpload
+function resetProfileUpload() {
+    profileSelectedFile = null;
+    profileFileInput.value = "";
+    showProfileUploadArea();
+    hideProfileMessages();
+    profileProgressFill.style.width = "0%";
 }

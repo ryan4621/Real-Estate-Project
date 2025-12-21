@@ -15,6 +15,8 @@ let currentFilters = {
 };
 
 let paginationDisabled = false;
+let searchId = null;
+let isSaved = false;
 
 const listDisplayMode = document.getElementById('list-display-mode');
 const mapDisplayMode = document.getElementById('map-display-mode');
@@ -90,8 +92,21 @@ function setupEventListeners() {
 
     document.getElementById('filters-reset-btn').addEventListener('click', resetFilters)
 
-	document.getElementById('save-search-btn').addEventListener('click', saveSearch)
+	const saveSearchBtn = document.getElementById('save-search-btn')
 
+	if (saveSearchBtn) {
+		saveSearchBtn.addEventListener('click', async function() {
+			if (isSaved) {
+				// Button shows "Saved", so remove the search
+				await removeSavedSearch(searchId);
+				this.textContent = "Save Search";
+				isSaved = false;
+			} else {
+				// Button shows "Save Search", so save it
+				await saveSearch();
+			}
+		});
+	}
     document.getElementById("properties-sort-select").addEventListener("change", () => {
         currentPage = 1;
         loadProperties();
@@ -461,16 +476,48 @@ async function saveSearch(){
         const result = await response.json();
 
         if (response.ok) {
+			searchId = result.id;
+            isSaved = true;
+            
+            const saveSearchBtn = document.getElementById('save-search-btn');
+            saveSearchBtn.textContent = "Saved";
+
             showToast('Search saved successfully', 'success');
+
 			window.loadSearchesMini();
         } else {
-            showToast(result.message || 'Failed to save search', 'error');
+            showToast('Failed to save search', 'error');
         }
 
     } catch (error) {
         console.error('Error saving search:', error);
         showToast('Failed to save search', 'error');
     }
+}
+
+async function removeSavedSearch(searchId){
+	try {
+		const response = await fetch(`/api/saved-searches/${searchId}`, {
+			method: "DELETE",
+			credentials: "include",
+			headers: {
+				"x-csrf-token": window.getCsrfToken()
+			}
+		})
+
+		if(!response.ok){
+			throw new Error('Failed to remove saved search')
+		}
+
+		isSaved = false;
+        searchId = null;
+		showToast('Search removed successfully', 'success');
+        window.loadSearchesMini();
+
+	}catch(error){
+		console.error(error)
+		showToast('Failed to remove saved search. Please try again later.', 'error')
+	}
 }
 
 function applyFilters() {

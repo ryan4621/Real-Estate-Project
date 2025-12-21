@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 import crypto from 'crypto';
 import fs from "fs/promises";
 import path from "path";
+import { OAuth2Client } from 'google-auth-library';
 import { authRateLimit, verificationResendRateLimit } from '../middleware/security.js';
 import { query, validationResult } from 'express-validator';
 import { sendVerificationEmail } from '../middleware/email-service.js';
@@ -18,6 +19,8 @@ import { requireAuth } from '../middleware/authentication.js';
 const router = express.Router();
 
 dotenv.config();
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 router.get("/me", requireAuth, async (req, res) => {
   try {
@@ -535,6 +538,13 @@ router.post('/login', authRateLimit, validateLogin, handleValidationErrors, asyn
       });
     }
 
+    if (!user.password) {
+      return res.status(401).json({
+        incorrectPassword: true, 
+        message: "Invalid credentials" 
+      });
+    }
+
     const match = await bcrypt.compare(password, user.password)
     if(!match){
       return res.status(401).json({
@@ -615,6 +625,128 @@ router.post("/logout", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(200).json({ message: "Log out failed" });
+  }
+});
+
+// Google Login Route
+router.post('/google', async (req, res) => {
+  // const connection = await pool.getConnection();
+  
+  try {
+    const { token } = req.body;
+
+    console.log('Audience:', process.env.GOOGLE_CLIENT_ID)
+
+    // Verify the token with Google
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    
+    // Extract user information from Google
+    const googleUser = {
+      email: payload.email,
+      firstName: payload.given_name,
+      lastName: payload.family_name,
+      profilePicture: payload.picture,
+      googleId: payload.sub,
+      emailVerified: payload.email_verified
+    };
+
+    console.log(googleUser)
+
+    // Check if user exists in your database
+    const [existingUsers] = await pool.execute(
+      'SELECT * FROM users WHERE email = ?',
+      [googleUser.email]
+    );
+
+    let user;
+
+    if (existingUsers.length === 0) {
+      // Create new user if doesn't exist
+      const [result] = await pool.execute(
+        `INSERT INTO users ( email, first_name, last_name, profile_image, google_id, email_verified, auth_method, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())`,
+        [googleUser.email, googleUser.firstName, googleUser.lastName, googleUser.profilePicture || null, googleUser.googleId, true, 'google']
+      );
+
+      // Get the newly created user
+      const [newUser] = await pool.execute(
+        'SELECT * FROM users WHERE id = ?',
+        [result.insertId]
+      );
+
+      user = newUser[0];
+
+    } else {
+      user = existingUsers[0];
+
+      console.log(googleUser.googleId , googleUser.profilePicture, user.id)
+
+      // Update existing user with Google info if they don't have it
+      if (!user.google_id) {
+        await pool.execute(
+          `UPDATE users SET google_id = ?, profile_image = ?, email_verified = true WHERE id = ?`,
+          [googleUser.googleId , googleUser.profilePicture || null, user.id]
+        );
+      }
+    }
+    
+    const authToken = jwt.sign(
+      { id: user.id, role: user.role }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: "7h" }
+    );
+
+    // Get device and location info
+    const userAgent = req.headers['user-agent'] || 'Unknown Device';
+    const ipAddress = req.ip || req.connection.remoteAddress || req.headers['x-forwarded-for'];
+    const deviceInfo = parseUserAgent(userAgent);
+
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + 7);
+
+    // Mark all existing sessions as not current
+    await pool.execute(
+      "DELETE FROM user_sessions WHERE user_id = ? AND ip_address = ?",
+      [user.id, ipAddress]
+    );
+
+    // Create new session record
+    await pool.execute(
+      `INSERT INTO user_sessions (user_id, session_token, device_info, ip_address, is_current, expires_at)
+      VALUES (?, ?, ?, ?, TRUE, ?)`,
+      [user.id, authToken.substring(0, 50), deviceInfo, ipAddress, expiresAt]
+    );
+    
+    // Clean up expired sessions
+    await pool.execute("DELETE FROM user_sessions WHERE expires_at < NOW()");
+    
+    let cookieOptions = { 
+      httpOnly: true, 
+      secure: process.env.NODE_ENV === "production", 
+      sameSite: 'lax',
+    };
+    
+    res.cookie("REauthToken", authToken, cookieOptions);
+
+    res.status(200).json({
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.first_name,
+        lastName: user.last_name,
+        profilePicture: user.profile_picture
+      }
+    });
+
+  } catch (error) {
+    console.error('Google auth error:', error);
+    res.status(401).json({ message: 'Authentication failed' });
   }
 });
 

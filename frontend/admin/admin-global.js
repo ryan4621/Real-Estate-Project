@@ -1,4 +1,4 @@
-const logoutBtn = document.getElementById('logout-btn')
+const logoutBtn = document.getElementById('adminLogoutBtn')
 
 logoutBtn.addEventListener('click', async (e) => {
     e.preventDefault();

@@ -73,6 +73,41 @@ const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
+// function googleLogin() {
+//     google.accounts.id.initialize({
+//         client_id: '123778486490-cfi70h5c6l9rtn2vkr517j7q86nvk2m0.apps.googleusercontent.com',
+//         callback: handleGoogleLogin
+//     });
+    
+//     // Trigger Google's One Tap or popup
+//     google.accounts.id.prompt();
+// }
+
+window.handleGoogleLogin = async function(response) {
+    try {
+        // Google sends back a JWT token in response.credential
+        const res = await fetch('/auth/google', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ token: response.credential })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            console.log('Login successful:', data);
+            window.location.reload();
+        } else {
+            showToast(data.message || 'Error logging in', 'error')
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showToast('Login failed', 'error')
+    }
+}
+
+
 //Continue
 
 function openSignupModal(){
@@ -264,7 +299,7 @@ async function login(e){
         if (data.role === "Admin" || data.role === "Super_Admin") {
             window.location.href = "/frontend/admin/admin-dashboard.html"
         } else {
-            window.location.reload()
+            window.location.reload();
         }
 
     }catch(error){

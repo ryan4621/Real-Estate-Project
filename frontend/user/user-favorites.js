@@ -391,7 +391,7 @@ async function loadSavedSearches(){
                     return
                 };
             
-                await removeSavedsearches(search.id);
+                await removeSavedSearch(search.id);
                 loadSavedSearches();
 			});
 
@@ -433,7 +433,7 @@ function runSavedSearch(search) {
     window.location.href = `${targetPage}?${params.toString()}`;
 }
 
-async function removeSavedsearches(searchId){
+async function removeSavedSearch(searchId){
 	try {
 		const response = await fetch(`/api/saved-searches/${searchId}`, {
 			method: "DELETE",

@@ -121,7 +121,7 @@ router.get("/properties/upload-signature", (req, res) => {
 			return res.status(400).json({ message: "File too large" });
 		}
 	
-		if (!["image/jpg", "image/jpeg", "image/png", "video/mp4", "video/mov"].includes(fileType)) {
+		if (!["image/jpg", "image/jpeg", "image/png", "image/webp", "image/avif", "video/mp4", "video/mov"].includes(fileType)) {
 			return res.status(400).json({ message: "Invalid file type" });
 		}
 	
@@ -300,12 +300,12 @@ router.post("/properties", validateProperties, handleValidationErrors, requireAd
       propertyId = generatePropertyId();
       try {
         await pool.execute(
-          "INSERT INTO properties (property_id, property_type, description, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, latitude, longitude, agent_name, agent_email, broker, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())",
+          "INSERT INTO properties (property_id, property_type, description, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, latitude, longitude, agent_name, agent_email, broker, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())",
         [propertyId, propertyType, description, status, price, pricePerSqft, garageSpace, yearBuilt, bedrooms, bathrooms, area, normalizedAcreLot, streetNumber, streetName, city, state, zip, country, normalizedLatitude, normalizedLongitude, agentName, agentEmail, normalizedBroker ]
         );
         inserted = true;
       } catch (err) {
-        if (err && err.code === "ER_DUP_ENTRY") continue; // collision, retry
+        if (err && err.code === "ER_DUP_ENTRY") continue;
         else throw err;
       }
     }

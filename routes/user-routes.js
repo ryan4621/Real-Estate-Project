@@ -868,15 +868,18 @@ router.post('/saved-searches', requireAuth, validateSavedSearch, async (req, res
       const { category, filters } = req.body;
       const userId = req.user.id;
   
-      await pool.execute(
+      const [result] = await pool.execute(
         `INSERT INTO saved_searches (user_id, category, filters) 
          VALUES (?, ?, ?)`,
         [userId, category, JSON.stringify(filters)]
       );
+
+      const searchId = result.insertId
   
       res.status(201).json({
         success: true,
         message: 'Search saved successfully',
+        id: searchId
       });
   
     } catch (error) {

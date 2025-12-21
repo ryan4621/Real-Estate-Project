@@ -12,7 +12,8 @@ export const createPropertiesTable = async () => {
                 'Modular Home',
                 'Bungalow',
                 'Ranch Home',
-                'Condominium'
+                'Condominium',
+                'Apartment'
             ) NOT NULL,
             description TEXT NOT NULL,
             status ENUM('Sale', 'Rent', 'Sold') NOT NULL,

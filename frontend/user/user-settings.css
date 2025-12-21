@@ -360,50 +360,95 @@ body {
 
 
 
-
-/* Profile Upload Styles */
-.profile-upload-container {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  max-width: 450px;
-  margin: 0 auto;
+/* Profile Modal Overlay */
+.profile-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.profile-current-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin: 0 auto 15px;
-  border: 4px solid #e3f2fd;
-  object-fit: cover;
-  background: #f5f5f5;
+.profile-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Profile Picture Modal */
+.profile-picture-modal {
+  position: fixed;
+  left: 50%;
+  top: -100%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 650px;
+  max-height: 90vh;
+  background-color: #ffffff;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  border-radius: 12px;
+  overflow-y: auto;
+  transition: top 0.4s ease;
+}
+
+.profile-picture-modal.active {
+  top: 10%;
+}
+
+/* Modal Header */
+.photo-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  /* border-bottom: 1px solid #e0e0e0; */
+}
+
+.photo-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.photo-modal-close-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
-  font-size: 14px;
-  position: relative;
-  overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
 }
 
-.profile-current-photo:hover {
-  border-color: #667eea;
-  transform: scale(1.05);
+.photo-modal-close-btn:hover {
+  background-color: #f5f5f5;
 }
 
-.profile-upload-instructions {
-  margin: 10px 0;
+.photo-modal-close-btn i {
+  font-size: 28px;
+  color: #333;
 }
 
+/* Modal Body */
+.photo-modal-body {
+  padding: 32px;
+}
+
+/* Upload Area */
 .profile-upload-area {
   border: 3px dashed #ddd;
-  border-radius: 15px;
-  padding: 40px 20px;
-  margin: 20px 0;
+  border-radius: 12px;
+  padding: 40px 0;
+  text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
   background: #fafafa;
@@ -412,7 +457,6 @@ body {
 .profile-upload-area:hover {
   border-color: #667eea;
   background: #f0f4ff;
-  transform: translateY(-2px);
 }
 
 .profile-upload-area.profile-dragover {
@@ -423,18 +467,18 @@ body {
 
 .profile-upload-icon {
   font-size: 48px;
-  color: #667eea;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .profile-upload-text {
-  color: #666;
+  color: #333;
   font-size: 16px;
-  margin-bottom: 10px;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .profile-upload-subtext {
-  color: #999;
+  color: #666;
   font-size: 14px;
 }
 
@@ -442,79 +486,38 @@ body {
   display: none;
 }
 
+/* Preview Area */
 .profile-preview-area {
-  margin: 20px 0;
   text-align: center;
 }
 
 .profile-preview-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 15px;
+  width: 100%;
+  max-width: 150px;
+  height: 150px;
+  border-radius: 12px;
   object-fit: cover;
-  margin: 0 auto 15px;
-  border: 3px solid #667eea;
+  margin: 0 auto 20px;
+  border: 2px solid #e0e0e0;
   display: block;
 }
 
 .profile-preview-info {
   background: #f8f9ff;
-  padding: 15px;
-  border-radius: 10px;
-  margin-top: 15px;
+  padding: 16px;
+  border-radius: 8px;
 }
 
 .profile-preview-info p {
-  color: #666;
-  margin-bottom: 15px;
+  color: #333;
+  margin: 0;
   font-weight: 500;
+  font-size: 15px;
 }
 
-.profile-upload-buttons {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.profile-btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 120px;
-}
-
-.profile-btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-}
-
-.upload-btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-}
-
-.upload-btn-secondary {
-  background: #bbbbbb;
-  color: #fff;
-}
-
-.upload-btn-secondary:hover {
-  background: #e0e0e0;
-}
-
-.upload-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
+/* Progress */
 .profile-progress-container {
-  margin: 20px 0;
+  margin-top: 20px;
   display: none;
 }
 
@@ -538,25 +541,228 @@ body {
   margin-top: 10px;
   font-size: 14px;
   color: #666;
+  text-align: center;
 }
 
+/* Messages */
 .profile-error-message {
   background: #fee;
   color: #c33;
-  padding: 15px;
+  padding: 12px 16px;
   border-radius: 8px;
-  margin: 15px 0;
+  margin-top: 16px;
   display: none;
+  font-size: 14px;
 }
 
 .profile-success-message {
   background: #efe;
   color: #3c3;
-  padding: 15px;
+  padding: 12px 16px;
   border-radius: 8px;
-  margin: 15px 0;
+  margin-top: 16px;
+  display: none;
+  font-size: 14px;
+}
+
+/* Modal Footer */
+.photo-modal-footer {
+  padding: 10px 32px;
+  /* border-top: 1px solid #e0e0e0; */
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.profile-upload-buttons {
+  display: flex;
+  /* gap: 12px; */
+  width: 100%;
+  justify-content: space-between;
+}
+
+.photo-cancel-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: opacity 0.2s ease;
+}
+
+.photo-btn:hover {
+  opacity: 0.7;
+}
+
+.upload-submit-btn {
+  background-color: #000;
+  color: #ffffff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-submit-btn:hover:not(:disabled) {
+  background-color: #333;
+}
+
+.upload-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-picture-modal {
+      width: 95%;
+      max-height: 95vh;
+  }
+  
+  .photo-modal-header,
+  .photo-modal-body,
+  .photo-modal-footer {
+      padding: 20px;
+  }
+  
+  .profile-preview-image {
+      max-width: 250px;
+      height: 250px;
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 40px 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.modal-close-btn i {
+  font-size: 28px;
+  color: #333;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 40px;
+}
+
+.file-input {
   display: none;
 }
+
+.file-input-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.choose-file-btn {
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.choose-file-btn:hover {
+  background-color: #e8e8e8;
+}
+
+.file-status {
+  font-size: 15px;
+  color: #666;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 24px 40px 32px;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.cancel-btn:hover {
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-picture-modal {
+      width: 95%;
+      max-width: 500px;
+  }
+  
+  .modal-header {
+      padding: 24px 24px 20px;
+  }
+  
+  .modal-title {
+      font-size: 20px;
+  }
+  
+  .modal-body {
+      padding: 32px 24px;
+  }
+  
+  .modal-footer {
+      padding: 20px 24px 24px;
+  }
+}
+
+
 
 
 /* Edit Profile Modal Overlay */

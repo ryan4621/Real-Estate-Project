@@ -31,16 +31,16 @@ body {
 
 .properties-search-container {
     position: relative;
-    width: 35%;
+    width: 30%;
     display: flex;
     gap: 8px;
     align-items: center;
 }
 
 .search-input {
-    padding: 10px 16px;
+    padding: 14px 18px;
     border: 1px solid #d0d0d0;
-    border-radius: 4px;
+    border-radius: 30px;
     font-size: 14px;
     width: 100%;
     color: #2d3748;
@@ -112,7 +112,7 @@ body {
 }
 
 .filter-btn {
-    padding: 10px 16px;
+    padding: 14px 16px;
     background: white;
     border: 1px solid #d0d0d0;
     border-radius: 4px;
@@ -136,7 +136,7 @@ body {
 }
 
 .filters-reset-btn {
-    padding: 10px 12px;
+    padding: 14px 12px;
     background: white;
     border: 1px solid #d0d0d0;
     border-radius: 4px;
@@ -155,9 +155,17 @@ body {
     border-color: #d92228;
 }
 
-/* .save-search-btn {
+.save-search-btn {
+    padding: 14px 16px;
+    border: 1px solid #d0d0d0;
+    border-radius: 30px;
+    background: #fff;
+    cursor: pointer;
+}
 
-} */
+.save-search-btn:hover {
+    border-color: #999;
+}
 
 /* Filter Modal */
 .filter-modal {
@@ -285,7 +293,7 @@ body {
 /* Main Container */
 .properties-listing-container {
     width: 100%;
-    margin: 0;
+    /* margin: 0; */
     padding: 0 40px;
 }
 
@@ -405,13 +413,13 @@ body {
     }
 
     .properties-listing-container {
-        padding: 16px 12px;
+        /* padding: 16px 12px; */
     }
 
     .properties-results-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+        /* flex-direction: column; */
+        /* align-items: flex-start; */
+        /* gap: 12px; */
     }
 
     .properties-sort-wrapper {

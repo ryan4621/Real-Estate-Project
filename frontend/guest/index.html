@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="/frontend/guest/for-sale.css"> -->
     <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body data-page="home">
     <!-- Navbar -->
@@ -80,6 +80,16 @@
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
+            <!-- <span class="nav-load"></span> -->
+            <div class="nav-load">
+                <button class="favorites-btn nav-load-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <button class="user-profile-btn nav-load-btn">
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -140,25 +150,36 @@
             </div>
             
             <div class="social-buttons">
-                <button class="social-button google-button">
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
-                        <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9.003 18z" fill="#34A853"/>
-                        <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
-                        <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.002 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
-                    </svg>
-                    <span>Continue with Google</span>
-                </button>
+                <div class="google-btn-container">
+                    <button class="social-button google-button">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+                            <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9.003 18z" fill="#34A853"/>
+                            <path d="M3.964 10.712c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.96H.957C.347 6.175 0 7.55 0 9.002c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+                            <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.002 0 5.482 0 2.438 2.017.957 4.958L3.964 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+                        </svg>
+                        <span>Continue with Google</span>
+                    </button>
+
+                    <div class="g_id_signin" 
+                        data-type="standard"
+                        data-shape="pill"         
+                        data-theme="outline"   
+                        data-text="continue_with"
+                        data-size="large"
+                        data-width="330"        
+                        data-logo_alignment="left">
+                    </div>
+                </div>
+
+                <div id="g_id_onload"
+                    data-client_id="815860435882-49n5enonl5vc4q6gltnv872j909habs6.apps.googleusercontent.com"
+                    data-callback="handleGoogleLogin"
+                    data-auto_prompt="true"
+                    data-itp_support="true"
+                    use_fedcm_for_prompt= "false">
+                </div>
                 
-                <button class="social-button facebook-button">
-                    <i class="bi bi-facebook" style="font-size: 20px;"></i>
-                    <span>Continue with Facebook</span>
-                </button>
-                
-                <button class="social-button apple-button">
-                    <i class="bi bi-apple" style="font-size: 20px;"></i>
-                    <span>Continue with Apple</span>
-                </button>
             </div>
             
             <div class="professional-option">
@@ -490,58 +511,134 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <h4 class="footer-heading">About PrimeHomes</h4>
-                <p class="footer-text">We're committed to helping you find your perfect home. With thousands of listings and expert agents, your dream property is just a click away.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+     <!-- Loan Section -->
+    <section class="local-info-section">
+        <div class="local-info-container">
+            <div class="local-info-content">
+                <h2>Get Local Info</h2>
+                <p>Does it have pet-friendly rentals? How are the schools? Get important local information on the area you're most interested in.</p>
+                <!-- Search Bar -->
+                <div class="local-info-search-bar">
+                    <input type="text" class="local-info-search-input" value="Los Angeles, CA">
+                    <button class="local-info-clear-btn">
+                        <i class="bi bi-x"></i>
+                    </button>
+                    <button class="local-info-search-btn">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </div>
             </div>
-            
-            <div class="footer-column">
-                <h4 class="footer-heading">Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#" class="footer-link">Browse Properties</a></li>
-                    <li><a href="#" class="footer-link">Find an Agent</a></li>
-                    <li><a href="#" class="footer-link">Mortgage Calculator</a></li>
-                    <li><a href="#" class="footer-link">Market Trends</a></li>
-                    <li><a href="#" class="footer-link">Blog</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4 class="footer-heading">Resources</h4>
-                <ul class="footer-links">
-                    <li><a href="#" class="footer-link">Buyer's Guide</a></li>
-                    <li><a href="#" class="footer-link">Seller's Guide</a></li>
-                    <li><a href="#" class="footer-link">Investment Tips</a></li>
-                    <li><a href="#" class="footer-link">FAQs</a></li>
-                    <li><a href="#" class="footer-link">Support Center</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h4 class="footer-heading">Contact Us</h4>
-                <ul class="footer-contact">
-                    <li><i class="fas fa-phone"></i> (555) 123-4567</li>
-                    <li><i class="fas fa-envelope"></i> info@primehomes.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> 100 Main Street<br>Suite 200, New York, NY 10001</li>
-                </ul>
+            <div class="local-info-image">
+                <img src="/images/get-local-info.avif" alt="Person working on laptop">
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2024 PrimeHomes. All rights reserved.</p>
-            <div class="footer-legal">
-                <a href="#" class="legal-link">Privacy Policy</a>
-                <a href="#" class="legal-link">Terms of Service</a>
-                <a href="#" class="legal-link">Cookie Policy</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Social Media Icons -->
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-linkedin"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-pinterest"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="bi bi-youtube"></i>
+                </a>
+            </div>
+    
+            <!-- Footer Links Section 1 -->
+            <div class="footer-links-section">
+                <a href="#" class="footer-link">About us</a>
+                <a href="#" class="footer-link">Careers</a>
+                <a href="#" class="footer-link">Accessibility</a>
+                <a href="#" class="footer-link">Feedback</a>
+                <a href="#" class="footer-link">Media room</a>
+                <a href="#" class="footer-link">Ad Choices</a>
+                <a href="#" class="footer-link">Advertise with us</a>
+                <a href="#" class="footer-link">Agent support</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Home Made</a>
+                <a href="#" class="footer-link">Tech Blog</a>
+                <a href="#" class="footer-link">Agent Blog</a>
+                <a href="#" class="footer-link">Sitemap</a>
+                <a href="#" class="footer-link special-link">Do Not Sell or Share My Personal Information</a>
+            </div>
+    
+            <!-- Get the App Section -->
+            <!-- <div class="app-section">
+                <h3 class="app-heading">Get the app</h3>
+                <div class="app-buttons">
+                    <a href="#" class="app-button">
+                        <img src="app-store-badge.png" alt="Download on the App Store">
+                    </a>
+                    <a href="#" class="app-button">
+                        <img src="google-play-badge.png" alt="Get it on Google Play">
+                    </a>
+                </div>
+            </div> -->
+    
+            <!-- Products Section -->
+            <div class="products-section">
+                <h3 class="section-heading">Products</h3>
+                <div class="products-links">
+                    <a href="#" class="footer-link">Leads & Branding</a>
+                    <a href="#" class="footer-link">ListHub</a>
+                    <a href="#" class="footer-link">Moving.com</a>
+                    <a href="#" class="footer-link">International Properties</a>
+                    <a href="#" class="footer-link">Avail</a>
+                    <a href="#" class="footer-link">UpNest</a>
+                    <a href="#" class="footer-link">Builder Solutions</a>
+                </div>
+            </div>
+    
+            <!-- News Corp Section -->
+            <div class="news-corp-section">
+                <h3 class="section-heading">News Corp</h3>
+                <div class="news-corp-links">
+                    <a href="#" class="footer-link">Barrons</a>
+                    <a href="#" class="footer-link">Financial News</a>
+                    <a href="#" class="footer-link">Harper Collins</a>
+                    <a href="#" class="footer-link">Mansion Global</a>
+                    <a href="#" class="footer-link">MarketWatch</a>
+                    <a href="#" class="footer-link">New York Post</a>
+                    <a href="#" class="footer-link">REA Group</a>
+                    <a href="#" class="footer-link">Storyful</a>
+                </div>
+                <div class="news-corp-links">
+                    <a href="#" class="footer-link">Wall Street Journal</a>
+                    <a href="#" class="footer-link">Makaan.com</a>
+                    <a href="#" class="footer-link">Housing.com</a>
+                    <a href="#" class="footer-link">PropTiger.com</a>
+                    <a href="#" class="footer-link">News Corp Australia</a>
+                    <a href="#" class="footer-link">News UK</a>
+                </div>
+            </div>
+    
+            <!-- Footer Bottom Text -->
+            <div class="footer-bottom">
+                <p class="footer-text">
+                    Any mortgage lead generation activity in the state of Connecticut is performed by MSIM, LLC (NMLS #7789449), a subsidiary of Move, Inc.
+                </p>
+                <p class="footer-text">
+                    *Based on average new for sale and rental listings Feb 2024 - Jan 2025.
+                </p>
+                <p class="footer-text">
+                    © 1995-2025 <a href="#" class="footer-link-inline">National Association of REALTORS®</a> and <a href="#" class="footer-link-inline">Move, Inc.</a> All rights reserved.
+                </p>
             </div>
         </div>
     </footer>

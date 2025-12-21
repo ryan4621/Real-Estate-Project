@@ -59,7 +59,8 @@ const securityHeaders = helmet({
         "https://cdnjs.cloudflare.com",
         "https://translate.google.com",
         "https://translate.googleapis.com",
-        "https://translate-pa.googleapis.com"
+        "https://translate-pa.googleapis.com",
+        "https://accounts.google.com/gsi/client"
       ],
       scriptSrcAttr: [
         "'unsafe-inline'"
@@ -78,13 +79,15 @@ const securityHeaders = helmet({
         "https://cdn.jsdelivr.net",
         "https://translate.googleapis.com",
         "https://embed.tawk.to/_s/v4/app/68f83c69d79/js/twk-chunk-vendors.js",
-        "https://cdnjs.cloudflare.com"
+        "https://cdnjs.cloudflare.com",
+        "https://accounts.google.com/gsi/"
       ],
-      frameSrc: ["https://embed.tawk.to", "https://js.stripe.com/"],
+      frameSrc: ["https://embed.tawk.to", "https://js.stripe.com/", "https://accounts.google.com/"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
     },
   },
+  CrossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
   crossOriginEmbedderPolicy: false,
   hsts: {
     maxAge: 31536000,
@@ -187,8 +190,16 @@ const contactRateLimit = rateLimit({
   store: new RedisStore({ sendCommand: (...args) => client.sendCommand(args) })
 });
 
+const doubleCsrfProtection = (req, res, next) => {
+  if (req.path === '/auth/google' || req.originalUrl.includes('/auth/google')) {
+    return next();
+  }
+
+  return originalDoubleCsrf(req, res, next);
+};
+
 // Configure CSRF protection
-const { doubleCsrfProtection } = doubleCsrf({
+const { doubleCsrfProtection: originalDoubleCsrf } = doubleCsrf({
   getSecret: () => process.env.CSRF_SECRET,
   cookieName: 'x-csrf-token',
   cookieOptions: {

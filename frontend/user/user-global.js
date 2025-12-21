@@ -11,6 +11,7 @@ async function checkAuthStatus() {
             renderLoggedInNav(user);
         } else {
             renderLoggedOutNav();
+            document.querySelector('.nav-load').classList.remove('show')
         }
     } catch (error) {
         console.error('Auth check failed:', error);
@@ -19,74 +20,25 @@ async function checkAuthStatus() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    checkAuthStatus();
+    document.querySelector('.nav-load').classList.add('show')
+
+    await checkAuthStatus();
+
     setupGlobalEventListeners();
 });
-
-const navLinks = document.querySelectorAll('.nav-link');
-const dropdownItems = document.querySelectorAll('.dropdown-item');
-
-async function setupGlobalEventListeners(){
-    const STORAGE_KEY = 'activeNavLinkPath';
-
-    const savedPath = localStorage.getItem(STORAGE_KEY);
-    const currentPath = window.location.pathname;
-
-    dropdownItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const path = this.getAttribute('href');
-            if (path !== '#') {
-                localStorage.setItem(STORAGE_KEY, path);
-                activateLinkByPath(path);
-            }
-        });
-    });
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            const path = this.getAttribute('href');
-            if (path !== '#') {
-                localStorage.setItem(STORAGE_KEY, path);
-                activateLinkByPath(path);
-            }
-        });
-    });
-
-    if (currentPath !== '/') {
-        activateLinkByPath(currentPath);
-        localStorage.setItem(STORAGE_KEY, currentPath);
-    } else if (savedPath && savedPath !== '#') {
-        activateLinkByPath(savedPath);
-    }
-}
-
-function activateLinkByPath(path) {
-	if (path === '#' || !path) return;
-
-	navLinks.forEach(link => link.classList.remove('active'));
-	
-	navLinks.forEach(link => {
-		if (link.getAttribute('href') === path) {
-			link.classList.add('active');
-		}
-	});
-
-	dropdownItems.forEach(item => {
-		if (item.getAttribute('href') === path) {
-			const parentNav = item.closest('.nav-link-item')?.querySelector('.nav-link');
-			if (parentNav) {
-				parentNav.classList.add('active');
-			}
-		}
-	});
-}
 
 function renderLoggedInNav(user) {
     const navbarContainer = document.getElementById('navbar-container');
     const signupBtn = navbarContainer.querySelector('.nav-signup-btn');
     
+    // Hide signup button
     if (signupBtn) {
-        signupBtn.remove();
+        signupBtn.classList.remove('show');
+    }
+
+    const navLoad = document.querySelector('.nav-load')
+    if(navLoad){
+        navLoad.classList.remove('show')
     }
 
     // Check if already rendered
@@ -147,6 +99,81 @@ function renderLoggedInNav(user) {
     loadFavoritesMini();
     loadSearchesMini();
 }
+
+function renderLoggedOutNav() {
+    const navbarContainer = document.getElementById('navbar-container');
+    const loggedInNav = navbarContainer.querySelector('.logged-in-nav');
+    
+    if (loggedInNav) {
+        loggedInNav.remove();
+    }
+
+   // Show the signup button that's already in HTML
+   const signupBtn = navbarContainer.querySelector('.nav-signup-btn');
+   if (signupBtn) {
+       signupBtn.classList.add('show');
+   }
+}
+
+const navLinks = document.querySelectorAll('.nav-link');
+const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+async function setupGlobalEventListeners(){
+    const STORAGE_KEY = 'activeNavLinkPath';
+
+    const savedPath = localStorage.getItem(STORAGE_KEY);
+    const currentPath = window.location.pathname;
+
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const path = this.getAttribute('href');
+            if (path !== '#') {
+                localStorage.setItem(STORAGE_KEY, path);
+                activateLinkByPath(path);
+            }
+        });
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const path = this.getAttribute('href');
+            if (path !== '#') {
+                localStorage.setItem(STORAGE_KEY, path);
+                activateLinkByPath(path);
+            }
+        });
+    });
+
+    if (currentPath !== '/') {
+        activateLinkByPath(currentPath);
+        localStorage.setItem(STORAGE_KEY, currentPath);
+    } else if (savedPath && savedPath !== '#') {
+        activateLinkByPath(savedPath);
+    }
+}
+
+function activateLinkByPath(path) {
+	if (path === '#' || !path) return;
+
+	navLinks.forEach(link => link.classList.remove('active'));
+	
+	navLinks.forEach(link => {
+		if (link.getAttribute('href') === path) {
+			link.classList.add('active');
+		}
+	});
+
+	dropdownItems.forEach(item => {
+		if (item.getAttribute('href') === path) {
+			const parentNav = item.closest('.nav-link-item')?.querySelector('.nav-link');
+			if (parentNav) {
+				parentNav.classList.add('active');
+			}
+		}
+	});
+}
+
+
 
 async function loadFavoritesMini(){
     try{
@@ -263,22 +290,6 @@ async function loadSearchesMini(){
                 <i class="fas fa-exclamation-circle"></i> Failed to load saved searches. Please try again later.
             </div>
         `;
-    }
-}
-
-function renderLoggedOutNav() {
-    const navbarContainer = document.getElementById('navbar-container');
-    const loggedInNav = navbarContainer.querySelector('.logged-in-nav');
-    
-    if (loggedInNav) {
-        loggedInNav.remove();
-    }
-
-    if (!navbarContainer.querySelector('.nav-signup-btn')) {
-        const signupBtn = document.createElement('button');
-        signupBtn.className = 'nav-signup-btn';
-        signupBtn.textContent = 'Sign Up';
-        navbarContainer.appendChild(signupBtn);
     }
 }
 

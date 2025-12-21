@@ -381,7 +381,7 @@ export const validatePropertiesExport = [
     .withMessage('Invalid status'),
   query('property_type')
     .optional()
-    .isIn(['Single Family', 'Town House', 'Multi Family', 'Modular Home', 'Bungalow', 'Ranch Home', 'Condominium', ''])
+    .isIn(['Single Family', 'Town House', 'Multi Family', 'Modular Home', 'Bungalow', 'Ranch Home', 'Condominium', 'Apartment'])
     .withMessage('Invalid property type')
 ];
 

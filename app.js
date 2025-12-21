@@ -24,6 +24,7 @@ import { createFavoritesTable } from './migrations/favourite-table-mig.js'
 import { createPreApprovalsTable } from './migrations/pre-approvals-mig.js'
 import { createSavedSearchesTable } from './migrations/saved-searches-mig.js'
 import { createOpenHousesTable } from './migrations/open-houses-mig.js'
+import { createBuyerProfileTable } from './migrations/buyer-profile-mig.js'
 
 
 await createUsersTable();
@@ -37,8 +38,9 @@ await createContactSubmissionsTable();
 await createNotificationSettingsTable();
 await createFavoritesTable();
 await createPreApprovalsTable();
-await createSavedSearchesTable()
-await createOpenHousesTable()
+await createSavedSearchesTable();
+await createOpenHousesTable();
+await createBuyerProfileTable();
 
 
 // Init Express
@@ -55,7 +57,6 @@ app.use(cookieParser());
 
 app.set('trust proxy', 1); // trust first proxy
 
-
 // CSRF protection 
 app.use(doubleCsrfProtection);
 
@@ -67,7 +68,7 @@ app.use('/email-templates', express.static(path.join(__dirname, 'email-templates
 app.use('/routes-templates', express.static(path.join(__dirname, 'routes-templates')));
 
 // Root route for health checks / homepage
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'frontend', 'farfetch.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'frontend', 'guest/index.html')));
 
 // // Routes
 app.use('/admin', adminRoutes);
@@ -79,7 +80,7 @@ app.use('/api', userRoutes);
 
 // Start server
 const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`HTTPS Express server running on port ${PORT}`);
 });
 

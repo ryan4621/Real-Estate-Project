@@ -15,7 +15,8 @@ export const createFavoritesTable = async () => {
                     'Modular Home',
                     'Bungalow',
                     'Ranch Home',
-                    'Condominium'
+                    'Condominium',
+                    'Apartment'
                 ) NOT NULL,
                 status ENUM('Sale', 'Rent', 'Sold') NOT NULL,
                 price DECIMAL(12,2) NOT NULL,

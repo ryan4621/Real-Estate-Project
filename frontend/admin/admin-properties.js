@@ -113,6 +113,7 @@ function setupImageUploadListeners() {
 		if (!uploadInProgress && e.dataTransfer.files.length > 0) {
 			handleFileSelect(e.dataTransfer.files);
 		}
+		document.getElementById("uploadBtns").style.display = "block";
 	});
 
 	fileInput.addEventListener("change", (e) => {
@@ -126,7 +127,7 @@ function setupImageUploadListeners() {
 	uploadBtn.addEventListener("click", (e) => {
 		e.preventDefault();
 		if (selectedFiles && !uploadInProgress) {
-			uploadFile();
+			uploadFile(propertyId);
 		}
 	});
 }
@@ -352,6 +353,8 @@ function closeModal() {
 // Load property data for editing
 async function loadPropertyData(propertyId) {
 	try {
+	console.log(propertyId)
+
 		const response = await fetch(`${API_BASE}/properties/${propertyId}`, {
 			credentials: "include"
 		});
@@ -535,11 +538,11 @@ function handleFileSelect(files) {
 
 // Validate file
 function validateFile(file) {
-	const maxSize = 5 * 1024 * 1024; // 5MB
-	const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "video/mp4", "video/mov"];
+	const maxSize = 5 * 1024 * 1024;
+	const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/avif", "video/mp4", "video/mov"];
 
 	if (!allowedTypes.includes(file.type)) {
-		showError("Please select a valid image file (PNG, JPG, JPEG, MP4, MOV)");
+		showError("Please select a valid image file (PNG, JPG, JPEG, WEBP, AVIF, MP4, MOV)");
 		return false;
 	}
 
@@ -552,11 +555,13 @@ function validateFile(file) {
 }
 
 // Upload file using ImageKit
-async function uploadFile() {
+async function uploadFile(propertyId) {
 	if (selectedFiles.length === 0) {
 		showError("Please select at least one file");
 		return;
 	}
+
+	console.log(propertyId)
 
 	if (!propertyId) {
 		showError("Property ID is missing. Please try again.");

@@ -104,56 +104,74 @@
                 </div>
             </section>
 
-            <!-- Renter Tools Section -->
-            <section class="settings-section renter-tools-section" id="renter-tools-section">
-                <div class="dummy-content" id="renter-tools-dummy">
-                    <p>Renter Tools Content - To be styled separately</p>
-                </div>
-            </section>
-
             <!-- Settings Section -->
             <section class="settings-section active" id="settings-section">
-                <!-- Profile Section -->
-                <div class="profile-section" id="profile-section">
-                    <div class="profile-photo-container" id="profile-photo-container">
-                        <div class="profile-photo" id="profile-photo">
-                            <svg class="profile-photo-icon" id="profile-photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                            </svg>
-                        </div>
-                        <a class="change-profile-photo" id="change-profile-photo">Change profile photo</a>
+                <!-- UPDATED HTML STRUCTURE -->
+            <!-- Profile Section -->
+            <div class="profile-section" id="profile-section">
+                <div class="profile-photo-container" id="profile-photo-container">
+                    <div class="profile-photo" id="profile-photo">
+                        <svg class="profile-photo-icon" id="profile-photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <a class="change-profile-photo" id="change-profile-photo">Change profile photo</a>
+                </div>
 
-                        <div class="profile-upload-area" id="profileUploadArea" style="display: none;">
-                            <div class="profile-upload-icon">📁</div>
-                            <div class="profile-upload-text">Click to upload or drag and drop</div>
-                            <div class="profile-upload-subtext">PNG, JPG, JPEG up to 5MB</div>
-                            <input type="file" id="profileFileInput" accept="image/png,image/jpg,image/jpeg" />
-                        </div>
-                        <div class="profile-preview-area" id="profilePreviewArea" style="display: none;">
-                            <img class="profile-preview-image" id="profilePreviewImage" alt="Preview" />
-                            <div class="profile-preview-info">
-                                <p>Image ready for upload</p>
-                                <button class="profile-btn upload-btn-secondary" id="profileReuploadBtn">Choose Different Photo</button>
-                            </div>
-                        </div>
-                        
-                        <div class="profile-error-message" id="profileErrorMessage"></div>
-                        <div class="profile-success-message" id="profileSuccessMessage"></div>
+                <div class="profile-info-container" id="profile-info-container"></div>
+            </div>
 
-                        <div class="profile-progress-container" id="profileProgressContainer">
-                            <div class="profile-progress-bar">
-                                <div class="profile-progress-fill" id="profileProgressFill"></div>
-                            </div>
-                            <div class="profile-progress-text" id="profileProgressText">Uploading...</div>
-                        </div>
-                        <div class="profile-upload-buttons" id="profileUploadButtons" style="display: none;">
-                            <button class="profile-btn upload-btn-secondary" id="profileCancelUploadBtn">Cancel</button>
-                            <button class="profile-btn profile-btn-primary" id="profileUploadBtn">Upload Photo</button>
+            <!-- Profile Upload Modal -->
+            <div class="profile-modal-overlay"></div>
+            <div class="profile-picture-modal">
+                <div class="photo-modal-header">
+                    <h2 class="photo-modal-title">Please add profile picture</h2>
+                    <button class="photo-modal-close-btn" id="photo-modal-close-btn">
+                        <i class="bi bi-x"></i>
+                    </button>
+                </div>
+                
+                <div class="photo-modal-body">
+                    <!-- Upload Area (Initial State) -->
+                    <div class="profile-upload-area" id="profileUploadArea">
+                        <div class="profile-upload-icon">📁</div>
+                        <div class="profile-upload-text">Click to upload or drag and drop</div>
+                        <div class="profile-upload-subtext">PNG, JPG, JPEG up to 5MB</div>
+                        <input type="file" id="profileFileInput" accept="image/png,image/jpg,image/jpeg" />
+                    </div>
+
+                    <!-- Preview Area (After File Selection) -->
+                    <div class="profile-preview-area" id="profilePreviewArea" style="display: none;">
+                        <img class="profile-preview-image" id="profilePreviewImage" alt="Preview" />
+                        <div class="profile-preview-info">
+                            <p>Image ready for upload</p>
                         </div>
                     </div>
 
-                    <div class="profile-info-container" id="profile-info-container"></div>
+                    <!-- Messages -->
+                    <div class="profile-error-message" id="profileErrorMessage"></div>
+                    <div class="profile-success-message" id="profileSuccessMessage"></div>
+
+                    <!-- Progress Bar -->
+                    <div class="profile-progress-container" id="profileProgressContainer">
+                        <div class="profile-progress-bar">
+                            <div class="profile-progress-fill" id="profileProgressFill"></div>
+                        </div>
+                        <div class="profile-progress-text" id="profileProgressText">Uploading...</div>
+                    </div>
                 </div>
+                
+                <div class="photo-modal-footer">
+                    <!-- Upload Buttons (Show after file selection) -->
+                    <div class="profile-upload-buttons" id="profileUploadButtons" style="display: none;">
+                        <button class="cancel-btn" id="profileReuploadBtn">Choose Different Photo</button>
+                        <button class="upload-submit-btn" id="profileUploadBtn">Upload Photo</button>
+                    </div>
+                    
+                    <!-- Cancel Button (Initial State) -->
+                    <button class="photo-cancel-btn" id="profileCancelUploadBtn">Cancel</button>
+                </div>
+            </div>
 
                 <!-- Edit Profile Modal Overlay -->
                 <div class="edit-profile-overlay" id="edit-profile-overlay"></div>
@@ -492,13 +510,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            <!-- Collaborate Section -->
-            <section class="settings-section" id="collaborate-section">
-                <div class="dummy-content" id="collaborate-dummy">
-                    <p>Collaborate Content - To be styled separately</p>
                 </div>
             </section>
         </div>

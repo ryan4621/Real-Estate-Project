@@ -67,7 +67,8 @@ function setUpHomeEventListeners() {
 
 	document.querySelectorAll('.section-link').forEach(link => {
 		link.addEventListener('click', (e) => {
-			console.log("Section link clicked")
+			e.preventDefault()
+			console.log("Section link clicked!")
             const navigateTerm = e.target.closest('a').dataset.id;
 			homesNavigation(navigateTerm)
 		})
@@ -203,6 +204,10 @@ async function loadFeatured(){
 						</button>
                 	</div>
 					<div class="property-card-content">
+						<div class="property-card-top">
+							<span class="green-dot"></span>
+							<span class="property-card-type">${escapeHtml(property.property_type)}</span>
+						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
 							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
@@ -211,11 +216,9 @@ async function loadFeatured(){
 							<span class="property-card-separator">|</span>
 							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
 						</div>
-						<div class="property-card-address">${escapeHtml(address)}</div>
-						<div class="property-card-location">${escapeHtml(location)}</div>
-						<div class="property-card-agent">
-							<span class="property-card-agent-label">Listed by:</span>
-							<span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
+						<div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(address)}</div>
+							<div class="property-card-location">${escapeHtml(location)}</div>
 						</div>
 					</div>
 				</div>                
@@ -394,6 +397,10 @@ async function loadLatest(){
 						</button>
                 	</div>
 					<div class="property-card-content">
+						<div class="property-card-top">
+							<span class="green-dot"></span>
+							<span class="property-card-type">${escapeHtml(property.property_type)}</span>
+						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
 							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
@@ -402,11 +409,9 @@ async function loadLatest(){
 							<span class="property-card-separator">|</span>
 							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
 						</div>
-						<div class="property-card-address">${escapeHtml(address)}</div>
-						<div class="property-card-location">${escapeHtml(location)}</div>
-						<div class="property-card-agent">
-							<span class="property-card-agent-label">Listed by:</span>
-							<span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
+						<div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(address)}</div>
+							<div class="property-card-location">${escapeHtml(location)}</div>
 						</div>
 					</div>
 				</div>                
@@ -590,6 +595,10 @@ async function loadExpensive(){
 						</button>
                 	</div>
 					<div class="property-card-content">
+						<div class="property-card-top">
+							<span class="green-dot"></span>
+							<span class="property-card-type">${escapeHtml(property.property_type)}</span>
+						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
 							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
@@ -598,11 +607,9 @@ async function loadExpensive(){
 							<span class="property-card-separator">|</span>
 							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
 						</div>
-						<div class="property-card-address">${escapeHtml(address)}</div>
-						<div class="property-card-location">${escapeHtml(location)}</div>
-						<div class="property-card-agent">
-							<span class="property-card-agent-label">Listed by:</span>
-							<span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
+						<div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(address)}</div>
+							<div class="property-card-location">${escapeHtml(location)}</div>
 						</div>
 					</div>
 				</div>                
@@ -777,6 +784,10 @@ async function loadAffordableHomes(){
 						</button>
                 	</div>
 					<div class="property-card-content">
+						<div class="property-card-top">
+							<span class="green-dot"></span>
+							<span class="property-card-type">${escapeHtml(property.property_type)}</span>
+						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
 							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
@@ -785,11 +796,9 @@ async function loadAffordableHomes(){
 							<span class="property-card-separator">|</span>
 							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
 						</div>
-						<div class="property-card-address">${escapeHtml(address)}</div>
-						<div class="property-card-location">${escapeHtml(location)}</div>
-						<div class="property-card-agent">
-							<span class="property-card-agent-label">Listed by:</span>
-							<span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
+						<div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(address)}</div>
+							<div class="property-card-location">${escapeHtml(location)}</div>
 						</div>
 					</div>
 				</div>                
@@ -964,6 +973,10 @@ async function loadOpenHouses(){
 						</button>
                 	</div>
 					<div class="property-card-content">
+						<div class="property-card-top">
+							<span class="green-dot"></span>
+							<span class="property-card-type">${escapeHtml(property.property_type)}</span>
+						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
 							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
@@ -972,11 +985,9 @@ async function loadOpenHouses(){
 							<span class="property-card-separator">|</span>
 							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
 						</div>
-						<div class="property-card-address">${escapeHtml(address)}</div>
-						<div class="property-card-location">${escapeHtml(location)}</div>
-						<div class="property-card-agent">
-							<span class="property-card-agent-label">Listed by:</span>
-							<span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
+						<div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(address)}</div>
+							<div class="property-card-location">${escapeHtml(location)}</div>
 						</div>
 					</div>
 				</div>                
@@ -1083,7 +1094,6 @@ async function loadOpenHouses(){
 
 function homesNavigation(navigateTerm) {
 
-    // Build URL with all filters
     const params = new URLSearchParams();
 
 	let targetPage = '/frontend/guest/for-sale.html';
@@ -1092,7 +1102,7 @@ function homesNavigation(navigateTerm) {
 		params.append('min_price', '1200000')
 		params.append('max_price', '1600000')
 	}else if(navigateTerm === 'latest'){
-
+		params.append('sort', 'newest')
 	}else if(navigateTerm === 'affordable'){
 		params.append('min_price', '300000')
 		params.append('max_price', '600000')
@@ -1103,28 +1113,6 @@ function homesNavigation(navigateTerm) {
 	params.append('search', 'Los Angeles, California')
 
     window.location.href = `${targetPage}?${params.toString()}`;
-    
-    
-    // if (category === 'rent') {
-    //     targetPage = '/frontend/guest/for-rent.html';
-    // } else if (category === 'sold') {
-    //     targetPage = '/frontend/guest/sold.html';
-    // }else if(navigateTerm === 'open-houses'){
-    //     targetPage = '/frontend/guest/open-houses.html';
-	// } else {
-    //     targetPage = '/frontend/guest/for-sale.html';
-    // }
-	
-	// This code below is to see if i can get the destination URL and use this function for both buy, rent, and sold. Please see this and reemember how ask how it can be done!!!!
-
-	// const currentPath = window.location.pathname;
-	// let category = 'Homes For Sale';
-
-	// if (currentPath.includes('rent')) {
-	// 	category = 'Homes For Rent';
-	// } else if (currentPath.includes('sold')) {
-	// 	category = 'Sold Homes';
-	// }
 }
 
 function openModal() {
