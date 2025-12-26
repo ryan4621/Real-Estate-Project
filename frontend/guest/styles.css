@@ -30,6 +30,12 @@ body {
     justify-content: space-between;
 }
 
+.nav-bar-left {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
 .navbar-logo {
     display: flex;
     align-items: center;
@@ -158,9 +164,12 @@ body {
 
 .nav-load {
     display: none;
-    background-color: #dddddd;
+    background-color: #fff;
     opacity: 0;
     border-radius: 30px;
+    align-items: center;
+    gap: 15px;
+    position: relative;
 }
 
 .nav-load.show {
@@ -301,7 +310,7 @@ body {
 .hero-section {
     position: relative;
     height: 500px;
-    background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3');
+    background-image: url('/images/homepage-hero.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -312,6 +321,14 @@ body {
 
 .buy-hero-section {
     background-image: url('/images/buy-hero.avif');
+}
+
+.rent-hero-section {
+    background-image: url('/images/hp-hero-rent-desktop-xl.jpg');
+}
+
+.sell-hero-section {
+    background-image: url('/images/sold-homes-2.webp');
 }
 
 .buy-hero-section .hero-overlay {
@@ -338,7 +355,7 @@ body {
 }
 
 .hero-title {
-    font-size: 56px;
+    font-size: 3.3rem;
     font-weight: 700;
     margin-bottom: 16px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
@@ -354,9 +371,9 @@ body {
 }
 
 /* Hero Search Bar */
-.hero-search-wrapper {
-    /* padding: 0 40px; */
-}
+/* .hero-search-wrapper {
+    padding: 0 40px;
+} */
 
 .hero-search-wrapper.sticky {
     position: fixed;
@@ -525,12 +542,12 @@ body {
 }
 
 /* Featured Section */
-.featured-section, .latest-section, .expensive-section, .affordable-section, .open-houses-section {
+.properties-section {
     padding: 20px 50px;
     background-color: #f9f9f9;
 }
 
-.expensive-section {
+.featured-section, .expensive-section, .rent-latest-section {
     padding-top: 40px;
 }
 
@@ -542,7 +559,7 @@ body {
 .section-header {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .section-title {
@@ -1041,9 +1058,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px 40px;
-    margin-bottom: 35px;
     padding-bottom: 35px;
-    border-bottom: 1px solid #333;
 }
 
 .footer-link {
@@ -1062,14 +1077,10 @@ body {
 }
 
 /* App Section */
-.app-section {
-    margin-bottom: 50px;
-}
-
 .app-heading {
     font-size: 18px;
     font-weight: 700;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
     color: #ffffff;
 }
 
@@ -1095,33 +1106,9 @@ body {
     color: #ffffff;
 }
 
-/* Products Section */
-.products-section {
-    margin-bottom: 50px;
-}
-
-.products-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 32px;
-}
-
-/* News Corp Section */
-.news-corp-section {
-    margin-bottom: 50px;
-}
-
-.news-corp-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px 32px;
-    margin-bottom: 20px;
-}
-
 /* Footer Bottom */
 .footer-bottom {
     padding-top: 40px;
-    border-top: 1px solid #333;
 }
 
 .footer-text {
@@ -1168,12 +1155,6 @@ body {
     .app-buttons {
         flex-direction: column;
     }
-
-    .products-links,
-    .news-corp-links {
-        flex-direction: column;
-        gap: 12px;
-    }
 }
 
 
@@ -1218,12 +1199,21 @@ body {
     top: 10%;
 }
 
+.signup-modal-content {
+    padding: 20px 40px 40px;
+}
+
 .signup-modal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* position: relative; */
     margin-bottom: 24px;
+}
+
+.signup-modal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #000;
 }
 
 .signup-close-modal {
@@ -1231,21 +1221,12 @@ body {
     color: #1e1e1e;
     cursor: pointer;
     margin: 0;
+    border-radius: 10px;
     transition: background-color 0.2s ease;
 }
 
 .signup-close-modal:hover {
     background-color: #f5f5f5;
-}
-
-.signup-modal-content {
-    padding: 50px 40px 40px;
-}
-
-.signup-modal-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #000;
 }
 
 .signup-form {
@@ -1377,7 +1358,6 @@ body {
     cursor: pointer;
 }
 
-/* 1. The Real Google Button (Invisible but clickable) */
 .google-btn-container .g_id_signin {
     position: absolute;
     top: 0;
@@ -1389,7 +1369,6 @@ body {
     cursor: pointer;
 }
 
-/* 2. Your Visual Button */
 .social-button {
     width: 100%;
     padding: 12px 0 12px 25px;
@@ -1407,8 +1386,6 @@ body {
     z-index: 1; /* Sits below */
 }
 
-/* 3. The Hover Effect */
-/* When hovering over the container, change the color of the social-button child */
 .google-btn-container:hover .social-button {
     background-color: #e1e1e1; /* Or whatever hover color you want */
 }
@@ -1477,7 +1454,6 @@ body {
 
 
 /* Verification Modal/ */
-
 .resend-cooldown {
     display: none;
     margin-top: 10px;
@@ -1542,7 +1518,7 @@ body {
     
     .properties-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        /* gap: 14px; */
+        gap: 5px;
     }
 }
 
@@ -1665,7 +1641,7 @@ body {
 
 
 /* Logged In Navigation */
-.logged-in-nav, .nav-load {
+.logged-in-nav {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -1799,27 +1775,13 @@ body {
 /* Dropdown Links */
 .dropdown-link {
     display: flex;
-    /* align-items: center; */
-    /* gap: 12px; */
     padding: 12px 20px;
     color: #1e1e1e;
-    /* text-decoration: none; */
     font-size: .9rem;
     font-weight: 500;
-    /* transition: background-color 0.2s ease; */
     width: 100%;
     text-align: left;
     cursor: pointer;
-}
-
-.dropdown-link:hover {
-    color: #d92228;
-}
-
-.dropdown-link i {
-    width: 20px;
-    color: #4a5568;
-    font-size: 16px;
 }
 
 .logout-btn {
@@ -1837,7 +1799,7 @@ body {
 /* Dropdown Divider */
 .dropdown-divider {
     height: 1px;
-    background-color: #e2e8f0;
+    background-color: #f2f0ef;
     margin: 8px 0;
 }
 
@@ -1930,11 +1892,10 @@ body {
 .properties-grid {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 7px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
 }
 
-/* Property Card */
 .property-card {
     background: white;
     border-radius: 20px;
@@ -1942,7 +1903,11 @@ body {
     border: 1px solid #e6e6e6;
     transition: all 0.3s ease;
     cursor: pointer;
-    max-width: 310px;
+    max-width: 320px;
+}
+
+.property-info {
+    margin-top: 20px;
 }
 
 .property-card:hover {
@@ -1966,6 +1931,8 @@ body {
 .empty-alert, .error-alert {
     font-size: 1.5rem;
     font-weight: 600;
+    margin-top: 20px;
+    color: #1e1e1e;
     display: none;
 }
 
@@ -2113,8 +2080,16 @@ body {
     border-radius: 50%;
     display: inline-block;
 }
+
+.red-dot {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    display: inline-block;
+}
   
-.property-card-type {
+.property-card-type, .property-card-sold-date {
     font-size: .8rem;
 }
 
@@ -2132,9 +2107,9 @@ body {
     color: #1e1e1e;
 }
 
-.property-card-detail {
+/* .property-card-detail {
     font-weight: 600;
-}
+} */
 
 .property-card-separator {
     color: #cbd5e0;
@@ -2166,4 +2141,266 @@ body {
 .property-card-agent-name {
     color: #2d3748;
     font-weight: 600;
+}
+
+
+
+/* Styles for sell.html */
+
+
+/* Seller Guides Section */
+.sold-guides-section {
+    background-color: #f0f0f0;
+    padding: 60px 40px;
+}
+
+.sold-guides-container {
+    max-width: 1296px;
+    margin: 0 auto;
+}
+
+.sold-guides-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.sold-guides-complete-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #000;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.sold-guides-complete-link:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.sold-guides-complete-link i {
+    font-size: 18px;
+}
+
+.sold-guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.sold-guide-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.sold-guide-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sold-guide-card-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* flex: 1; */
+}
+
+.sold-guide-icon {
+    /* width: 120px;
+    height: 120px; */
+    font-size: 2rem;
+    color: #d92228;
+
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff5f5;
+    border-radius: 8px;
+    /* flex-shrink: 0; */
+}
+
+/* .sold-guide-text {
+    flex: 1;
+} */
+
+.sold-guide-card-title {
+    font-size: .95rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 8px 0;
+}
+
+.sold-guide-card-description {
+    font-size: .85rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.sold-guide-card-arrow {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* FAQ Section */
+.sold-faq-section {
+    background-color: #ffffff;
+    padding: 60px 40px;
+}
+
+.sold-faq-container {
+    max-width: 1296px;
+    margin: 0 auto;
+}
+
+.sold-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 20px;
+}
+
+.sold-faq-item {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sold-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000;
+    transition: background-color 0.2s ease;
+}
+
+.sold-faq-question:hover {
+    opacity: 0.7;
+}
+
+.sold-faq-question i {
+    font-size: 20px;
+    color: #666;
+    flex-shrink: 0;
+    margin-left: 16px;
+    transition: transform 0.3s ease;
+}
+
+.sold-faq-question.collapsed i {
+    transform: rotate(180deg);
+}
+
+.sold-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    /* padding: 0; */
+    font-size: .95rem;
+    color: #666;
+    line-height: 1.6;
+    transition: max-height 0.4s ease;
+}
+
+.sold-faq-answer.collapsed {
+    max-height: 0;
+    /* padding: 0; */
+}
+
+.sold-faq-question.collapsed + .sold-faq-answer {
+    max-height: 500px;
+    padding: 0 0 24px 0;
+}
+
+.sold-faq-link {
+    color: #000;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.sold-faq-link:hover {
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .sold-guides-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sold-guides-section,
+    .sold-faq-section {
+        padding: 40px 20px;
+    }
+
+    .sold-guides-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .sold-guides-title,
+    .sold-faq-title {
+        font-size: 24px;
+    }
+
+    .sold-guide-card {
+        padding: 20px;
+    }
+
+    .sold-guide-card-content {
+        gap: 16px;
+    }
+
+    .sold-guide-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .sold-guide-card-title {
+        font-size: 16px;
+    }
+
+    .sold-guide-card-description {
+        font-size: 13px;
+    }
+
+    .sold-faq-question {
+        font-size: 18px;
+        padding: 20px 0;
+    }
+
+    .sold-faq-answer {
+        font-size: 15px;
+    }
 }

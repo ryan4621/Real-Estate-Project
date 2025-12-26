@@ -799,8 +799,6 @@ router.post('/favorites/:id', requireAuth, async (req, res) => {
             [userId, propertyId, property_type, status, price, bedrooms, bathrooms, area, address, location, primaryImage, agent_name, broker]
         )
 
-        console.log('reached!')
-
         res.status(200).json({
             success: true,
             message: "Property successfully added to favorites"
@@ -933,6 +931,117 @@ router.patch('/saved-searches/:id/alerts', requireAuth, async (req, res) => {
     } catch (error) {
         console.error('Error updating alerts:', error);
         res.status(500).json({ success: false, message: 'Failed to update alerts' });
+    }
+});
+
+//Buyer profile routes
+router.get('/buyer-profile', requireAuth, async (req, res) => {
+    const userId = req.user.id
+
+    try {
+        const [rows] = await pool.execute(`
+            SELECT * FROM buyer_profile WHERE user_id = ?`,
+            [userId]
+        )
+
+        if(rows.length === 0){
+            res.status(404).json({message: "Buyer profile info not found"})
+            return
+        }
+
+        const data = rows[0]
+
+        res.status(200).json(data)
+
+    }catch(error){
+        console.error(error)
+        res.status(500).json({message: "Failed to get buyer profile info"})
+    }
+})
+
+router.post('/buyer-profile', requireAuth, async (req, res) => {
+    const userId = req.user.id
+    const formData = req.body
+
+    console.log(formData)
+
+    try {
+        await pool.execute(`
+            INSERT INTO buyer_profile (user_id, annual_household_income, monthly_debt, available_funds, veteran_status)
+            VALUES (?, ?, ?, ?, ?)`,
+            [userId, formData.annualIncome, formData.monthlyDebt, formData.availableFunds, formData.militaryService]
+        )
+
+        res.status(201).json({
+            success: true,
+            message: "Buyer profile info saved successfully"
+        })
+
+    }catch(error){
+        console.error(error)
+        res.status(500).json({
+            success: false,
+            message: "Faled to save buyer profile info"
+        })
+    }
+});
+
+router.patch('/buyer-profile', requireAuth, async (req, res) => {
+    try {
+        const userId = req.user.id
+
+        const allowedFields = [
+            'annual_household_income',
+            'monthly_debt',
+            'available_funds',
+            'veteran_status'
+        ];
+
+        // Filter only allowed fields from request body
+        const updates = {};
+        for (const field of allowedFields) {
+            if (req.body.hasOwnProperty(field)) {
+                updates[field] = req.body[field];
+            }
+        }
+
+        if (Object.keys(updates).length === 0) {
+            return res.status(400).json({ message: 'No valid fields to update' });
+        }
+
+        // Check if profile exists
+        const [existing] = await pool.execute(
+            'SELECT id FROM buyer_profile WHERE user_id = ?',
+            [userId]
+        );
+
+        if (existing.length === 0) {
+            return res.status(400).json({ message: 'No buyer profile to edit' });
+        } 
+        
+        // Update existing profile
+        const setClause = Object.keys(updates).map(field => `${field} = ?`).join(', ');
+        const values = [...Object.values(updates), userId];
+
+        await pool.execute(
+            `UPDATE buyer_profile SET ${setClause} WHERE user_id = ?`,
+            values
+        );
+
+        // Fetch updated profile
+        const [updated] = await pool.execute(
+            'SELECT * FROM buyer_profile WHERE user_id = ?',
+            [userId]
+        );
+
+        res.status(200).json({
+            message: 'Profile updated successfully',
+            data: updated[0]
+        });
+
+    } catch (error) {
+        console.error('Error updating buyer profile:', error);
+        res.status(500).json({ message: 'Server error' });
     }
 });
 

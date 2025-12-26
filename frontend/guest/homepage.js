@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 		loadExpensive();
 		loadAffordableHomes();
 		loadOpenHouses();
-
 	}
 
 	setUpHomeEventListeners();
@@ -175,7 +174,7 @@ async function loadFeatured(){
 			// Get all image URLs from sorted array
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -210,11 +209,11 @@ async function loadFeatured(){
 						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
-							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+							<span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
 						</div>
 						<div class="property-card-bottom">
 							<div class="property-card-address">${escapeHtml(address)}</div>
@@ -368,7 +367,7 @@ async function loadLatest(){
 			// Get all image URLs from sorted array
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -403,11 +402,11 @@ async function loadLatest(){
 						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
-							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+							<span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
 						</div>
 						<div class="property-card-bottom">
 							<div class="property-card-address">${escapeHtml(address)}</div>
@@ -566,7 +565,7 @@ async function loadExpensive(){
 
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -601,11 +600,11 @@ async function loadExpensive(){
 						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
-							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+							<span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
 						</div>
 						<div class="property-card-bottom">
 							<div class="property-card-address">${escapeHtml(address)}</div>
@@ -755,7 +754,7 @@ async function loadAffordableHomes(){
 
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -790,11 +789,11 @@ async function loadAffordableHomes(){
 						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
-							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+							<span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
 						</div>
 						<div class="property-card-bottom">
 							<div class="property-card-address">${escapeHtml(address)}</div>
@@ -944,7 +943,7 @@ async function loadOpenHouses(){
 
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -979,11 +978,11 @@ async function loadOpenHouses(){
 						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
-							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+							<span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
 						</div>
 						<div class="property-card-bottom">
 							<div class="property-card-address">${escapeHtml(address)}</div>
@@ -1104,7 +1103,7 @@ function homesNavigation(navigateTerm) {
 	}else if(navigateTerm === 'latest'){
 		params.append('sort', 'newest')
 	}else if(navigateTerm === 'affordable'){
-		params.append('min_price', '300000')
+		params.append('min_price', '200000')
 		params.append('max_price', '600000')
 	}else if(navigateTerm === 'open-houses'){
 		targetPage = '/frontend/guest/open-houses.html';

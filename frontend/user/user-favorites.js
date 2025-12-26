@@ -160,7 +160,7 @@ async function loadFavorites(page = currentPage){
 			// Get all image URLs from sorted array
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -190,11 +190,11 @@ async function loadFavorites(page = currentPage){
                     <div class="property-card-content">
                         <div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
                         <div class="property-card-details">
-                            <span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+                            <span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
                             <span class="property-card-separator">|</span>
-                            <span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+                            <span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
                             <span class="property-card-separator">|</span>
-                            <span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+                            <span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
                         </div>
                         <div class="property-card-address">${escapeHtml(property.address)}</div>
                         <div class="property-card-location">${escapeHtml(property.location)}</div>

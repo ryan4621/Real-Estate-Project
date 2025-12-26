@@ -104,7 +104,7 @@ router.post('/inquiries/:id', async (req, res) =>  {
   }
 });
 
-router.get('/properties', validatePagination, async (req, res) =>{
+router.get('/properties/for-sale', validatePagination, async (req, res) =>{
   try {
 
     const { page, limit, offset } = req.pagination;
@@ -113,7 +113,123 @@ router.get('/properties', validatePagination, async (req, res) =>{
     // Base query
     let baseQuery = `
       SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
-      FROM properties
+      FROM properties WHERE status = 'Sale'
+    `;
+    let params = [];
+
+    // 1️⃣ Apply search (optional)
+    if (q) {
+      const searchResult = applySearch(baseQuery, q, [
+        "CONCAT(street_number, ' ', street_name, ' ', city, ', ', state, ' ', zip)", "status", "price", "city", "state", "zip", "country", "street_number", "street_name", "area", "bedrooms", "bathrooms", "year_built", "garage_space", "property_type", "agent_name", "agent_email", "broker"
+      ]);
+      baseQuery = searchResult.query;
+      params = [...searchResult.params];
+    }
+
+    // 2️⃣ Apply filters (optional)
+    const filterResult = applyFilters(baseQuery, { property_type, min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms });
+    baseQuery = filterResult.query;
+    params = [...params, ...filterResult.params];
+
+    const sortClause = applySorting(baseQuery, sort);
+
+    // 3️⃣ Get total count for pagination
+    const [countRows] = await pool.execute(
+      `SELECT COUNT(*) AS total FROM (${baseQuery}) AS total_properties`,
+      params
+    );
+    const total = countRows[0].total;
+
+    // 4️⃣ Apply pagination
+    // const paginatedQuery = applyPagination(baseQuery, page, limit);
+    const paginatedQuery = `${baseQuery} ${sortClause} ${applyPagination('', page, limit).replace('SELECT * FROM', '').trim()}`;
+
+    // 5️⃣ Fetch paginated data
+    const [rows] = await pool.execute(paginatedQuery, params);
+
+    res.json({
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+      data: rows
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+router.get('/properties/for-rent', validatePagination, async (req, res) =>{
+  try {
+
+    const { page, limit, offset } = req.pagination;
+    const { q, property_type, min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms, sort } = req.query;
+
+    // Base query
+    let baseQuery = `
+      SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
+      FROM properties WHERE status = 'Rent'
+    `;
+    let params = [];
+
+    // 1️⃣ Apply search (optional)
+    if (q) {
+      const searchResult = applySearch(baseQuery, q, [
+        "CONCAT(street_number, ' ', street_name, ' ', city, ', ', state, ' ', zip)", "status", "price", "city", "state", "zip", "country", "street_number", "street_name", "area", "bedrooms", "bathrooms", "year_built", "garage_space", "property_type", "agent_name", "agent_email", "broker"
+      ]);
+      baseQuery = searchResult.query;
+      params = [...searchResult.params];
+    }
+
+    // 2️⃣ Apply filters (optional)
+    const filterResult = applyFilters(baseQuery, { property_type, min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms });
+    baseQuery = filterResult.query;
+    params = [...params, ...filterResult.params];
+
+    const sortClause = applySorting(baseQuery, sort);
+
+    // 3️⃣ Get total count for pagination
+    const [countRows] = await pool.execute(
+      `SELECT COUNT(*) AS total FROM (${baseQuery}) AS total_properties`,
+      params
+    );
+    const total = countRows[0].total;
+
+    // 4️⃣ Apply pagination
+    // const paginatedQuery = applyPagination(baseQuery, page, limit);
+    const paginatedQuery = `${baseQuery} ${sortClause} ${applyPagination('', page, limit).replace('SELECT * FROM', '').trim()}`;
+
+    // 5️⃣ Fetch paginated data
+    const [rows] = await pool.execute(paginatedQuery, params);
+
+    res.json({
+      meta: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+      },
+      data: rows
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+router.get('/properties/sold', validatePagination, async (req, res) =>{
+  try {
+
+    const { page, limit, offset } = req.pagination;
+    const { q, property_type, min_price, max_price, min_bedrooms, max_bedrooms, min_bathrooms, max_bathrooms, sort } = req.query;
+
+    // Base query
+    let baseQuery = `
+      SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
+      FROM properties WHERE status = 'Sold'
     `;
     let params = [];
 
@@ -217,7 +333,7 @@ router.get('/home/properties', async (req, res) => {
     if(property_type === "featured"){
       const [featured] = await pool.execute(`
         SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
-        FROM properties WHERE state = 'California' AND city = 'Los Angeles'
+        FROM properties WHERE status = 'Sale' AND state = 'California' AND city = 'Los Angeles'
       `)
   
       if (featured.length === 0){
@@ -233,7 +349,7 @@ router.get('/home/properties', async (req, res) => {
     }else {
       const [latest] = await pool.execute(`
         SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
-        FROM properties WHERE created_at >= NOW() - INTERVAL 45 DAY
+        FROM properties WHERE status = 'Sale' AND created_at >= NOW() - INTERVAL 45 DAY
       `)
 
       if(latest.length === 0){
@@ -260,7 +376,7 @@ router.get('/buy/properties', async (req, res) => {
     if(property_type === "expensive"){
       const [expensive] = await pool.execute(`
         SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
-        FROM properties WHERE price >= '1300000'
+        FROM properties WHERE price >= '1300000' AND status = 'Sale'
       `)
   
       if (expensive.length === 0){
@@ -276,7 +392,7 @@ router.get('/buy/properties', async (req, res) => {
     }else if(property_type === "latest"){
       const [latest] = await pool.execute(`
         SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
-        FROM properties WHERE created_at >= NOW() - INTERVAL 45 DAY
+        FROM properties WHERE status = 'Sale' AND created_at >= NOW() - INTERVAL 45 DAY
       `)
 
       if(latest.length === 0){
@@ -291,7 +407,7 @@ router.get('/buy/properties', async (req, res) => {
     }else if(property_type === "affordable"){
       const [affordable] = await pool.execute(`
         SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker
-        FROM properties WHERE price <= '900000'
+        FROM properties WHERE status = 'Sale' AND price <= '900000'
       `)
 
       if(affordable.length === 0){
@@ -323,6 +439,136 @@ router.get('/buy/properties', async (req, res) => {
     res.status(500).json({message: "Failed to get properties"})
   }
 })
+
+router.get('/rent/properties', async (req, res) => {
+  try {
+    const property_type = req.query.key
+    
+    if(property_type === "pet-friendly"){
+      const [petFriendlyRentals] = await pool.execute(`
+        SELECT p.property_id, p.property_type, p.status, p.price, p.price_per_sqft, p.garage_space, 
+          p.year_built, p.bedrooms, p.bathrooms, p.area, p.acre_lot, 
+          p.street_number, p.street_name, p.city, p.state, p.zip, 
+          p.country, p.agent_name, p.broker
+        FROM properties p
+        INNER JOIN amenities a ON p.property_id = a.property_id
+        WHERE p.status = 'Rent' AND a.pets_allowed = TRUE
+      `)
+      
+      if (petFriendlyRentals.length === 0){
+        console.log('Pet-friendly rentals not found.')
+        return res.status(404).json({message: "Pet-friendly rentals not found"})
+      }
+      
+      return res.status(200).json({
+        success: true,
+        data: petFriendlyRentals
+      })
+    } else if(property_type === "latest"){
+      const [latest] = await pool.execute(`
+        SELECT property_id, property_type, status, price, price_per_sqft, garage_space, 
+          year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, 
+          city, state, zip, country, agent_name, broker
+        FROM properties WHERE status = 'Rent' AND created_at >= NOW() - INTERVAL 45 DAY
+      `)
+      
+      if(latest.length === 0){
+        return res.status(404).json({message: "Latest rentals not found"})
+      }
+      
+      return res.status(200).json({
+        success: true,
+        data: latest
+      })
+      
+    } else if(property_type === "single-family"){
+      const [singleFamily] = await pool.execute(`
+        SELECT property_id, property_type, status, price, price_per_sqft, garage_space, 
+          year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, 
+          city, state, zip, country, agent_name, broker
+        FROM properties WHERE status = 'Rent' AND property_type = 'Single Family Home'
+      `)
+      
+      if(singleFamily.length === 0){
+        return res.status(404).json({message: "Single family rentals not found"})
+      }
+      
+      return res.status(200).json({
+        success: true,
+        data: singleFamily
+      })
+      
+    } else if(property_type === "pools") {
+      const [poolsRentals] = await pool.execute(`
+        SELECT p.property_id, p.property_type, p.status, p.price, p.price_per_sqft, p.garage_space, 
+          p.year_built, p.bedrooms, p.bathrooms, p.area, p.acre_lot, 
+          p.street_number, p.street_name, p.city, p.state, p.zip, 
+          p.country, p.agent_name, p.broker
+        FROM properties p
+        INNER JOIN amenities a ON p.property_id = a.property_id
+        WHERE p.status = 'Rent' AND a.swimming_pool = TRUE
+      `)
+      
+      if(poolsRentals.length === 0){
+        return res.status(404).json({message: "Rentals with pools not found"})
+      }
+      
+      return res.status(200).json({
+        success: true,
+        data: poolsRentals
+      })
+    } else {
+      return res.status(400).json({message: "Invalid property type"})
+    }
+    
+  } catch(error){
+    console.error("Error getting properties:", error)
+    res.status(500).json({message: "Failed to get properties"})
+  }
+})
+
+router.get('/sell/properties', async (req, res) => {
+  try {
+
+    const [sold] = await pool.execute(`
+      SELECT property_id, property_type, status, price, price_per_sqft, garage_space, year_built, bedrooms, bathrooms, area, acre_lot, street_number, street_name, city, state, zip, country, agent_name, broker, updated_at
+      FROM properties WHERE status = 'Sold' AND created_at >= NOW() - INTERVAL 45 DAY
+    `)
+
+    if (sold.length === 0){
+      return res.status(404).json({message: "Sold properties not found"})
+    }
+
+    return res.status(201).json({
+      success: true,
+      data: sold
+    })
+
+  }catch(error){
+    console.error("Error getting sold properties:", error)
+    res.status(500).json({message: "Failed to get sold properties"})
+  }
+})
+
+router.get("/properties/:id/amenities", async (req, res) => {
+  const { id } = req.params;
+  
+  try {
+    const [rows] = await pool.execute(
+      "SELECT * FROM amenities WHERE property_id = ?",
+      [id]
+    );
+    
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "No amenities found" });
+    }
+    
+    res.json(rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to fetch amenities" });
+  }
+});
 
 
 const FIXED_RATE = 0.065;
@@ -393,7 +639,7 @@ router.post('/affordability-calculator', (req, res) => {
     annualIncome, 
     monthlyDebt, 
     availableFunds,
-    militaryService // Will be true/false
+    militaryService
   } = req.body;
 
   // Use a fallback for militaryService if it wasn't sent (to prevent crash)

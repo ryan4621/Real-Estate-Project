@@ -54,12 +54,12 @@ async function setupEventListeners() {
 async function submitForm(){
 
     const formData = {
-        annualIncome: document.getElementById('annualIncome').value,
-        monthlyDebt: document.getElementById('monthlyDebt').value,
-        location: document.getElementById('location').value,
-        availableFunds: document.getElementById('availableFunds').value,
+        annualIncome: document.getElementById('annualIncome').value.trim().replace(/,/g, ''),
+        monthlyDebt: document.getElementById('monthlyDebt').value.trim().replace(/,/g, ''),
+        location: document.getElementById('location').value.trim(),
+        availableFunds: document.getElementById('availableFunds').value.trim().replace(/,/g, ''),
         militaryService: document.getElementById('militaryService').checked
-    }
+    };
 
     try {
         const response = await fetch('/public/affordability-calculator', {
@@ -73,8 +73,6 @@ async function submitForm(){
         })
 
         const result = await response.json();
-
-        console.log(result)
 
         if (result.result_ranges && result.result_ranges.length > 0) {
             showAffordabilityResult(formData, result)
@@ -112,7 +110,7 @@ function showAffordabilityResult(formData, result) {
         </div>
         <div class="affordability-result-content"></div>
         <div class="affordability-btn-container">
-            <button class="affordability-btn-container">Add to profile</button>
+            <button id="add-to-profile">Add to profile</button>
         </div>
     `
     affordabilityCard.appendChild(affordabilityResult)
@@ -148,35 +146,43 @@ function showAffordabilityResult(formData, result) {
         document.getElementById('militaryService').checked = formData.militaryService
 
     });
+
+    document.getElementById('add-to-profile').addEventListener('click', () => {
+        addToProfile(formData)
+    })
 }
 
 
-// // Clear button functionality
-// function initClearButtons() {
-//     const clearButtons = document.querySelectorAll('.clear-btn');
-    
-//     clearButtons.forEach(button => {
-//         button.addEventListener('click', () => {
-//             const targetId = button.getAttribute('data-clear');
-//             const inputField = document.getElementById(targetId);
-            
-//             if (inputField) {
-//                 inputField.value = '';
-//                 inputField.focus();
-//             }
-//         });
-//     });
-// }
+async function addToProfile(formData){
+    try {
 
-// // Optional: Format currency inputs as user types
-// document.querySelectorAll('.form-input').forEach(input => {
-//     if (input.id !== 'location') {
-//         input.addEventListener('input', (e) => {
-//             let value = e.target.value.replace(/,/g, '');
-            
-//             if (!isNaN(value) && value !== '') {
-//                 e.target.value = Number(value).toLocaleString();
-//             }
-//         });
-//     }
-// });
+        const response = await fetch('/auth/me', {
+            credentials: 'include'
+        });
+
+        if(response.ok){
+            const buyerProfile = await fetch('/api/buyer-profile', {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json",
+                    'x-csrf-token': window.getCsrfToken()
+                },
+                credentials: "include",
+                body: JSON.stringify(formData)
+            })
+
+            if(!buyerProfile.ok){
+                throw new Error('Failed to save buyer profile info')
+            }
+
+            showToast('Info added to profile', 'success')
+    
+        }else {
+            document.querySelector('.nav-signup-btn').click();
+        }
+
+    }catch(error){
+        console.error(error)
+        showToast('Failed to save info', 'error')
+    }
+}

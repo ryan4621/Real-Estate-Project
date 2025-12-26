@@ -25,6 +25,7 @@ import { createPreApprovalsTable } from './migrations/pre-approvals-mig.js'
 import { createSavedSearchesTable } from './migrations/saved-searches-mig.js'
 import { createOpenHousesTable } from './migrations/open-houses-mig.js'
 import { createBuyerProfileTable } from './migrations/buyer-profile-mig.js'
+import { createAmenitiesTable } from './migrations/amenities-mig.js'
 
 
 await createUsersTable();
@@ -41,6 +42,7 @@ await createPreApprovalsTable();
 await createSavedSearchesTable();
 await createOpenHousesTable();
 await createBuyerProfileTable();
+await createAmenitiesTable();
 
 
 // Init Express

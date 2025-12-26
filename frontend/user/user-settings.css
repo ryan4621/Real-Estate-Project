@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Raleway", sans-serif;
 }
 
 body {
@@ -10,6 +9,231 @@ body {
   color: #333;
   line-height: 1.6;
 }
+
+/* .buyer-profile-section {
+  padding: 20px;
+} */
+
+/* Buyer profile section */
+.buyer-profile-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  /* gap: 30px; */
+  max-width: 700px;
+  background-color: #ffffff;
+  /* padding: 40px; */
+  /* border-radius: 8px; */
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Section Styling */
+.buyer-profile-info {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px 0 10px 0; */
+  /* border-top: 1px solid #000; */
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 25px;
+  padding-bottom: 30px;
+  gap: 20px;
+}
+
+.buyer-profile-info:nth-child(4) {
+  border-bottom: none;
+  margin-bottom: 10px;
+}
+/* .buyer-profile-info.active {
+  display: block;
+} */
+
+.buyer-profile-item-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+}
+
+.buyer-profile-item-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  /* margin-bottom: 12px; */
+}
+
+.buyer-profile-item-description {
+  font-size: .9rem;
+  color: #666;
+  line-height: 1.5;
+  /* margin-bottom: 24px; */
+}
+
+/* Display Value */
+.buyer-profile-display-container {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 10px; */
+}
+
+.buyer-profile-display-container.active {
+  display: flex;
+}
+
+.buyer-profile-display-value {
+  font-size: .9rem;
+  color: #000;
+  font-weight: 500;
+}
+
+.buyer-profile-edit-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.buyer-profile-edit-btn:hover {
+  color: #5c5c5c;
+}
+
+/* Edit Form */
+.buyer-profile-edit-form {
+  display: none;
+}
+
+.buyer-profile-edit-form.active {
+  display: block;
+}
+
+.buyer-profile-input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.buyer-profile-input-field {
+  width: 100%;
+  padding: 14px 50px 14px 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.buyer-profile-input-field:focus {
+  border-color: #000;
+}
+
+.buyer-profile-currency-symbol {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #333;
+  pointer-events: none;
+}
+
+.buyer-profile-input-with-currency {
+  padding-left: 35px;
+}
+
+.buyer-profile-clear-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buyer-profile-clear-btn:hover {
+  color: #000;
+}
+
+/* Form Actions */
+.buyer-profile-form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buyer-profile-cancel-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.buyer-profile-cancel-btn:hover {
+  color: #5c5c5c;
+}
+
+.buyer-profile-save-btn {
+  background-color: #000;
+  color: #ffffff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buyer-profile-save-btn:hover {
+  background-color: #333;
+}
+
+/* Footer Note */
+.buyer-profile-footer-note {
+  font-size: .8rem;
+  color: #000;
+  /* line-height: 1.6; */
+}
+
+.buyer-profile-footer-link {
+  color: #000;
+  text-decoration: underline;
+}
+
+.buyer-profile-footer-link:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+
+/* Settings section */
 
 .settings-container {
   max-width: 1200px;
@@ -43,7 +267,7 @@ body {
   display: flex;
   gap: 40px;
   border-bottom: 2px solid #e0e0e0;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .settings-tab {
@@ -65,9 +289,9 @@ body {
   color: #000;
 }
 
-.settings-content {
+/* .settings-content {
   padding: 20px 0;
-}
+} */
 
 .settings-section {
   display: none;
@@ -342,24 +566,6 @@ body {
   }
 }
 
-/* Buyer Profile & Renter Tools Sections */
-.buyer-profile-section,
-.renter-tools-section {
-  padding: 20px;
-}
-
-.dummy-content {
-  padding: 40px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  text-align: center;
-  color: #999;
-  font-size: 1rem;
-}
-
-
-
-
 /* Profile Modal Overlay */
 .profile-modal-overlay {
   position: fixed;
@@ -503,16 +709,15 @@ body {
 }
 
 .profile-preview-info {
-  background: #f8f9ff;
+  background: none;
   padding: 16px;
-  border-radius: 8px;
 }
 
 .profile-preview-info p {
-  color: #333;
+  color: #000;
   margin: 0;
   font-weight: 500;
-  font-size: 15px;
+  font-size: .95rem;
 }
 
 /* Progress */
@@ -722,7 +927,7 @@ body.modal-open {
   padding: 24px 40px 32px;
 }
 
-.cancel-btn {
+.cancel-btn, .different-photo-btn {
   background: none;
   border: none;
   font-size: 16px;
@@ -734,7 +939,7 @@ body.modal-open {
   transition: opacity 0.2s ease;
 }
 
-.cancel-btn:hover {
+.cancel-btn:hover, .different-photo-btn:hover {
   opacity: 0.7;
 }
 

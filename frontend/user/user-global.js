@@ -11,7 +11,7 @@ async function checkAuthStatus() {
             renderLoggedInNav(user);
         } else {
             renderLoggedOutNav();
-            document.querySelector('.nav-load').classList.remove('show')
+            // document.querySelector('.nav-load').classList.remove('show')
         }
     } catch (error) {
         console.error('Auth check failed:', error);
@@ -65,7 +65,7 @@ function renderLoggedInNav(user) {
                     <span class="dropdown-user-email">${user.email}</span>
                 </div>
                 <div class="dropdown-divider"></div>
-                <a href="/profile" class="dropdown-link">My Profile</a>
+                <a href="/frontend/user/user-settings.html?tab=buyer-profile" class="dropdown-link">My Profile</a>
                 <a href="/dashboard" class="dropdown-link">Renter tools</a>
                 <a href="/dashboard" class="dropdown-link">My home</a>
                 <a href="/frontend/user/user-settings.html" class="dropdown-link">Settings</a>
@@ -106,6 +106,11 @@ function renderLoggedOutNav() {
     
     if (loggedInNav) {
         loggedInNav.remove();
+    }
+
+    const navLoad = document.querySelector('.nav-load')
+    if(navLoad){
+        navLoad.classList.remove('show')
     }
 
    // Show the signup button that's already in HTML
@@ -173,8 +178,6 @@ function activateLinkByPath(path) {
 	});
 }
 
-
-
 async function loadFavoritesMini(){
     try{
         const favRes = await fetch('/api/favorites', { credentials: "include" });
@@ -207,7 +210,7 @@ async function loadFavoritesMini(){
     
             const images = await propertyImageRes.json();
     
-            const primaryImage = images.find(img => img.is_primary)?.image_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600";
+            const primaryImage = images.find(img => img.is_primary)?.image_url || "/images/properties-backup.jpeg";
     
             const favoriteMini = document.createElement("div");
 

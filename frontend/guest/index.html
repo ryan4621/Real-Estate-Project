@@ -12,71 +12,74 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body data-page="home">
+
     <!-- Navbar -->
     <nav class="main-navbar">
         <div class="navbar-container" id="navbar-container">
-            <button class="hamburger-menu">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <div class="navbar-logo">
-                <i class="fas fa-home"></i>
-                <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
-            </div>
-            
-            <div class="navbar-links">
-                <div class="nav-link-item">
-                    <a href="/frontend/guest/buy.html" class="nav-link">Buy</a>
-                    <div class="dropdown-menu">
-                        <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
-                        <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
-                        <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
-                        <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
-                        <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
-                    </div>
+            <div class="nav-bar-left">
+                <button class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <div class="navbar-logo">
+                    <i class="fas fa-home"></i>
+                    <a href="/frontend/guest/index.html" class="logo"><span>PrimeHomes</span></a>
                 </div>
                 
-                <div class="nav-link-item">
-                    <a href="/frontend/guest/for-rent.html" class="nav-link">Rent</a>
-                    <div class="dropdown-menu">
-                        <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
-                        <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
-                        <a href="/frontend/guest/for-rent.html" class="dropdown-item">All Rental Listings</a>
-                        <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                <div class="navbar-links">
+                    <div class="nav-link-item">
+                        <a href="/frontend/guest/buy.html" class="nav-link">Buy</a>
+                        <div class="dropdown-menu">
+                            <a href="/frontend/guest/for-sale.html" class="dropdown-item">Homes for Sale</a>
+                            <a href="/frontend/guest/forclosures.html" class="dropdown-item">Foreclosures</a>
+                            <a href="/frontend/guest/new-construction.html" class="dropdown-item">New Construction</a>
+                            <a href="/frontend/guest/open-houses.html" class="dropdown-item">Open Houses</a>
+                            <!-- <a href="/frontend/guest/for-sale.html" class="dropdown-item">All Homes</a> -->
+                        </div>
                     </div>
-                </div>
-                
-                <div class="nav-link-item">
-                    <a href="/frontend/guest/sell-property.html" class="nav-link">Sell</a>
-                    <div class="dropdown-menu">
-                        <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
-                        <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
-                        <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                    
+                    <div class="nav-link-item">
+                        <a href="/frontend/guest/rent.html" class="nav-link">Rent</a>
+                        <div class="dropdown-menu">
+                            <a href="/frontend/guest/apartments-for-rent.html" class="dropdown-item">Apartments for Rent</a>
+                            <a href="/frontend/guest/houses-for-rent.html" class="dropdown-item">Houses for Rent</a>
+                            <a href="/frontend/guest/rental-listings.html" class="dropdown-item">All Rental Listings</a>
+                            <a href="/frontend/guest/manage-rentals.html" class="dropdown-item">Manage Rentals</a>
+                        </div>
                     </div>
-                </div>
-
-                <div class="nav-link-item">
-                    <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
-                    <div class="dropdown-menu">
-                        <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
-                        <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
-                        <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
-                        <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
-                        <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                    
+                    <div class="nav-link-item">
+                        <a href="/frontend/guest/sell.html" class="nav-link">Sell</a>
+                        <div class="dropdown-menu">
+                            <a href="/frontend/guest/sold.html" class="dropdown-item">Recently Sold Homes</a>
+                            <a href="/frontend/guest/find-agent.html" class="dropdown-item">Find an Agent</a>
+                            <a href="/frontend/guest/home-value.html" class="dropdown-item">Home Value Estimate</a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="nav-link-item">
-                    <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
-                    <div class="dropdown-menu">
-                        <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
-                        <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
-                        <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
-                        <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+    
+                    <div class="nav-link-item">
+                        <a href="/frontend/guest/mortgage.html" class="nav-link">Mortgage</a>
+                        <div class="dropdown-menu">
+                            <a href="/frontend/guest/pre-approved.html" class="dropdown-item">Get pre-approved</a>
+                            <a href="/frontend/guest/mortgage-rates.html" class="dropdown-item">Mortgage Rates</a>
+                            <a href="/frontend/guest/mortgage-calculator.html" class="dropdown-item">Mortgage Calculator</a>
+                            <a href="/frontend/guest/affordability-calculator.html" class="dropdown-item">Affordability Calculator</a>
+                            <a href="/frontend/guest/refinance-calculator.html" class="dropdown-item">Refinance Calculator</a>
+                        </div>
                     </div>
+                    
+                    <div class="nav-link-item">
+                        <a href="/frontend/guest/find-agent.html" class="nav-link">Find an Agent</a>
+                        <div class="dropdown-menu">
+                            <a href="/frontend/guest/agents.html" class="dropdown-item">Real Estate Agents</a>
+                            <a href="/frontend/guest/property-managers.html" class="dropdown-item">Property Managers</a>
+                            <a href="/frontend/guest/home-builders.html" class="dropdown-item">Home Builders</a>
+                            <a href="#" class="dropdown-item">Create a Free Agent Account</a>
+                        </div>
+                    </div>
+                    
+                    <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
                 </div>
-                
-                <a href="/frontend/guest/get-help.html" class="nav-link">Get Help</a>
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
@@ -296,7 +299,7 @@
     </section>
 
     <!-- Featured Properties Section -->
-    <section class="featured-section">
+    <section class="properties-section featured-section">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Browse Homes in Los Angeles, California</h2>
@@ -317,7 +320,7 @@
     </section>
 
     <!-- Latest Properties Section -->
-    <section class="latest-section">
+    <section class="properties-section latest-section">
         <div class="section-container">
             <div class="section-header">
                 <h2 class="section-title">Discover New Listings</h2>
@@ -361,7 +364,7 @@
                                 <i class="bi bi-currency-dollar"></i>
                             </div>
                         </div>
-                        <a href="#" class="card-link">Try our affordability calculator</a>
+                        <a href="/frontend/guest/affordability-calculator.html" class="card-link">Try our affordability calculator</a>
                     </div>
     
                     <div class="help-card">
@@ -579,52 +582,15 @@
             </div>
     
             <!-- Get the App Section -->
-            <!-- <div class="app-section">
+            <div class="app-section">
                 <h3 class="app-heading">Get the app</h3>
                 <div class="app-buttons">
                     <a href="#" class="app-button">
-                        <img src="app-store-badge.png" alt="Download on the App Store">
+                        <img src="/images/app-store.svg" alt="Download on the App Store">
                     </a>
                     <a href="#" class="app-button">
-                        <img src="google-play-badge.png" alt="Get it on Google Play">
+                        <img src="/images/play-store.svg" alt="Get it on Google Play">
                     </a>
-                </div>
-            </div> -->
-    
-            <!-- Products Section -->
-            <div class="products-section">
-                <h3 class="section-heading">Products</h3>
-                <div class="products-links">
-                    <a href="#" class="footer-link">Leads & Branding</a>
-                    <a href="#" class="footer-link">ListHub</a>
-                    <a href="#" class="footer-link">Moving.com</a>
-                    <a href="#" class="footer-link">International Properties</a>
-                    <a href="#" class="footer-link">Avail</a>
-                    <a href="#" class="footer-link">UpNest</a>
-                    <a href="#" class="footer-link">Builder Solutions</a>
-                </div>
-            </div>
-    
-            <!-- News Corp Section -->
-            <div class="news-corp-section">
-                <h3 class="section-heading">News Corp</h3>
-                <div class="news-corp-links">
-                    <a href="#" class="footer-link">Barrons</a>
-                    <a href="#" class="footer-link">Financial News</a>
-                    <a href="#" class="footer-link">Harper Collins</a>
-                    <a href="#" class="footer-link">Mansion Global</a>
-                    <a href="#" class="footer-link">MarketWatch</a>
-                    <a href="#" class="footer-link">New York Post</a>
-                    <a href="#" class="footer-link">REA Group</a>
-                    <a href="#" class="footer-link">Storyful</a>
-                </div>
-                <div class="news-corp-links">
-                    <a href="#" class="footer-link">Wall Street Journal</a>
-                    <a href="#" class="footer-link">Makaan.com</a>
-                    <a href="#" class="footer-link">Housing.com</a>
-                    <a href="#" class="footer-link">PropTiger.com</a>
-                    <a href="#" class="footer-link">News Corp Australia</a>
-                    <a href="#" class="footer-link">News UK</a>
                 </div>
             </div>
     

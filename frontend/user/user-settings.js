@@ -19,6 +19,7 @@ const emailModalClose = document.getElementById('email-modal-close')
 
 document.addEventListener('DOMContentLoaded', () => {
     getUserInfo();
+    getBuyerProfileInfo();
     setupEventListeners();
 });
 
@@ -54,7 +55,318 @@ function setupEventListeners() {
         document.body.style.overflow = 'visible'
     })
 
+    const tabs = document.querySelectorAll('.settings-tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetTab = tab.dataset.tab;
+
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('tab', targetTab);
+            window.history.replaceState({}, '', newUrl);
+
+            contents.forEach(content => content.classList.remove('active'));
+            const targetContent = document.querySelector(`[data-content="${targetTab}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeTab = urlParams.get('tab');
+
+    if (activeTab) {
+        document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        const tabToActivate = document.querySelector(`[data-tab="${activeTab}"]`);
+        const contentToActivate = document.querySelector(`[data-content="${activeTab}"]`);
+        
+        if (tabToActivate && contentToActivate) {
+            tabToActivate.classList.add('active');
+            contentToActivate.classList.add('active');
+        }
+    }
 };
+
+async function getBuyerProfileInfo(){
+    try {
+        const response = await fetch(`${API_BASE}/buyer-profile`, {
+            credentials: "include"
+        })
+
+        if(!response.ok){
+            throw new Error("Failed to get buyer's profile")
+        }
+
+        const result = await response.json()
+
+        const buyerProfileSection = document.getElementById('buyer-profile-section')
+        const buyerProfileContainer = document.createElement('div')
+        buyerProfileContainer.classList.add('buyer-profile-container')
+        buyerProfileContainer.innerHTML = `
+            <div class="buyer-profile-info">
+                <div class="buyer-profile-item-header">
+                    <h2 class="buyer-profile-item-title">Annual household income</h2>
+                    <p class="buyer-profile-item-description">Total annual income before taxes for you and your household members.</p>
+                </div>
+                
+                <!-- Display Mode -->
+                <div class="buyer-profile-display-container active">
+                    <span class="buyer-profile-display-value" id="buyer-profile-annual-household-income">$${Math.round(result.annual_household_income).toLocaleString()}</span>
+                    <button class="buyer-profile-edit-btn" id="income-edit-btn" data-btn="income">Edit</button>
+                </div>
+
+                <!-- Edit Mode -->
+                <div class="buyer-profile-edit-form" data-form="income">
+                    <div class="buyer-profile-input-wrapper">
+                        <span class="buyer-profile-currency-symbol">$</span>
+                        <input 
+                            type="text" 
+                            class="buyer-profile-input-field buyer-profile-input-with-currency" 
+                            id="buyer-profile-income-input"
+                            value="${Math.round(result.annual_household_income).toLocaleString()}"
+                        >
+                        <button class="buyer-profile-clear-btn">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    <div class="buyer-profile-form-actions">
+                        <button class="buyer-profile-cancel-btn">Cancel</button>
+                        <button class="buyer-profile-save-btn" data-field="annual_household_income">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Debt Section -->
+            <div class="buyer-profile-info">
+                <div class="buyer-profile-item-header">
+                    <h2 class="buyer-profile-item-title">Monthly debt</h2>
+                    <p class="buyer-profile-item-description">Payments you make for loans or other debt, but not living expenses like rent, groceries or utilities.</p>
+                </div>
+                
+                <!-- Display Mode -->
+                <div class="buyer-profile-display-container active">
+                    <span class="buyer-profile-display-value" id="buyer-profile-monthly-debt">$${Math.round(result.monthly_debt).toLocaleString()}</span>
+                    <button class="buyer-profile-edit-btn" id="debt-edit-btn" data-btn="debt">Edit</button>
+                </div>
+
+                <!-- Edit Mode -->
+                <div class="buyer-profile-edit-form" data-form="debt">
+                    <div class="buyer-profile-input-wrapper">
+                        <span class="buyer-profile-currency-symbol">$</span>
+                        <input 
+                            type="text" 
+                            class="buyer-profile-input-field buyer-profile-input-with-currency" 
+                            id="buyer-profile-debt-input"
+                            value="${Math.round(result.monthly_debt).toLocaleString()}"
+                        >
+                        <button class="buyer-profile-clear-btn">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    <div class="buyer-profile-form-actions">
+                        <button class="buyer-profile-cancel-btn">Cancel</button>
+                        <button class="buyer-profile-save-btn" data-field="monthly_debt">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Funds Section -->
+            <div class="buyer-profile-info">
+                <div class="buyer-profile-item-header">
+                    <h2 class="buyer-profile-item-title">Available funds</h2>
+                    <p class="buyer-profile-item-description">Money that you can spend on the down payment and closing costs.</p>
+                </div>
+                
+                <!-- Display Mode -->
+                <div class="buyer-profile-display-container active">
+                    <span class="buyer-profile-display-value" id="buyer-profile-available-funds">$${Math.round(result.available_funds).toLocaleString()}</span>
+                    <button class="buyer-profile-edit-btn" id="funds-edit-btn" data-btn="funds">Edit</button>
+                </div>
+
+                <!-- Edit Mode -->
+                <div class="buyer-profile-edit-form" data-form="funds">
+                    <div class="buyer-profile-input-wrapper">
+                        <span class="buyer-profile-currency-symbol">$</span>
+                        <input 
+                            type="text" 
+                            class="buyer-profile-input-field buyer-profile-input-with-currency" 
+                            id="buyer-profile-funds-input"
+                            value="${Math.round(result.available_funds).toLocaleString()}"
+                        >
+                        <button class="buyer-profile-clear-btn">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    <div class="buyer-profile-form-actions">
+                        <button class="buyer-profile-cancel-btn">Cancel</button>
+                        <button class="buyer-profile-save-btn" data-field="available_funds">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Veteran Status Section -->
+            <div class="buyer-profile-info">
+                <div class="buyer-profile-item-header">
+                    <h2 class="buyer-profile-item-title">Veteran status</h2>
+                    <p class="buyer-profile-item-description">Have you or your spouse served in the U.S. Military?</p>
+                </div>
+                
+                <!-- Display Mode -->
+                <div class="buyer-profile-display-container active">
+                    <span class="buyer-profile-display-value" id="buyer-profile-veteran-status">${result.veteran_status ? 'Veteran' : 'Not a Veteran'}</span>
+                    <button class="buyer-profile-edit-btn" id="veteran-edit-btn" data-btn="veteran">Edit</button>
+                </div>
+
+                <!-- Edit Mode -->
+                <div class="buyer-profile-edit-form" data-form="veteran">
+                    <div class="buyer-profile-input-wrapper">
+                        <select class="buyer-profile-input-field" id="buyer-profile-veteran-input" data-field="veteran_status">
+                            <option value="false" ${!result.veteran_status ? 'selected' : ''}>Not a Veteran</option>
+                            <option value="true" ${result.veteran_status ? 'selected' : ''}>Veteran</option>
+                        </select>
+                    </div>
+                    <div class="buyer-profile-form-actions">
+                        <button class="buyer-profile-cancel-btn">Cancel</button>
+                        <button class="buyer-profile-save-btn" data-field="veteran_status">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Note -->
+            <div class="buyer-profile-footer-note">
+                The personal data presented on this page is collected according to the primehomes.com 
+                <a href="#" class="buyer-profile-footer-link">Privacy Policy</a>.
+            </div>
+        `
+        buyerProfileSection.appendChild(buyerProfileContainer)
+        buyerProfileEventListeners();
+
+    }catch(error){
+        console.error("Failed to get buyer's profile:", error)
+        showToast('Error getting buyer profile', 'error')
+    }
+}
+
+function buyerProfileEventListeners(){
+    const editBtns = document.querySelectorAll('.buyer-profile-edit-btn');
+
+    editBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetField = btn.dataset.btn;
+
+            // t.classList.remove('active')
+            const buyerProfileDisplayContainer = btn.closest('.buyer-profile-display-container')
+            buyerProfileDisplayContainer.classList.remove('active')
+            const buyerProfileInfo = btn.closest('.buyer-profile-info')
+            const input = buyerProfileInfo.querySelector('.buyer-profile-input-field')
+            input.focus();
+            
+            const targetContent = document.querySelector(`[data-form="${targetField}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+
+    const cancelBtn = document.querySelectorAll('.buyer-profile-cancel-btn')
+    cancelBtn.forEach(btn => btn.addEventListener('click', () => {
+        const parentContainer = btn.closest('.buyer-profile-edit-form')
+        parentContainer.classList.remove('active')
+
+        const grandParentContainer = parentContainer.closest('.buyer-profile-info')
+        const buyerProfileDisplayContainer = grandParentContainer.querySelector('.buyer-profile-display-container')
+        buyerProfileDisplayContainer.classList.add('active')
+    }))
+
+    const clearBtn = document.querySelectorAll('.buyer-profile-clear-btn')
+    clearBtn.forEach(btn => btn.addEventListener('click', () => {
+        const parentContainer = btn.closest('.buyer-profile-input-wrapper')
+        const input = parentContainer.querySelector('.buyer-profile-input-field');
+        input.value = '';
+        input.focus();
+
+    }))
+
+    const saveBtns = document.querySelectorAll('.buyer-profile-save-btn');
+    saveBtns.forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const field = btn.dataset.field;
+            const parentContainer = btn.closest('.buyer-profile-edit-form');
+            const input = parentContainer.querySelector('.buyer-profile-input-field');
+            let inputValue = input.value.trim();
+
+            // Remove commas for currency fields
+            if(['annual_household_income', 'monthly_debt', 'available_funds'].includes(field)) {
+                inputValue = inputValue.replace(/,/g, '');
+            }
+
+            // Convert veteran_status to boolean
+            if(field === 'veteran_status') {
+                inputValue = inputValue === 'true';
+            }
+
+            await saveBuyerProfileValue(field, inputValue, parentContainer);
+        });
+    });
+
+    // Format currency inputs with commas as user types
+    const currencyInputs = document.querySelectorAll('.buyer-profile-input-with-currency');
+    currencyInputs.forEach(input => {
+        input.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            if (value) {
+                value = parseInt(value).toLocaleString();
+            }
+            e.target.value = value;
+        });
+    });
+}
+
+async function saveBuyerProfileValue(field, value, formContainer) {
+    try {
+        const response = await fetch(`${API_BASE}/buyer-profile`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': window.getCsrfToken()
+            },
+            credentials: 'include',
+            body: JSON.stringify({ [field]: value })
+        });
+
+        if(!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Failed to update profile');
+        }
+
+        const displayValue = document.getElementById(`buyer-profile-${field.replace('_', '-')}`);
+        
+        if(['annual_household_income', 'monthly_debt', 'available_funds'].includes(field)) {
+            displayValue.textContent = value ? '$' + parseInt(value).toLocaleString() : 'Not set';
+        } else if(field === 'veteran_status') {
+            displayValue.textContent = value ? 'Veteran' : 'Not a Veteran';
+        }
+
+        // Hide form, show display
+        formContainer.classList.remove('active');
+        const grandParent = formContainer.closest('.buyer-profile-info');
+        const displayContainer = grandParent.querySelector('.buyer-profile-display-container');
+        displayContainer.classList.add('active');
+
+        showToast('Profile updated successfully', 'success');
+
+    } catch(error) {
+        console.error('Error saving buyer profile:', error);
+        showToast('Failed to update profile', 'error');
+    }
+}
 
 async function getUserInfo(){
     const settingsGreeting = document.getElementById('settings-greeting')

@@ -76,8 +76,8 @@ window.addEventListener('pageshow', (event) => {
 function setupEventListeners() {
 
 	const searchParam = urlParams.get('search');
-	const defaultSearch = 'Los Angeles, California';
 	const searchInput = document.getElementById("searchInput");
+	const defaultSearch = 'Los Angeles, California';
 
 	if (searchParam) {
 		searchInput.value = searchParam;
@@ -198,9 +198,18 @@ async function loadProperties(page) {
 		if (currentFilters.maxBathrooms && currentFilters.maxBathrooms !== "No max") params.append("max_bathrooms", currentFilters.maxBathrooms);
         if (currentFilters.sort) params.append("sort", currentFilters.sort);
 
-		const res = await fetch(`${FOR_SALE_API_BASE}/properties?${params.toString()}`, {
-			credentials: "include",
-		});
+		const currentPath = window.location.pathname;
+        let res;
+        
+        if (currentPath.includes('sale')) {
+            res = await fetch(`${FOR_SALE_API_BASE}/properties/for-sale?${params.toString()}`, {
+				credentials: "include",
+			});
+        } else if (currentPath.includes('rent')) {
+            res = await fetch(`${FOR_SALE_API_BASE}/properties/for-rent?${params.toString()}`, {
+				credentials: "include",
+			});
+        }
 
         if(!res.ok){
             showToast('Failed to load properties', 'error')
@@ -213,12 +222,16 @@ async function loadProperties(page) {
         const resultsCount = document.querySelector('.properties-results-count');
         const resultsLocation = document.querySelector('.properties-results-location');
         
-        resultsCount.textContent = `${data.meta.total} Properties Found`;
+        resultsCount.textContent = `${data.meta.total} homes`;
         
-        if (currentFilters.search) {
-            resultsLocation.textContent = `in ${currentFilters.search}`;
-        } else {
-            resultsLocation.textContent = '';
+        if (currentFilters.search && currentPath.includes('sale')) {
+            resultsLocation.textContent = `${currentFilters.search} homes for sale`;
+        } else if(currentFilters.search && currentPath.includes('rent')) {
+            resultsLocation.textContent = `${currentFilters.search} homes for rent`;
+		}else if (currentPath.includes('rent')) {
+            resultsLocation.textContent = 'Homes for rent';
+		}else {
+            resultsLocation.textContent = 'Homes for sale';
         }
 
 		const emptyAlert = document.querySelector(".empty-alert")
@@ -251,7 +264,7 @@ async function loadProperties(page) {
 
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
-			: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600"];
+			: ["/images/properties-backup.jpeg"];
 
 			const primaryImage = imageUrls[0];
 
@@ -281,19 +294,21 @@ async function loadProperties(page) {
 						</button>
                 	</div>
 					<div class="property-card-content">
+						<div class="property-card-top">
+							<span class="green-dot"></span>
+							<span class="property-card-type">${escapeHtml(property.property_type)}</span>
+						</div>
 						<div class="property-card-price">$${Math.round(property.price).toLocaleString()}</div>
 						<div class="property-card-details">
-							<span class="property-card-detail">${escapeHtml(property.bedrooms)} bed</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bedrooms)}</strong> bed</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(property.bathrooms)} bath</span>
+							<span class="property-card-detail"><strong>${escapeHtml(property.bathrooms)}</strong> bath</span>
 							<span class="property-card-separator">|</span>
-							<span class="property-card-detail">${escapeHtml(Math.round(property.area))} sqft</span>
+							<span class="property-card-detail"><strong>${escapeHtml(Math.round(property.area))}</strong> sqft</span>
 						</div>
-						<div class="property-card-address">${escapeHtml(address)}</div>
-						<div class="property-card-location">${escapeHtml(location)}</div>
-						<div class="property-card-agent">
-							<span class="property-card-agent-label">Listed by:</span>
-							<span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
+						<div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(address)}</div>
+							<div class="property-card-location">${escapeHtml(location)}</div>
 						</div>
 					</div>
 				</div>                
@@ -338,7 +353,6 @@ async function loadProperties(page) {
 			const propertyFavoriteIcon = propertyInfo.querySelector('.property-card-favorite');
 
 			try {
-		
 				const response = await fetch('/auth/me', {
 					credentials: 'include'
 				});

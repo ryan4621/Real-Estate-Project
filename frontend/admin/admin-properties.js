@@ -655,6 +655,8 @@ async function uploadFile(propertyId) {
 			showError(errorData.message || "Failed to upload images");
 		}
 	} catch (error) {
+		uploadBtn.disabled = false
+		uploadInProgress = false;
 		console.error("Upload error:", error);
 		showError("Upload failed. Please try again.");
 	} finally {

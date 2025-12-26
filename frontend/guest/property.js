@@ -5,7 +5,7 @@ let propertyInquiryId;
 // document.addEventListener('DOMContentLoaded', async ()  => {
 //     loadPropertyPage();
 //     // setUpEventListeners()
-//     // checkAuthStatus();
+//     // checkUserAuthStatus();
 // });
 
 window.addEventListener('pageshow', (event) => {
@@ -18,7 +18,7 @@ window.addEventListener('pageshow', (event) => {
 
 window.addEventListener("scroll", () => {
     const target = document.querySelector(".property-action-bar");
-    const triggerPoint = 300; // px from top
+    const triggerPoint = 300;
   
     if (window.scrollY >= triggerPoint) {
       target.classList.add("scrolled");
@@ -62,7 +62,7 @@ async function loadPropertyPage(){
 
         const images = await propertyImagesRes.json();
 
-        const primaryImage = images.find(img => img.is_primary)?.image_url || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800";
+        const primaryImage = images.find(img => img.is_primary)?.image_url || "/images/properties-backup.jpeg";
 
         // Filter out primary images and videos first
         const filteredImages = images
@@ -89,11 +89,76 @@ async function loadPropertyPage(){
             </div>
         `).join('');
 
+        // After fetching property images, fetch amenities
+        const amenitiesRes = await fetch(`${PROPERTY_API_BASE}/properties/${propertyData.property_id}/amenities`, {
+            credentials: 'include'
+        });
+
+        let amenitiesHtml = '';
+        if (amenitiesRes.ok) {
+            const amenitiesData = await amenitiesRes.json();
+            
+            if (amenitiesData) {
+                // Map of amenity keys to display labels with icons
+                const amenitiesMap = {
+                    swimming_pool: { label: 'Swimming Pool', icon: 'bi-water' },
+                    elevator: { label: 'Elevator', icon: 'bi-arrow-up-square' },
+                    high_ceiling: { label: 'High Ceiling', icon: 'bi-arrows-expand' },
+                    hardwood_floors: { label: 'Hardwood Floors', icon: 'bi-grid-3x3' },
+                    game_room: { label: 'Game Room', icon: 'bi-controller' },
+                    gourmet_kitchen: { label: 'Gourmet Kitchen', icon: 'bi-egg-fried' },
+                    ensuite: { label: 'Ensuite', icon: 'bi-door-open' },
+                    water_view: { label: 'Water View', icon: 'bi-water' },
+                    city_view: { label: 'City View', icon: 'bi-building' },
+                    pets_allowed: { label: 'Pets Allowed', icon: 'bi-heart' },
+                    guest_house: { label: 'Guest House', icon: 'bi-house' },
+                    single_story: { label: 'Single Story', icon: 'bi-layers' },
+                    security_features: { label: 'Security Features', icon: 'bi-shield-check' },
+                    water_front: { label: 'Water Front', icon: 'bi-water' },
+                    gym: { label: 'Gym', icon: 'bi-heart-pulse' },
+                    community_gym: { label: 'Community Gym', icon: 'bi-people' },
+                    library: { label: 'Library', icon: 'bi-book' },
+                    fitness_centre: { label: 'Fitness Centre', icon: 'bi-bicycle' },
+                    club_house: { label: 'Club House', icon: 'bi-building' },
+                    garage: { label: 'Garage', icon: 'bi-car-front' },
+                    recreational_amenities: { label: 'Recreational Amenities', icon: 'bi-tree' },
+                    tennis_court: { label: 'Tennis Court', icon: 'bi-trophy' },
+                    fireplace: { label: 'Fireplace', icon: 'bi-fire' },
+                    multi_stories: { label: 'Multi Stories', icon: 'bi-layers' },
+                    courtyard_style: { label: 'Courtyard Style', icon: 'bi-flower1' },
+                    rv_parking: { label: 'RV Parking', icon: 'bi-truck' }
+                };
+
+                // Build amenities HTML
+                const amenitiesList = [];
+                for (const [key, config] of Object.entries(amenitiesMap)) {
+                    if (amenitiesData[key]) {
+                        amenitiesList.push(`
+                            <div class="amenity-item">
+                                <span>${config.label}</span>
+                            </div>
+                        `);
+                    }
+                }
+
+                if (amenitiesList.length > 0) {
+                    amenitiesHtml = `
+                        <div class="amenities-container">
+                            ${amenitiesList.join('')}
+                        </div>
+                    `;
+                } else {
+                    amenitiesHtml = '';
+                }
+            }
+        }
+
         const address = `${propertyData.street_number} ${propertyData.street_name}`
         const propertyLocation = `${propertyData.street_number} ${propertyData.street_name} ${propertyData.city} ${propertyData.state} ${propertyData.zip}`
         const location = `${propertyData.city} ${propertyData.state} ${propertyData.zip}`
         const listedDate = new Date(propertyData.created_at)
         const updatedDate = new Date(propertyData.updated_at)
+        const soldDate = new Date(propertyData.updated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
         const propertyActionBar =  document.getElementById('property-action-bar')
 
@@ -135,54 +200,94 @@ async function loadPropertyPage(){
                 <section class="property-images-section">
                     <div class="property-main-image">
                         <img src="${primaryImage}" alt="Main Property Image" class="property-featured-img">
+
+                        <button class="property-image-nav-btn property-image-nav-prev">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="property-image-nav-btn property-image-nav-next">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                        <div class="property-image-counter">
+                            <span class="property-current-image">1</span>/<span class="property-total-images">1</span>
+                        </div>
                     </div>
                     <div class="property-thumbnail-grid">${thumbnailHtml}</div>
                 </section>
 
-                <section class="property-header-section">
-                    <div class="property-title-wrapper">
-                        <h1 class="property-title-heading">${escapeHtml(propertyData.property_type)}</h1>
-                        <span class="property-status-badge">${escapeHtml(propertyData.status)}</span>
+                <section class="property-header-section">                  
+                    <div class="property-card-top">
+                        <span class="${propertyData.status === 'Sold' ? 'red-dot' : 'green-dot'}"></span>
+                        <span class="property-type">
+                        ${propertyData.status === 'Sold'
+                            ? `Sold - ${soldDate}`
+                            : escapeHtml(propertyData.property_type)}
+                        </span>
+					</div>
+                    <div class="property-price-wrapper">
+                        <div class="property-price">
+                            <h1 class="property-price-amount">$${Math.round(propertyData.price).toLocaleString()}</h1>
+                        </div>
+                        <div class="property-details">
+							<span class="property-detail"><strong>${escapeHtml(propertyData.bedrooms)}</strong> bed</span>
+							<span class="property-detail"><strong>${escapeHtml(propertyData.bathrooms)}</strong> bath</span>
+							<span class="property-detail"><strong>${Math.round(propertyData.area).toLocaleString()}</strong> sqft</span>
+						</div>
                     </div>
                     <div class="property-address-wrapper">
                         <p class="property-address-text">${escapeHtml(propertyLocation)}</p>
                     </div>
-                    <div class="property-price-wrapper">
-                        <span class="property-price-amount">$${Math.round(propertyData.price).toLocaleString()}</span>
-                        <span class="property-price-per-sqft">$${Math.round(propertyData.price_per_sqft).toLocaleString()} per sqft</span>
-                    </div>
+                    <span class="property-pre-approved">Get pre-approved</span>
                 </section>
 
                 <section class="property-overview-section">
-                    <h2 class="property-section-title">Property Overview</h2>
+                    <div class="property-amenities">
+                        ${amenitiesHtml}
+                    </div>
                     <div class="property-overview-grid">
                         <div class="property-overview-item">
-                            <span class="property-overview-label">Property Type</span>
-                            <span class="property-overview-value">${escapeHtml(propertyData.property_type)}</span>
+                            <div class="property-overview-icon">
+                                <i class="bi bi-house"></i>
+                            </div> 
+                            <div class="property-overview-info">
+                                <span class="property-overview-label">Property Type</span>
+                                <span class="property-overview-value">${escapeHtml(propertyData.property_type)}</span> 
+                            </div>  
                         </div>
                         <div class="property-overview-item">
-                            <span class="property-overview-label">Bedrooms</span>
-                            <span class="property-overview-value">${escapeHtml(propertyData.bedrooms)}</span>
+                            <div class="property-overview-icon">
+                                <i class="bi bi-rulers"></i>
+                            </div>
+                            <div class="property-overview-info">
+                                <span class="property-overview-label">Price per sqft</span>
+                                <span class="property-overview-value">$${Math.round(propertyData.price_per_sqft).toLocaleString()}</span>
+                            </div>
                         </div>
                         <div class="property-overview-item">
-                            <span class="property-overview-label">Bathrooms</span>
-                            <span class="property-overview-value">${escapeHtml(propertyData.bathrooms)}</span>
+                            <div class="property-overview-icon">
+                                <i class="bi bi-car-front"></i>
+                            </div>
+                            <div class="property-overview-info">
+                                <span class="property-overview-label">Garage Space</span>
+                                <span class="property-overview-value">${escapeHtml(propertyData.garage_space)} Car</span>
+                            </div>
                         </div>
                         <div class="property-overview-item">
-                            <span class="property-overview-label">Area</span>
-                            <span class="property-overview-value">${escapeHtml(Math.round(propertyData.area))} sqft</span>
+                            <div class="property-overview-icon">
+                                <i class="bi bi-hammer"></i>
+                            </div>
+                            <div class="property-overview-info">
+                                <span class="property-overview-label">Year Built</span>
+                                <span class="property-overview-value">${escapeHtml(propertyData.year_built)}</span>
+                            </div>
                         </div>
                         <div class="property-overview-item">
-                            <span class="property-overview-label">Garage Space</span>
-                            <span class="property-overview-value">${escapeHtml(propertyData.garage_space)}</span>
-                        </div>
-                        <div class="property-overview-item">
-                            <span class="property-overview-label">Year Built</span>
-                            <span class="property-overview-value">${escapeHtml(propertyData.year_built)}</span>
-                        </div>
-                        <div class="property-overview-item">
-                            <span class="property-overview-label">Lot Size</span>
-                            <span class="property-overview-value">${escapeHtml(propertyData.acre_lot)} acres</span>
+                            <div class="property-overview-icon">
+                                <i class="bi bi-bounding-box-circles"></i>
+                            </div>
+                            <div class="property-overview-info">
+                                <span class="property-overview-label">Lot Size</span>
+                                <span class="property-overview-value">${escapeHtml(propertyData.acre_lot)} acres</span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -218,17 +323,6 @@ async function loadPropertyPage(){
                         <div class="property-location-item">
                             <span class="property-location-label">Longitude</span>
                             <span class="property-location-value">${escapeHtml(propertyData.longitude)}</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="property-agent-section">
-                    <h2 class="property-section-title">Agent Information</h2>
-                    <div class="property-agent-card">
-                        <div class="property-agent-info">
-                            <h3 class="property-agent-name">${escapeHtml(propertyData.agent_name)}</h3>
-                            <p class="property-agent-email">${escapeHtml(propertyData.agent_email)}</p>
-                            <p class="property-agent-broker">${escapeHtml(propertyData.broker)}</p>
                         </div>
                     </div>
                 </section>
@@ -297,8 +391,44 @@ async function loadPropertyPage(){
         `
         const statusElement = propertyDetailsContainer.querySelector('.property-status-badge');
         getPropertyStatus(propertyData.status, statusElement);
+
         propertyDetailsPage.appendChild(propertyDetailsContainer)
-        checkAuthStatus(heartEmpty, heartFilled, propertyActionFavorite, propertyData, primaryImage, address, location)
+
+        let currentImageIndex = 0;
+        const allImages = images.map(img => img.image_url);
+        const propertyFeaturedImg = propertyDetailsContainer.querySelector('.property-featured-img');
+        const propertyMainImageWrapper = propertyDetailsContainer.querySelector('.property-main-image');
+        const currentImageCounter = propertyMainImageWrapper.querySelector('.property-current-image');
+        const totalImageCounter = propertyMainImageWrapper.querySelector('.property-total-images');
+        const prevNavBtn = propertyMainImageWrapper.querySelector('.property-image-nav-prev');
+        const nextNavBtn = propertyMainImageWrapper.querySelector('.property-image-nav-next');
+
+        // Update total images count
+        totalImageCounter.textContent = allImages.length;
+
+        // Hide navigation if only one image
+        if (allImages.length <= 1) {
+            prevNavBtn.style.display = 'none';
+            nextNavBtn.style.display = 'none';
+        }
+
+        // Previous button click
+        prevNavBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+            propertyFeaturedImg.src = allImages[currentImageIndex];
+            currentImageCounter.textContent = currentImageIndex + 1;
+        });
+
+        // Next button click
+        nextNavBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % allImages.length;
+            propertyFeaturedImg.src = allImages[currentImageIndex];
+            currentImageCounter.textContent = currentImageIndex + 1;
+        });
+
+        checkUserAuthStatus(heartEmpty, heartFilled, propertyActionFavorite, propertyData, primaryImage, address, location)
         const submitBtn = document.getElementById('submit-btn')
 
         const form = document.getElementById('inquiryForm');
@@ -315,7 +445,7 @@ async function loadPropertyPage(){
 	}
 };
 
-async function checkAuthStatus(heartEmpty, heartFilled, propertyActionFavorite, propertyData, primaryImage, address, location) {
+async function checkUserAuthStatus(heartEmpty, heartFilled, propertyActionFavorite, propertyData, primaryImage, address, location) {
     try {
         const response = await fetch('/auth/me', {
             credentials: 'include'
@@ -326,7 +456,7 @@ async function checkAuthStatus(heartEmpty, heartFilled, propertyActionFavorite, 
 
             let isFavorited = false;
 
-            if (favRes.ok) {  // ✅ Only process if 200 (favorited)
+            if (favRes.ok) {
                 const favorites = await favRes.json();
                 const favData = favorites.data[0];
                 isFavorited = favData.property_id === propertyData.property_id;
