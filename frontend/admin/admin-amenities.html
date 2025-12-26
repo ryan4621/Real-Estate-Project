@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties Amenities</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-amenities.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-sidebar-header">
+                <div class="admin-sidebar-logo">
+                    <i class="fas fa-home"></i>
+                    <span>PrimeHomes Admin</span>
+                </div>
+            </div>
+    
+            <nav class="admin-sidebar-nav">
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-dashboard.html" class="admin-nav-link active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-users.html" class="admin-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-properties.html" class="admin-nav-link">
+                        <i class="fas fa-building"></i>
+                        <span>Properties</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-amenities.html" class="admin-nav-link">
+                        <i class="bi bi-clipboard-data"></i>
+                        <span>Amenities</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-inquiries.html" class="admin-nav-link">
+                        <i class="fas fa-envelope"></i>
+                        <span>Inquiries</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-notifications.html" class="admin-nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-support.html" class="admin-nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Support</span>
+                    </a>
+                </div>
+                <div class="admin-nav-item">
+                    <a href="/frontend/admin/admin-password-change.html" class="admin-nav-link">
+                        <i class="fas fa-key"></i>
+                        <span>Change Password</span>
+                    </a>
+                </div>
+            </nav>
+    
+            <div class="admin-sidebar-footer">
+                <button class="admin-logout-btn" id="adminLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+    
+        <button class="admin-sidebar-toggle" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <main class="admin-main-content">
+            <header class="admin-header">
+                <div class="admin-header-content">
+                    <h1 class="admin-page-title">
+                        <i class="fas fa-building"></i>
+                        Properties Amenities Management
+                    </h1>
+                    <div class="admin-header-actions">
+                        <button type="button" id="exportCsv" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <button type="button" id="exportPdf" class="admin-btn admin-btn-light">
+                            <i class="fas fa-file-pdf"></i>
+                            Export PDF
+                        </button>
+                    </div>
+                </div>
+            </header>
+    
+            <div class="admin-content">
+                <div class="admin-filters">
+                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">Type</label>
+                        <select id="properties-type-filter">
+                            <option value="all">All types</option>
+                            <option value="Single Family">Single Family</option>
+                            <option value="Town House">Town House</option>
+                            <option value="Multi Family">Multi Family</option>
+                            <option value="Modular Home">Modular Home</option>
+                            <option value="Bungalow">Bungalow</option>
+                            <option value="Ranch Home">Ranch Home</option>
+                            <option value="Condominium">Condominium</option>
+                            <option value="Apartment">Apartment</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- <div class="modal-overlay"></div> -->
+    
+                <!-- Amenities Table -->
+                <div class="amenities-table-container">
+                    <div class="table-header">
+                        <h2>Property Amenities</h2>
+                        <button class="add-amenity-btn" id="add-amenity-btn">
+                            <i class="bi bi-plus-circle"></i>
+                            Add Amenities
+                        </button>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="amenities-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Property ID</th>
+                                    <th>Amenities</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="amenities-table-body">
+                                <!-- Example Row -->
+                                <tr>
+                                    <td>1</td>
+                                    <td>12345</td>
+                                    <td>
+                                        <div class="amenities-tags">
+                                            <span class="amenity-tag">Swimming Pool</span>
+                                            <span class="amenity-tag">Gym</span>
+                                            <span class="amenity-tag">Elevator</span>
+                                            <span class="amenity-tag">Pets Allowed</span>
+                                            <span class="amenity-tag">Fireplace</span>
+                                            <span class="amenity-tag">+3 more</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Edit">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="delete-btn" title="Delete">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Amenities Form Modal -->
+                <div class="amenities-modal-overlay" id="amenities-modal-overlay"></div>
+                <div class="amenities-modal" id="amenities-modal">
+                    <div class="modal-header">
+                        <h3 id="modal-title">Add Property Amenities</h3>
+                        <button class="modal-close-btn" id="modal-close-btn">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+
+                    <form class="amenities-form" id="amenities-form">
+                        <div class="form-group">
+                            <label class="form-label">Property ID</label>
+                            <input type="number" class="form-input" id="property-id-input" placeholder="Enter Property ID" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Select Amenities</label>
+                            <div class="search-amenities">
+                                <i class="bi bi-search"></i>
+                                <input type="text" class="search-input" id="amenity-search" placeholder="Search amenities...">
+                            </div>
+                        </div>
+
+                        <div class="amenities-grid">
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="swimming_pool">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-water"></i>
+                                    Swimming Pool
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="elevator">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-arrow-up-square"></i>
+                                    Elevator
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="high_ceiling">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-arrows-expand"></i>
+                                    High Ceiling
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="hardwood_floors">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-grid-3x3"></i>
+                                    Hardwood Floors
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="game_room">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-controller"></i>
+                                    Game Room
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="gourmet_kitchen">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-egg-fried"></i>
+                                    Gourmet Kitchen
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="ensuite">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-door-open"></i>
+                                    Ensuite
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="water_view">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-water"></i>
+                                    Water View
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="city_view">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-building"></i>
+                                    City View
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="pets_allowed">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-heart"></i>
+                                    Pets Allowed
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="guest_house">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-house"></i>
+                                    Guest House
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="single_story">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-layers"></i>
+                                    Single Story
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="security_features">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-shield-check"></i>
+                                    Security Features
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="water_front">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-water"></i>
+                                    Water Front
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="gym">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-heart-pulse"></i>
+                                    Gym
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="community_gym">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-people"></i>
+                                    Community Gym
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="library">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-book"></i>
+                                    Library
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="fitness_centre">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-bicycle"></i>
+                                    Fitness Centre
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="club_house">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-building"></i>
+                                    Club House
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="garage">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-car-front"></i>
+                                    Garage
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="recreational_amenities">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-tree"></i>
+                                    Recreational Amenities
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="tennis_court">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-trophy"></i>
+                                    Tennis Court
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="fireplace">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-fire"></i>
+                                    Fireplace
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="multi_stories">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-layers"></i>
+                                    Multi Stories
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="courtyard_style">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-flower1"></i>
+                                    Courtyard Style
+                                </span>
+                            </label>
+
+                            <label class="amenity-checkbox">
+                                <input type="checkbox" name="rv_parking">
+                                <span class="checkbox-custom"></span>
+                                <span class="amenity-label">
+                                    <i class="bi bi-truck"></i>
+                                    RV Parking
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancel-btn">Cancel</button>
+                            <button type="submit" class="submit-btn">Save Amenities</button>
+                        </div>
+                    </form>
+                </div>
+    
+                <div id="empty-alert" style="display: none;">No amenities found</div>
+                <div id="pagination"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../general/csrf-helper.js"></script>
+    <script src="../general/toast-helper.js"></script>
+    <script src="../general/confirmation-modal.js"></script>
+    <script src="/frontend/admin/admin-amenities.js"></script>
+    <script src="/frontend/admin/admin-global.js"></script>
+</body>
+</html>

@@ -209,6 +209,10 @@ async function loadProperties(page) {
             res = await fetch(`${FOR_SALE_API_BASE}/properties/for-rent?${params.toString()}`, {
 				credentials: "include",
 			});
+        }else if (currentPath.includes('sold')) {
+            res = await fetch(`${FOR_SALE_API_BASE}/properties/sold?${params.toString()}`, {
+				credentials: "include",
+			});
         }
 
         if(!res.ok){

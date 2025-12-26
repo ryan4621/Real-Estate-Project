@@ -472,7 +472,6 @@ body {
     font-size: 18px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero-section {
         height: 500px;
@@ -544,7 +543,7 @@ body {
 /* Featured Section */
 .properties-section {
     padding: 20px 50px;
-    background-color: #f9f9f9;
+    background-color: #fff;
 }
 
 .featured-section, .expensive-section, .rent-latest-section {
@@ -580,7 +579,7 @@ body {
 
 /* Help section */
 .help-section {
-    background: #f9f9f9;
+    background: #fff;
     padding: 60px 50px;
 }
 
@@ -706,7 +705,6 @@ body {
     color: #dc2626;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .help-cards {
         grid-template-columns: repeat(2, 1fr);
@@ -939,7 +937,6 @@ body {
     transform: scale(0.98);
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .loan-content, .local-info-content {
         padding: 60px 40px;
@@ -1127,7 +1124,6 @@ body {
     text-decoration: none;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .footer-container {
         padding: 0 24px;
@@ -1156,8 +1152,6 @@ body {
         flex-direction: column;
     }
 }
-
-
 
 
 
@@ -1440,7 +1434,6 @@ body {
     color: #5b5b5b;
 }
 
-/* Responsive adjustments */
 @media (max-width: 480px) {
     .signup-modal {
         width: 90%;
@@ -1637,7 +1630,6 @@ body {
         padding: 40px 20px 20px;
     }
 }
-
 
 
 /* Logged In Navigation */
@@ -1873,7 +1865,6 @@ body {
     margin: 0;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
     .user-profile-dropdown,
     .favorites-dropdown {
@@ -1882,9 +1873,6 @@ body {
         min-width: 250px;
     }
 }
-
-
-
 
 
 
@@ -1904,6 +1892,7 @@ body {
     transition: all 0.3s ease;
     cursor: pointer;
     max-width: 320px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .property-info {
@@ -1911,7 +1900,6 @@ body {
 }
 
 .property-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
 }
 
@@ -2147,10 +2135,10 @@ body {
 
 /* Styles for sell.html */
 
-
 /* Seller Guides Section */
 .sold-guides-section {
     background-color: #f0f0f0;
+    margin-top: 60px;
     padding: 60px 40px;
 }
 
@@ -2286,31 +2274,33 @@ body {
 
 .sold-faq-item {
     border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+    padding: 24px 0;
 }
 
 .sold-faq-question {
     width: 100%;
     background: none;
     border: none;
-    padding: 24px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: #000;
     transition: background-color 0.2s ease;
 }
 
-.sold-faq-question:hover {
-    opacity: 0.7;
+.sold-faq-question span:hover {
+    color: #606060;
 }
 
 .sold-faq-question i {
     font-size: 20px;
-    color: #666;
+    font-weight: 700;
+    color: #000;
     flex-shrink: 0;
     margin-left: 16px;
     transition: transform 0.3s ease;
@@ -2321,24 +2311,25 @@ body {
 }
 
 .sold-faq-answer {
-    max-height: 0;
+    /* max-height: 0; */
     overflow: hidden;
+    padding-top: 24px;
     /* padding: 0; */
+    /* padding: 0 0 24px 0; */
+    /* padding-bottom: 24px; */
     font-size: .95rem;
     color: #666;
-    line-height: 1.6;
-    transition: max-height 0.4s ease;
+    /* line-height: 1.6; */
+    transition: max-height 0.2s ease;
 }
 
 .sold-faq-answer.collapsed {
     max-height: 0;
-    /* padding: 0; */
 }
 
-.sold-faq-question.collapsed + .sold-faq-answer {
+/* .sold-faq-question.collapsed + .sold-faq-answer {
     max-height: 500px;
-    padding: 0 0 24px 0;
-}
+} */
 
 .sold-faq-link {
     color: #000;
@@ -2350,7 +2341,6 @@ body {
     text-decoration: none;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .sold-guides-grid {
         grid-template-columns: 1fr;

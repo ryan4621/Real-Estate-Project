@@ -416,13 +416,12 @@ body {
 }
 
 .properties-pagination-btn:hover:not(:disabled) {
-    border-color: #d92228;
-    color: #d92228;
+    background-color: #dd565b;
 }
 
 .properties-pagination-btn.active {
+    border: none;
     background: #d92228;
-    border-color: #d92228;
     color: white;
 }
 

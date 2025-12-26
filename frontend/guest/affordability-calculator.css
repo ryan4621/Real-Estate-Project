@@ -227,7 +227,7 @@ body {
 
 /* Submit Button */
 .submit-btn {
-    width: 30%;
+    width: fit-content;
     padding: 16px 22px;
     background: #000000;
     color: white;
@@ -525,10 +525,7 @@ body {
 
 /* Accordion Styles */
 .accordion-item {
-    border: 1px solid #e6e6e6;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
+    border-bottom: 1px solid #e6e6e6;
     overflow: hidden;
 }
 
@@ -566,9 +563,7 @@ body {
 }
 
 .accordion-content {
-    /* max-height: 1000px; */
     overflow: hidden;
-    /* margin-bottom: none; */
     transition: max-height 0.4s ease;
 }
 
