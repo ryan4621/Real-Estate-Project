@@ -8,6 +8,7 @@ import notificationsRoutes from "./notifications-routes.js";
 import supportRoutes from "./support-routes.js";
 import userOverviewRoutes from "./user-overview-routes.js";
 import amenitiesRoutes from "./amenities-routes.js";
+import openHousesRoutes from "./open-houses-routes.js";
 import { requireAdmin } from "../../middleware/authentication.js";
 import { validatePasswordChange, handleValidationErrors } from "../../middleware/validation.js";
 
@@ -20,6 +21,7 @@ router.use(notificationsRoutes);
 router.use(supportRoutes);
 router.use(userOverviewRoutes);
 router.use(amenitiesRoutes);
+router.use(openHousesRoutes);
 
 
 router.post("/change-password", validatePasswordChange, handleValidationErrors, requireAdmin, async (req, res) => {

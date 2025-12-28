@@ -55,11 +55,14 @@ function renderLoggedInNav(user) {
         
         <div class="user-profile-dropdown-wrapper">
             <button class="user-profile-btn" id="user-profile-btn">
-                <i class="fa-regular fa-user"></i>
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-regular fa-user logged-in-user"></i>
+                <i class="fa-solid fa-chevron-down logged-in-nav-arrow"></i>
             </button>
             
             <div class="user-profile-dropdown" id="user-profile-dropdown">
+                <button class="mobile-dropdown-close">
+                    <i class="bi bi-x"></i>
+                </button>
                 <div class="dropdown-user-info">
                     <span class="dropdown-user-name">${user.first_name} ${user.last_name}</span>
                     <span class="dropdown-user-email">${user.email}</span>
@@ -75,6 +78,9 @@ function renderLoggedInNav(user) {
         </div>
 
         <div class="favorites-dropdown" id="favorites-dropdown">
+            <button class="mobile-dropdown-close">
+                <i class="bi bi-x"></i>
+            </button>
             <div class="favorites-dropdown-header">
                 <h3>Saved Properties</h3>
             </div>
@@ -155,6 +161,161 @@ async function setupGlobalEventListeners(){
     } else if (savedPath && savedPath !== '#') {
         activateLinkByPath(savedPath);
     }
+
+    // Sidebar Navigation JavaScript
+	const hamburgerMenu = document.querySelector('.hamburger-menu');
+	const sidebarNav = document.querySelector('.sidebar-nav');
+	const sidebarOverlay = document.querySelector('.sidebar-overlay');
+	const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+	const sidebarMenuLinks = document.querySelectorAll('.sidebar-menu-link');
+
+	// Open sidebar
+	hamburgerMenu.addEventListener('click', () => {
+		sidebarNav.classList.add('active');
+		sidebarOverlay.classList.add('active');
+		document.body.classList.add('sidebar-open');
+	});
+
+	// Close sidebar
+	function closeSidebar() {
+		sidebarNav.classList.remove('active');
+		sidebarOverlay.classList.remove('active');
+		document.body.classList.remove('sidebar-open');
+
+        const favoritesDropdown = document.getElementById('favorites-dropdown');
+        const userProfileDropdown = document.getElementById('user-profile-dropdown');
+        
+        // Close dropdowns if open
+        if (favoritesDropdown) favoritesDropdown.classList.remove('active');
+        if (userProfileDropdown) userProfileDropdown.classList.remove('active');
+        document.body.classList.remove('dropdown-open');
+        }
+
+        sidebarCloseBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Toggle submenus
+        sidebarMenuLinks.forEach(link => {
+            // Skip single links without submenus
+            if (link.classList.contains('sidebar-single-link')) {
+                return;
+            }
+
+            link.addEventListener('click', () => {
+                const submenu = link.nextElementSibling;
+                
+                // Toggle current submenu
+                link.classList.toggle('active');
+                
+                if (submenu && submenu.classList.contains('sidebar-submenu')) {
+                    submenu.classList.toggle('active');
+                }
+                
+                // Close other submenus (optional - remove if you want multiple open)
+                sidebarMenuLinks.forEach(otherLink => {
+                    if (otherLink !== link && !otherLink.classList.contains('sidebar-single-link')) {
+                        otherLink.classList.remove('active');
+                        const otherSubmenu = otherLink.nextElementSibling;
+                        if (otherSubmenu && otherSubmenu.classList.contains('sidebar-submenu')) {
+                            otherSubmenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+}
+
+function setupDropdownListeners() {
+    const logoutBtn = document.getElementById('logout-btn');
+    const favoritesBtn = document.getElementById('favorites-btn');
+    const userProfileBtn = document.getElementById('user-profile-btn');
+    const favoritesDropdown = document.getElementById('favorites-dropdown');
+    const userProfileDropdown = document.getElementById('user-profile-dropdown');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+    const mobileCloseButtons = document.querySelectorAll('.mobile-dropdown-close');
+
+    // Logout functionality
+    logoutBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        logOutUser();
+    });
+
+    // Check if mobile view function
+    function checkMobileView() {
+        return window.innerWidth <= 1024;
+    }
+
+    // Favorites button click handler
+    favoritesBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        if (checkMobileView()) {
+            // Mobile: Toggle dropdown
+            const isActive = favoritesDropdown.classList.contains('active');
+            
+            // Close user dropdown
+            userProfileDropdown.classList.remove('active');
+            
+            // Toggle favorites dropdown
+            favoritesDropdown.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active', !isActive);
+            document.body.classList.toggle('dropdown-open', !isActive);
+        } else {
+            window.location.href = "/frontend/user/user-favorites.html";
+        }
+    });
+
+    // User profile button click handler
+    userProfileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        if (checkMobileView()) {
+            // Mobile: Toggle dropdown
+            const isActive = userProfileDropdown.classList.contains('active');
+            
+            // Close favorites dropdown
+            favoritesDropdown.classList.remove('active');
+            
+            // Toggle user dropdown
+            userProfileDropdown.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active', !isActive);
+            document.body.classList.toggle('dropdown-open', !isActive);
+        }
+    });
+
+    // Close buttons
+    mobileCloseButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            favoritesDropdown.classList.remove('active');
+            userProfileDropdown.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.classList.remove('dropdown-open');
+        });
+    });
+
+    // // Overlay click - close dropdowns
+    // sidebarOverlay.addEventListener('click', () => {
+    //     // Only close dropdowns if they're open (not sidebar)
+    //     if (favoritesDropdown.classList.contains('active') || userProfileDropdown.classList.contains('active')) {
+    //         favoritesDropdown.classList.remove('active');
+    //         userProfileDropdown.classList.remove('active');
+    //         sidebarOverlay.classList.remove('active');
+    //         document.body.classList.remove('dropdown-open');
+    //     }
+    // });
+
+    // Close dropdowns when window is resized to desktop
+    window.addEventListener('resize', () => {
+        if (!checkMobileView()) {
+            favoritesDropdown.classList.remove('active');
+            userProfileDropdown.classList.remove('active');
+            if (!document.querySelector('.sidebar-nav').classList.contains('active')) {
+                sidebarOverlay.classList.remove('active');
+                document.body.classList.remove('dropdown-open');
+            }
+        }
+    });
 }
 
 function activateLinkByPath(path) {
@@ -323,17 +484,6 @@ function runSavedSearch(search) {
     }
     
     window.location.href = `${targetPage}?${params.toString()}`;
-}
-
-function setupDropdownListeners() {
-    document.getElementById('favorites-btn').addEventListener('click', () => {
-        window.location.href = "/frontend/user/user-favorites.html"
-    })
-   
-    document.getElementById('logout-btn').addEventListener('click', async (e) => {
-        e.preventDefault();
-        logOutUser();
-    });
 }
 
 async function logOutUser(){

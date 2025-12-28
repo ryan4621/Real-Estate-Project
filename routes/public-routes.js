@@ -421,7 +421,12 @@ router.get('/buy/properties', async (req, res) => {
 
     }else {
       const [openHouses] = await pool.execute(`
-        SELECT * FROM open_houses
+        SELECT p.property_id, p.property_type, p.status, p.price, p.price_per_sqft, p.garage_space, 
+          p.year_built, p.bedrooms, p.bathrooms, p.area, p.acre_lot, 
+          p.street_number, p.street_name, p.city, p.state, p.zip, 
+          p.country, p.agent_name, p.broker
+        FROM properties p
+        INNER JOIN open_houses o ON p.property_id = o.property_id
       `)
 
       if(openHouses.length === 0){
@@ -602,32 +607,32 @@ function findMaxAffordablePrice(maxPITI, availableFunds, isVA) {
   let maxAffordablePrice = 0;
 
   for (let loanAmount = 100000; loanAmount <= MAX_SEARCH_PRICE; loanAmount += 1000) {
-      const estimatedDownPayment = availableFunds;
-      const currentHomePrice = loanAmount + estimatedDownPayment;
+    const estimatedDownPayment = availableFunds;
+    const currentHomePrice = loanAmount + estimatedDownPayment;
 
-      if (estimatedDownPayment < (currentHomePrice * dpMinPercent)) {
-           continue; 
-      }
+    if (estimatedDownPayment < (currentHomePrice * dpMinPercent)) {
+      continue; 
+    }
 
-      const annualTI = currentHomePrice * ANNUAL_TI_PERCENTAGE;
-      const monthlyTI = annualTI / 12;
+    const annualTI = currentHomePrice * ANNUAL_TI_PERCENTAGE;
+    const monthlyTI = annualTI / 12;
 
-      let monthlyMI = 0;
-      const loanToValue = loanAmount / currentHomePrice;
-      const isMIPRequired = (loanToValue > 0.8) && !isVA; 
-      
-      if (isMIPRequired) {
-          monthlyMI = (loanAmount * 0.005) / 12;
-      }
+    let monthlyMI = 0;
+    const loanToValue = loanAmount / currentHomePrice;
+    const isMIPRequired = (loanToValue > 0.8) && !isVA; 
+    
+    if (isMIPRequired) {
+      monthlyMI = (loanAmount * 0.005) / 12;
+    }
 
-      const maxPI = maxPITI - monthlyTI - monthlyMI;
-      const requiredPI = calculateRequiredPI(loanAmount);
+    const maxPI = maxPITI - monthlyTI - monthlyMI;
+    const requiredPI = calculateRequiredPI(loanAmount);
 
-      if (requiredPI <= maxPI) {
-          maxAffordablePrice = currentHomePrice;
-      } else {
-          break; 
-      }
+    if (requiredPI <= maxPI) {
+      maxAffordablePrice = currentHomePrice;
+    } else {
+      break; 
+    }
   }
   
   return Math.round(maxAffordablePrice / 1000) * 1000; 

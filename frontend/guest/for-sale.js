@@ -36,7 +36,6 @@ if (displayMode === 'map') {
 document.addEventListener('DOMContentLoaded', async () => {
 	setupEventListeners();
 	
-	// Get all filter params from URL
 	const urlParams = new URLSearchParams(window.location.search);
 
 	if (urlParams.get('search')) {
@@ -272,6 +271,16 @@ async function loadProperties(page) {
 
 			const primaryImage = imageUrls[0];
 
+			let status;
+
+			if(property.status === 'Sale'){
+				status = 'for sale'
+			}else if(property.status === 'Rent'){
+				status = 'for rent'
+			}else{
+				status = 'Sold'
+			}
+
             const address = `${property.street_number} ${property.street_name}`;
             const location = `${property.city}, ${property.state} ${property.zip}`;
 
@@ -282,7 +291,7 @@ async function loadProperties(page) {
 				<div class="property-card">
 					<div class="property-card-image-wrapper">
 						<img src="${primaryImage}" alt="Property-Image" class="property-card-image">
-						<span class="property-card-status">${escapeHtml(property.status)}</span>
+						<span class="property-card-status">${escapeHtml(status)}</span>
 						<button class="image-nav-btn image-nav-prev">
 							<i class="bi bi-chevron-left"></i>
 						</button>

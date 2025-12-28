@@ -15,18 +15,16 @@
     gap: 12px;
 }
 
-.favorites-filter-select {
-    padding: 5px 12px;
-}
-
-.favorites-sort-select {
+.favorites-filter-select, .favorites-sort-select {
     padding: 5px 14px;
+    border: 1px solid #000;
 }
 
-.favorites-back-btn, .favorites-filters-reset {
+.favorites-filters-reset {
     background: none;
-    border: 1px solid #d0d0d0;
-    border-radius: 50%;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    color: #d92228;
     width: 40px;
     display: flex;
     align-items: center;
@@ -35,29 +33,33 @@
     transition: all 0.2s ease;
 }
 
-.favorites-filters-reset {
-    border-radius: 4px;
-    color: #d92228;
-}
-
 .favorites-filters-reset:hover {
     background-color: #fee;
     border-color: #d92228;
 }
 
 .favorites-back-btn {
-    margin-bottom: 20px;
-    height: 40px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 20px 0;
+    width: 40px;
 }
 
 .favorites-back-btn:hover {
-    background-color: #f7f8fa;
-    border-color: #999;
+    color: #666;
+
 }
 
-.favorite-back-btn i {
-    font-size: 18px;
-    color: #2d3748;
+.favorites-back-btn i {
+    font-size: 20px;
 }
 
 /* Tabs */
@@ -135,12 +137,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-bottom: 24px; */
 }
 
 .ss-card-timestamp {
     font-size: 14px;
-    color: #666;
+    color: #1e1e1e;
 }
 
 .ss-delete-btn {
@@ -162,7 +163,7 @@
 
 .ss-delete-btn i {
     font-size: 24px;
-    color: #666;
+    color: #1e1e1e;
 }
 
 /* Card Content */
@@ -183,7 +184,10 @@
 
 .ss-title {
     font-weight: 600;
-    color: #1e1e1e;
+}
+
+.ss-filters span {
+    font-weight: 600;
 }
 
 /* Card Footer */

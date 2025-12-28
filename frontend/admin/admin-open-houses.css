@@ -1,0 +1,642 @@
+/* Open Houses Page Styling */
+
+/* Filters Section */
+.open-house-filters-section {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+}
+
+.open-house-search-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.open-house-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.open-house-search-field {
+    width: 100%;
+    padding: 12px 16px 12px 45px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.open-house-search-field:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.open-house-filter-controls {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.open-house-filter-item {
+    flex: 1;
+    min-width: 200px;
+}
+
+.open-house-filter-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.open-house-filter-label i {
+    color: #3b82f6;
+}
+
+.open-house-filter-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-filter-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Modal Overlay */
+.open-house-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.open-house-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Form Modal */
+.open-house-form-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.open-house-form-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.open-house-form-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    padding: 24px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #1d4ed8;
+}
+
+.open-house-form-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.open-house-form-icon {
+    font-size: 28px;
+    color: #ffffff;
+}
+
+.open-house-form-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.open-house-modal-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.open-house-modal-close-btn i {
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.open-house-form-body {
+    padding: 28px;
+    max-height: calc(90vh - 100px);
+    overflow-y: auto;
+}
+
+.open-house-form-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.open-house-form-body::-webkit-scrollbar-track {
+    background: #f3f4f6;
+}
+
+.open-house-form-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.open-house-form-body::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Form Elements */
+.open-house-form-group {
+    margin-bottom: 20px;
+}
+
+.open-house-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.open-house-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.open-house-required {
+    color: #ef4444;
+}
+
+.open-house-form-input,
+.open-house-form-select,
+.open-house-form-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+
+.open-house-form-input:focus,
+.open-house-form-select:focus,
+.open-house-form-textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.open-house-form-textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.open-house-form-section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    margin: 24px 0 16px 0;
+    border-bottom: 2px solid #e5e7eb;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.open-house-form-section-header i {
+    color: #3b82f6;
+}
+
+.open-house-form-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-form-checkbox-wrapper:hover {
+    background: #f3f4f6;
+    border-color: #3b82f6;
+}
+
+.open-house-form-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #3b82f6;
+}
+
+.open-house-form-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+    cursor: pointer;
+}
+
+.open-house-form-checkbox-label i {
+    color: #3b82f6;
+}
+
+/* Form Actions */
+.open-house-form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 2px solid #e5e7eb;
+}
+
+.open-house-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-btn-cancel {
+    background-color: #f3f4f6;
+    color: #374151;
+}
+
+.open-house-btn-cancel:hover {
+    background-color: #e5e7eb;
+}
+
+.open-house-btn-submit {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+}
+
+.open-house-btn-submit:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.open-house-btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Table Container */
+.open-house-table-container {
+    margin-bottom: 24px;
+}
+
+.open-house-table-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.open-house-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-bottom: 3px solid #374151;
+}
+
+.open-house-table-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.open-house-table-header-content i {
+    font-size: 20px;
+    color: #3b82f6;
+}
+
+.open-house-table-header-content h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.open-house-refresh-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-refresh-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.open-house-refresh-btn i {
+    font-size: 14px;
+}
+
+.open-house-table-wrapper {
+    overflow-x: auto;
+}
+
+.open-house-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.open-house-table-head {
+    background-color: #f9fafb;
+}
+
+.open-house-table-head th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.open-house-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease;
+}
+
+.open-house-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.open-house-table tbody td {
+    padding: 16px;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+/* Status Badges */
+.open-house-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.open-house-status-scheduled {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.open-house-status-completed {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.open-house-status-cancelled {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.open-house-rsvp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.open-house-rsvp-yes {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.open-house-rsvp-no {
+    background-color: #f3f4f6;
+    color: #6b7280;
+}
+
+.open-house-attendees-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.open-house-attendees-info i {
+    color: #3b82f6;
+}
+
+/* Action Buttons */
+.open-house-action-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.open-house-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-edit-btn {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.open-house-edit-btn:hover {
+    background-color: #bfdbfe;
+    transform: translateY(-2px);
+}
+
+.open-house-delete-btn {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.open-house-delete-btn:hover {
+    background-color: #fecaca;
+    transform: translateY(-2px);
+}
+
+/* Empty Alert */
+.open-house-empty-alert {
+    display: none;
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.open-house-empty-alert i {
+    font-size: 48px;
+    color: #cbd5e1;
+    margin-bottom: 16px;
+}
+
+.open-house-empty-alert p {
+    font-size: 16px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Pagination */
+.open-house-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 24px 0;
+}
+
+.open-house-pagination button {
+    padding: 10px 16px;
+    border: 2px solid #e5e7eb;
+    background-color: #ffffff;
+    color: #374151;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.open-house-pagination button:hover:not(:disabled) {
+    background-color: #f9fafb;
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.open-house-pagination button:disabled {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border-color: #3b82f6;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .open-house-form-modal {
+        width: 95%;
+        max-height: 95vh;
+    }
+
+    .open-house-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .open-house-filter-controls {
+        flex-direction: column;
+    }
+
+    .open-house-filter-item {
+        width: 100%;
+    }
+
+    .open-house-table-wrapper {
+        overflow-x: scroll;
+    }
+
+    .open-house-table {
+        min-width: 1200px;
+    }
+
+    .open-house-form-actions {
+        flex-direction: column;
+    }
+
+    .open-house-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

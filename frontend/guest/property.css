@@ -4,11 +4,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background: white; */
+    font-family: "Raleway", sans-serif;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     /* background-color: #fff; */
     color: #000;
     line-height: 1.6;
@@ -43,53 +42,48 @@ body {
 
 .property-back-btn {
     background: none;
-    border: 1px solid #d0d0d0;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 700;
 }
 
 .property-back-btn:hover {
-    background-color: #f7f8fa;
-    border-color: #999;
+    color: #666;
 }
 
 .property-back-btn i {
-    font-size: 18px;
-    color: #2d3748;
+    font-size: 20px;
 }
 
 .property-action-icons {
     display: flex;
-    gap: 12px;
+    gap: 24px;
 }
 
 .property-action-favorite, .property-action-share {
-    background: none;
-    border: 1px solid #d0d0d0;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
     display: flex;
+    background: none;
+    border: none;
     align-items: center;
-    justify-content: center;
     cursor: pointer;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
     transition: all 0.2s ease;
 }
 
 .property-action-favorite:hover, .property-action-share:hover {
-    background-color: #f7f8fa;
-    border-color: #999;
+    color: #666;
 }
 
 .property-action-favorite i {
     font-size: 18px;
-    color: #d92228;
 }
 
 /* .heart-filled {
@@ -226,7 +220,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(0, 0, 0, 0.7);
     border: none;
     width: 40px;
     height: 40px;
@@ -241,13 +235,12 @@ body {
 }
 
 .property-image-nav-btn:hover {
-    background: white;
     transform: translateY(-50%) scale(1.1);
 }
 
 .property-image-nav-btn i {
     font-size: 20px;
-    color: #333;
+    color: #fff;
 }
 
 .property-image-nav-prev {
@@ -272,7 +265,7 @@ body {
     padding: 6px 12px;
     border-radius: 60px;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     opacity: 0;
     transition: opacity 0.2s ease;
     z-index: 10;

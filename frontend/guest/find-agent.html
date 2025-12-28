@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sold properties</title>
+    <title>Find an agent</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -291,11 +291,11 @@
     </aside>
 
     <!-- Hero Section -->
-    <section class="hero-section sell-hero-section">
+    <section class="hero-section find-agent-hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Sell your home with confidence</h1>
-            <p class="hero-subtitle">We give you multiple options to sell your home with the flexibility to choose what works best for your unique situation, timeline and goals.</p>
+            <h1 class="hero-title">Search for agents</h1>
+            <p class="hero-subtitle">Discover the right match for you.</p>
 
             <!-- Search Bar -->
             <div class="hero-search-wrapper">
@@ -306,103 +306,6 @@
                     </button>
                     <button class="hero-search-btn">
                         <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recently Sold Properties Section -->
-    <section class="properties-section recently-sold-section">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">Recently sold homes in Los Angeles, California</h2>
-                <a href="#" data-id="expensive" class="section-link">View all in Los Angeles, CA</a>
-            </div>
-
-            <!-- Properties Grid -->
-            <div class="properties-grid" id="recently-sold-grid"></div>
-
-            <div class="alert empty-alert" id="recently-sold-empty-alert">
-                <i class="fas fa-info-circle"></i> No properties to show
-            </div>
-
-            <div class="alert error-alert" id="recently-sold-error-alert">
-                <i class="fas fa-exclamation-circle"></i> Failed to load properties. Please try again later.
-            </div>
-        </div>
-    </section>
-
-    <!-- Seller Guides Section -->
-    <section class="sold-guides-section">
-        <div class="sold-guides-container">
-            <div class="sold-guides-header">
-                <h2 class="section-title">Seller guides</h2>
-                <a href="#" class="sold-guides-complete-link">
-                    Complete guide
-                    <i class="bi bi-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="sold-guides-grid">
-
-                <div class="sold-guide-card">
-                    <div class="sold-guide-card-content">
-                        <div class="sold-guide-icon">
-                            <i class="bi bi-pc-display-horizontal"></i>
-                        </div>
-                        <div class="sold-guide-text">
-                            <h3 class="sold-guide-card-title">Should I sell my home now?</h3>
-                            <p class="sold-guide-card-description">Questions to ask to help you figure out if selling makes sense for you right now.</p>
-                        </div>
-                    </div>
-                    <button class="sold-guide-card-arrow">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-
-                <div class="sold-guide-card">
-                    <div class="sold-guide-card-content">
-                        <div class="sold-guide-icon">
-                            <i class="bi bi-house-door"></i>
-                        </div>
-                        <div class="sold-guide-text">
-                            <h3 class="sold-guide-card-title">How much is my home worth?</h3>
-                            <p class="sold-guide-card-description">Tools and advice to help you understand your home's value.</p>
-                        </div>
-                    </div>
-                    <button class="sold-guide-card-arrow">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-
-                <div class="sold-guide-card">
-                    <div class="sold-guide-card-content">
-                        <div class="sold-guide-icon">
-                            <i class="bi bi-cash-stack"></i>
-                        </div>
-                        <div class="sold-guide-text">
-                            <h3 class="sold-guide-card-title">How should I sell my home?</h3>
-                            <p class="sold-guide-card-description">Rundown of your options as well as pros and cons of each method.</p>
-                        </div>
-                    </div>
-                    <button class="sold-guide-card-arrow">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-
-                <div class="sold-guide-card">
-                    <div class="sold-guide-card-content">
-                        <div class="sold-guide-icon">
-                            <i class="bi bi-brush"></i>
-                        </div>
-                        <div class="sold-guide-text">
-                            <h3 class="sold-guide-card-title">How to prepare your home for sale</h3>
-                            <p class="sold-guide-card-description">Things to consider that could maximize your home's value.</p>
-                        </div>
-                    </div>
-                    <button class="sold-guide-card-arrow">
-                        <i class="bi bi-chevron-right"></i>
                     </button>
                 </div>
             </div>
@@ -540,7 +443,7 @@
     <script src="/frontend/general/csrf-helper.js"></script>
     <script src="/frontend/general/toast-helper.js"></script>
     <script src="/frontend/general/confirmation-modal.js"></script>
-    <script src="/frontend/guest/sell.js"></script>
+    <script src="/frontend/guest/find-agent.js"></script>
     <script src="/frontend/user/user-global.js"></script>
     <script src="/frontend/guest/register.js"></script>
 </body>

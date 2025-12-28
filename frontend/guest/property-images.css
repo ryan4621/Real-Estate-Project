@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+}
+
+/* Property View Header */
+.property-images-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 16px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.property-images-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.property-images-back-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.property-images-back-btn:hover {
+    color: #666;
+}
+
+.property-images-back-btn i {
+    font-size: 20px;
+}
+
+.property-images-header-actions {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.property-images-contact-btn {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.property-images-contact-btn:hover {
+    background-color: #666;
+}
+
+.property-images-save-btn,
+.property-images-share-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #000;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.property-images-save-btn:hover,
+.property-images-share-btn:hover {
+    color: #666;
+}
+
+.property-images-save-btn i,
+.property-images-share-btn i {
+    font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .property-images-header {
+        padding: 12px 20px;
+    }
+
+    .property-images-header-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+    }
+
+    .property-images-header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .property-images-contact-btn {
+        flex: 1;
+    }
+
+    .property-images-tabs {
+        padding: 0 20px;
+        gap: 24px;
+    }
+
+    .property-images-save-btn span,
+    .property-images-share-btn span {
+        display: none;
+    }
+}
+
+
+/* Property Images Gallery Section */
+.property-images-gallery-section {
+    background-color: #ffffff;
+    padding: 0;
+}
+
+/* Property Images Tabs */
+.property-images-tabs {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 40px;
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    position: sticky;
+    top: 74px;
+    z-index: 100;
+}
+
+.property-images-tabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.property-images-tabs::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.property-images-tab {
+    background: none;
+    border: none;
+    padding: 16px 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.2s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.property-images-tab:hover {
+    color: #000;
+}
+
+.property-images-tab.active {
+    color: #000;
+    font-weight: 600;
+    border-bottom-color: #000;
+}
+
+/* Property Images Grid */
+.property-images-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.property-images-grid-item {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+}
+
+.property-images-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .property-images-tabs {
+        padding: 0 20px;
+        gap: 24px;
+    }
+
+    .property-images-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 12px;
+        padding: 20px;
+    }
+
+    .property-images-grid-item {
+        height: 200px;
+    }
+}

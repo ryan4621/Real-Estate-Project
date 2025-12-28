@@ -1,4 +1,4 @@
-//homepage.js
+//sell.js
 
 const SOLD_API_BASE = '/public'
 
@@ -14,7 +14,7 @@ function setUpSoldEventListeners() {
 	window.addEventListener('scroll', () => {
 		const heroBottom = heroSection.getBoundingClientRect().bottom;
 		
-		if (heroBottom <= 80) { // Adjust for navbar height
+		if (heroBottom <= 80) {
 			searchWrapper.classList.add('sticky');
 		} else {
 			searchWrapper.classList.remove('sticky');
@@ -41,9 +41,9 @@ function setUpSoldEventListeners() {
 		const searchValue = heroSearchInput.value.trim();
 		
 		if (searchValue) {
-			window.location.href = `/frontend/guest/rental-listings.html?search=${encodeURIComponent(searchValue)}`;
+			window.location.href = `/frontend/guest/sold.html?search=${encodeURIComponent(searchValue)}`;
 		} else {
-			window.location.href = `/frontend/guest/rental-listings.html`;
+			window.location.href = `/frontend/guest/sold.html`;
 		}
 	});
 

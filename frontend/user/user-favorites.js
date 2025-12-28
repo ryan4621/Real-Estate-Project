@@ -164,16 +164,26 @@ async function loadFavorites(page = currentPage){
 
 			const primaryImage = imageUrls[0];
 
-            const addedAt = new Date(property.added_at).toLocaleDateString("en-US", { month: "short", day: "numeric" });
-            const propertyInfo = document.createElement("div");
+            let status;
 
+			if(property.status === 'Sale'){
+				status = 'for sale'
+			}else if(property.status === 'Rent'){
+				status = 'for rent'
+			}else{
+				status = 'Sold'
+			}
+
+            const addedAt = new Date(property.added_at).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+
+            const propertyInfo = document.createElement("div");
             propertyInfo.classList.add('property-info')
             propertyInfo.innerHTML = `
                 <span class="property-card-broker">Saved ${escapeHtml(addedAt)}</span>
                 <div class="property-card">
                     <div class="property-card-image-wrapper">
                         <img src="${primaryImage}" alt="Property-Image" class="property-card-image">
-                        <span class="property-card-status">${escapeHtml(property.status)}</span>
+                        <span class="property-card-status">${escapeHtml(status)}</span>
                         <button class="image-nav-btn image-nav-prev">
 							<i class="bi bi-chevron-left"></i>
 						</button>
@@ -196,12 +206,10 @@ async function loadFavorites(page = currentPage){
                             <span class="property-card-separator">|</span>
                             <span class="property-card-detail"><strong>${Math.round(property.area).toLocaleString()}</strong> sqft</span>
                         </div>
-                        <div class="property-card-address">${escapeHtml(property.address)}</div>
-                        <div class="property-card-location">${escapeHtml(property.location)}</div>
-                        <div class="property-card-agent">
-                            <span class="property-card-agent-label">Listed by:</span>
-                            <span class="property-card-agent-name">${escapeHtml(property.agent_name)}</span>
-                        </div>
+                        <div class="property-card-bottom">
+							<div class="property-card-address">${escapeHtml(property.address)}</div>
+							<div class="property-card-location">${escapeHtml(property.location)}</div>
+						</div>
                     </div>
                 </div>                
             `;
@@ -339,10 +347,10 @@ async function loadSavedSearches(){
                     <div class="ss-card-content">
                         <div class="ss-details">
                             <span class="ss-title">${escapeHtml(filters.search)} - ${escapeHtml(search.category)}</span>
-                            <span class="ss-filters">Property type: ${escapeHtml(filters.property_type || 'All Types')}</span>
-                            <span class="ss-filters">Price: ${filters.price_min ? '$' + Math.round(filters.price_min).toLocaleString() : 'No min'} - ${filters.price_max ? '$' + Math.round(filters.price_max).toLocaleString() : 'No max'}</span>
-                            <span class="ss-filters">Bedrooms: ${escapeHtml(filters.bedrooms_min || 'No min')} - ${escapeHtml(filters.bedrooms_max || 'No max')}</span>
-                            <span class="ss-filters">Bathrooms: ${escapeHtml(filters.bathrooms_min || 'No min')} - ${escapeHtml(filters.bathrooms_max || 'No max')}</span>
+                            <span class="ss-filters"><span>Property type:</span> ${escapeHtml(filters.property_type || 'All Types')}</span>
+                            <span class="ss-filters"><span>Price:</span> ${filters.price_min ? '$' + Math.round(filters.price_min).toLocaleString() : 'No min'} - ${filters.price_max ? '$' + Math.round(filters.price_max).toLocaleString() : 'No max'}</span>
+                            <span class="ss-filters"><span>Bedrooms:</span> ${escapeHtml(filters.bedrooms_min || 'No min')} - ${escapeHtml(filters.bedrooms_max || 'No max')}</span>
+                            <span class="ss-filters"><span>Bathrooms:</span> ${escapeHtml(filters.bathrooms_min || 'No min')} - ${escapeHtml(filters.bathrooms_max || 'No max')}</span>
                         </div>
                     </div>
                     

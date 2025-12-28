@@ -160,14 +160,16 @@ async function loadPropertyPage(){
         const updatedDate = new Date(propertyData.updated_at)
         const soldDate = new Date(propertyData.updated_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 
-        const propertyActionBar =  document.getElementById('property-action-bar')
+        const propertyActionBar =  document.getElementById('property-action-bar');
+
+        propertyActionBar.innerHTML = ''
 
         const propertyActionBarContainer = document.createElement('div')
         propertyActionBarContainer.classList.add('property-action-bar-container')
         propertyActionBarContainer.innerHTML = `
             <div class="property-action-bar-container">
                 <button class="property-back-btn" id="property-back-btn">
-                    <i class="bi bi-arrow-left"></i>
+                    <i class="bi bi-chevron-left"></i>
                 </button>
                 <div class="property-action-icons">
                     <button class="property-action-favorite" id="property-action-favorite">
@@ -175,7 +177,7 @@ async function loadPropertyPage(){
                         <i class="bi bi-heart-fill heart-filled"></i>
                     </button>
                     <button class="property-action-share">
-                        <i class="bi bi-share"></i>
+                        <i class="bi bi-upload"></i>
                     </button>
                 </div>
             </div>
@@ -393,6 +395,23 @@ async function loadPropertyPage(){
         getPropertyStatus(propertyData.status, statusElement);
 
         propertyDetailsPage.appendChild(propertyDetailsContainer)
+
+        // After this line: propertyDetailsPage.appendChild(propertyDetailsContainer)
+
+        // Add click listener to main image to navigate to all photos
+        const mainImage = propertyDetailsContainer.querySelector('.property-main-image');
+        mainImage.addEventListener('click', () => {
+            window.location.href = `/frontend/guest/property-images.html?id=${propertyData.property_id}&section=all`;
+        });
+
+        // Add click listeners to thumbnail images to navigate to specific sections
+        const thumbnails = propertyDetailsContainer.querySelectorAll('.property-secondary-images');
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                const section = thumbnail.querySelector('.property-section-badge').textContent;
+                window.location.href = `/frontend/guest/property-images.html?id=${propertyData.property_id}&section=${encodeURIComponent(section)}`;
+            });
+        });
 
         let currentImageIndex = 0;
         const allImages = images.map(img => img.image_url);
