@@ -68,7 +68,7 @@ A fully responsive web application inspired by Realtor.com, designed to provide 
 * Agents sign up and authentication system (in progress).
 * Enhanced agent analytics dashboards.
 
-🚦 Running the project
+▶️ Running the project
 --
 1. Clone the repository
 2. Install dependencies found in the package.json file
@@ -78,4 +78,4 @@ A fully responsive web application inspired by Realtor.com, designed to provide 
 
 🎞️ Preview
 --
-![Real estate listing Preview](https://raw.githubusercontent.com/ryan4621/ryan4621/main/Boho%20Restaurant%20Preview.gif)
+![Real estate listing Preview](https://raw.githubusercontent.com/ryan4621/Real-Estate-Project/blob/main/images/Real%20estate%20restaurant%20preview.gif)
