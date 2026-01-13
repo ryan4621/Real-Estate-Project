@@ -78,4 +78,4 @@ A fully responsive web application inspired by Realtor.com, designed to provide 
 
 🎞️ Preview
 --
-![Real estate listing Preview](https://raw.githubusercontent.com/ryan4621/Real-Estate-Project/blob/main/images/Real%20estate%20restaurant%20preview.gif)
+![Real estate listing Preview](https://raw.githubusercontent.com/ryan4621/Real-Estate-Project/main/images/Real%20estate%20restaurant%20preview.gif)
