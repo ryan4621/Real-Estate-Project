@@ -303,7 +303,7 @@ function showStep(index, direction = 'forward') {
         // Check if user selected "Yes, I currently own a home" in step 5
         const ownsHome = selectedOptions[5];
         if (ownsHome !== 'Yes, I currently own a home') {
-            index = 7; // Skip to next step
+            index = 7;
             currentStep = 7;
         }
     }
@@ -419,7 +419,6 @@ function updateProgressSteps(stepIndex) {
             const offset = circumference - (circumference * progressPercent / 100);
             progressRing.style.strokeDashoffset = offset;
             
-            // Show check only when 100% complete
             check.style.display = progressPercent === 100 ? 'block' : 'none';
         } else {
             // Future sections

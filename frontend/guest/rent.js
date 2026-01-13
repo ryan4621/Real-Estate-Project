@@ -840,7 +840,7 @@ function rentNavigation(navigateTerm) {
 
     const params = new URLSearchParams();
 
-	let targetPage = '/frontend/guest/rental_listings.html';
+	let targetPage = '/frontend/guest/rental-listings.html';
 
 	if( navigateTerm === 'latest'){
 		params.append('sort', 'newest')

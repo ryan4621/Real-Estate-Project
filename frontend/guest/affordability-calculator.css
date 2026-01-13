@@ -12,23 +12,6 @@ body {
     background-color: #ffffff;
 }
 
-.tools-section {
-    background-color: #fff;
-}
-
-.note {
-    padding: 30px 100px;
-    background-color: #f5f5f5;
-}
-
-.note-description > span {
-    font-weight: 700;
-}
-
-.note-description {
-    font-size: .8rem;
-}
-
 /* Hero Section */
 .affordability-hero-section {
     position: relative;
@@ -40,7 +23,7 @@ body {
 .affordability-hero-content {
     position: relative;
     width: 100%;
-    height: 430px;
+    height: min(26.875rem, 50vh);
     overflow: hidden;
 }
 
@@ -57,76 +40,77 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 120px 20px 80px;
+    padding: clamp(4rem, 8vw, 7.5rem) clamp(1rem, 1.8vw, 1.25rem) clamp(3rem, 5vw, 5rem);
     color: #ffffff;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3));
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
 
 .affordability-hero-title {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    letter-spacing: -1px;
+    margin-bottom: clamp(1rem, 1.8vw, 1.25rem);
+    text-shadow: 0.125rem 0.125rem 0.5rem rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.063rem;
     line-height: 1.1;
 }
 
 .affordability-hero-subtitle {
-    font-size: 1rem;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
     font-weight: 400;
-    max-width: 600px;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    max-width: 37.5rem;
+    text-shadow: 0.063rem 0.063rem 0.25rem rgba(0, 0, 0, 0.5);
     line-height: 1.5;
 }
 
 /* Calculator Card */
 .affordability-calculator-card {
     background: white;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    max-width: 1150px;
-    width: 70%;
-    margin-top: -90px;
+    border-radius: 1.25rem;
+    padding: clamp(1.5rem, 2.5vw, 1.875rem);
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15);
+    max-width: 55rem;
+    width: 90%;
+    margin-top: clamp(-3rem, -10vw, -5rem);
     position: relative;
     z-index: 10;
 }
 
 .calculator-heading {
-    font-size: 1.4rem;
+    font-size: clamp(1.125rem, 1.8vw, 1.4rem);
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 32px;
+    margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 /* Form Styles */
 .calculator-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: clamp(0.5rem, 1vw, 0.625rem);
 }
 
 .form-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: clamp(0.5rem, 1vw, 0.625rem);
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: clamp(0.125rem, 0.3vw, 0.188rem);
 }
 
 .form-label {
-    font-size: 16px;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
     font-weight: 600;
     color: #1a1a1a;
-    margin-bottom: 4px;
+    margin-bottom: clamp(0.188rem, 0.5vw, 0.25rem);
 }
 
 .input-wrapper {
@@ -137,8 +121,8 @@ body {
 
 .input-prefix {
     position: absolute;
-    left: 16px;
-    font-size: 16px;
+    left: clamp(0.875rem, 1.5vw, 1rem);
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
     color: #1a1a1a;
     font-weight: 500;
     pointer-events: none;
@@ -146,10 +130,10 @@ body {
 
 .form-input {
     width: 100%;
-    padding: 14px 40px 14px 36px;
+    padding: clamp(0.75rem, 1.2vw, 0.875rem) clamp(2rem, 3vw, 2.5rem) clamp(0.75rem, 1.2vw, 0.875rem) clamp(2rem, 2.5vw, 2.25rem);
     border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 1rem;
+    border-radius: 0.625rem;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
     color: #1a1a1a;
     transition: all 0.2s ease;
 }
@@ -166,10 +150,10 @@ body {
 
 .clear-btn {
     position: absolute;
-    right: 12px;
+    right: clamp(0.625rem, 1vw, 0.75rem);
     background: none;
     border: none;
-    padding: 4px;
+    padding: clamp(0.188rem, 0.5vw, 0.25rem);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -183,34 +167,34 @@ body {
 }
 
 .clear-btn i {
-    font-size: 22px;
+    font-size: clamp(1.25rem, 1.8vw, 1.375rem);
 }
 
 .form-help-text {
-    font-size: 13px;
+    font-size: clamp(0.75rem, 1.1vw, 0.813rem);
     color: #6b7280;
     line-height: 1.4;
-    margin-top: 4px;
+    margin-top: clamp(0.188rem, 0.5vw, 0.25rem);
 }
 
 /* Checkbox Group */
 .checkbox-group {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    margin-top: 4px;
+    gap: clamp(0.625rem, 1vw, 0.75rem);
+    margin-top: clamp(0.188rem, 0.5vw, 0.25rem);
 }
 
 .checkbox-input {
-    width: 18px;
-    height: 18px;
+    width: clamp(1rem, 1.5vw, 1.125rem);
+    height: clamp(1rem, 1.5vw, 1.125rem);
     cursor: pointer;
-    margin-top: 2px;
+    margin-top: clamp(0.063rem, 0.2vw, 0.125rem);
     accent-color: #1a1a1a;
 }
 
 .checkbox-label {
-    font-size: 14px;
+    font-size: clamp(0.813rem, 1.2vw, 0.875rem);
     color: #1a1a1a;
     font-weight: 500;
     cursor: pointer;
@@ -218,26 +202,25 @@ body {
 }
 
 .checkbox-help-text {
-    font-size: 13px;
+    font-size: clamp(0.75rem, 1.1vw, 0.813rem);
     color: #6b7280;
-    margin-top: -13px;
-    margin-left: 30px;
-    /* line-height: 1.4; */
+    margin-top: clamp(-0.75rem, -1vw, -0.813rem);
+    margin-left: clamp(1.5rem, 2.5vw, 1.875rem);
 }
 
 /* Submit Button */
 .submit-btn {
     width: fit-content;
-    padding: 16px 22px;
+    padding: clamp(0.875rem, 1.5vw, 1rem) clamp(1.25rem, 1.8vw, 1.375rem);
     background: #000000;
     color: white;
     border: none;
-    border-radius: 30px;
-    font-size: 16px;
+    border-radius: 1.875rem;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-top: 8px;
+    margin-top: clamp(0.375rem, 0.8vw, 0.5rem);
 }
 
 .submit-btn:hover {
@@ -254,20 +237,20 @@ body {
 }
 
 .affordability-result-header {
-    font-size: 24px;
+    font-size: clamp(1rem, 1.8vw, 1.5rem);
     font-weight: 700;
     color: #000000;
-    margin-bottom: 8px;
-    padding-right: 80px;
+    margin-bottom: clamp(0.375rem, 0.8vw, 0.5rem);
+    padding-right: clamp(3.125rem, 6vw, 5rem);
 }
 
 .edit-container {
     position: absolute;
-    top: 40px;
-    right: 40px;
+    top: clamp(1.25rem, 3vw, 2.5rem);
+    right: clamp(1.25rem, 3vw, 2.5rem);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: clamp(0.313rem, 0.6vw, 0.375rem);
     cursor: pointer;
     transition: opacity 0.2s ease;
 }
@@ -277,12 +260,12 @@ body {
 }
 
 .edit-icon {
-    font-size: 16px;
+    font-size: clamp(0.813rem, 1.2vw, 1rem);
     color: #000000;
 }
 
 .edit-text {
-    font-size: 16px;
+    font-size: clamp(0.813rem, 1.2vw, 1rem);
     font-weight: 600;
     color: #1a1a1a;
     text-decoration: underline;
@@ -291,35 +274,35 @@ body {
 .affordability-result-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    gap: clamp(0.75rem, 1.3vw, 1rem);
+    margin-top: clamp(1.25rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 .affordability-result-item {
     background: white;
     border: 1px solid #e6e6e6;
-    border-radius: 20px;
-    padding: 16px 20px;
+    border-radius: 1.25rem;
+    padding: clamp(0.875rem, 1.5vw, 1rem) clamp(1rem, 1.8vw, 1.25rem);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: clamp(0.438rem, 0.8vw, 0.5rem);
     transition: all 0.2s ease;
 }
 
 .affordability-result-item:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    transform: translateY(-0.125rem);
 }
 
 .affordability-label {
     display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: clamp(0.188rem, 0.5vw, 0.25rem) clamp(0.625rem, 1vw, 0.75rem);
+    border-radius: 1.25rem;
+    font-size: clamp(0.688rem, 1vw, 0.75rem);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.031rem;
     width: fit-content;
 }
 
@@ -339,14 +322,14 @@ body {
 }
 
 .affordability-price-range {
-    font-size: 24px;
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
     font-weight: 700;
     color: #000000;
-    margin-top: 4px;
+    margin-top: clamp(0.188rem, 0.5vw, 0.25rem);
 }
 
 .affordability-budget {
-    font-size: 14px;
+    font-size: clamp(0.813rem, 1.2vw, 0.875rem);
     color: #000000;
     font-weight: 400;
 }
@@ -354,16 +337,16 @@ body {
 .affordability-btn-container {
     display: flex;
     justify-content: flex-start;
-    margin-top: 8px;
+    margin-top: clamp(0.375rem, 0.8vw, 0.5rem);
 }
 
 .affordability-btn-container button {
-    padding: 12px 28px;
+    padding: clamp(0.625rem, 1vw, 0.75rem) clamp(1.5rem, 2.2vw, 1.75rem);
     background: white;
     color: #000000;
     border: 2px solid #1a1a1a;
-    border-radius: 30px;
-    font-size: 15px;
+    border-radius: 1.875rem;
+    font-size: clamp(0.875rem, 1.2vw, 0.938rem);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -378,136 +361,15 @@ body {
     transform: scale(0.98);
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
-    .affordability-result-content {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .affordability-result-header {
-        font-size: 20px;
-        padding-right: 70px;
-    }
-
-    .edit-container {
-        top: 28px;
-        right: 28px;
-    }
-
-    .edit-icon {
-        font-size: 14px;
-    }
-
-    .edit-text {
-        font-size: 14px;
-    }
-
-    .affordability-result-item {
-        padding: 20px 18px;
-    }
-
-    .affordability-price-range {
-        font-size: 22px;
-    }
-}
-
-@media (max-width: 768px) {
-    .affordability-result-header {
-        font-size: 18px;
-        padding-right: 60px;
-    }
-
-    .edit-container {
-        top: 24px;
-        right: 20px;
-    }
-
-    .affordability-result-item {
-        padding: 18px 16px;
-    }
-
-    .affordability-price-range {
-        font-size: 20px;
-    }
-
-    .affordability-budget {
-        font-size: 13px;
-    }
-
-    .affordability-btn-container button {
-        padding: 10px 24px;
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .affordability-result-header {
-        font-size: 16px;
-        padding-right: 50px;
-    }
-
-    .edit-container {
-        top: 20px;
-        right: 16px;
-    }
-
-    .edit-icon {
-        font-size: 13px;
-    }
-
-    .edit-text {
-        font-size: 13px;
-    }
-
-    .affordability-label {
-        font-size: 11px;
-        padding: 3px 10px;
-    }
-
-    .affordability-price-range {
-        font-size: 18px;
-    }
-
-    .affordability-result-item {
-        padding: 16px 14px;
-    }
-
-    .affordability-btn-container {
-        justify-content: stretch;
-    }
-
-    .affordability-btn-container button {
-        width: 100%;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .affordability-hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .affordability-calculator-card {
-        padding: 32px 24px;
-        margin-top: -150px;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-}
-
 /* Next Step Section */
 .next-step-section {
     background: white;
-    padding: 60px 20px;
+    padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1rem, 1.8vw, 1.25rem);
     text-align: center;
 }
 
 .next-step-heading {
-    font-size: 28px;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
     font-weight: 700;
     color: #1a1a1a;
 }
@@ -515,11 +377,11 @@ body {
 /* Affordability Info Section */
 .affordability-info-section {
     background: white;
-    padding: 40px 20px 60px;
+    padding: clamp(2rem, 3vw, 2.5rem) clamp(1rem, 1.8vw, 1.25rem) clamp(2.5rem, 4vw, 3.75rem);
 }
 
 .affordability-info-container {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
 }
 
@@ -534,7 +396,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 28px;
+    padding: clamp(1.25rem, 2vw, 1.5rem) clamp(1.5rem, 2.2vw, 1.75rem);
     background: white;
     border: none;
     cursor: pointer;
@@ -546,14 +408,14 @@ body {
 }
 
 .accordion-title {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     font-weight: 700;
     color: #1a1a1a;
     text-align: left;
 }
 
 .accordion-icon {
-    font-size: 20px;
+    font-size: clamp(1.125rem, 1.8vw, 1.25rem);
     color: #1a1a1a;
     transition: transform 0.3s ease;
 }
@@ -572,40 +434,40 @@ body {
 }
 
 .accordion-body {
-    padding: 20px 28px 32px;
+    padding: clamp(1rem, 1.8vw, 1.25rem) clamp(1.5rem, 2.2vw, 1.75rem) clamp(1.75rem, 2.5vw, 2rem);
 }
 
 .accordion-intro {
-    font-size: 15px;
+    font-size: clamp(0.875rem, 1.2vw, 0.938rem);
     color: #1a1a1a;
-    margin-bottom: 16px;
+    margin-bottom: clamp(0.875rem, 1.5vw, 1rem);
     font-weight: 500;
 }
 
 .accordion-list {
     list-style: disc;
-    padding-left: 24px;
-    margin-bottom: 24px;
+    padding-left: clamp(1.25rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 .accordion-list li {
-    font-size: 15px;
+    font-size: clamp(0.875rem, 1.2vw, 0.938rem);
     color: #4a5568;
     line-height: 1.7;
-    margin-bottom: 8px;
+    margin-bottom: clamp(0.438rem, 0.8vw, 0.5rem);
 }
 
 .accordion-numbered-list {
     list-style: decimal;
-    padding-left: 24px;
-    margin-bottom: 5px;
+    padding-left: clamp(1.25rem, 2vw, 1.5rem);
+    margin-bottom: clamp(0.25rem, 0.5vw, 0.313rem);
 }
 
 .accordion-numbered-list li {
-    font-size: 15px;
+    font-size: clamp(0.875rem, 1.2vw, 0.938rem);
     color: #4a5568;
     line-height: 1.7;
-    margin-bottom: 12px;
+    margin-bottom: clamp(0.625rem, 1vw, 0.75rem);
 }
 
 .accordion-link {
@@ -618,85 +480,47 @@ body {
 }
 
 .term-item {
-    margin-bottom: 25px;
+    margin-bottom: clamp(1.375rem, 2vw, 1.563rem);
     padding-bottom: 0;
     border-bottom: none;
 }
 
-/* Responsive Design */
+.tools-section {
+    background-color: #fff;
+}
+
+.note {
+    padding: clamp(1.5rem, 2.5vw, 1.875rem) clamp(4rem, 7vw, 6.25rem);
+    background-color: #f5f5f5;
+}
+
+.note-description > span {
+    font-weight: 700;
+}
+
+.note-description {
+    font-size: clamp(0.75rem, 1.1vw, 0.8rem);
+}
+
+@media (max-width: 992px) {
+}
+
 @media (max-width: 768px) {
-    .affordability-hero-section {
-        padding: 40px 16px;
-    }
-
-    .affordability-hero-title {
-        font-size: 36px;
-    }
-
-    .affordability-hero-subtitle {
-        font-size: 16px;
-        margin-bottom: 32px;
-    }
-
-    .affordability-calculator-card {
-        padding: 28px 20px;
-    }
-
-    .calculator-heading {
-        font-size: 20px;
-        margin-bottom: 24px;
+    .affordability-result-content {
+        grid-template-columns: 1fr;
     }
 
     .form-row {
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .form-input {
-        padding: 12px 40px 12px 32px;
-        font-size: 15px;
-    }
-
-    .submit-btn {
-        padding: 14px 28px;
-        font-size: 15px;
-    }
-
-    .accordion-header {
-        padding: 20px;
-    }
-
-    .accordion-title {
-        font-size: 20px;
-    }
-
-    .accordion-body {
-        padding: 0 20px 24px;
-    }
-
-    .next-step-heading {
-        font-size: 24px;
     }
 }
 
 @media (max-width: 480px) {
-    .affordability-hero-title {
-        font-size: 28px;
+    .affordability-btn-container {
+        justify-content: stretch;
     }
 
-    .affordability-hero-subtitle {
-        font-size: 15px;
-    }
-
-    .affordability-calculator-card {
-        padding: 24px 16px;
-    }
-
-    .calculator-heading {
-        font-size: 18px;
-    }
-
-    .accordion-title {
-        font-size: 18px;
+    .affordability-btn-container button {
+        width: 100%;
     }
 }

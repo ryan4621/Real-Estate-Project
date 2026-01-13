@@ -1,0 +1,201 @@
+/* Seller Guides Section */
+.sold-guides-section {
+    background-color: #f0f0f0;
+    margin-top: clamp(2.5rem, 4vw, 3.75rem);
+    padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.sold-guides-container {
+    max-width: 81rem;
+    margin: 0 auto;
+}
+
+.sold-guides-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.sold-guides-complete-link {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.438rem, 0.8vw, 0.5rem);
+    color: #000;
+    text-decoration: underline;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+}
+
+.sold-guides-complete-link:hover {
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.sold-guides-complete-link i {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+}
+
+.sold-guides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+.sold-guide-card {
+    background-color: #ffffff;
+    border-radius: 1.5rem;
+    padding: clamp(0.938rem, 1.5vw, 1.125rem) clamp(1.25rem, 2vw, 1.5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.sold-guide-card:hover {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+
+.sold-guide-card-content {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.813rem, 1.2vw, 0.938rem);
+}
+
+.sold-guide-icon {
+    font-size: clamp(1.75rem, 2.5vw, 2rem);
+    color: #d92228;
+    flex-shrink: 0;
+    width: clamp(2.75rem, 4vw, 3rem);
+    height: clamp(2.75rem, 4vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff5f5;
+    border-radius: 0.5rem;
+}
+
+.sold-guide-card-title {
+    font-size: clamp(0.875rem, 1.2vw, 0.95rem);
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 clamp(0.438rem, 0.8vw, 0.5rem) 0;
+}
+
+.sold-guide-card-description {
+    font-size: clamp(0.75rem, 1.1vw, 0.85rem);
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.sold-guide-card-arrow {
+    background: none;
+    border: none;
+    width: clamp(1.75rem, 2.5vw, 2rem);
+    height: clamp(1.75rem, 2.5vw, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+    font-size: clamp(1.125rem, 1.8vw, 1.25rem);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* FAQ Section */
+.sold-faq-section {
+    background-color: #ffffff;
+    padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.sold-faq-container {
+    max-width: 81rem;
+    margin: 0 auto;
+}
+
+.sold-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+.sold-faq-item {
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+    padding: clamp(1.25rem, 2vw, 1.5rem) 0 clamp(1.25rem, 2vw, 1.5rem) 0;
+}
+
+.sold-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-size: clamp(0.938rem, 1.5vw, 1.05rem);
+    font-weight: 600;
+    color: #000;
+    transition: background-color 0.2s ease;
+}
+
+.sold-faq-question span:hover {
+    color: #606060;
+}
+
+.sold-faq-question i {
+    font-size: clamp(1.125rem, 1.8vw, 1.25rem);
+    font-weight: 700;
+    color: #000;
+    flex-shrink: 0;
+    margin-left: clamp(0.875rem, 1.5vw, 1rem);
+    transition: transform 0.3s ease;
+}
+
+.sold-faq-question.collapsed i {
+    transform: rotate(180deg);
+}
+
+.sold-faq-answer {
+    display: none;
+    padding-top: clamp(1rem, 1.8vw, 1.25rem);
+    overflow: hidden;
+    font-size: clamp(0.875rem, 1.2vw, 0.95rem);
+    color: #000;
+    line-height: 1.6;
+    transition: display 0.2s ease;
+}
+
+.sold-faq-answer.collapsed {
+    display: block;
+}
+
+.sold-faq-link {
+    color: #000;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.sold-faq-link:hover {
+    text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+    .sold-guides-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sold-guides-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

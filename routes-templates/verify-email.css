@@ -7,31 +7,32 @@ body {
     background: #f8f9fa;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .verification-container {
     background: white;
-    padding: 3rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: clamp(2rem, 5vh, 3rem);
+    border-radius: clamp(0.4rem, 1vw, 0.5rem);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 500px;
-    width: 90%;
+    max-width: min(31.25rem, 95vw);
+    width: 100%;
 }
 
 /* Success state */
 .verification-container.success {
-    border-top: 4px solid #198754;
+    border-top: clamp(3px, 0.5vw, 4px) solid #198754;
 }
 
 /* Error state */
 .verification-container.error {
-    border-top: 4px solid #dc3545;
+    border-top: clamp(3px, 0.5vw, 4px) solid #dc3545;
 }
 
 /* Warning state */
 .verification-container.warning {
-    border-top: 4px solid #ffc107;
+    border-top: clamp(3px, 0.5vw, 4px) solid #ffc107;
 }
 
 /* Icon colors */
@@ -51,50 +52,33 @@ body {
 .verification-container h2 {
     color: #212529;
     font-weight: 600;
-    margin-top: 1.5rem;
+    margin-top: clamp(1rem, 2.5vh, 1.5rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 /* Message styles */
 .verification-container p {
     color: #6c757d;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
     line-height: 1.6;
 }
 
 /* Button styles */
 .verification-container .btn {
-    padding: 0.75rem 2rem;
+    padding: clamp(0.625rem, 1.5vh, 0.75rem) clamp(1.5rem, 4vw, 2rem);
     font-weight: 500;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: clamp(0.2rem, 0.5vw, 0.25rem);
     transition: all 0.3s ease;
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    display: inline-block;
 }
 
 .verification-container .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 
 i {
-    font-size: 5rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 576px) {
-    .verification-container {
-        padding: 2rem 1.5rem;
-        width: 95%;
-    }
-
-    .verification-container h2 {
-        font-size: 1.5rem;
-    }
-
-    .verification-container p {
-        font-size: 0.9rem;
-    }
-
-    .verification-container i {
-        font-size: 4rem !important;
-    }
+    font-size: clamp(4rem, 8vw, 5rem);
 }

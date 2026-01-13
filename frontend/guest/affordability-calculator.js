@@ -50,7 +50,6 @@ async function setupEventListeners() {
     });
 }
 
-
 async function submitForm(){
 
     const formData = {
@@ -86,7 +85,6 @@ async function submitForm(){
         showToast("Failed to submit form. Please try again later.", "error")
     }
 };
-
 
 function showAffordabilityResult(formData, result) {
 
@@ -151,7 +149,6 @@ function showAffordabilityResult(formData, result) {
         addToProfile(formData)
     })
 }
-
 
 async function addToProfile(formData){
     try {

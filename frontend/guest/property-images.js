@@ -195,6 +195,15 @@ function setupPropertyImagesTabListeners(allImages) {
     });
 }
 
+function updateHeaderHeight() {
+    const header = document.querySelector('.property-images-header');
+    const headerHeight = header.offsetHeight;
+    document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+}
+
+updateHeaderHeight();
+window.addEventListener('resize', updateHeaderHeight);
+
 function escapeHtml(str) {
 	return String(str).replace(/[&<>"']/g, s => ({
 		"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"

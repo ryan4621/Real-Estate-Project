@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <link rel="stylesheet" href="/frontend/guest/find-agent.css">
 </head>
 <body>
 
@@ -79,7 +80,11 @@
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
-            <!-- <span class="nav-load"></span> -->
+            
+            <button class="nav-signup-btn mobile-signup-btn">
+                <i class="bi bi-person-plus"></i>
+            </button>
+            
             <div class="nav-load">
                 <button class="favorites-btn nav-load-btn">
                     <i class="fa-regular fa-heart"></i>
@@ -198,10 +203,10 @@
     <div class="sidebar-overlay"></div>
     <aside class="sidebar-nav">
         <div class="sidebar-header">
-            <div class="sidebar-logo">
+            <a href="/frontend/guest/index.html" class="sidebar-logo">
                 <i class="fas fa-home"></i>
                 <span>PrimeHomes</span>
-            </div>
+            </a>
 
             <i class="bi bi-x sidebar-close-btn"></i>
         </div>
@@ -209,7 +214,7 @@
         <nav class="sidebar-menu">
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Buy</span>
+                    <a href="/frontend/guest/buy.html" class="sidebar-nav-link">Buy</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -222,7 +227,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Sell</span>
+                    <a href="/frontend/guest/sell.html" class="sidebar-nav-link">Sell</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -234,7 +239,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Rent</span>
+                    <a href="/frontend/guest/rent.html" class="sidebar-nav-link">Rent</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -247,7 +252,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Mortgage</span>
+                    <a href="/frontend/guest/mortgage.html" class="sidebar-nav-link">Mortgage</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -261,7 +266,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Find an Agent</span>
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-nav-link">Find an Agent</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -273,9 +278,9 @@
             </div>
 
             <div class="sidebar-menu-item">
-                <a href="/frontend/guest/get-help.html" class="sidebar-menu-link sidebar-single-link">
-                    <span>Get help</span>
-                </a>
+                <div class="sidebar-menu-link sidebar-single-link">
+                    <a href="/frontend/guest/get-help.html" class="sidebar-nav-link">Get help</a>
+                </div>
             </div>
         </nav>
 
@@ -312,61 +317,311 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="sold-faq-section">
-        <div class="sold-faq-container">
-            <h2 class="section-title">Frequently asked questions</h2>
+    <!-- Agent Section 1 -->
+    <section class="agent-section-one">
+        <div class="agent-section-one-container">
+            <div class="agent-section-one-header">
+                <h1 class="agent-section-one-title">Let us narrow the field for you</h1>
+                <p class="agent-section-one-subtitle">We have a long history of connecting tens of thousands of buyers and sellers with real estate agents.</p>
+            </div>
 
-            <div class="sold-faq-list">
+            <div class="agent-section-one-cards">
+                <div class="agent-section-one-card">
+                    <div class="agent-section-one-card-illustration">
+                        <svg width="200" height="160" viewBox="0 0 200 160" fill="none">
+                            <rect x="20" y="40" width="80" height="100" fill="#e5e7eb" rx="4"/>
+                            <rect x="110" y="20" width="70" height="120" fill="#f3f4f6" rx="4"/>
+                            <circle cx="140" cy="80" r="25" fill="#ef4444"/>
+                            <rect x="125" y="75" width="30" height="10" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <h3 class="agent-section-one-card-title">Get support from a dedicated team</h3>
+                    <p class="agent-section-one-card-description">Tell us about your needs and a Realtor.com coordinator can help you find the right local agent for you.</p>
+                </div>
 
-                <div class="sold-faq-item">
-                    <button class="sold-faq-question">
-                        <span>What's the best way to sell your house quickly?</span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="sold-faq-answer collapsed">
-                        The best way to sell your home quickly depends on the market in your area. A listing agent can help you to understand the market in your area and understand what options will help sell your home the fastest.
+                <div class="agent-section-one-card">
+                    <div class="agent-section-one-card-illustration">
+                        <svg width="200" height="160" viewBox="0 0 200 160" fill="none">
+                            <rect x="60" y="60" width="30" height="60" fill="#6b7280"/>
+                            <rect x="100" y="40" width="30" height="80" fill="#4b5563"/>
+                            <circle cx="75" cy="50" r="15" fill="#fbbf24"/>
+                            <circle cx="115" cy="30" r="15" fill="#ef4444"/>
+                            <path d="M75 65 L90 75 L115 50" stroke="#374151" stroke-width="3" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="agent-section-one-card-title">Get matched to a local agent</h3>
+                    <p class="agent-section-one-card-description">Tap into the expertise of tens of thousands of agents from brokerages large and small.</p>
+                </div>
+
+                <div class="agent-section-one-card">
+                    <div class="agent-section-one-card-illustration">
+                        <svg width="200" height="160" viewBox="0 0 200 160" fill="none">
+                            <path d="M100 30 L120 50 L100 70 L80 50 Z" fill="#d1d5db"/>
+                            <path d="M140 50 L160 70 L140 90 L120 70 Z" fill="#9ca3af"/>
+                            <circle cx="130" cy="50" r="8" fill="#ef4444"/>
+                            <path d="M110 100 L100 110 L90 100" stroke="#6b7280" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3 class="agent-section-one-card-title">No commitment, no hidden fees</h3>
+                    <p class="agent-section-one-card-description">Get connected to an agent in minutes for free. Choose the best fit agent, or change agents if it doesn't work out.</p>
+                </div>
+            </div>
+
+            <button class="agent-section-one-cta-btn agent-cta-btn" id="agent-section-one-cta">
+                Connect with an agent
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 3.293a1 1 0 0 0-1.414 1.414L14.586 10l-5.293 5.293a1 1 0 0 0 1.414 1.414l6-6a1 1 0 0 0 0-1.414l-6-6z"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Agent Section 2 -->
+    <section class="agent-section-two">
+        <div class="agent-section-two-container">
+            <div class="agent-section-two-content">
+                <h2 class="agent-section-two-title">An agent can help at any stage of buying a home</h2>
+                
+                <div class="agent-section-two-stages">
+                    <div class="agent-section-two-stage">
+                        <h3 class="agent-section-two-stage-title">Prepare to buy</h3>
+                        <p class="agent-section-two-stage-description">An agent can provide insight into local market conditions and help you decide when is the right time for you to buy.</p>
+                    </div>
+
+                    <div class="agent-section-two-stage">
+                        <h3 class="agent-section-two-stage-title">Understand your buying power</h3>
+                        <p class="agent-section-two-stage-description">An agent can help you get a better idea of finances needed to understand your purchasing power. They can lay out the difference steps to the home buying process and guide you through it.</p>
+                    </div>
+
+                    <div class="agent-section-two-stage">
+                        <h3 class="agent-section-two-stage-title">Explore neighborhoods</h3>
+                        <p class="agent-section-two-stage-description">A local expert can help you understand the area's amenities, school district, neighborhoods, and accessibility.</p>
+                    </div>
+
+                    <div class="agent-section-two-stage">
+                        <h3 class="agent-section-two-stage-title">Close the deal</h3>
+                        <p class="agent-section-two-stage-description">An agent can negotiate to help get you the best price. They can help you navigate contingencies and special requests and guide you through the closing process.</p>
                     </div>
                 </div>
 
-                <div class="sold-faq-item">
-                    <button class="sold-faq-question">
-                        <span>How can I estimate my home's value?</span>
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div class="sold-faq-answer collapsed">
-                        <p>
-                            <a href="#" class="sold-faq-link">primehomes.com</a> makes it easy for you to estimate and understand your home's value. Visit <a href="#" class="sold-faq-link">My Home</a> in order to claim your home, see the current
-                        </p>
-                    </div>
-                </div>
-
-                <div class="sold-faq-item">
-                    <button class="sold-faq-question">
-                        <span>Who is best to sell your house with?</span>
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div class="sold-faq-answer collapsed">
-                        <p>
-                            Local real estate agents who specialize in your neighborhood are a great place to start for a listing agent who can sell your home with expertise. Some other options, like cash offers or For Sale By Owner (FSBO), might be an option in your area.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="sold-faq-item">
-                    <button class="sold-faq-question">
-                        <span>What is the #1 thing that determines the value of a home?</span>
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div class="sold-faq-answer collapsed">
-                        <p>
-                            Understanding comparable home sales, or recent sales of similar properties in your community, is crucial for determining your home's market value. A listing agent can prepare “comps” to help show the value of your home.
-                        </p>
-                    </div>
-                </div>
+                <button class="agent-section-two-cta-btn agent-cta-btn" id="agent-section-two-cta">
+                    Connect with an agent
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 3.293a1 1 0 0 0-1.414 1.414L14.586 10l-5.293 5.293a1 1 0 0 0 1.414 1.414l6-6a1 1 0 0 0 0-1.414l-6-6z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="agent-section-two-image">
+                <img src="/images/find-an-agent-seo-1.png" alt="Real estate agent showing property" />
             </div>
         </div>
     </section>
+
+    <!-- Frequently Asked Questions Section -->
+    <section class="frequently-asked-questions-section">
+        <div class="frequently-asked-questions-container">
+            <div class="frequently-asked-questions-image">
+                <img src="/images/IMG_2598.WEBP" alt="Real estate consultation" />
+            </div>
+            <div class="frequently-asked-questions-content">
+                <h2 class="frequently-asked-questions-title">Frequently asked questions</h2>
+                
+                <div class="frequently-asked-questions-list">
+                    <div class="frequently-asked-question-item">
+                        <button class="frequently-asked-question-trigger">
+                            <span class="frequently-asked-question-text">What's the difference between a real estate agent whose a REALTOR® and an agent who is not a REALTOR®?</span>
+                            <svg class="frequently-asked-question-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="frequently-asked-question-answer">
+                            <p>
+                                A real estate agent is someone who has a professional real estate license to help people buy, sell, or rent different types of housing and real estate. A REALTOR® is a member of the National Association of REALTORS® (NAR) and agrees to adhere to a strict Code of Ethics. Agents who are REALTORS® have access to NAR’s extensive membership benefits, including: proprietary resources, data, educational offerings, and networking opportunities.</p>
+                        </div>
+                    </div>
+
+                    <div class="frequently-asked-question-item">
+                        <button class="frequently-asked-question-trigger">
+                            <span class="frequently-asked-question-text">Why should I work with a real estate agent?</span>
+                            <svg class="frequently-asked-question-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="frequently-asked-question-answer">
+                            <p>Real estate agents have expertise in local markets, negotiation skills, and can guide you through the complex buying or selling process.</p>
+                        </div>
+                    </div>
+
+                    <div class="frequently-asked-question-item">
+                        <button class="frequently-asked-question-trigger">
+                            <span class="frequently-asked-question-text">How do I find the right real estate agent?</span>
+                            <svg class="frequently-asked-question-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="frequently-asked-question-answer">
+                            <p>Look for agents with local expertise, strong communication skills, and a track record of successful transactions in your area.</p>
+                        </div>
+                    </div>
+
+                    <div class="frequently-asked-question-item">
+                        <button class="frequently-asked-question-trigger">
+                            <span class="frequently-asked-question-text">How is the real estate agent I'm connected with chosen?</span>
+                            <svg class="frequently-asked-question-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="frequently-asked-question-answer">
+                            <p>We match you with agents based on your needs, location, and preferences to ensure the best fit for your real estate journey.</p>
+                        </div>
+                    </div>
+
+                    <div class="frequently-asked-question-item">
+                        <button class="frequently-asked-question-trigger">
+                            <span class="frequently-asked-question-text">What information is shared with my real estate agent on primehomes.com?</span>
+                            <svg class="frequently-asked-question-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="frequently-asked-question-answer">
+                            <p>We share your contact information and property preferences to help agents provide personalized service.</p>
+                        </div>
+                    </div>
+
+                    <div class="frequently-asked-question-item">
+                        <button class="frequently-asked-question-trigger">
+                            <span class="frequently-asked-question-text">I've heard about the National Association of REALTORS® Settlement. How does it impact my home buying or selling process?</span>
+                            <svg class="frequently-asked-question-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="frequently-asked-question-answer">
+                            <p>The settlement brings changes to how buyer agent compensation is handled. Your agent can explain how this affects your transaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="frequently-asked-questions-cta-btn agent-cta-btn" id="frequently-asked-questions-cta">
+                    Connect with an agent
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 3.293a1 1 0 0 0-1.414 1.414L14.586 10l-5.293 5.293a1 1 0 0 0 1.414 1.414l6-6a1 1 0 0 0 0-1.414l-6-6z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent Page Form Modal -->
+    <div class="agent-page-form-overlay" id="agent-page-form-overlay"></div>
+    <div class="agent-page-form-modal" id="agent-page-form-modal">
+        <div class="agent-page-form-header">
+            <h2 class="agent-page-form-title">Connect with an agent</h2>
+            <button class="agent-page-form-close-btn" id="agent-page-form-close-btn">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+
+        <div class="agent-page-form-body">
+            <p class="agent-page-form-subtitle">Let primehomes.com help you find a local real estate agent</p>
+
+            <form id="agent-page-form" class="agent-page-form">
+                <div class="agent-page-form-group">
+                    <label for="agent-page-form-option" class="agent-page-form-label">
+                        Choose an option:
+                        <span class="agent-page-form-required">required</span>
+                    </label>
+                    <select id="agent-page-form-option" class="agent-page-form-select" required>
+                        <option value="buy">I want to buy a home</option>
+                        <option value="sell">I want to sell a home</option>
+                        <option value="both">I want to buy and sell</option>
+                    </select>
+                </div>
+
+                <div class="agent-page-form-group">
+                    <label for="agent-page-form-zip" class="agent-page-form-label">
+                        Where are you buying?
+                        <span class="agent-page-form-required">required</span>
+                    </label>
+                    <div class="agent-page-form-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="agent-page-form-zip" 
+                            class="agent-page-form-input"
+                            placeholder="Enter zip code"
+                            required
+                        />
+                        <svg class="agent-page-form-input-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 2C6.13 2 3 5.13 3 9c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="agent-page-form-section-title">Your information</div>
+
+                <div class="agent-page-form-group">
+                    <label for="agent-page-form-name" class="agent-page-form-label">Full name*</label>
+                    <div class="agent-page-form-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="agent-page-form-name" 
+                            class="agent-page-form-input"
+                            placeholder="Enter full name"
+                            required
+                        />
+                        <svg class="agent-page-form-input-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10 10c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="agent-page-form-group">
+                    <label for="agent-page-form-email" class="agent-page-form-label">Email*</label>
+                    <div class="agent-page-form-input-wrapper">
+                        <input 
+                            type="email" 
+                            id="agent-page-form-email" 
+                            class="agent-page-form-input"
+                            placeholder="Enter email address"
+                            required
+                        />
+                        <svg class="agent-page-form-input-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4zm2 0v.01L10 9l6-4.99V4H4zm0 2.5V14h12V6.5l-6 4-6-4z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="agent-page-form-group">
+                    <label for="agent-page-form-phone" class="agent-page-form-label">Phone*</label>
+                    <div class="agent-page-form-input-wrapper">
+                        <input 
+                            type="tel" 
+                            id="agent-page-form-phone" 
+                            class="agent-page-form-input"
+                            placeholder="Enter phone number"
+                            required
+                        />
+                        <svg class="agent-page-form-input-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M17.924 2.617a.997.997 0 0 0-.215-.322l-.004-.004A.997.997 0 0 0 17 2h-4a1 1 0 1 0 0 2h1.586l-3.293 3.293a1 1 0 0 0 1.414 1.414L16 5.414V7a1 1 0 1 0 2 0V3a.997.997 0 0 0-.076-.383z"/>
+                            <path d="M2 3a1 1 0 0 1 1-1h2.153a1 1 0 0 1 .986.836l.74 4.435a1 1 0 0 1-.54 1.06l-1.548.773a11.037 11.037 0 0 0 6.105 6.105l.774-1.548a1 1 0 0 1 1.059-.54l4.435.74a1 1 0 0 1 .836.986V17a1 1 0 0 1-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <p class="agent-page-form-disclaimer">
+                    By proceeding, you consent to receive calls and texts at the number you provided, including marketing by autodialer and prerecorded and artificial voice, and email, from realtor.com and <a href="#" class="agent-page-form-link">others</a> about your inquiry and other home-related matters, but not as a condition of any purchase.
+                </p>
+
+                <div class="agent-page-form-actions">
+                    <button type="button" class="agent-page-form-cancel-btn" id="agent-page-form-cancel-btn">
+                        Cancel
+                    </button>
+                    <button type="submit" class="agent-page-form-submit-btn">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">

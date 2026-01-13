@@ -580,12 +580,6 @@ function showModalError(message) {
 
 // Refresh data
 function refreshData(showMessage = true) {
-	// loadStats();
-	// loadTickets();
-	// if (showMessage) {
-	// 	showToast("Data refreshed successfully", "success");
-	// }
-
     window.location.reload()
 }
 

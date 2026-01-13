@@ -80,7 +80,11 @@
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
-            <!-- <span class="nav-load"></span> -->
+
+            <button class="nav-signup-btn mobile-signup-btn">
+                <i class="bi bi-person-plus"></i>
+            </button>
+
             <div class="nav-load">
                 <button class="favorites-btn nav-load-btn">
                     <i class="fa-regular fa-heart"></i>
@@ -97,10 +101,10 @@
     <div class="sidebar-overlay"></div>
     <aside class="sidebar-nav">
         <div class="sidebar-header">
-            <div class="sidebar-logo">
+            <a href="/frontend/guest/index.html" class="sidebar-logo">
                 <i class="fas fa-home"></i>
                 <span>PrimeHomes</span>
-            </div>
+            </a>
 
             <i class="bi bi-x sidebar-close-btn"></i>
         </div>
@@ -108,7 +112,7 @@
         <nav class="sidebar-menu">
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Buy</span>
+                    <a href="/frontend/guest/buy.html" class="sidebar-nav-link">Buy</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -121,7 +125,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Sell</span>
+                    <a href="/frontend/guest/sell.html" class="sidebar-nav-link">Sell</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -133,7 +137,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Rent</span>
+                    <a href="/frontend/guest/rent.html" class="sidebar-nav-link">Rent</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -146,7 +150,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Mortgage</span>
+                    <a href="/frontend/guest/mortgage.html" class="sidebar-nav-link">Mortgage</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -160,7 +164,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Find an Agent</span>
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-nav-link">Find an Agent</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -172,19 +176,16 @@
             </div>
 
             <div class="sidebar-menu-item">
-                <a href="/frontend/guest/get-help.html" class="sidebar-menu-link sidebar-single-link">
-                    <span>Get help</span>
-                </a>
+                <div class="sidebar-menu-link sidebar-single-link">
+                    <a href="/frontend/guest/get-help.html" class="sidebar-nav-link">Get help</a>
+                </div>
             </div>
         </nav>
 
         <div class="sidebar-app-download">
-            <a href="#" class="sidebar-app-btn">
-                <i class="bi bi-apple"></i>
-                <div>
-                    <span class="sidebar-app-label">Download on the</span>
-                    <span class="sidebar-app-name">App Store</span>
-                </div>
+            <span>Find homes on the go!</span>
+            <a href="#">
+                <img src="/images/sidebar-app-download.svg" alt="Download on the App Store">
             </a>
         </div>
     </aside>
@@ -298,7 +299,6 @@
             <h1 class="hero-title">Find Your Dream Home</h1>
             <p class="hero-subtitle">Discover the perfect place to call home from thousands of listings</p>
 
-            <!-- Search Bar -->
             <div class="hero-search-wrapper">
                 <div class="hero-search-bar">
                     <input type="text" class="hero-search-input" value="Los Angeles, CA">

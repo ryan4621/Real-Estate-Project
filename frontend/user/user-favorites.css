@@ -1,41 +1,53 @@
 .favorites-top {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    align-items: flex-start;
+    margin-bottom: clamp(1.5rem, 3vh, 1.875rem);
+    flex-wrap: wrap;
+    gap: clamp(0.75rem, 2vh, 1rem);
 }
 
 .favorites-title {
-    font-size: 1.7rem;
-    margin-bottom: 20px;
+    font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+    margin-bottom: clamp(1rem, 2.5vh, 1.25rem);
     color: #1e1e1e;
 }
 
-.favorites-filter-sort {
+.favorites-filter-container {
     display: flex;
-    gap: 12px;
+    gap: clamp(0.625rem, 1.5vw, 0.75rem);
+    flex-wrap: wrap;
 }
 
 .favorites-filter-select, .favorites-sort-select {
-    padding: 5px 14px;
+    padding: clamp(0.3rem, 0.8vh, 0.3125rem) clamp(0.45rem, 1.8vw, 0.875rem);
     border: 1px solid #000;
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
+    border-radius: clamp(0.2rem, 0.5vw, 0.25rem);
 }
 
 .favorites-filters-reset {
     background: none;
     border: 1px solid #000000;
-    border-radius: 4px;
+    border-radius: clamp(0.2rem, 0.5vw, 0.25rem);
     color: #d92228;
-    width: 40px;
+    width: clamp(2.25rem, 5vw, 2.5rem);
+    height: clamp(2.25rem, 5vw, 2.5rem);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
 .favorites-filters-reset:hover {
     background-color: #fee;
     border-color: #d92228;
+}
+
+.favorites-filters-reset i {
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
 }
 
 .favorites-back-btn {
@@ -47,39 +59,42 @@
     cursor: pointer;
     transition: all 0.2s ease;
     color: #000;
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
     font-weight: 700;
-    margin: 20px 0;
-    width: 40px;
+    margin: clamp(1rem, 2.5vh, 1.25rem) 0;
+    width: clamp(2.25rem, 5vw, 2.5rem);
+    height: clamp(2.25rem, 5vw, 2.5rem);
+    flex-shrink: 0;
 }
 
 .favorites-back-btn:hover {
     color: #666;
-
 }
 
 .favorites-back-btn i {
-    font-size: 20px;
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
 }
 
 /* Tabs */
 .tabs-container {
     display: flex;
-    gap: 40px;
+    gap: clamp(2rem, 5vw, 2.5rem);
     border-bottom: 2px solid #e0e0e0;
-    margin-bottom: 20px;
+    margin-bottom: clamp(1rem, 2.5vh, 1.25rem);
 }
 
 .saved-tab {
     background: none;
     border: none;
-    padding: 16px 0;
-    font-size: 16px;
+    padding: clamp(0.875rem, 2vh, 1rem) 0;
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
     font-weight: 400;
     color: #666;
     cursor: pointer;
     position: relative;
     transition: color 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .saved-tab:hover {
@@ -112,24 +127,24 @@
 /* Saved Searches Grid */
 .saved-searches-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(min(23.75rem, 100%), 1fr));
+    gap: clamp(1.25rem, 3vw, 1.5rem);
 }
 
 /* Search Card */
 .ss-card {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: clamp(1.125rem, 2.5vh, 1.375rem);
     background: #fff;
     border: 1px solid #e0e0e0;
-    border-radius: 18px;
-    padding: 24px;
+    border-radius: clamp(1rem, 2.5vw, 1.125rem);
+    padding: clamp(1.25rem, 3vh, 1.5rem);
     transition: box-shadow 0.2s ease;
 }
 
 .ss-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
 }
 
 /* Card Header */
@@ -137,24 +152,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: clamp(0.5rem, 1.2vw, 0.75rem);
 }
 
 .ss-card-timestamp {
-    font-size: 14px;
+    font-size: clamp(0.8rem, 1.6vw, 0.875rem);
     color: #1e1e1e;
 }
 
 .ss-delete-btn {
     background: none;
     border: none;
-    width: 32px;
-    height: 32px;
+    width: clamp(1.75rem, 4vw, 2rem);
+    height: clamp(1.75rem, 4vw, 2rem);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: clamp(0.2rem, 0.5vw, 0.25rem);
     transition: background-color 0.2s ease;
+    flex-shrink: 0;
 }
 
 .ss-delete-btn:hover {
@@ -162,7 +179,7 @@
 }
 
 .ss-delete-btn i {
-    font-size: 24px;
+    font-size: clamp(1.25rem, 2.8vw, 1.5rem);
     color: #1e1e1e;
 }
 
@@ -171,14 +188,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: clamp(0.75rem, 1.8vh, 0.875rem);
 }
 
 .ss-details {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 15px;
+    gap: clamp(0.4rem, 1vh, 0.5rem);
+    font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
     color: #1e1e1e;
 }
 
@@ -195,18 +212,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    flex-wrap: wrap;
 }
 
 .ss-search-btn {
-    padding: 12px 32px;
+    padding: clamp(0.625rem, 1.5vh, 0.75rem) clamp(1.5rem, 4vw, 2rem);
     background: #fff;
     border: 1px solid #929292;
-    border-radius: 50px;
-    font-size: 15px;
+    border-radius: clamp(2rem, 5vw, 3.125rem);
+    font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
     font-weight: 600;
     color: #1e1e1e;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .ss-search-btn:hover {
@@ -219,14 +239,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: 8px; */
+    gap: clamp(0.2rem, 0.5vh, 0.25rem);
 }
 
 .ss-toggle-label {
-    font-size: 14px;
+    font-size: clamp(0.8rem, 1.6vw, 0.875rem);
     font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: clamp(0.2rem, 0.5vh, 0.25rem) clamp(0.625rem, 1.5vw, 0.75rem);
+    border-radius: clamp(1rem, 2.5vw, 1.25rem);
 }
 
 .ss-toggle-label.on {
@@ -242,9 +262,10 @@
 .ss-toggle-switch {
     position: relative;
     display: inline-block;
-    width: 48px;
-    height: 26px;
+    width: clamp(2.75rem, 6vw, 3rem);
+    height: clamp(1.5rem, 3.5vh, 1.625rem);
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .ss-toggle-switch input {
@@ -260,17 +281,17 @@
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    border-radius: 26px;
+    border-radius: clamp(1.5rem, 3.5vh, 1.625rem);
     transition: 0.3s;
 }
 
 .ss-toggle-slider:before {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
-    left: 3px;
-    bottom: 3px;
+    height: clamp(1.125rem, 2.8vh, 1.25rem);
+    width: clamp(1.125rem, 2.8vw, 1.25rem);
+    left: clamp(0.15rem, 0.4vw, 0.1875rem);
+    bottom: clamp(0.15rem, 0.4vh, 0.1875rem);
     background-color: white;
     border-radius: 50%;
     transition: 0.3s;
@@ -281,33 +302,22 @@
 }
 
 .ss-toggle-switch input:checked + .ss-toggle-slider:before {
-    transform: translateX(22px);
+    transform: translateX(clamp(1.25rem, 3vw, 1.375rem));
 }
 
 .ss-alerts-text {
-    font-size: 15px;
+    font-size: clamp(0.875rem, 1.8vw, 0.9375rem);
     color: #1e1e1e;
 }
 
 @media (max-width: 1200px) {
     .saved-searches-grid {
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
     }
 }
 
 @media (max-width: 768px) {
-    
     .saved-searches-grid {
         grid-template-columns: 1fr;
-    }
-    
-    .ss-card-footer {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-    }
-    
-    .ss-search-btn {
-        width: 100%;
     }
 }

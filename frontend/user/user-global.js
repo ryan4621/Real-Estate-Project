@@ -30,10 +30,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 function renderLoggedInNav(user) {
     const navbarContainer = document.getElementById('navbar-container');
     const signupBtn = navbarContainer.querySelector('.nav-signup-btn');
+    const mobileSignupBtn = navbarContainer.querySelector('.mobile-signup-btn');
     
-    // Hide signup button
     if (signupBtn) {
         signupBtn.classList.remove('show');
+    }
+
+    if (mobileSignupBtn) {
+        mobileSignupBtn.classList.add('hide')
     }
 
     const navLoad = document.querySelector('.nav-load')
@@ -41,7 +45,6 @@ function renderLoggedInNav(user) {
         navLoad.classList.remove('show')
     }
 
-    // Check if already rendered
     if (navbarContainer.querySelector('.logged-in-nav')) {
         return;
     }
@@ -49,33 +52,10 @@ function renderLoggedInNav(user) {
     const loggedInNav = document.createElement('div');
     loggedInNav.className = 'logged-in-nav';
     loggedInNav.innerHTML = `
+        <div class="logged-in-overlay"></div>
         <button class="favorites-btn" id="favorites-btn">
             <i class="fa-regular fa-heart"></i>
         </button>
-        
-        <div class="user-profile-dropdown-wrapper">
-            <button class="user-profile-btn" id="user-profile-btn">
-                <i class="fa-regular fa-user logged-in-user"></i>
-                <i class="fa-solid fa-chevron-down logged-in-nav-arrow"></i>
-            </button>
-            
-            <div class="user-profile-dropdown" id="user-profile-dropdown">
-                <button class="mobile-dropdown-close">
-                    <i class="bi bi-x"></i>
-                </button>
-                <div class="dropdown-user-info">
-                    <span class="dropdown-user-name">${user.first_name} ${user.last_name}</span>
-                    <span class="dropdown-user-email">${user.email}</span>
-                </div>
-                <div class="dropdown-divider"></div>
-                <a href="/frontend/user/user-settings.html?tab=buyer-profile" class="dropdown-link">My Profile</a>
-                <a href="/dashboard" class="dropdown-link">Renter tools</a>
-                <a href="/dashboard" class="dropdown-link">My home</a>
-                <a href="/frontend/user/user-settings.html" class="dropdown-link">Settings</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-link logout-btn" id="logout-btn">Logout</a>
-            </div>
-        </div>
 
         <div class="favorites-dropdown" id="favorites-dropdown">
             <button class="mobile-dropdown-close">
@@ -96,6 +76,29 @@ function renderLoggedInNav(user) {
 
             <div class="favorites-dropdown-content" id="ss-dropdown-content"></div>
             <a href="/frontend/user/user-favorites.html?tab=searches" class="dropdown-link">View Saved Searches</a>
+        </div>
+        
+        <div class="user-profile-dropdown-wrapper">
+            <button class="user-profile-btn" id="user-profile-btn">
+                <i class="fa-regular fa-user logged-in-user"></i>
+                <i class="fa-solid fa-chevron-down logged-in-nav-arrow"></i>
+            </button>
+            
+            <div class="user-profile-dropdown" id="user-profile-dropdown">
+                <div class="dropdown-user-info">
+                    <span class="dropdown-user-name">${user.first_name} ${user.last_name}</span>
+                </div>
+                <button class="mobile-dropdown-close">
+                    <i class="bi bi-x"></i>
+                </button>
+                <div class="dropdown-divider"></div>
+                <a href="/frontend/user/user-settings.html?tab=buyer-profile" class="dropdown-link">My Profile</a>
+                <a href="#" class="dropdown-link">Renter tools</a>
+                <a href="#" class="dropdown-link">My home</a>
+                <a href="/frontend/user/user-settings.html" class="dropdown-link">Settings</a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-link logout-btn" id="logout-btn">Logout</a>
+            </div>
         </div>
     `;
 
@@ -119,11 +122,14 @@ function renderLoggedOutNav() {
         navLoad.classList.remove('show')
     }
 
-   // Show the signup button that's already in HTML
    const signupBtn = navbarContainer.querySelector('.nav-signup-btn');
    if (signupBtn) {
        signupBtn.classList.add('show');
    }
+}
+
+function checkMobileView() {
+    return window.innerWidth <= 1024;
 }
 
 const navLinks = document.querySelectorAll('.nav-link');
@@ -162,67 +168,64 @@ async function setupGlobalEventListeners(){
         activateLinkByPath(savedPath);
     }
 
-    // Sidebar Navigation JavaScript
 	const hamburgerMenu = document.querySelector('.hamburger-menu');
 	const sidebarNav = document.querySelector('.sidebar-nav');
 	const sidebarOverlay = document.querySelector('.sidebar-overlay');
 	const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
-	const sidebarMenuLinks = document.querySelectorAll('.sidebar-menu-link');
+	const sidebarArrows = document.querySelectorAll('.sidebar-arrow');
 
-	// Open sidebar
 	hamburgerMenu.addEventListener('click', () => {
 		sidebarNav.classList.add('active');
 		sidebarOverlay.classList.add('active');
 		document.body.classList.add('sidebar-open');
 	});
 
-	// Close sidebar
 	function closeSidebar() {
 		sidebarNav.classList.remove('active');
 		sidebarOverlay.classList.remove('active');
 		document.body.classList.remove('sidebar-open');
+    }
 
-        const favoritesDropdown = document.getElementById('favorites-dropdown');
-        const userProfileDropdown = document.getElementById('user-profile-dropdown');
-        
-        // Close dropdowns if open
-        if (favoritesDropdown) favoritesDropdown.classList.remove('active');
-        if (userProfileDropdown) userProfileDropdown.classList.remove('active');
-        document.body.classList.remove('dropdown-open');
+    sidebarCloseBtn.addEventListener('click', closeSidebar);
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    sidebarArrows.forEach(link => {
+        if (link.classList.contains('sidebar-single-link')) {
+            return;
         }
 
-        sidebarCloseBtn.addEventListener('click', closeSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar);
-
-        // Toggle submenus
-        sidebarMenuLinks.forEach(link => {
-            // Skip single links without submenus
-            if (link.classList.contains('sidebar-single-link')) {
-                return;
+        link.addEventListener('click', () => {
+            const submenuLink = link.closest('.sidebar-menu-link');
+            const submenu = submenuLink.nextElementSibling;
+            
+            // Toggle current submenu
+            link.classList.toggle('active');
+            
+            if (submenu && submenu.classList.contains('sidebar-submenu')) {
+                submenu.classList.toggle('active');
             }
-
-            link.addEventListener('click', () => {
-                const submenu = link.nextElementSibling;
-                
-                // Toggle current submenu
-                link.classList.toggle('active');
-                
-                if (submenu && submenu.classList.contains('sidebar-submenu')) {
-                    submenu.classList.toggle('active');
-                }
-                
-                // Close other submenus (optional - remove if you want multiple open)
-                sidebarMenuLinks.forEach(otherLink => {
-                    if (otherLink !== link && !otherLink.classList.contains('sidebar-single-link')) {
-                        otherLink.classList.remove('active');
-                        const otherSubmenu = otherLink.nextElementSibling;
-                        if (otherSubmenu && otherSubmenu.classList.contains('sidebar-submenu')) {
-                            otherSubmenu.classList.remove('active');
-                        }
+            
+            sidebarArrows.forEach(otherLink => {
+                if (otherLink !== link && !otherLink.classList.contains('sidebar-single-link')) {
+                    otherLink.classList.remove('active');
+                    const otherSubmenuLink = otherLink.closest('.sidebar-menu-link');
+                    const otherSubmenu = otherSubmenuLink.nextElementSibling;
+                    if (otherSubmenu && otherSubmenu.classList.contains('sidebar-submenu')) {
+                        otherSubmenu.classList.remove('active');
                     }
-                });
+                }
             });
         });
+    });
+
+
+    window.addEventListener('resize', () => {
+        if (!checkMobileView()) {
+            sidebarNav.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+            document.body.classList.remove('sidebar-open');
+        }
+    });
 }
 
 function setupDropdownListeners() {
@@ -231,91 +234,65 @@ function setupDropdownListeners() {
     const userProfileBtn = document.getElementById('user-profile-btn');
     const favoritesDropdown = document.getElementById('favorites-dropdown');
     const userProfileDropdown = document.getElementById('user-profile-dropdown');
-    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+    const loggedInOverlay = document.querySelector('.logged-in-overlay');
     const mobileCloseButtons = document.querySelectorAll('.mobile-dropdown-close');
 
-    // Logout functionality
     logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
         logOutUser();
     });
 
-    // Check if mobile view function
-    function checkMobileView() {
-        return window.innerWidth <= 1024;
-    }
-
-    // Favorites button click handler
     favoritesBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         e.preventDefault();
         
         if (checkMobileView()) {
-            // Mobile: Toggle dropdown
-            const isActive = favoritesDropdown.classList.contains('active');
-            
-            // Close user dropdown
             userProfileDropdown.classList.remove('active');
-            
-            // Toggle favorites dropdown
-            favoritesDropdown.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active', !isActive);
-            document.body.classList.toggle('dropdown-open', !isActive);
+            favoritesDropdown.classList.add('active');
+            loggedInOverlay.classList.add('active');
+            document.body.classList.add('dropdown-open');
         } else {
             window.location.href = "/frontend/user/user-favorites.html";
         }
     });
 
-    // User profile button click handler
     userProfileBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         
         if (checkMobileView()) {
-            // Mobile: Toggle dropdown
-            const isActive = userProfileDropdown.classList.contains('active');
-            
-            // Close favorites dropdown
             favoritesDropdown.classList.remove('active');
-            
-            // Toggle user dropdown
             userProfileDropdown.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active', !isActive);
-            document.body.classList.toggle('dropdown-open', !isActive);
+            loggedInOverlay.classList.add('active');
+            document.body.classList.add('dropdown-open');
         }
     });
 
-    // Close buttons
     mobileCloseButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             favoritesDropdown.classList.remove('active');
             userProfileDropdown.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
+            loggedInOverlay.classList.remove('active');
             document.body.classList.remove('dropdown-open');
         });
     });
 
-    // // Overlay click - close dropdowns
-    // sidebarOverlay.addEventListener('click', () => {
-    //     // Only close dropdowns if they're open (not sidebar)
-    //     if (favoritesDropdown.classList.contains('active') || userProfileDropdown.classList.contains('active')) {
-    //         favoritesDropdown.classList.remove('active');
-    //         userProfileDropdown.classList.remove('active');
-    //         sidebarOverlay.classList.remove('active');
-    //         document.body.classList.remove('dropdown-open');
-    //     }
-    // });
+    loggedInOverlay.addEventListener('click', () => {
+        favoritesDropdown.classList.remove('active');
+        userProfileDropdown.classList.remove('active');
+        loggedInOverlay.classList.remove('active');
+        document.body.classList.remove('dropdown-open');
+    })
 
-    // Close dropdowns when window is resized to desktop
-    window.addEventListener('resize', () => {
+    const handleResize = debounce(() => {
         if (!checkMobileView()) {
             favoritesDropdown.classList.remove('active');
             userProfileDropdown.classList.remove('active');
-            if (!document.querySelector('.sidebar-nav').classList.contains('active')) {
-                sidebarOverlay.classList.remove('active');
-                document.body.classList.remove('dropdown-open');
-            }
+            loggedInOverlay.classList.remove('active');
+            document.body.classList.remove('dropdown-open');
         }
-    });
+    }, 100);
+    
+    window.addEventListener('resize', handleResize);
 }
 
 function activateLinkByPath(path) {

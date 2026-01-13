@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function setUpSigninEventListeners() {
     const signUpForm = document.querySelector('.signup-form')
-
-    document.querySelector('.nav-signup-btn').addEventListener('click', openSignupModal)
+    
+    document.querySelectorAll('.nav-signup-btn').forEach(btn => btn.addEventListener('click', openSignupModal))
     document.querySelector('.signup-close-modal').addEventListener('click', closeSignupModal)
 
     document.querySelector('.signup-overlay').addEventListener('click', closeSignupModal)
@@ -73,19 +73,8 @@ const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-// function googleLogin() {
-//     google.accounts.id.initialize({
-//         client_id: '123778486490-cfi70h5c6l9rtn2vkr517j7q86nvk2m0.apps.googleusercontent.com',
-//         callback: handleGoogleLogin
-//     });
-    
-//     // Trigger Google's One Tap or popup
-//     google.accounts.id.prompt();
-// }
-
 window.handleGoogleLogin = async function(response) {
     try {
-        // Google sends back a JWT token in response.credential
         const res = await fetch('/auth/google', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -109,7 +98,6 @@ window.handleGoogleLogin = async function(response) {
 
 
 //Continue
-
 function openSignupModal(){
     signUpModal.classList.add('active')
     signUpOverlay.classList.add('active')
@@ -206,7 +194,6 @@ async function continueSignin(e){
 
 
 //Login
-
 async function login(e){
     e.preventDefault();
 

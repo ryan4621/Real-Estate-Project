@@ -23,11 +23,6 @@ if (displayMode === 'map') {
     mapDisplayMode.classList.remove('active');
 }
 
-// document.addEventListener('DOMContentLoaded', async () => {
-// 	setupEventListeners();
-// 	loadFavorites();
-// });
-
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         loadFavorites();
@@ -41,9 +36,11 @@ window.addEventListener('pageshow', (event) => {
 // Setup event listeners
 function setupEventListeners() {
     document.getElementById("properties-status-filter").addEventListener("change", () => loadFavorites(1));
+    
     document.getElementById('filters-reset-btn').addEventListener('click', resetFilters)
 
     document.getElementById("properties-sort-select").addEventListener("change", () => loadFavorites(1));
+
     document.getElementById('favorites-back-btn').addEventListener('click', () => {
         history.back();
     });
@@ -89,8 +86,7 @@ function setupEventListeners() {
 		newUrl.searchParams.set('display', 'map');
 		// window.history.pushState({}, '', newUrl);
 	});
-
-    // Check URL for active tab on page load
+    
     const urlParams = new URLSearchParams(window.location.search);
     const activeTab = urlParams.get('tab');
 
@@ -284,7 +280,6 @@ async function loadFavorites(page = currentPage){
 	}
 }
 
-// Apply filters from UI
 function applyFilters() {
 	currentFilters = {
 		status: document.getElementById("properties-status-filter").value,
@@ -292,7 +287,6 @@ function applyFilters() {
 	};
 }
 
-// Reset filters
 function resetFilters() {
 	currentPage = 1;
 	currentFilters = {
@@ -325,8 +319,6 @@ async function loadSavedSearches(){
             emptyAlert.style.display = "block";
             return;
         };
-
-        console.log(savedSearches.data)
     
         for (const search of savedSearches.data) {
 
@@ -491,7 +483,6 @@ async function ssAlert(alertToggle){
     }
 }
 
-// Render pagination controls
 function renderPagination(meta) {
 	// Previous button
 	const prevBtn = document.getElementById("previous-btn");

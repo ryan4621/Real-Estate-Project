@@ -232,7 +232,8 @@ async function changeUserStatus(action) {
 		const result = await response.json();
 		showToast(result.message, "success");
 		closeModal("statusModal");
-		loadUserData(); // Reload data
+		loadUserData();
+		
 	} catch (error) {
 		console.error("Error changing user status:", error);
 		showToast("Failed to change user status: " + error.message, "error");
@@ -310,11 +311,10 @@ async function sendEmailToUser() {
 			throw new Error("Failed to send email");
 		}
 
-		const result = await response.json();
+		await response.json();
 		showToast("Email sent successfully", "success");
 		closeModal("emailModal");
 
-		// Clear form
 		document.getElementById("email-subject").value = "";
 		document.getElementById("email-message").value = "";
 	} catch (error) {
@@ -325,16 +325,6 @@ async function sendEmailToUser() {
 
 // Export user data
 function exportUserData() {
-	// const dataStr = JSON.stringify(currentUser, null, 2);
-	// const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-
-	// const exportFileDefaultName = `user_${currentUser.user.id}_data.json`;
-
-	// const linkElement = document.createElement('a');
-	// linkElement.setAttribute('href', dataUri);
-	// linkElement.setAttribute('download', exportFileDefaultName);
-	// linkElement.click();
-
 	window.location.href = `${apiBase}/users/${currentUser.user.id}/export-overview`;
 }
 

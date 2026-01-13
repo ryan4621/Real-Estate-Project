@@ -25,7 +25,7 @@ function setUpHomeEventListeners() {
 	window.addEventListener('scroll', () => {
 		const heroBottom = heroSection.getBoundingClientRect().bottom;
 		
-		if (heroBottom <= 80) { // Adjust for navbar height
+		if (heroBottom <= 80) {
 			searchWrapper.classList.add('sticky');
 		} else {
 			searchWrapper.classList.remove('sticky');
@@ -523,7 +523,6 @@ async function loadLatest(){
 	}
 }
 
-//buy.html functions
 async function loadExpensive(){
 	try {
         const queryString = new URLSearchParams({
@@ -574,6 +573,7 @@ async function loadExpensive(){
 
 			const propertyInfo = document.createElement("div");
             propertyInfo.classList.add('property-info')
+
 			propertyInfo.innerHTML = `
 				<div class="property-card">
 					<div class="property-card-image-wrapper">

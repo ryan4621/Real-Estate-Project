@@ -1,0 +1,489 @@
+/* Find Agent Page Styles */
+
+.agent-section-one {
+    padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.5rem);
+    background-color: #ffffff;
+}
+
+.agent-section-one-container {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+.agent-section-one-header {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 4vw, 3.75rem);
+}
+
+.agent-section-one-title {
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: clamp(0.375rem, 0.8vw, 0.5rem);
+    line-height: 1.2;
+}
+
+.agent-section-one-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.agent-section-one-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(2rem, 3.5vw, 3rem);
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+
+.agent-section-one-card {
+    text-align: center;
+}
+
+.agent-section-one-card-illustration {
+    margin-bottom: clamp(1.75rem, 2.5vw, 2rem);
+    display: flex;
+    justify-content: center;
+}
+
+.agent-section-one-card-title {
+    font-size: clamp(1.063rem, 1.6vw, 1.2rem);
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: clamp(0.875rem, 1.5vw, 1rem);
+    line-height: 1.3;
+}
+
+.agent-section-one-card-description {
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    color: #000;
+    line-height: 1.6;
+}
+
+.agent-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.438rem, 0.8vw, 0.5rem);
+    padding: clamp(0.875rem, 1.5vw, 1rem) clamp(1.75rem, 2.5vw, 2rem);
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 1.875rem;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.agent-cta-btn:hover {
+    background-color: #666;
+}
+
+.agent-section-one-cta-btn {
+    margin: 0 auto;
+}
+
+/* Agent Section Two */
+.agent-section-two {
+    padding-top: clamp(2.5rem, 3.5vw, 3.125rem);
+    background-color: #ffffff;
+    width: 100%;
+    margin: 0;
+}
+
+.agent-section-two-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+    align-items: center;
+}
+
+.agent-section-two-content {
+    padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.agent-section-two-title {
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.agent-section-two-stages {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 3vw, 2.5rem);
+}
+
+.agent-section-two-stage-title {
+    font-size: clamp(1.063rem, 1.6vw, 1.2rem);
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: clamp(0.625rem, 1vw, 0.75rem);
+    line-height: 1.3;
+}
+
+.agent-section-two-stage-description {
+    font-size: clamp(0.875rem, 1.2vw, 0.95rem);
+    color: #000;
+    line-height: 1.6;
+}
+
+.agent-section-two-cta-btn {
+    margin-top: clamp(2rem, 3vw, 2.5rem);
+    width: fit-content;
+}
+
+.agent-section-two-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.agent-section-two-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+/* Frequently Asked Questions Section */
+.frequently-asked-questions-section {
+    background-color: #fff;
+    width: 100%;
+    margin: 0;
+}
+
+.frequently-asked-questions-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 100%;
+    align-items: start;
+}
+
+.frequently-asked-questions-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.frequently-asked-questions-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.frequently-asked-questions-content {
+    padding: clamp(2.5rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.frequently-asked-questions-title {
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.frequently-asked-questions-list {
+    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+}
+
+.frequently-asked-question-item {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.frequently-asked-question-item:last-child {
+    border: none;
+}
+
+.frequently-asked-question-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(1.25rem, 2vw, 1.5rem) 0;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.frequently-asked-question-text {
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.4;
+}
+
+.frequently-asked-question-text:hover {
+    color: #666;
+}
+
+.frequently-asked-question-icon {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: #000;
+}
+
+.frequently-asked-question-item.active .frequently-asked-question-icon {
+    transform: rotate(180deg);
+}
+
+.frequently-asked-question-answer {
+    display: none;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    padding-bottom: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.frequently-asked-question-item.active .frequently-asked-question-answer {
+    display: block;
+}
+
+.frequently-asked-question-answer p {
+    font-size: clamp(0.813rem, 1.2vw, 0.9rem);
+    color: #000;
+    line-height: 1.6;
+}
+
+.frequently-asked-questions-cta-btn {
+    margin-top: clamp(2rem, 3vw, 2.5rem);
+    width: fit-content;
+}
+
+/* Agent Page Form Modal */
+.agent-page-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.agent-page-form-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.agent-page-form-modal {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 32.5rem;
+    max-height: 90vh;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    overflow-y: auto;
+    transition: top 0.3s ease;
+    padding: clamp(2rem, 3vw, 2.5rem) clamp(2rem, 3vw, 2.5rem);
+}
+
+.agent-page-form-modal.active {
+    top: 10%;
+}
+
+.agent-page-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(1rem, 1.8vw, 1.25rem);
+}
+
+.agent-page-form-close-btn {
+    background: none;
+    border: none;
+    width: clamp(1.75rem, 2.5vw, 2rem);
+    height: clamp(1.75rem, 2.5vw, 2rem);
+    font-size: clamp(1.75rem, 2.5vw, 2rem);
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s ease;
+}
+
+.agent-page-form-close-btn:hover {
+    color: #666;
+}
+
+.agent-page-form-body {
+    max-height: calc(90vh - 7.5rem);
+    overflow-y: auto;
+}
+
+.agent-page-form-body::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.agent-page-form-body::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+.agent-page-form-body::-webkit-scrollbar-thumb {
+    background: #848484;
+    border-radius: 0.25rem;
+}
+
+.agent-page-form-title {
+    font-size: clamp(1.125rem, 1.8vw, 1.4rem);
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: clamp(0.375rem, 0.8vw, 0.5rem);
+}
+
+.agent-page-form-subtitle {
+    font-size: clamp(0.813rem, 1.2vw, 0.9rem);
+    color: #000;
+    margin-bottom: clamp(1.75rem, 2.5vw, 2rem);
+}
+
+.agent-page-form-group {
+    margin-bottom: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.agent-page-form-label {
+    display: block;
+    font-size: clamp(0.813rem, 1.2vw, 0.875rem);
+    font-weight: 600;
+    color: #000;
+    margin-bottom: clamp(0.438rem, 0.8vw, 0.5rem);
+}
+
+.agent-page-form-required {
+    color: #000;
+    font-weight: 400;
+    float: right;
+}
+
+.agent-page-form-select,
+.agent-page-form-input {
+    width: 100%;
+    padding: clamp(0.625rem, 1vw, 0.75rem) clamp(0.875rem, 1.5vw, 1rem);
+    border: 1px solid #666;
+    border-radius: 0.375rem;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+}
+
+.agent-page-form-select:focus,
+.agent-page-form-input:focus {
+    outline: none;
+    border-color: #024cc3;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.agent-page-form-input-wrapper {
+    position: relative;
+}
+
+.agent-page-form-input-icon {
+    position: absolute;
+    right: clamp(0.875rem, 1.5vw, 1rem);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000;
+    pointer-events: none;
+}
+
+.agent-page-form-section-title {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 700;
+    color: #000000;
+    margin: clamp(1.75rem, 2.5vw, 2rem) 0 clamp(1.25rem, 2vw, 1.5rem) 0;
+}
+
+.agent-page-form-disclaimer {
+    font-size: clamp(0.625rem, 1vw, 0.688rem);
+    color: #000;
+    line-height: 1.5;
+    margin-bottom: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+.agent-page-form-link {
+    color: #000;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.agent-page-form-actions {
+    display: flex;
+    gap: clamp(1rem, 1.8vw, 1.25rem);
+    float: right;
+}
+
+.agent-page-form-cancel-btn {
+    background: none;
+    color: #000;
+    text-decoration: underline;
+    border: none;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.agent-page-form-cancel-btn:hover {
+    color: #666;
+}
+
+.agent-page-form-submit-btn {
+    width: fit-content;
+    padding: clamp(0.75rem, 1.2vw, 0.875rem) clamp(2rem, 3vw, 2.5rem);
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 1.875rem;
+    font-size: clamp(0.938rem, 1.4vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.agent-page-form-submit-btn:hover {
+    background-color: #666;
+}
+
+@media (max-width: 768px) {
+    .agent-section-one-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .agent-section-two-container {
+        grid-template-columns: 1fr;
+    }
+
+    .agent-section-two-image {
+        order: -1;
+    }
+
+    .frequently-asked-questions-container {
+        grid-template-columns: 1fr;
+    }
+
+    .agent-page-form-modal {
+        width: 95%;
+    }
+}

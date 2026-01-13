@@ -13,14 +13,12 @@ let notifications = [];
 let stats = {};
 let editNotificationId;
 
-// Initialize page
 document.addEventListener('DOMContentLoaded', () => {
 	setupEventListeners();
 	loadStats();
 	loadNotifications();
 });
 
-// Setup event listeners
 function setupEventListeners() {
 
 	const debouncedSearch = debounce(() => loadNotifications(1), 400);
@@ -59,7 +57,6 @@ function setupEventListeners() {
 	});
 }
 
-// Load notification statistics
 async function loadStats() {
 	try {
 		const response = await fetch(`${API_BASE}/notifications/statistics`, {
@@ -77,7 +74,6 @@ async function loadStats() {
 	}
 }
 
-// Update statistics display
 function updateStatsDisplay() {
 	const { overall, engagement } = stats;
 
@@ -87,7 +83,6 @@ function updateStatsDisplay() {
 	document.getElementById("draft-notifications-count").textContent = overall.draft_notifications || 0;
 	document.getElementById("total-recipients-count").textContent = overall.total_recipients_reached || 0;
 
-	// Calculate read rate percentage
 	const readRate =
 		engagement && engagement.total_user_notifications > 0
 			? Math.round((engagement.read_notifications / engagement.total_user_notifications) * 100)
@@ -95,7 +90,6 @@ function updateStatsDisplay() {
 	document.getElementById("read-rate-percentage").textContent = `${readRate}%`;
 }
 
-// Load notifications
 async function loadNotifications(page) {
 	showLoadingState();
 	applyFilters()
@@ -140,7 +134,6 @@ function applyFilters() {
     };
 }
 
-// Render pagination controls
 function renderPagination(meta) {
     const container = document.getElementById("pagination");
     if (!container) return;
@@ -171,14 +164,12 @@ function renderPagination(meta) {
     container.appendChild(nextBtn);
 }
 
-// Show loading state
 function showLoadingState() {
 	document.getElementById("notification-loading-state").style.display = "block";
 	document.getElementById("notification-empty-state").style.display = "none";
 	document.getElementById("notification-table").style.display = "none";
 }
 
-// Show error state
 function showErrorState(message) {
 	document.getElementById("notification-loading-state").style.display = "none";
 	document.getElementById("notification-empty-state").style.display = "block";
@@ -195,7 +186,6 @@ function showErrorState(message) {
 	`;
 }
 
-// Render notifications
 function renderNotifications() {
 	const tbody = document.getElementById("notification-table-body");
 
@@ -218,7 +208,6 @@ function renderNotifications() {
 	document.getElementById("notification-list-count").textContent = `${notifications.length} notifications`;
 }
 
-// Render notification row
 function renderNotificationRow(notification) {
 	const createdDate = new Date(notification.created_at).toLocaleDateString("en-US", {
 		month: "short",
@@ -309,7 +298,6 @@ function attachTableEventListeners(){
 	}
 }
 
-// Format category
 function formatCategory(category) {
 	const categories = {
 		marketing_emails: "Marketing",
@@ -319,18 +307,15 @@ function formatCategory(category) {
 	return categories[category] || category;
 }
 
-// Truncate text
 function truncateText(text, length) {
 	return text.length > length ? text.substring(0, length) + "..." : text;
 }
 
-// Show create form
 function showCreateForm() {
 	document.getElementById("notification-create-form").classList.add("show");
 	document.getElementById("notification-title").focus();
 }
 
-// Hide create form
 function hideCreateForm() {
 	document.getElementById("notification-create-form").classList.remove("show");
 	document.getElementById("notification-form").reset();
@@ -338,7 +323,6 @@ function hideCreateForm() {
 	editNotificationId = null
 }
 
-// Handle form submission
 async function handleFormSubmit(e) {
 	e.preventDefault();
 
@@ -393,7 +377,6 @@ async function handleFormSubmit(e) {
 	}
 }
 
-// Collect form data
 function collectFormData() {
 	const targetAll = document.getElementById("notification-target-all").checked;
 	const userRolesSelect = document.getElementById("notification-user-roles");
@@ -463,7 +446,6 @@ async function handleDraftSubmit(e){
 	}
 }
 
-// Set form loading state
 function setFormLoadingState(isLoading) {
 	const submitBtn = document.querySelector('#notification-form button[type="submit"]');
 	const cancelBtn = document.getElementById("notification-cancel-btn");
@@ -478,7 +460,6 @@ function setFormLoadingState(isLoading) {
 	}
 }
 
-// View notification details
 async function viewNotification(notificationId) {
 	showNotificationModal();
 	showModalLoading();
@@ -498,7 +479,6 @@ async function viewNotification(notificationId) {
 	}
 }
 
-// Render notification details
 function renderNotificationDetails(notification) {
 	document.getElementById("notification-modal-title").textContent = `Notification #${notification.id} - Details`;
 
@@ -625,7 +605,6 @@ async function editDraftedNotification(notificationId){
 	}
 }
 
-// Delete notification
 async function deleteNotification(notificationId) {
 	const confirmed = await showConfirmation(
 		"Are you sure you want to delete this notification? This action cannot be undone.",
@@ -663,17 +642,14 @@ async function deleteNotification(notificationId) {
 	}
 }
 
-// Show modal
 function showNotificationModal() {
 	document.getElementById("notification-modal").style.display = "block";
 }
 
-// Close modal
 function closeNotificationModal() {
 	document.getElementById("notification-modal").style.display = "none";
 }
 
-// Show modal loading state
 function showModalLoading() {
 	document.getElementById("notification-modal-body").innerHTML = `
 		<div class="notification-loading">
@@ -683,7 +659,6 @@ function showModalLoading() {
 	`;
 }
 
-// Show modal error
 function showModalError(message) {
 	document.getElementById("notification-modal-body").innerHTML = `
 		<div style="text-align: center; padding: 2rem; color: #7f8c8d;">
@@ -699,7 +674,6 @@ function showModalError(message) {
 	document.getElementById('close-notification-modal').addEventListener('click', closeNotificationModal);
 }
 
-// Refresh data
 function refreshData(showMessage = true) {
 	loadStats();
 	loadNotifications();
@@ -722,7 +696,6 @@ function exportData(format) {
     window.location.href = `/admin/notifications/export?${params.toString()}`;
 }
 
-// Helper functions
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {

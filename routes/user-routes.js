@@ -793,6 +793,14 @@ router.post('/favorites/:id', requireAuth, async (req, res) => {
         const propertyId = req.params.id
         const {property_type, status, price, bedrooms, bathrooms, area, primaryImage, address, location, agent_name, broker} = req.body
 
+        const [favCheck] = await pool.execute(`
+            SELECT * FROM favorites WHERE property_id = ? AND user_id = ?`,
+        [propertyId, userId])
+
+        if(favCheck.length >= 1 ){
+            return res.status(400).json({message: 'Property already added to favorite'})
+        }
+
         await pool.execute(
             `INSERT INTO favorites (user_id, property_id, property_type, status, price, bedrooms, bathrooms, area, address, location, primary_image, agent_name, broker, added_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
@@ -865,6 +873,14 @@ router.post('/saved-searches', requireAuth, validateSavedSearch, async (req, res
   
       const { category, filters } = req.body;
       const userId = req.user.id;
+
+      const [ssCheck] = await pool.execute(`
+        SELECT * FROM saved_searches WHERE filters = ? AND user_id = ?`,
+        [JSON.stringify(filters), userId])
+
+        if(ssCheck.length >= 1 ){
+            return res.status(400).json({message: 'Search already saved'})
+        }
   
       const [result] = await pool.execute(
         `INSERT INTO saved_searches (user_id, category, filters) 

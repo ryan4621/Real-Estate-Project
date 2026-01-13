@@ -2,12 +2,6 @@ const PROPERTY_API_BASE = '/public'
 
 let propertyInquiryId;
 
-// document.addEventListener('DOMContentLoaded', async ()  => {
-//     loadPropertyPage();
-//     // setUpEventListeners()
-//     // checkUserAuthStatus();
-// });
-
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         loadPropertyPage();

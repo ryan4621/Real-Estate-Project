@@ -16,7 +16,8 @@ let currentFilters = {
 
 let paginationDisabled = false;
 let searchId = null;
-let isSaved = false;
+let isSaved = false
+
 
 const listDisplayMode = document.getElementById('list-display-mode');
 const mapDisplayMode = document.getElementById('map-display-mode');
@@ -35,7 +36,7 @@ if (displayMode === 'map') {
 // Initialize page
 document.addEventListener('DOMContentLoaded', async () => {
 	setupEventListeners();
-	
+
 	const urlParams = new URLSearchParams(window.location.search);
 
 	if (urlParams.get('search')) {
@@ -62,14 +63,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 	if (urlParams.get('max_bath')) {
 		document.getElementById("properties-max-bath").value = urlParams.get('max_bath');
 	}
+
+	await checkIfSearchIsSaved();
 });
 
 window.addEventListener('pageshow', (event) => {
-    if (event.persisted) {
-		loadProperties();
-    } else {
-		loadProperties();
-    }
+    loadProperties();
 });
 
 function setupEventListeners() {
@@ -88,7 +87,6 @@ function setupEventListeners() {
 
 	const debouncedSearch = debounce(() => loadProperties(1), 400);
 	document.getElementById("searchInput").addEventListener("input", debouncedSearch);
-
     document.getElementById('filters-reset-btn').addEventListener('click', resetFilters)
 
 	const saveSearchBtn = document.getElementById('save-search-btn')
@@ -96,16 +94,15 @@ function setupEventListeners() {
 	if (saveSearchBtn) {
 		saveSearchBtn.addEventListener('click', async function() {
 			if (isSaved) {
-				// Button shows "Saved", so remove the search
 				await removeSavedSearch(searchId);
 				this.textContent = "Save Search";
 				isSaved = false;
 			} else {
-				// Button shows "Save Search", so save it
 				await saveSearch();
 			}
 		});
 	}
+
     document.getElementById("properties-sort-select").addEventListener("change", () => {
         currentPage = 1;
         loadProperties();
@@ -151,7 +148,6 @@ function setupEventListeners() {
 	});
 
 	document.addEventListener('click', () => {
-		console.log("Outside clicked!")
 		document.querySelectorAll('.filter-modal').forEach(modal => {
 			modal.classList.remove('active');
 		});
@@ -161,7 +157,6 @@ function setupEventListeners() {
 		listDisplayMode.classList.add('active');
 		mapDisplayMode.classList.remove('active');
 		
-		// Update URL without reload
 		const newUrl = new URL(window.location);
 		newUrl.searchParams.set('display', 'list');
 		window.history.replaceState({}, '', newUrl); 
@@ -171,12 +166,60 @@ function setupEventListeners() {
 		mapDisplayMode.classList.add('active');
 		listDisplayMode.classList.remove('active');
 		
-		// Update URL without reload
 		const newUrl = new URL(window.location);
 		newUrl.searchParams.set('display', 'map');
 		window.history.replaceState({}, '', newUrl); 
 	});
 };
+
+async function checkIfSearchIsSaved() {
+    try {
+        applyFilters();
+        
+        const authResponse = await fetch('/auth/me', { credentials: 'include' });
+        if (!authResponse.ok) return;
+
+        const savedSearchesResponse = await fetch('/api/saved-searches', { 
+            credentials: 'include' 
+        });
+        
+        if (!savedSearchesResponse.ok) return;
+        
+        const savedSearches = await savedSearchesResponse.json();
+
+        // Normalize current filters to match database format
+        const normalizedCurrentFilters = {
+            search: currentFilters.search || null,
+            property_type: currentFilters.type !== 'Any' ? currentFilters.type : null,
+            price_min: currentFilters.minPrice !== 'No min' ? currentFilters.minPrice : null,
+            price_max: currentFilters.maxPrice !== 'No max' ? currentFilters.maxPrice : null,
+            bedrooms_min: currentFilters.minBedrooms !== 'No min' ? currentFilters.minBedrooms : null,
+            bedrooms_max: currentFilters.maxBedrooms !== 'No max' ? currentFilters.maxBedrooms : null,
+            bathrooms_min: currentFilters.minBathrooms !== 'No min' ? currentFilters.minBathrooms : null,
+            bathrooms_max: currentFilters.maxBathrooms !== 'No max' ? currentFilters.maxBathrooms : null
+        };
+
+        const matchingSearch = savedSearches.data.find(search => {
+            const savedFilters = typeof search.filters === 'string' 
+                ? JSON.parse(search.filters) 
+                : search.filters;
+            
+            return JSON.stringify(savedFilters) === JSON.stringify(normalizedCurrentFilters);
+        });
+
+        if (matchingSearch) {
+            isSaved = true;
+            searchId = matchingSearch.id;
+            const saveSearchBtn = document.getElementById('save-search-btn');
+            if (saveSearchBtn) {
+                saveSearchBtn.textContent = "Saved";
+            }
+        }
+        
+    } catch (error) {
+        console.error('Error checking saved searches:', error);
+    }
+}
 
 async function loadProperties(page) {
 	try {
@@ -196,6 +239,10 @@ async function loadProperties(page) {
 		if (currentFilters.minBathrooms && currentFilters.minBathrooms !== "No min") params.append("min_bathrooms", currentFilters.minBathrooms);
 		if (currentFilters.maxBathrooms && currentFilters.maxBathrooms !== "No max") params.append("max_bathrooms", currentFilters.maxBathrooms);
         if (currentFilters.sort) params.append("sort", currentFilters.sort);
+
+		const newUrl = new URL(window.location);
+        newUrl.search = params.toString();
+        window.history.replaceState({}, '', newUrl);
 
 		const currentPath = window.location.pathname;
         let res;
@@ -231,8 +278,12 @@ async function loadProperties(page) {
             resultsLocation.textContent = `${currentFilters.search} homes for sale`;
         } else if(currentFilters.search && currentPath.includes('rent')) {
             resultsLocation.textContent = `${currentFilters.search} homes for rent`;
+		}else if(currentFilters.search && currentPath.includes('sold')) {
+            resultsLocation.textContent = `Sold homes in ${currentFilters.search}`;
 		}else if (currentPath.includes('rent')) {
             resultsLocation.textContent = 'Homes for rent';
+		}else if (currentPath.includes('sold')) {
+            resultsLocation.textContent = 'Sold homes';
 		}else {
             resultsLocation.textContent = 'Homes for sale';
         }
@@ -257,13 +308,11 @@ async function loadProperties(page) {
                 credentials: "include",
             });
 
+			if (!propertyImageRes.ok) throw new Error("Failed to fetch images");
+
             const images = await propertyImageRes.json();
 
-			const sortedImages = images.sort((a, b) => {
-				if (a.is_primary) return -1;
-				if (b.is_primary) return 1;
-				return 0;
-			});
+			const sortedImages = images.sort((a, b) => Number(b.is_primary) - Number(a.is_primary));
 
 			const imageUrls = sortedImages.length > 0 
 			? sortedImages.map(img => img.image_url)
@@ -371,7 +420,6 @@ async function loadProperties(page) {
 				});
 		
 				if (response.ok) {
-					// const user = await response.json();
 		
 					const favRes = await fetch('/api/favorites', { credentials: "include" });
 		
@@ -384,8 +432,6 @@ async function loadProperties(page) {
 					const favData = favorites.data
 
 					const isFavorited = favData.some(fav => fav.property_id === property.property_id);
-		
-					// console.log(favData)
 		
 					if (isFavorited) {
 						heartEmpty.style.display = 'none';
@@ -446,8 +492,7 @@ async function saveSearch(){
         });
 
         if (!authResponse.ok) {
-            // showToast('Please login to save searches', 'error');
-            document.querySelector('.nav-signup-btn')?.click();
+            document.querySelector('.nav-signup-btn').click();
             return;
         }
 
@@ -538,6 +583,7 @@ async function removeSavedSearch(searchId){
 
 		isSaved = false;
         searchId = null;
+		
 		showToast('Search removed successfully', 'success');
         window.loadSearchesMini();
 
@@ -550,9 +596,9 @@ async function removeSavedSearch(searchId){
 function applyFilters() {
 	currentFilters = {
 		search: document.getElementById("searchInput").value.trim(),
+		type: document.getElementById("properties-type-filter").value,
 		minPrice: document.getElementById("properties-min-price").value,
 		maxPrice: document.getElementById("properties-max-price").value,
-		type: document.getElementById("properties-type-filter").value,
 		minBedrooms: document.getElementById("properties-min-bed").value,
 		maxBedrooms: document.getElementById("properties-max-bed").value,
 		minBathrooms: document.getElementById("properties-min-bath").value,
@@ -565,9 +611,9 @@ function resetFilters() {
 	currentPage = 1;
 	currentFilters = {
         search: "",
+		type: "Any",
         minPrice: "No min",
         maxPrice: "No max",
-        type: "Any",
         minBedrooms: "No min",
         maxBedrooms: "No max",
         minBathrooms: "No min",
@@ -575,7 +621,7 @@ function resetFilters() {
         sort: "newest"
     };
 
-	search: document.getElementById("searchInput").value = "",
+	document.getElementById("searchInput").value = "",
 	document.getElementById("properties-min-price").value = "No min",
     document.getElementById("properties-max-price").value = "No max",
     document.getElementById("properties-type-filter").value = "Any",

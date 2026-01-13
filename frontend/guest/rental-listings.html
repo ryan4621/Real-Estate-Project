@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rental listings</title>
-    <link rel="stylesheet" href="/frontend/guest/styles.css">
-    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -80,7 +80,11 @@
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
-            <!-- <span class="nav-load"></span> -->
+            
+            <button class="nav-signup-btn mobile-signup-btn">
+                <i class="bi bi-person-plus"></i>
+            </button>
+
             <div class="nav-load">
                 <button class="favorites-btn nav-load-btn">
                     <i class="fa-regular fa-heart"></i>
@@ -395,7 +399,7 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
-                    Previous
+                    
                 </button>
                 <button class="properties-pagination-btn active">1</button>
                 <button class="properties-pagination-btn">2</button>
@@ -403,7 +407,7 @@
                 <button class="properties-pagination-btn">4</button>
                 <button class="properties-pagination-btn">5</button>
                 <button class="properties-pagination-btn" id="next-btn">
-                    Next
+                    
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>

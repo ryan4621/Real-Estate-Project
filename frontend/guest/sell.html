@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <link rel="stylesheet" href="/frontend/guest/sell.css">
 </head>
 <body>
 
@@ -79,7 +80,11 @@
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
-            <!-- <span class="nav-load"></span> -->
+            
+            <button class="nav-signup-btn mobile-signup-btn">
+                <i class="bi bi-person-plus"></i>
+            </button>
+            
             <div class="nav-load">
                 <button class="favorites-btn nav-load-btn">
                     <i class="fa-regular fa-heart"></i>
@@ -198,10 +203,10 @@
     <div class="sidebar-overlay"></div>
     <aside class="sidebar-nav">
         <div class="sidebar-header">
-            <div class="sidebar-logo">
+            <a href="/frontend/guest/index.html" class="sidebar-logo">
                 <i class="fas fa-home"></i>
                 <span>PrimeHomes</span>
-            </div>
+            </a>
 
             <i class="bi bi-x sidebar-close-btn"></i>
         </div>
@@ -209,7 +214,7 @@
         <nav class="sidebar-menu">
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Buy</span>
+                    <a href="/frontend/guest/buy.html" class="sidebar-nav-link">Buy</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -222,7 +227,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Sell</span>
+                    <a href="/frontend/guest/sell.html" class="sidebar-nav-link">Sell</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -234,7 +239,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Rent</span>
+                    <a href="/frontend/guest/rent.html" class="sidebar-nav-link">Rent</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -247,7 +252,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Mortgage</span>
+                    <a href="/frontend/guest/mortgage.html" class="sidebar-nav-link">Mortgage</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -261,7 +266,7 @@
 
             <div class="sidebar-menu-item">
                 <button class="sidebar-menu-link">
-                    <span>Find an Agent</span>
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-nav-link">Find an Agent</a>
                     <i class="bi bi-chevron-down sidebar-arrow"></i>
                 </button>
                 <div class="sidebar-submenu">
@@ -273,9 +278,9 @@
             </div>
 
             <div class="sidebar-menu-item">
-                <a href="/frontend/guest/get-help.html" class="sidebar-menu-link sidebar-single-link">
-                    <span>Get help</span>
-                </a>
+                <div class="sidebar-menu-link sidebar-single-link">
+                    <a href="/frontend/guest/get-help.html" class="sidebar-nav-link">Get help</a>
+                </div>
             </div>
         </nav>
 
@@ -419,9 +424,9 @@
                 <div class="sold-faq-item">
                     <button class="sold-faq-question">
                         <span>What's the best way to sell your house quickly?</span>
-                        <i class="bi bi-chevron-down"></i>
+                        <i class="bi bi-chevron-up"></i>
                     </button>
-                    <div class="sold-faq-answer collapsed">
+                    <div class="sold-faq-answer">
                         The best way to sell your home quickly depends on the market in your area. A listing agent can help you to understand the market in your area and understand what options will help sell your home the fastest.
                     </div>
                 </div>
@@ -431,7 +436,7 @@
                         <span>How can I estimate my home's value?</span>
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <div class="sold-faq-answer collapsed">
+                    <div class="sold-faq-answer">
                         <p>
                             <a href="#" class="sold-faq-link">primehomes.com</a> makes it easy for you to estimate and understand your home's value. Visit <a href="#" class="sold-faq-link">My Home</a> in order to claim your home, see the current
                         </p>
@@ -443,7 +448,7 @@
                         <span>Who is best to sell your house with?</span>
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <div class="sold-faq-answer collapsed">
+                    <div class="sold-faq-answer">
                         <p>
                             Local real estate agents who specialize in your neighborhood are a great place to start for a listing agent who can sell your home with expertise. Some other options, like cash offers or For Sale By Owner (FSBO), might be an option in your area.
                         </p>
@@ -455,7 +460,7 @@
                         <span>What is the #1 thing that determines the value of a home?</span>
                         <i class="bi bi-chevron-up"></i>
                     </button>
-                    <div class="sold-faq-answer collapsed">
+                    <div class="sold-faq-answer">
                         <p>
                             Understanding comparable home sales, or recent sales of similar properties in your community, is crucial for determining your home's market value. A listing agent can prepare “comps” to help show the value of your home.
                         </p>

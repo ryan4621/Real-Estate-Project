@@ -1,3 +1,6 @@
 .env
 node_modules/
 testdb.js
+test.html
+test.js
+practice/

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Properties for Sale</title>
-    <link rel="stylesheet" href="/frontend/guest/styles.css">
-    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/guest/styles.css">
+    <link rel="stylesheet" href="/frontend/guest/for-sale.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -80,7 +80,11 @@
             </div>
             
             <button class="nav-signup-btn">Sign Up</button>
-            <!-- <span class="nav-load"></span> -->
+
+            <button class="nav-signup-btn mobile-signup-btn">
+                <i class="bi bi-person-plus"></i>
+            </button>
+
             <div class="nav-load">
                 <button class="favorites-btn nav-load-btn">
                     <i class="fa-regular fa-heart"></i>
@@ -92,6 +96,102 @@
             </div>
         </div>
     </nav>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-overlay"></div>
+    <aside class="sidebar-nav">
+        <div class="sidebar-header">
+            <a href="/frontend/guest/index.html" class="sidebar-logo">
+                <i class="fas fa-home"></i>
+                <span>PrimeHomes</span>
+            </a>
+
+            <i class="bi bi-x sidebar-close-btn"></i>
+        </div>
+
+        <nav class="sidebar-menu">
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/buy.html" class="sidebar-nav-link">Buy</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/for-sale.html" class="sidebar-submenu-link">Homes for Sale</a>
+                    <a href="/frontend/guest/forclosures.html" class="sidebar-submenu-link">Foreclosures</a>
+                    <a href="/frontend/guest/new-construction.html" class="sidebar-submenu-link">New Construction</a>
+                    <a href="/frontend/guest/open-houses.html" class="sidebar-submenu-link">Open Houses</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/sell.html" class="sidebar-nav-link">Sell</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/sold.html" class="sidebar-submenu-link">Recently Sold Homes</a>
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-submenu-link">Find an Agent</a>
+                    <a href="/frontend/guest/home-value.html" class="sidebar-submenu-link">Home Value Estimate</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/rent.html" class="sidebar-nav-link">Rent</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/apartments-for-rent.html" class="sidebar-submenu-link">Apartments for Rent</a>
+                    <a href="/frontend/guest/houses-for-rent.html" class="sidebar-submenu-link">Houses for Rent</a>
+                    <a href="/frontend/guest/rental-listings.html" class="sidebar-submenu-link">All Rental Listings</a>
+                    <a href="/frontend/guest/manage-rentals.html" class="sidebar-submenu-link">Manage Rentals</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/mortgage.html" class="sidebar-nav-link">Mortgage</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/pre-approved.html" class="sidebar-submenu-link">Get pre-approved</a>
+                    <a href="/frontend/guest/mortgage-rates.html" class="sidebar-submenu-link">Mortgage Rates</a>
+                    <a href="/frontend/guest/mortgage-calculator.html" class="sidebar-submenu-link">Mortgage Calculator</a>
+                    <a href="/frontend/guest/affordability-calculator.html" class="sidebar-submenu-link">Affordability Calculator</a>
+                    <a href="/frontend/guest/refinance-calculator.html" class="sidebar-submenu-link">Refinance Calculator</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-nav-link">Find an Agent</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/agents.html" class="sidebar-submenu-link">Real Estate Agents</a>
+                    <a href="/frontend/guest/property-managers.html" class="sidebar-submenu-link">Property Managers</a>
+                    <a href="/frontend/guest/home-builders.html" class="sidebar-submenu-link">Home Builders</a>
+                    <a href="#" class="sidebar-submenu-link">Create a Free Agent Account</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <div class="sidebar-menu-link sidebar-single-link">
+                    <a href="/frontend/guest/get-help.html" class="sidebar-nav-link">Get help</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidebar-app-download">
+            <a href="#" class="sidebar-app-btn">
+                <i class="bi bi-apple"></i>
+                <div>
+                    <span class="sidebar-app-label">Download on the</span>
+                    <span class="sidebar-app-name">App Store</span>
+                </div>
+            </a>
+        </div>
+    </aside>
 
     <!-- Sign Up Modal -->
     <div class="signup-overlay"></div>
@@ -397,7 +497,7 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
-                    Previous
+                    
                 </button>
                 <button class="properties-pagination-btn active">1</button>
                 <button class="properties-pagination-btn">2</button>
@@ -405,7 +505,7 @@
                 <button class="properties-pagination-btn">4</button>
                 <button class="properties-pagination-btn">5</button>
                 <button class="properties-pagination-btn" id="next-btn">
-                    Next
+                    
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
@@ -489,9 +589,9 @@
     <script src="/frontend/general/csrf-helper.js"></script>
     <script src="/frontend/general/toast-helper.js"></script>
     <script src="/frontend/general/confirmation-modal.js"></script>
+    <script src="/frontend/guest/for-sale.js"></script>
     <script src="/frontend/user/user-global.js"></script>
     <script src="/frontend/guest/register.js"></script>
-    <script src="/frontend/guest/for-sale.js"></script>
     
 </body>
 </html>
