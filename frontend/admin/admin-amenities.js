@@ -75,12 +75,12 @@ async function loadAmenities(page) {
 
         if (data.data.length === 0) {
             document.getElementById("empty-alert").style.display = "block";
-            document.querySelector(".amenities-table").style.display = "none";
+            document.querySelector(".admin-table").style.display = "none";
             return;
         }
 
         document.getElementById("empty-alert").style.display = "none";
-        document.querySelector(".amenities-table").style.display = "table";
+        document.querySelector(".admin-table").style.display = "table";
 
         const tbody = document.getElementById("amenities-table-body");
         tbody.innerHTML = "";
@@ -103,11 +103,11 @@ async function loadAmenities(page) {
                     </div>
                 </td>
                 <td>
-                    <div class="action-buttons">
-                        <button class="edit-btn edit-amenity-btn" data-id="${amenity.id}" data-property-id="${amenity.property_id}">
+                    <div class="admin-actions-cell">
+                        <button class="action-btn edit-btn edit-amenity-btn" data-id="${amenity.id}" data-property-id="${amenity.property_id}" title="Edit">
                             <i class="bi bi-pencil"></i>
                         </button>
-                        <button class="delete-btn delete-amenity-btn" data-id="${amenity.id}">
+                        <button class="action-btn delete-btn delete-amenity-btn" data-id="${amenity.id}" title="Delete">
                             <i class="bi bi-trash"></i>
                         </button>
                     </div>

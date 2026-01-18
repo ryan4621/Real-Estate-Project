@@ -170,6 +170,113 @@ function setupEventListeners() {
 		newUrl.searchParams.set('display', 'map');
 		window.history.replaceState({}, '', newUrl); 
 	});
+
+	// Mobile Filter Modal Functionality
+    const mobileFilterBtn = document.getElementById('properties-mobile-filter-btn');
+    const mobileFilterModal = document.getElementById('properties-mobile-filter-modal');
+    const mobileFilterOverlay = document.getElementById('properties-mobile-filter-overlay');
+    const mobileFilterClose = document.getElementById('properties-mobile-filter-close');
+    const mobileApplyBtn = document.getElementById('properties-mobile-apply-btn');
+    const mobileResetBtn = document.getElementById('properties-mobile-reset-btn');
+
+    // Sync filters helper function
+    const syncDesktopToMobile = () => {
+        document.getElementById('properties-min-price-mobile').value = document.getElementById('properties-min-price').value;
+        document.getElementById('properties-max-price-mobile').value = document.getElementById('properties-max-price').value;
+        document.getElementById('properties-type-filter-mobile').value = document.getElementById('properties-type-filter').value;
+        document.getElementById('properties-min-bed-mobile').value = document.getElementById('properties-min-bed').value;
+        document.getElementById('properties-max-bed-mobile').value = document.getElementById('properties-max-bed').value;
+        document.getElementById('properties-min-bath-mobile').value = document.getElementById('properties-min-bath').value;
+        document.getElementById('properties-max-bath-mobile').value = document.getElementById('properties-max-bath').value;
+    };
+
+    const syncMobileToDesktop = () => {
+        document.getElementById('properties-min-price').value = document.getElementById('properties-min-price-mobile').value;
+        document.getElementById('properties-max-price').value = document.getElementById('properties-max-price-mobile').value;
+        document.getElementById('properties-type-filter').value = document.getElementById('properties-type-filter-mobile').value;
+        document.getElementById('properties-min-bed').value = document.getElementById('properties-min-bed-mobile').value;
+        document.getElementById('properties-max-bed').value = document.getElementById('properties-max-bed-mobile').value;
+        document.getElementById('properties-min-bath').value = document.getElementById('properties-min-bath-mobile').value;
+        document.getElementById('properties-max-bath').value = document.getElementById('properties-max-bath-mobile').value;
+    };
+
+    // Open mobile filter modal
+    if (mobileFilterBtn) {
+		mobileFilterBtn.addEventListener('click', () => {
+			syncDesktopToMobile();
+			mobileFilterModal.classList.add('active');
+			mobileFilterOverlay.classList.add('active');
+			document.body.style.overflow = 'hidden';
+			
+			// Open all accordions
+			accordionButtons.forEach(btn => {
+				btn.classList.add('active');
+				btn.nextElementSibling.classList.add('active');
+			});
+		});
+	}
+
+    // Close mobile filter modal
+    const closeMobileFilter = () => {
+        mobileFilterModal.classList.remove('active');
+        mobileFilterOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (mobileFilterClose) {
+        mobileFilterClose.addEventListener('click', closeMobileFilter);
+    }
+
+    if (mobileFilterOverlay) {
+        mobileFilterOverlay.addEventListener('click', closeMobileFilter);
+    }
+
+    // Apply mobile filters
+    if (mobileApplyBtn) {
+        mobileApplyBtn.addEventListener('click', () => {
+            syncMobileToDesktop();
+            currentPage = 1;
+            closeMobileFilter();
+            loadProperties();
+        });
+    }
+
+    // Reset mobile filters
+    if (mobileResetBtn) {
+        mobileResetBtn.addEventListener('click', () => {
+            document.getElementById('properties-min-price-mobile').value = 'No min';
+            document.getElementById('properties-max-price-mobile').value = 'No max';
+            document.getElementById('properties-type-filter-mobile').value = 'Any';
+            document.getElementById('properties-min-bed-mobile').value = 'No min';
+            document.getElementById('properties-max-bed-mobile').value = 'No max';
+            document.getElementById('properties-min-bath-mobile').value = 'No min';
+            document.getElementById('properties-max-bath-mobile').value = 'No max';
+            
+            syncMobileToDesktop();
+            resetFilters();
+            closeMobileFilter();
+        });
+    }
+
+    // Accordion functionality
+    const accordionButtons = document.querySelectorAll('.properties-mobile-accordion-btn');
+    
+    accordionButtons.forEach(button => {
+		button.addEventListener('click', () => {
+			const content = button.nextElementSibling;
+			
+			// Toggle only the clicked accordion
+			button.classList.toggle('active');
+			content.classList.toggle('active');
+		});
+	});
+
+    // Close modal on resize back to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) {
+            closeMobileFilter();
+        }
+    });
 };
 
 async function checkIfSearchIsSaved() {

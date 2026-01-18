@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Properties Admin</title>
     <link rel="stylesheet" href="/frontend/admin/admin-properties.css">
-    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="admin-layout">
+        <div class="admin-sidebar-overlay" id="admin-sidebar-overlay"></div>
         <aside class="admin-sidebar" id="adminSidebar">
             <div class="admin-sidebar-header">
                 <div class="admin-sidebar-logo">
@@ -111,14 +112,25 @@
     
             <div class="admin-content">
                 <div class="admin-filters">
-                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-search-wrapper">
+                        <i class="fas fa-search admin-search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="admin-search-input"
+                            placeholder="Search by description, address, or ID..."
+                        />
+                    </div>
+
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Type</label>
-                        <select id="properties-type-filter">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-home"></i> Type
+                        </label>
+                        <select id="properties-type-filter" class="admin-filter-select">
                             <option value="all">All types</option>
-                            <option value="Single Family">Single Family</option>
+                            <option value="Single Family Home">Single Family</option>
                             <option value="Town House">Town House</option>
-                            <option value="Multi Family">Multi Family</option>
+                            <option value="Multi Family Home">Multi Family</option>
                             <option value="Modular Home">Modular Home</option>
                             <option value="Bungalow">Bungalow</option>
                             <option value="Ranch Home">Ranch Home</option>
@@ -126,14 +138,16 @@
                             <option value="Apartment">Apartment</option>
                         </select>
                     </div>
-    
+
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Status</label>
-                        <select id="properties-status-filter">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-info-circle"></i> Status
+                        </label>
+                        <select id="properties-status-filter" class="admin-filter-select">
                             <option value="all">All</option>
-                            <option value="Available">Available</option>
+                            <option value="Sale">For Sale</option>
+                            <option value="Rent">For Rent</option>
                             <option value="Sold">Sold</option>
-                            <option value="Rented">Rented</option>
                         </select>
                     </div>
                 </div>
@@ -359,74 +373,70 @@
                     </div>
                 </div>
     
-    
-                <div class="container-fluid py-4 properties-table">
-                    <div class="row">
-                        <!-- Table Section -->
-                        <div class="col-lg-12">
-                            <div class="card shadow-sm">
-                                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">
-                                        <i class="fas fa-list"></i> Properties List
-                                    </h5>
-                                    <button class="btn btn-primary btn-sm" id="add-property-btn">
-                                        <i class="fas fa-plus-circle"></i> Add property
-                                    </button>
-                                    <button class="btn btn-light btn-sm" id="refresh-btn">
-                                        <i class="fas fa-sync-alt"></i> Refresh
-                                    </button>
-                                </div>
-                                <div class="card-body">
-                                    
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover" id="properties-table">
-                                            <thead class="table-dark">
-                                                <tr>
-                                                    <th>Property ID</th>
-                                                    <th>Type</th>
-                                                    <th>Description</th>
-                                                    <th>Status</th>
-                                                    <th>Price</th>
-                                                    <th>Price per sqft</th>
-                                                    <th>Garage Space</th>
-                                                    <th>Year Built</th>
-                                                    <th>Bathrooms</th>
-                                                    <th>Bedrooms</th>
-                                                    <th>Area</th>
-                                                    <th>Acre lot</th>
-                                                    <th>Street Number</th>
-                                                    <th>Street Name</th>
-                                                    <th>City</th>
-                                                    <th>State</th>
-                                                    <th>Country</th>
-                                                    <th>Zip</th>
-                                                    <th>Latitude</th>
-                                                    <th>Longitude</th>
-                                                    <th>Agent name</th>
-                                                    <th>Agent email</th>
-                                                    <th>Broker</th>
-                                                    <th>Created at</th>
-                                                    <th>Updated at</th>
-                                                    <th>Actions</th>
-                                                    <th>Images</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="properties-table-body">
-                                                <!-- Data will be inserted here -->
-                                            </tbody>
-                                        </table>
-                                    </div>
-    
-                                    <div class="alert alert-warning" id="empty-alert" style="display: none;">
-                                        <i class="fas fa-info-circle"></i> No properties found.
-                                    </div>
-                                </div>
+                <div class="admin-table-container">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <div class="admin-table-header-content">
+                                <i class="fas fa-list"></i>
+                                <h3>Properties List</h3>
                             </div>
+                            <div class="admin-header-actions">
+                                <button class="table-action-btn add" id="add-property-btn">
+                                    <i class="fas fa-plus-circle"></i> Add Property
+                                </button>
+                                <button class="table-action-btn refresh-btn">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table" id="properties-table">
+                                <thead class="admin-table-head">
+                                    <tr>
+                                        <th>Property ID</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Status</th>
+                                        <th>Price</th>
+                                        <th>Price per sqft</th>
+                                        <th>Garage Space</th>
+                                        <th>Year Built</th>
+                                        <th>Bathrooms</th>
+                                        <th>Bedrooms</th>
+                                        <th>Area</th>
+                                        <th>Acre lot</th>
+                                        <th>Street Number</th>
+                                        <th>Street Name</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Country</th>
+                                        <th>Zip</th>
+                                        <th>Latitude</th>
+                                        <th>Longitude</th>
+                                        <th>Agent name</th>
+                                        <th>Agent email</th>
+                                        <th>Broker</th>
+                                        <th>Created at</th>
+                                        <th>Updated at</th>
+                                        <th>Actions</th>
+                                        <th>Images</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="properties-table-body">
+                                    <!-- Data will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="admin-empty-alert" id="empty-alert">
+                            <i class="fas fa-info-circle"></i>
+                            <p>No properties found.</p>
                         </div>
                     </div>
                 </div>
     
-                <div id="pagination"></div>
+                <div class="pagination" id="pagination"></div>
             </div>
         </main>
     </div>

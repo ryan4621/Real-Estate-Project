@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin users</title>
     <link rel="stylesheet" href="/frontend/admin/admin-support.css">
-    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="admin-layout">
+        <div class="admin-sidebar-overlay" id="admin-sidebar-overlay"></div>
         <aside class="admin-sidebar" id="adminSidebar">
             <div class="admin-sidebar-header">
                 <div class="admin-sidebar-logo">
@@ -110,36 +111,64 @@
             </header>
     
             <div class="admin-content">
-                 <!-- Statistics Cards -->
-                <div class="support-stats" id="supportStats">
-                    <div class="support-stat-card pending">
-                        <h3 class="support-stat-number" id="pendingCount">-</h3>
-                        <p class="support-stat-label">Pending Tickets</p>
+                <div class="admin-stats-grid" id="supportStats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon orange">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="admin-stat-label">Pending Tickets</div>
+                        <div class="admin-stat-value" id="pendingCount">-</div>
                     </div>
-                    <div class="support-stat-card in-progress">
-                        <h3 class="support-stat-number" id="inProgressCount">-</h3>
-                        <p class="support-stat-label">In Progress</p>
+                    
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon blue">
+                            <i class="fas fa-spinner"></i>
+                        </div>
+                        <div class="admin-stat-label">In Progress</div>
+                        <div class="admin-stat-value" id="inProgressCount">-</div>
                     </div>
-                    <div class="support-stat-card resolved">
-                        <h3 class="support-stat-number" id="resolvedCount">-</h3>
-                        <p class="support-stat-label">Resolved</p>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon green">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="admin-stat-label">Resolved</div>
+                        <div class="admin-stat-value" id="resolvedCount">-</div>
                     </div>
-                    <div class="support-stat-card high-priority">
-                        <h3 class="support-stat-number" id="highPriorityCount">-</h3>
-                        <p class="support-stat-label">High Priority</p>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon purple">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="admin-stat-label">High Priority</div>
+                        <div class="admin-stat-value" id="highPriorityCount">-</div>
                     </div>
-                    <div class="support-stat-card closed">
-                        <h3 class="support-stat-number" id="closedCount">-</h3>
-                        <p class="support-stat-label">Closed</p>
+
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" style="background-color: #f3f4f6; color: #6b7280;">
+                            <i class="fas fa-archive"></i>
+                        </div>
+                        <div class="admin-stat-label">Closed</div>
+                        <div class="admin-stat-value" id="closedCount">-</div>
                     </div>
                 </div>
 
-                <!-- Filters -->
                 <div class="admin-filters">
-                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-search-wrapper">
+                        <i class="fas fa-search admin-search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="admin-search-input"
+                            placeholder="Search by name, email, or subject..."
+                        />
+                    </div>
+
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Status</label>
-                        <select id="status-filter" class="support-filter-select">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-info-circle"></i> Status
+                        </label>
+                        <select id="status-filter" class="admin-filter-select">
                             <option value="all">All Statuses</option>
                             <option value="pending">Pending</option>
                             <option value="in_progress">In Progress</option>
@@ -147,10 +176,12 @@
                             <option value="closed">Closed</option>
                         </select>
                     </div>
-    
+
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Priority</label>
-                        <select id="priority-filter" class="support-filter-select">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-exclamation-circle"></i> Priority
+                        </label>
+                        <select id="priority-filter" class="admin-filter-select">
                             <option value="all">All Priorities</option>
                             <option value="low">Low</option>
                             <option value="normal">Normal</option>
@@ -160,8 +191,10 @@
                     </div>
 
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Subject</label>
-                        <select id="subject-filter" class="support-filter-select">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-tag"></i> Subject
+                        </label>
+                        <select id="subject-filter" class="admin-filter-select">
                             <option value="all">All Subjects</option>
                             <option value="general">General</option>
                             <option value="account">Account</option>
@@ -174,48 +207,51 @@
 
                 <div class="modal-overlay"></div>
 
-                <!-- Action Buttons -->
-                <div class="notification-actions">
-                    <button class="support-refresh-btn" id="support-refresh-btn">
-                        Refresh Data
-                    </button>
-                </div>
-            
                 <!-- Tickets Table -->
-                <div class="support-tickets-container">
-                    <div class="support-tickets-header">
-                        <h3 class="support-tickets-title">Support Tickets</h3>
-                        <span class="support-tickets-count" id="displayedTicketsCount">0 tickets</span>
+                <div class="admin-table-container">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <div class="admin-table-header-content">
+                                <i class="fas fa-headset"></i>
+                                <h3>Support Tickets</h3>
+                                <span class="notification-list-count" id="displayedTicketsCount" style="margin-left: 10px; font-size: 0.9em; opacity: 0.8;">0 tickets</span>
+                            </div>
+                            <div class="admin-header-actions">
+                                <button class="table-action-btn refresh-btn">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div class="support-loading" id="loadingState">
+                            <div class="support-loading-spinner"></div>
+                            <p>Loading support tickets...</p>
+                        </div>
+                
+                        <!-- Empty State -->
+                        <div class="admin-empty-alert" id="emptyState" style="display: none;">
+                            <i class="fas fa-info-circle"></i>
+                            <p>No support tickets found.</p>
+                        </div>
+
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table" id="ticketsTable" style="display: none;">
+                                <thead class="admin-table-head">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Customer</th>
+                                        <th>Subject</th>
+                                        <th>Status</th>
+                                        <th>Priority</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ticketsTableBody"></tbody>
+                            </table>
+                        </div>
                     </div>
-                    
-                    <!-- Loading State -->
-                    <div class="support-loading" id="loadingState">
-                        <div class="support-loading-spinner"></div>
-                        <p>Loading support tickets...</p>
-                    </div>
-            
-                    <!-- Empty State -->
-                    <div class="support-empty" id="emptyState" style="display: none;">
-                        <div class="support-empty-icon">📭</div>
-                        <h3>No support tickets found</h3>
-                        <p>No tickets match your current filters.</p>
-                    </div>
-            
-                    <!-- Tickets Table -->
-                    <table class="support-tickets-table" id="ticketsTable" style="display: none;">
-                        <thead>
-                            <tr>
-                            <th>ID</th>
-                            <th>Customer</th>
-                            <th>Subject</th>
-                            <th>Status</th>
-                            <th>Priority</th>
-                            <th>Created</th>
-                            <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ticketsTableBody"></tbody>
-                    </table>
                 </div>
             
                 <!-- Ticket Detail Modal -->
@@ -234,7 +270,7 @@
                     </div>
                 </div>
     
-                <div id="pagination"></div>
+                <div class="pagination" id="pagination"></div>
             </div>
         </main>
     </div>

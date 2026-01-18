@@ -19,32 +19,7 @@
     display: block;
 }
 
-.table-responsive {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-#properties-table {
-    min-width: 1200px;
-    table-layout: auto;
-}
-/* 
-#properties-table th,
-#properties-table td {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 500px;
-    padding: 12px 8px;
-    vertical-align: middle;
-} */
-
-#properties-table th:nth-child(3),
-#properties-table td:nth-child(3) {
-    width: 500px;
-    white-space: normal;
-    word-wrap: break-word;
-}
+/* Table styles handled by admin-global.css */
 
 .upload-container {
     display: none;
@@ -53,10 +28,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 500px;
+    border-radius: 1.25rem;
+    box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.1);
+    padding: clamp(2rem, 2.5vw, 2.5rem);
+    max-width: 31.25rem;
     width: 90%;
     text-align: center;
     z-index: 1050;
@@ -72,18 +47,18 @@
 }
 
 .property-section-label {
-    font-size: 14px;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
     font-weight: 600;
     color: #2d3748;
-    margin-bottom: 10px;
+    margin-bottom: clamp(0.5rem, 0.6vw, 0.625rem);
 }
 
 .property-section {
     width: 100%;
-    padding: 10px 12px;
-    border: 2px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: clamp(0.5rem, 0.6vw, 0.625rem) clamp(0.6rem, 0.75vw, 0.75rem);
+    border: 0.125rem solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
     color: #2d3748;
     background-color: white;
     cursor: pointer;
@@ -97,15 +72,15 @@
 
 .close-images-modal {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: clamp(0.8rem, 1vw, 1rem);
+    right: clamp(0.8rem, 1vw, 1rem);
     background: none;
     border: none;
     color: #666;
     font-size: 1.5rem;
     cursor: pointer;
-    width: 35px;
-    height: 35px;
+    width: 2.1875rem;
+    height: 2.1875rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,31 +95,31 @@
 }
 
 .upload-headers {
-    margin-bottom: 30px;
+    margin-bottom: clamp(1.5rem, 2vw, 1.875rem);
 }
 
 .current-photo {
-    width: 120px;
-    height: 120px;
+    width: 7.5rem;
+    height: 7.5rem;
     border-radius: 50%;
-    margin: 0 auto 20px;
-    border: 4px solid #e3f2fd;
+    margin: 0 auto clamp(1rem, 1.25vw, 1.25rem);
+    border: 0.25rem solid #e3f2fd;
     object-fit: cover;
     background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #999;
-    font-size: 14px;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
     position: relative;
     overflow: hidden;
 }
 
 .upload-area {
-    border: 3px dashed #ddd;
-    border-radius: 15px;
-    padding: 40px 20px;
-    margin: 20px 0;
+    border: 0.1875rem dashed #ddd;
+    border-radius: 0.9375rem;
+    padding: clamp(2rem, 2.5vw, 2.5rem) clamp(1rem, 1.25vw, 1.25rem);
+    margin: clamp(1rem, 1.25vw, 1.25rem) 0;
     transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
@@ -154,7 +129,7 @@
 .upload-area:hover {
     border-color: #667eea;
     background: #f0f4ff;
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem);
 }
 
 .upload-area.dragover {
@@ -164,20 +139,20 @@
 }
 
 .upload-icon {
-    font-size: 48px;
+    font-size: clamp(2.5rem, 3vw, 3rem);
     color: #667eea;
-    margin-bottom: 15px;
+    margin-bottom: clamp(0.75rem, 1vw, 0.9375rem);
 }
 
 .upload-text {
     color: #666;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    margin-bottom: clamp(0.5rem, 0.6vw, 0.625rem);
 }
 
 .upload-subtext {
     color: #999;
-    font-size: 14px;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
 }
 
 #fileInput {
@@ -185,32 +160,32 @@
 }
 
 .preview-section {
-    margin: 30px 0;
+    margin: clamp(1.5rem, 2vw, 1.875rem) 0;
     display: none;
 }
 
 .preview-image {
-    width: 200px;
-    height: 200px;
-    border-radius: 15px;
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 0.9375rem;
     object-fit: cover;
-    margin: 0 auto 20px;
-    border: 3px solid #667eea;
+    margin: 0 auto clamp(1rem, 1.25vw, 1.25rem);
+    border: 0.1875rem solid #667eea;
 }
 
 .file-info {
     background: #f8f9ff;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 15px 0;
+    padding: clamp(0.75rem, 1vw, 0.9375rem);
+    border-radius: 0.625rem;
+    margin: clamp(0.75rem, 1vw, 0.9375rem) 0;
     text-align: left;
 }
 
 .file-info-item {
     display: flex;
     justify-content: space-between;
-    margin: 5px 0;
-    font-size: 14px;
+    margin: 0.3125rem 0;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
 }
 
 .file-info-label {
@@ -224,20 +199,20 @@
 
 .buttons {
     display: flex;
-    gap: 15px;
+    gap: clamp(0.75rem, 1vw, 0.9375rem);
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .upload-btn, .cancel-btn {
-    padding: 12px 24px;
+    padding: clamp(0.6rem, 0.75vw, 0.75rem) clamp(1.2rem, 1.5vw, 1.5rem);
     border: none;
-    border-radius: 8px;
-    font-size: 14px;
+    border-radius: 0.5rem;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    min-width: 120px;
+    min-width: 7.5rem;
 }
 
 .upload-btn {
@@ -246,8 +221,8 @@
 }
 
 .upload-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.625rem 1.25rem rgba(102, 126, 234, 0.3);
 }
 
 .cancel-btn {
@@ -265,53 +240,53 @@
 }
 
 .progress-container {
-    margin: 20px 0;
+    margin: clamp(1rem, 1.25vw, 1.25rem) 0;
     display: none;
 }
 
 .progress-bar {
     width: 100%;
-    height: 8px;
+    height: 0.5rem;
     background: #e0e0e0;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
     background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     transition: width 0.3s ease;
     width: 0%;
 }
 
 .progress-text {
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 0.625rem;
+    font-size: clamp(0.7rem, 0.8vw, 0.875rem);
     color: #666;
 }
 
 .error-message {
     background: #fee;
     color: #c33;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
+    padding: clamp(0.75rem, 1vw, 0.9375rem);
+    border-radius: 0.5rem;
+    margin: clamp(0.75rem, 1vw, 0.9375rem) 0;
     display: none;
 }
 
 .success-message {
     background: #efe;
     color: #3c3;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
+    padding: clamp(0.75rem, 1vw, 0.9375rem);
+    border-radius: 0.5rem;
+    margin: clamp(0.75rem, 1vw, 0.9375rem) 0;
     display: none;
 }
 
 @media (max-width: 480px) {
     .upload-container {
-        padding: 30px 20px;
+        padding: clamp(1.5rem, 2vw, 1.875rem) clamp(1rem, 1.25vw, 1.25rem);
     }
     
     .buttons {
@@ -331,12 +306,12 @@
     position: fixed;
     right: -100%;
     top: 0;
-    padding: 20px;
+    padding: clamp(1rem, 1.25vw, 1.25rem);
     width: 40%;
     max-width: 90%;
     height: 100vh;
     background-color: #ffffff;
-    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: -0.125rem 0 1.25rem rgba(0, 0, 0, 0.3);
     z-index: 1050;
     overflow-y: auto;
     transition: right 0.4s ease;
@@ -352,7 +327,7 @@
     z-index: 10;
     background-color: #0d6efd;
     color: white;
-    padding: 1rem 1.5rem;
+    padding: clamp(1rem, 1.25vw, 1.25rem) clamp(1.2rem, 1.5vw, 1.5rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -365,8 +340,8 @@
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -391,41 +366,41 @@
 
 .property-images {
     display: none;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr));
+    gap: clamp(1rem, 1.25vw, 1.25rem);
+    padding: clamp(1rem, 1.25vw, 1.25rem);
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 0.625rem;
+    box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.1);
     width: 80%;
     text-align: center;
-    z-index: 1050;
+    z-index: 2500;
     overflow-y: auto;
     max-height: 80vh; 
 }
 
 .close-images-hub {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: clamp(0.75rem, 1vw, 0.9375rem);
+    right: clamp(0.75rem, 1vw, 0.9375rem);
     background: white;
     border: none;
     color: #666;
     font-size: 1.5rem;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .close-images-hub:hover {
@@ -436,45 +411,45 @@
 
 .image-wrapper {
     position: relative;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .property-image {
     width: 100%;
-    height: 200px;
+    height: 12.5rem;
     object-fit: cover;
     display: block;
 }
 
 .property-section-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: clamp(0.5rem, 0.6vw, 0.625rem);
+    left: clamp(0.5rem, 0.6vw, 0.625rem);
     font-size: 0.8rem;
-    padding: 5px 20px;
+    padding: clamp(0.25rem, 0.3vw, 0.3125rem) clamp(1rem, 1.25vw, 1.25rem);
     color: #fff;
     /* z-index: 10; */
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background-color: rgba(19, 0, 0, 0.8);
 }
 
 .primary-badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: clamp(0.5rem, 0.6vw, 0.625rem);
+    right: clamp(0.5rem, 0.6vw, 0.625rem);
     background-color: #0066cc;
     color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: clamp(0.25rem, 0.3vw, 0.3125rem) clamp(0.6rem, 0.75vw, 0.75rem);
+    border-radius: 1.25rem;
+    font-size: clamp(0.7em, 0.75vw, 0.75rem);
     font-weight: 600;
 }
 
 .property-image video {
     width: 100%;
-    height: 200px;
+    height: 12.5rem;
     object-fit: cover;
     display: block;
     background-color: #000; /* Black background for videos */
@@ -491,9 +466,9 @@ video.property-image::-webkit-media-controls-panel {
     left: 0;
     right: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    padding: 10px;
+    padding: clamp(0.5rem, 0.6vw, 0.625rem);
     display: flex;
-    gap: 8px;
+    gap: clamp(0.4rem, 0.5vw, 0.5rem);
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -504,15 +479,15 @@ video.property-image::-webkit-media-controls-panel {
 }
 
 .image-control-btn {
-    padding: 6px 12px;
+    padding: clamp(0.3rem, 0.375vw, 0.375rem) clamp(0.6rem, 0.75vw, 0.75rem);
     border: none;
-    border-radius: 4px;
-    font-size: 12px;
+    border-radius: 0.25rem;
+    font-size: clamp(0.7em, 0.75vw, 0.75rem);
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: clamp(0.25rem, 0.3vw, 0.3125rem);
     transition: all 0.2s ease;
 }
 
@@ -523,7 +498,7 @@ video.property-image::-webkit-media-controls-panel {
 
 .set-primary-btn:hover {
     background: #ffca2c;
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem);
 }
 
 .delete-image-btn {
@@ -533,9 +508,9 @@ video.property-image::-webkit-media-controls-panel {
 
 .delete-image-btn:hover {
     background: #c82333;
-    transform: translateY(-2px);
+    transform: translateY(-0.125rem);
 }
 
 .image-control-btn i {
-    font-size: 11px;
+    font-size: clamp(0.65rem, 0.7vw, 0.75rem);
 }

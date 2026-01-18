@@ -32,9 +32,6 @@ function setupEventListeners() {
     // Add open house button
     document.getElementById('open-house-add-btn').addEventListener('click', openAddModal);
 
-    // Refresh button
-    document.getElementById('open-house-refresh-btn').addEventListener('click', () => loadOpenHouses(currentPage));
-
     // Modal controls
     setupModalListeners();
 
@@ -83,12 +80,13 @@ async function loadOpenHouses(page) {
 
         if (data.data.length === 0) {
             document.getElementById("open-house-empty-alert").style.display = "block";
-            document.querySelector(".open-house-table").style.display = "none";
+            document.getElementById("open-house-empty-alert").style.display = "block";
+            document.querySelector(".admin-table").style.display = "none";
             return;
         }
 
         document.getElementById("open-house-empty-alert").style.display = "none";
-        document.querySelector(".open-house-table").style.display = "table";
+        document.querySelector(".admin-table").style.display = "table";
 
         const tbody = document.getElementById("open-house-table-body");
         tbody.innerHTML = "";
@@ -147,18 +145,18 @@ async function loadOpenHouses(page) {
                     </div>
                 </td>
                 <td>
-                    <span class="open-house-status-badge ${statusClass}">
+                    <span class="status-badge ${statusClass}">
                         ${escapeHtml(openHouse.status)}
                     </span>
                 </td>
                 <td>${attendeesInfo}</td>
                 <td>${rsvpBadge}</td>
                 <td>
-                    <div class="open-house-action-btns">
-                        <button class="open-house-action-btn open-house-edit-btn" data-id="${openHouse.id}">
-                            <i class="fas fa-edit"></i>
+                    <div class="table-action-btns">
+                        <button class="table-action-btn edit open-house-edit-btn" data-id="${openHouse.id}" title="Edit">
+                            <i class="bi bi-pencil-square"></i>
                         </button>
-                        <button class="open-house-action-btn open-house-delete-btn" data-id="${openHouse.id}">
+                        <button class="table-action-btn delete open-house-delete-btn" data-id="${openHouse.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>

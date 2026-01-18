@@ -39,3 +39,23 @@ logoutBtn.addEventListener('click', async (e) => {
         showToast(data.message, "error");
     }
 });
+
+const sidebarToggle = document.getElementById('sidebarToggle')
+const adminSidebar = document.getElementById('adminSidebar')
+const adminSidebarOverlay = document.getElementById('admin-sidebar-overlay')
+
+sidebarToggle.addEventListener('click', () => {
+    adminSidebar.classList.add('active')
+    adminSidebarOverlay.classList.add('show')
+    document.body.style.overflow = 'hidden'
+});
+
+adminSidebarOverlay.addEventListener('click', () => {
+    adminSidebar.classList.remove('active')
+    adminSidebarOverlay.classList.remove('show')
+    document.body.style.overflow = ''
+})
+
+document.querySelector('.refresh-btn').addEventListener('click', () => {
+    location.reload();
+});

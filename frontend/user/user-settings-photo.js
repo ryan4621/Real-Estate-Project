@@ -168,7 +168,7 @@ const modalCloseBtn = document.getElementById('photo-modal-close-btn');
 function openProfileModal() {
     profileModalOverlay.classList.add('active');
     profileModal.classList.add('active');
-    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden'
 }
 
 // Close modal

@@ -9,7 +9,6 @@ let currentFilters = {
     inquiryStatus: "all",
     requestTour: "all",
 };
-
 let inquiryId = null;
 
 // Initialize page
@@ -25,9 +24,6 @@ function setupEventListeners() {
     document.getElementById("searchInput").addEventListener("input", debouncedSearch);
     document.getElementById("inquiry-status-filter").addEventListener("change", () => loadInquiries(1));
     document.getElementById("request-tour-filter").addEventListener("change", () => loadInquiries(1));
-
-    // Refresh button
-    document.getElementById('refresh-btn').addEventListener('click', () => location.reload());
 
     // Export buttons
     document.getElementById('exportCsv').addEventListener('click', () => exportData('csv'));

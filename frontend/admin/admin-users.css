@@ -20,30 +20,29 @@
 }
 
 .users-section {
-    margin-bottom: 30px;
+    margin-bottom: clamp(1.5rem, 2vw, 1.875rem);
 }
 
 .buttons {
     display: flex;
-    gap: 15px;
+    gap: clamp(0.75rem, 1vw, 0.9375rem);
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.users-table {
-    z-index: 1050;
-}
+/* Table styles handled by admin-global.css */
 
 .user-modal {
     position: fixed;
     right: -100%;
     top: 0;
-    padding: 20px;
-    width: 40%;
-    max-width: 90%;
+    padding: clamp(1rem, 1.25vw, 1.25rem);
+    /* width: 40%;
+    max-width: 90%; */
+    width: clamp(20rem, 40vw, 90%);
     height: 100vh;
     background-color: #ffffff;
-    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: -0.125rem 0 1.25rem rgba(0, 0, 0, 0.3);
     z-index: 1050;
     overflow-y: auto;
     transition: right 0.4s ease;
@@ -59,7 +58,7 @@
     z-index: 10;
     background-color: #0d6efd;
     color: white;
-    padding: 1rem 1.5rem;
+    padding: clamp(1rem, 1.25vw, 1.25rem) clamp(1.2rem, 1.5vw, 1.5rem);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,8 +71,8 @@
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0;
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,12 +85,5 @@
 }
 
 .modal-body-custom {
-    padding: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .users-modal {
-        width: 100%;
-        max-width: 100%;
-    }
+    padding: clamp(1.2rem, 1.5vw, 1.5rem);
 }

@@ -340,7 +340,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateX(0.625rem);
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     z-index: 1000;
 }
 
@@ -1064,13 +1064,6 @@ body.sidebar-open {
     border-radius: clamp(0.1rem, 0.3vw, 0.125rem);
     outline: none;
     cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .signup-modal {
-        width: 100%;
-        right: -100%;
-    }
 }
 
 
@@ -2054,4 +2047,10 @@ body.sidebar-open {
     .image-nav-btn, .image-counter {
         display: flex;
     }
+}
+
+/* Stop animations during resize */
+.resize-animation-stopper * {
+    animation: none !important;
+    transition: none !important;
 }

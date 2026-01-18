@@ -32,7 +32,6 @@ function setupEventListeners() {
 
 	// Main action buttons
 	document.getElementById("notification-create-btn").addEventListener("click", showCreateForm);
-	document.getElementById("notification-refresh-btn").addEventListener("click", () => refreshData());
 
 	// Form controls
 	document.getElementById("notification-cancel-btn").addEventListener("click", hideCreateForm);
@@ -221,24 +220,24 @@ function renderNotificationRow(notification) {
 			<td>
 				<div>
 					<strong>${escapeHtml(notification.title)}</strong><br>
-					<small style="color: #7f8c8d;">${truncateText(escapeHtml(notification.message), 60)}</small>
+					<small class="notification-row-message">${truncateText(escapeHtml(notification.message), 60)}</small>
 				</div>
 			</td>
 			<td>
-				<span class="notification-category-badge notification-category-${escapeHtml(notification.category).replace("_", "-")}">
-					${formatCategory(escapeHtml(notification.category))}
+				<span class="status-badge ${notification.category === 'marketing_emails' ? 'info' : notification.category === 'saved_listings' ? 'success' : 'neutral'}">
+					<i class="fas fa-tag"></i> ${formatCategory(escapeHtml(notification.category))}
 				</span>
 			</td>
 			<td>
-				<span class="notification-status-badge notification-status-${escapeHtml(notification.status)}">
+				<span class="status-badge ${notification.status === 'sent' ? 'success' : notification.status === 'draft' ? 'warning' : notification.status === 'cancelled' ? 'danger' : 'info'}">
 					${escapeHtml(notification.status)}
 				</span>
 			</td>
 			<td>${notification.total_recipients || 0}</td>
 			<td>${createdDate}</td>
 			<td>
-				<div class="notification-actions-cell">
-					<button class="notification-action-btn notification-action-view" 
+				<div class="table-action-btns">
+					<button class="table-action-btn view notification-action-view" 
 							data-id="${notification.id}"
 							title="View Details">
 						<i class="fa-solid fa-eye"></i>
@@ -246,15 +245,15 @@ function renderNotificationRow(notification) {
 					${
 						notification.status === "draft"
 							? `
-						<button class="notification-action-btn notification-action-edit" 
+						<button class="table-action-btn edit notification-action-edit" 
 								data-id="${notification.id}"
 								title="Edit notification">
-							<i class="bi bi-inbox-fill"></i>
+							<i class="bi bi-pencil-square"></i>
 						</button>
 					`
 							: ""
 					}
-					<button class="notification-action-btn notification-action-delete" 
+					<button class="table-action-btn delete notification-action-delete" 
 							data-id="${notification.id}"
 							title="Delete">
 						<i class="bi bi-trash3-fill"></i>
@@ -503,43 +502,42 @@ function renderNotificationDetails(notification) {
 		: "Not sent";
 
 	document.getElementById("notification-modal-body").innerHTML = `
-		<div style="display: grid; gap: 1.5rem;">
-			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-				<div>
-					<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Notification Information</h4>
+		<div class="notification-modal-grid">
+			<div class="notification-modal-info-grid">
+				<div class="notification-modal-section">
+					<h4 class="notification-modal-section-title">Notification Information</h4>
 					<p><strong>Title:</strong> ${escapeHtml(notification.title)}</p>
 					<p><strong>Category:</strong> 
-					${escapeHtml(notification.message).replace(/\n/g, "<br>")}
-						<span class="notification-category-badge notification-category-${escapeHtml(notification.category).replace("_", "-")}">
+						<span class="status-badge ${notification.category === 'marketing_emails' ? 'info' : notification.category === 'saved_listings' ? 'success' : 'neutral'}">
 							${formatCategory(escapeHtml(notification.category))}
 						</span>
 					</p>
 					<p><strong>Status:</strong> 
-						<span class="notification-status-badge notification-status-${escapeHtml(notification.status)}">
+						<span class="status-badge ${notification.status === 'sent' ? 'success' : notification.status === 'draft' ? 'warning' : notification.status === 'cancelled' ? 'danger' : 'info'}">
 							${escapeHtml(notification.status)}
 						</span>
 					</p>
 				</div>
-				<div>
-					<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Delivery Information</h4>
+				<div class="notification-modal-section">
+					<h4 class="notification-modal-section-title">Delivery Information</h4>
 					<p><strong>Total Recipients:</strong> ${notification.total_recipients || 0}</p>
 				</div>
 			</div>
 			
-			<div>
-				<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Message</h4>
-				<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #3498db;">
+			<div class="notification-modal-section">
+				<h4 class="notification-modal-section-title">Message</h4>
+				<div class="notification-message-box">
 					${escapeHtml(notification.message).replace(/\n/g, "<br>")}
 				</div>
 			</div>
 
-			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.9rem; color: #7f8c8d;">
+			<div class="notification-modal-meta">
 				<p><strong>Created:</strong> ${createdDate}</p>
 				<p><strong>Sent:</strong> ${sentDate}</p>
 				<p><strong>Created by:</strong> ${escapeHtml(notification.created_by_first_name)} ${escapeHtml(notification.created_by_last_name)}</p>
 			</div>
 
-			<div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+			<div class="notification-modal-actions">
 				<button class="notification-btn notification-btn-secondary" id="close-notification-details">
 					Close
 				</button>
@@ -644,10 +642,12 @@ async function deleteNotification(notificationId) {
 
 function showNotificationModal() {
 	document.getElementById("notification-modal").style.display = "block";
+	document.body.style.overflow = 'hidden'
 }
 
 function closeNotificationModal() {
 	document.getElementById("notification-modal").style.display = "none";
+	document.body.style.overflow = ''
 }
 
 function showModalLoading() {
@@ -661,8 +661,8 @@ function showModalLoading() {
 
 function showModalError(message) {
 	document.getElementById("notification-modal-body").innerHTML = `
-		<div style="text-align: center; padding: 2rem; color: #7f8c8d;">
-			<div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+		<div class="notification-modal-error">
+			<div class="notification-modal-error-icon">⚠️</div>
 			<h3>Error</h3>
 			<p>${escapeHtml(message)}</p>
 			<button class="notification-btn notification-btn-primary" id="close-notification-modal">

@@ -298,144 +298,151 @@
     <!-- Search and filter Section -->
     <div class="search-and-filter">
         <div class="search-and-filter-container">
-            <div class="properties-search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder='Try "3 bedrooms with wood floors in Austin"'>
-                <div class="properties-search-icon">
-                    <i class="bi bi-search"></i>
-                </div>
-            </div>
-    
-            <!-- Filter Bar -->
-            <div class="properties-filter-bar">
-                <!-- Price Filter -->
-                <div class="filter-dropdown-wrapper">
-                    <button class="filter-btn" id="price-filter-btn">
-                        <span>Price</span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="filter-modal price-filter-modal" id="price-filter-modal">
-                        <div class="filter-modal-header">
-                            <h3>Price</h3>
-                            <button class="apply-filters-btn">Done</button>
-                        </div>
-                        <div class="filter-modal-content">
-                            <div class="properties-price-inputs">
-                                <select class="properties-filter-select" id="properties-min-price">
-                                    <option value="No min">No min</option>
-                                    <option value="200000">$200k</option>
-                                    <option value="300000">$300k</option>
-                                    <option value="600000">$600k</option>
-                                    <option value="900000">$900k</option>
-                                    <option value="1200000">$1.2M</option>
-                                    <option value="1600000">$1.6M</option>
-                                    <option value="1800000">$1.8M</option>
-                                    <option value="2200000">$2.2M</option>
-                                </select>
-                                <span class="properties-filter-separator">-</span>
-                                <select class="properties-filter-select" id="properties-max-price">
-                                    <option value="No max">No max</option>
-                                    <option value="600000">$600k</option>
-                                    <option value="1200000">$1.2M</option>
-                                    <option value="1600000">$1.6M</option>
-                                    <option value="2200000">$2.2M</option>
-                                    <option value="2800000">$2.8M</option>
-                                    <option value="3400000">$3.4M</option>
-                                    <option value="3800000">$3.8M</option>
-                                    <option value="4400000">$4.4M</option>
-                                </select>
-                            </div>
-                        </div>
+            <div class="search-and-filter-left">
+                <div class="properties-search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder='Try "3 bedrooms with wood floors in Austin"'>
+                    <div class="properties-search-icon">
+                        <i class="bi bi-search"></i>
                     </div>
                 </div>
-    
-                <!-- Property Type Filter -->
-                <div class="filter-dropdown-wrapper">
-                    <button class="filter-btn" id="property-type-filter-btn">
-                        <span>Property type</span>
-                        <i class="bi bi-chevron-down"></i>
-                    </button>
-                    <div class="filter-modal property-type-filter-modal" id="property-type-filter-modal">
-                        <div class="filter-modal-header">
-                            <h3>Property type</h3>
-                            <button class="apply-filters-btn">Done</button>
-                        </div>
-                        <div class="filter-modal-content">
-                            <select class="properties-filter-select" id="properties-type-filter">
-                                <option value="Any">All Types</option>
-                                <option value="Single Family">Single Family</option>
-                                <option value="Town House">Town House</option>
-                                <option value="Multi Family">Multi Family</option>
-                                <option value="Condominium">Condominium</option>
-                                <option value="Apartment">Apartment</option>
-                                <option value="Bungalow">Bungalow</option>
-                                <option value="Ranch Home">Ranch Home</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Rooms Filter -->
-                <div class="filter-dropdown-wrapper">
-                    <button class="filter-btn" id="rooms-filter-btn">
-                        <span>Rooms</span>
-                        <i class="bi bi-chevron-up"></i>
-                    </button>
-                    <div class="filter-modal rooms-filter-modal" id="rooms-filter-modal">
-                        <div class="filter-modal-header">
-                            <h3>Rooms</h3>
-                            <button class="apply-filters-btn">Done</button>
-                        </div>
-                        <div class="filter-modal-content">
-                            <div class="rooms-filter-section">
-                                <h4 class="rooms-filter-label">Bedrooms</h4>
-                                <div class="properties-bed-filters">
-                                    <select class="properties-filter-select" id="properties-min-bed">
-                                        <option value="No min">No min</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <span class="properties-filter-separator">-</span>
-                                    <select class="properties-filter-select" id="properties-max-bed">
-                                        <option value="No max">No max</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
+        
+                <!-- Filter Bar -->
+                <div class="properties-filter-bar">
+                    <!-- Price Filter -->
+                    <div class="filter-dropdown-wrapper">
+                        <button class="filter-btn" id="price-filter-btn">
+                            <span>Price</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-modal price-filter-modal" id="price-filter-modal">
+                            <div class="filter-modal-header">
+                                <h3>Price</h3>
+                                <button class="apply-filters-btn">Done</button>
                             </div>
-                            <div class="rooms-filter-section">
-                                <h4 class="rooms-filter-label">Bathrooms</h4>
-                                <div class="properties-bath-filters">
-                                    <select class="properties-filter-select" id="properties-min-bath">
+                            <div class="filter-modal-content">
+                                <div class="properties-price-inputs">
+                                    <select class="properties-filter-select" id="properties-min-price">
                                         <option value="No min">No min</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        <option value="200000">$200k</option>
+                                        <option value="300000">$300k</option>
+                                        <option value="600000">$600k</option>
+                                        <option value="900000">$900k</option>
+                                        <option value="1200000">$1.2M</option>
+                                        <option value="1600000">$1.6M</option>
+                                        <option value="1800000">$1.8M</option>
+                                        <option value="2200000">$2.2M</option>
                                     </select>
                                     <span class="properties-filter-separator">-</span>
-                                    <select class="properties-filter-select" id="properties-max-bath">
+                                    <select class="properties-filter-select" id="properties-max-price">
                                         <option value="No max">No max</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
+                                        <option value="600000">$600k</option>
+                                        <option value="1200000">$1.2M</option>
+                                        <option value="1600000">$1.6M</option>
+                                        <option value="2200000">$2.2M</option>
+                                        <option value="2800000">$2.8M</option>
+                                        <option value="3400000">$3.4M</option>
+                                        <option value="3800000">$3.8M</option>
+                                        <option value="4400000">$4.4M</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
+        
+                    <!-- Property Type Filter -->
+                    <div class="filter-dropdown-wrapper">
+                        <button class="filter-btn" id="property-type-filter-btn">
+                            <span>Property type</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-modal property-type-filter-modal" id="property-type-filter-modal">
+                            <div class="filter-modal-header">
+                                <h3>Property type</h3>
+                                <button class="apply-filters-btn">Done</button>
+                            </div>
+                            <div class="filter-modal-content">
+                                <select class="properties-filter-select" id="properties-type-filter">
+                                    <option value="Any">All Types</option>
+                                    <option value="Single Family">Single Family</option>
+                                    <option value="Town House">Town House</option>
+                                    <option value="Multi Family">Multi Family</option>
+                                    <option value="Condominium">Condominium</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="Bungalow">Bungalow</option>
+                                    <option value="Ranch Home">Ranch Home</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Rooms Filter -->
+                    <div class="filter-dropdown-wrapper">
+                        <button class="filter-btn" id="rooms-filter-btn">
+                            <span>Rooms</span>
+                            <i class="bi bi-chevron-up"></i>
+                        </button>
+                        <div class="filter-modal rooms-filter-modal" id="rooms-filter-modal">
+                            <div class="filter-modal-header">
+                                <h3>Rooms</h3>
+                                <button class="apply-filters-btn">Done</button>
+                            </div>
+                            <div class="filter-modal-content">
+                                <div class="rooms-filter-section">
+                                    <h4 class="rooms-filter-label">Bedrooms</h4>
+                                    <div class="properties-bed-filters">
+                                        <select class="properties-filter-select" id="properties-min-bed">
+                                            <option value="No min">No min</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <span class="properties-filter-separator">-</span>
+                                        <select class="properties-filter-select" id="properties-max-bed">
+                                            <option value="No max">No max</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="rooms-filter-section">
+                                    <h4 class="rooms-filter-label">Bathrooms</h4>
+                                    <div class="properties-bath-filters">
+                                        <select class="properties-filter-select" id="properties-min-bath">
+                                            <option value="No min">No min</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        <span class="properties-filter-separator">-</span>
+                                        <select class="properties-filter-select" id="properties-max-bath">
+                                            <option value="No max">No max</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <button class="filters-reset-btn" id="filters-reset-btn">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </button>
                 </div>
     
-                <button class="filters-reset-btn" id="filters-reset-btn">
-                    <i class="bi bi-arrow-clockwise"></i>
+                <button class="properties-mobile-filter-btn" id="properties-mobile-filter-btn">
+                    <span>Filter</span>
+                    <i class="bi bi-chevron-down"></i>
                 </button>
 
                 <button class="save-search-btn" id="save-search-btn">Save Search</button>
@@ -454,11 +461,135 @@
         </div>
     </div>
 
+    <!-- Mobile Filter Wrapper -->
+    <div class="properties-mobile-filter-wrapper">
+        <div class="properties-mobile-filter-modal" id="properties-mobile-filter-modal">
+        <div class="properties-mobile-filter-header">
+            <h3>Filters</h3>
+            <i class="bi bi-x" id="properties-mobile-filter-close"></i>
+        </div>
+        <div class="properties-mobile-filter-content">
+
+                <div class="properties-mobile-accordion-item">
+                    <button class="properties-mobile-accordion-btn" id="mobile-price-accordion">
+                        <span>Price</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="properties-mobile-accordion-content" id="mobile-price-content">
+                        <div class="properties-price-inputs">
+                            <select class="properties-filter-select" id="properties-min-price-mobile">
+                                <option value="No min">No min</option>
+                                <option value="200000">$200k</option>
+                                <option value="300000">$300k</option>
+                                <option value="600000">$600k</option>
+                                <option value="900000">$900k</option>
+                                <option value="1200000">$1.2M</option>
+                                <option value="1600000">$1.6M</option>
+                                <option value="1800000">$1.8M</option>
+                                <option value="2200000">$2.2M</option>
+                            </select>
+                            <span class="properties-filter-separator">-</span>
+                            <select class="properties-filter-select" id="properties-max-price-mobile">
+                                <option value="No max">No max</option>
+                                <option value="600000">$600k</option>
+                                <option value="1200000">$1.2M</option>
+                                <option value="1600000">$1.6M</option>
+                                <option value="2200000">$2.2M</option>
+                                <option value="2800000">$2.8M</option>
+                                <option value="3400000">$3.4M</option>
+                                <option value="3800000">$3.8M</option>
+                                <option value="4400000">$4.4M</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="properties-mobile-accordion-item">
+                    <button class="properties-mobile-accordion-btn" id="mobile-type-accordion">
+                        <span>Property type</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="properties-mobile-accordion-content" id="mobile-type-content">
+                        <select class="properties-filter-select" id="properties-type-filter-mobile">
+                            <option value="Any">All Types</option>
+                            <option value="Single Family">Single Family</option>
+                            <option value="Town House">Town House</option>
+                            <option value="Multi Family">Multi Family</option>
+                            <option value="Condominium">Condominium</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Bungalow">Bungalow</option>
+                            <option value="Ranch Home">Ranch Home</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="properties-mobile-accordion-item">
+                    <button class="properties-mobile-accordion-btn" id="mobile-rooms-accordion">
+                        <span>Rooms</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="properties-mobile-accordion-content" id="mobile-rooms-content">
+                        <div class="rooms-filter-section">
+                            <h4 class="rooms-filter-label">Bedrooms</h4>
+                            <div class="properties-bed-filters">
+                                <select class="properties-filter-select" id="properties-min-bed-mobile">
+                                    <option value="No min">No min</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <span class="properties-filter-separator">-</span>
+                                <select class="properties-filter-select" id="properties-max-bed-mobile">
+                                    <option value="No max">No max</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rooms-filter-section">
+                            <h4 class="rooms-filter-label">Bathrooms</h4>
+                            <div class="properties-bath-filters">
+                                <select class="properties-filter-select" id="properties-min-bath-mobile">
+                                    <option value="No min">No min</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <span class="properties-filter-separator">-</span>
+                                <select class="properties-filter-select" id="properties-max-bath-mobile">
+                                    <option value="No max">No max</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="properties-mobile-filter-footer">
+                <a class="properties-mobile-reset-link" id="properties-mobile-reset-btn" href="#">Reset</a>
+                <button class="properties-mobile-apply-btn" id="properties-mobile-apply-btn">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="properties-mobile-filter-overlay" id="properties-mobile-filter-overlay"></div>
+
     <!-- Main Content -->
     <div class="properties-listing-container">
         <main class="properties-main-content">
             
-            <!-- Results Header -->
             <div class="properties-results-header">
                 <div class="properties-results-title">
                     <h2 class="properties-results-location"></h2>

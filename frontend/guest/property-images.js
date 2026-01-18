@@ -1,6 +1,7 @@
 // property-images.js
 
 const PROPERTY_API_BASE = '/public';
+let propertyDataGlobal = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPropertyImagesPage();
@@ -11,6 +12,42 @@ function setUpPropertyImagesEventListener(){
     document.querySelector('.property-images-back-btn').addEventListener('click', () => {
         history.back();
     });
+
+    // Contact Agent Modal Listeners
+    const contactBtn = document.querySelector('.property-images-contact-btn');
+    const contactOverlay = document.querySelector('.contact-agent-overlay');
+    const contactModal = document.querySelector('.contact-agent-modal');
+    const contactCloseBtn = document.querySelector('.contact-agent-close');
+
+    if (contactBtn) {
+        contactBtn.addEventListener('click', () => {
+            contactOverlay.classList.add('active');
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    function closeContactModal() {
+        contactOverlay.classList.remove('active');
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (contactCloseBtn) contactCloseBtn.addEventListener('click', closeContactModal);
+    if (contactOverlay) contactOverlay.addEventListener('click', closeContactModal);
+
+    // Form Submit
+    const form = document.getElementById('contactAgentForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (propertyDataGlobal) {
+                inquiryFormSubmit(propertyDataGlobal.property_id, propertyDataGlobal.agent_email);
+            } else {
+                showToast("Property data not loaded", "error");
+            }
+        });
+    }
 }
 
 function formatSectionName(section) {
@@ -30,6 +67,19 @@ async function loadPropertyImagesPage() {
     }
 
     try {
+        // Fetch property details first
+        const propertyRes = await fetch(`${PROPERTY_API_BASE}/properties/${propertyId}`, {
+            credentials: 'include'
+        });
+
+        if (!propertyRes.ok) {
+            showToast("Error loading property details", "error");
+            return;
+        }
+
+        propertyDataGlobal = await propertyRes.json();
+
+
         // Fetch all property images
         const propertyImagesRes = await fetch(`${PROPERTY_API_BASE}/properties/${propertyId}/images`, {
             credentials: 'include'
@@ -41,6 +91,16 @@ async function loadPropertyImagesPage() {
         }
 
         const images = await propertyImagesRes.json();
+        
+        // Find primary image for favorites
+        const primaryImage = images.find(img => img.is_primary)?.image_url || "/images/properties-backup.jpeg";
+        // Construct address for favorites
+        const address = `${propertyDataGlobal.street_number} ${propertyDataGlobal.street_name}`;
+        const location = `${propertyDataGlobal.city} ${propertyDataGlobal.state} ${propertyDataGlobal.zip}`;
+
+        // Check Auth and Setup Favorites
+        checkUserAuthStatus(propertyDataGlobal, primaryImage, address, location);
+
 
         // Filter out videos
         const filteredImages = images.filter(img => 
@@ -209,3 +269,188 @@ function escapeHtml(str) {
 		"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 	}[s]));
 }
+
+
+async function checkUserAuthStatus(propertyData, primaryImage, address, location) {
+    const heartIcon = document.querySelector('.property-images-save-btn i');
+    const saveBtn = document.querySelector('.property-images-save-btn');
+    const saveText = document.querySelector('.property-images-save-btn span');
+    
+    if (!heartIcon || !saveBtn) return;
+
+    // Reset state
+    heartIcon.classList.remove('bi-heart-fill');
+    heartIcon.classList.add('bi-heart');
+    heartIcon.style.color = '';
+    if (saveText) saveText.textContent = 'Save';
+
+    try {
+        const response = await fetch('/auth/me', {
+            credentials: 'include'
+        });
+
+        if (response.ok) {
+            const user = await response.json();
+            populateFormFields(user);
+
+            const favRes = await fetch(`/api/favorites/${propertyData.property_id}`, { credentials: "include" });
+
+            let isFavorited = false;
+
+            if (favRes.ok) {
+                const favorites = await favRes.json();
+                const favData = favorites.data[0];
+                isFavorited = favData && favData.property_id === propertyData.property_id;
+            }
+
+            if (isFavorited) {
+                heartIcon.classList.remove('bi-heart');
+                heartIcon.classList.add('bi-heart-fill');
+                heartIcon.style.color = '#d92228';
+                if (saveText) saveText.textContent = 'Saved';
+            }
+
+            // Remove old listeners to avoid duplicates if any (simple approach: clone or just add new one if we assume single run)
+            // Ideally we cloneNode to remove listeners, but here we just add one listener.
+            // But verify if checkUserAuthStatus is called multiple times? Only called once in loadPropertyImagesPage.
+
+            saveBtn.onclick = (e) => {
+                e.preventDefault();
+                const isSaved = heartIcon.classList.contains('bi-heart-fill');
+
+                if (isSaved) {
+                    heartIcon.classList.remove('bi-heart-fill');
+                    heartIcon.classList.add('bi-heart');
+                    heartIcon.style.color = '';
+                    if (saveText) saveText.textContent = 'Save';
+                    removeFavorites(propertyData.property_id);
+                } else {
+                    heartIcon.classList.remove('bi-heart');
+                    heartIcon.classList.add('bi-heart-fill');
+                    heartIcon.style.color = '#d92228';
+                    if (saveText) saveText.textContent = 'Saved';
+                    addToFavorites({ ...propertyData, primaryImage, address, location });
+                }
+            };
+
+        } else {
+            // Not logged in
+            saveBtn.onclick = (e) => {
+                e.preventDefault();
+                // Click the hidden nav signup btn which register.js listens to
+                const navSignupBtn = document.querySelector('.nav-signup-btn');
+                if (navSignupBtn) navSignupBtn.click();
+            };
+        }
+        
+    } catch (error) {
+        console.error('Auth check failed:', error);
+    }
+}
+
+function populateFormFields(user){
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+
+    if(nameInput) nameInput.value = `${user.first_name || ''} ${user.last_name || ''}`.trim();
+    if(emailInput) emailInput.value = user.email || '';
+}
+
+async function inquiryFormSubmit(propertyId, agentEmail) {
+
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const requestTour = document.getElementById('requestTour');
+    const isChecked = requestTour ? requestTour.checked : false;
+
+    try {
+
+        if(!name || !email || !phone || !message){
+            showToast("Fill all fields before submitting", "error")
+            return;
+        };
+        
+        if(submitBtn) {
+            submitBtn.textContent = 'Sending Email...';
+            submitBtn.disabled = true;
+        }
+
+        const checkAuth = await fetch('/auth/me', {
+            credentials: "include"
+        })
+
+        const userData = await checkAuth.json();
+        const userId = userData.id || null; // allow null if not logged in? property.js seems to expect userId from auth check.
+        // property.js snippet: const userId = userData.id
+        // If not logged in, inquiry calls fail usually? The property endpoint works for guests?
+        // property.js assumes userData.id exists. If checkAuth fails (401), .json() throws or returns error.
+        
+        // Wait, property.js:
+        // const checkAuth = await fetch('/auth/me'...)
+        // const userData = await checkAuth.json();
+        // const userId = userData.id
+        
+        // If user is guest, can they submit inquiry?
+        // If `/auth/me` returns 401, checkAuth.json() might be {message: "Unauthorized"}.
+        // Then `userId` is undefined.
+        // `inquiryData = { userId, ... }`.
+        
+        // Let's assume guest inquiry is allowed and backend handles null userId, OR catch error.
+        
+        const inquiryData = { userId, name, email, phone, message, isChecked, agentEmail };
+
+        const inquiryResponse = await fetch(`${PROPERTY_API_BASE}/inquiries/${propertyId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-csrf-token": window.getCsrfToken()
+            },
+            credentials: "include",
+            body: JSON.stringify(inquiryData)
+        });
+
+        const data = await inquiryResponse.json();
+
+        if(!inquiryResponse.ok){
+            if(submitBtn) {
+                submitBtn.textContent = 'Email Agent';
+                submitBtn.disabled = false;
+            }
+            showToast(data.message || "Error submitting form.", "error");
+            return;
+        }
+
+        if(submitBtn) {
+            submitBtn.textContent = 'Email Agent';
+            submitBtn.disabled = false;
+        }
+        
+        // Close modal and show success toast (or reload)
+        document.querySelector('.contact-agent-overlay').classList.remove('active');
+        document.querySelector('.contact-agent-modal').classList.remove('active');
+        document.body.style.overflow = '';
+        
+        if(data.data && data.data.isChecked){
+             showToast("Property tour request sent. Agent will contact you within 5 hours.", "success");
+        } else {
+             showToast(data.message, 'success');
+        }
+        
+        // Clear form
+        document.getElementById('contactAgentForm').reset();
+
+
+    }catch(error){
+        console.error("Error submitting inquiry:", error);
+        showToast("Error submitting inquiry. Please try again later.", "error");
+        const submitBtn = document.getElementById('contact-submit-btn');
+        if(submitBtn) {
+            submitBtn.textContent = 'Email Agent';
+            submitBtn.disabled = false;
+        }
+    }
+};

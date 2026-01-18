@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin notifications</title>
     <link rel="stylesheet" href="/frontend/admin/admin-notifications.css">
-    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="admin-layout">
+        <div class="admin-sidebar-overlay" id="admin-sidebar-overlay"></div>
         <aside class="admin-sidebar" id="adminSidebar">
             <div class="admin-sidebar-header">
                 <div class="admin-sidebar-logo">
@@ -111,41 +112,68 @@
     
             <div class="admin-content">
                 <!-- Statistics Cards -->
-                <div class="notification-stats" id="notification-stats">
-                    <div class="notification-stat-card sent">
-                        <h3 class="notification-stat-number" id="sent-notifications-count">-</h3>
-                        <p class="notification-stat-label">Sent Notifications</p>
+                <!-- Statistics Cards -->
+                <div class="admin-stats-grid" id="notification-stats">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon blue">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <div class="admin-stat-label">Sent Notifications</div>
+                        <div class="admin-stat-value" id="sent-notifications-count">-</div>
                     </div>
-                    <div class="notification-stat-card draft">
-                        <h3 class="notification-stat-number" id="draft-notifications-count">-</h3>
-                        <p class="notification-stat-label">Drafted Notifications</p>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon orange">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="admin-stat-label">Drafted Notifications</div>
+                        <div class="admin-stat-value" id="draft-notifications-count">-</div>
                     </div>
-                    <div class="notification-stat-card">
-                        <h3 class="notification-stat-number" id="total-recipients-count">-</h3>
-                        <p class="notification-stat-label">Total Recipients</p>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon green">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="admin-stat-label">Total Recipients</div>
+                        <div class="admin-stat-value" id="total-recipients-count">-</div>
                     </div>
-                    <div class="notification-stat-card engagement">
-                        <h3 class="notification-stat-number" id="read-rate-percentage">-</h3>
-                        <p class="notification-stat-label">Average Read Rate</p>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon purple">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="admin-stat-label">Average Read Rate</div>
+                        <div class="admin-stat-value" id="read-rate-percentage">-</div>
                     </div>
                 </div>
 
                 <!-- Filters -->
+                <!-- Filters -->
                 <div class="admin-filters">
-                    <input id="searchInput" placeholder="Search anything" />
+                    <div class="admin-search-wrapper">
+                        <i class="fas fa-search admin-search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            class="admin-search-input"
+                            placeholder="Search by title or message..."
+                        />
+                    </div>
+
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Category</label>
-                        <select id="notifications-category-filter">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-tag"></i> Category
+                        </label>
+                        <select id="notifications-category-filter" class="admin-filter-select">
                             <option value="all">All categories</option>
                             <option value="general">General</option>
                             <option value="saved_listings">Saved listings</option>
                             <option value="marketing_emails">Marketing Emails</option>
                         </select>
                     </div>
-    
+
                     <div class="admin-filter-group">
-                        <label class="admin-filter-label">Status</label>
-                        <select id="notifications-status-filter">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-info-circle"></i> Status
+                        </label>
+                        <select id="notifications-status-filter" class="admin-filter-select">
                             <option value="all">All statuses</option>
                             <option value="draft">Drafted</option>
                             <option value="scheduled">Scheduled</option>
@@ -157,14 +185,7 @@
                 <div class="modal-overlay"></div>
 
                  <!-- Action Buttons -->
-                <div class="notification-actions">
-                    <button class="notification-btn notification-btn-primary" id="notification-create-btn">
-                        Create New Notification
-                    </button>
-                    <button class="notification-btn notification-btn-success" id="notification-refresh-btn">
-                        Refresh Data
-                    </button>
-                </div>
+
     
                 <!-- Create Notification Form -->
                 <div class="notification-create-form" id="notification-create-form">
@@ -263,45 +284,58 @@
                             </button>
                         </div>
                     </form>
-                </div>
+                </div> <!-- End notification-create-form -->
   
                 <!-- Notifications List -->
-                <div class="notification-list-container">
-                    <div class="notification-list-header">
-                        <h3 class="notification-list-title">Recent Notifications</h3>
-                        <span class="notification-list-count" id="notification-list-count">0 notifications</span>
+                <div class="admin-table-container">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <div class="admin-table-header-content">
+                                <i class="fas fa-bell"></i>
+                                <h3>Recent Notifications</h3>
+                                <span class="notification-list-count" id="notification-list-count" style="margin-left: 10px; font-size: 0.9em; opacity: 0.8;">0</span>
+                            </div>
+                            <div class="admin-header-actions">
+                                <button class="table-action-btn add" id="notification-create-btn">
+                                    <i class="fas fa-plus-circle"></i> Create New
+                                </button>
+                                <button class="table-action-btn refresh-btn">
+                                    <i class="fas fa-sync-alt"></i> Refresh
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div class="notification-loading" id="notification-loading-state">
+                            <div class="notification-loading-spinner"></div>
+                            <p>Loading notifications...</p>
+                        </div>
+                
+                        <!-- Empty State -->
+                        <div class="admin-empty-alert" id="notification-empty-state" style="display: none;">
+                            <i class="fas fa-info-circle"></i>
+                            <p>No notifications found. Create your first notification to get started.</p>
+                        </div>
+
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table" id="notification-table" style="display: none;">
+                                <thead class="admin-table-head">
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Status</th>
+                                        <th>Recipients</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="notification-table-body"></tbody>
+                            </table>
+                        </div>
                     </div>
-                    
-                    <!-- Loading State -->
-                    <div class="notification-loading" id="notification-loading-state">
-                        <div class="notification-loading-spinner"></div>
-                        <p>Loading notifications...</p>
-                    </div>
-            
-                    <!-- Empty State -->
-                    <div class="notification-empty" id="notification-empty-state" style="display: none;">
-                        <div class="notification-empty-icon">📬</div>
-                        <h3>No notifications found</h3>
-                        <p>Create your first notification to get started.</p>
-                    </div>
-            
-                    <!-- Notifications Table -->
-                    <table class="notification-table" id="notification-table" style="display: none;">
-                        <thead>
-                            <tr>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Recipients</th>
-                            <th>Created</th>
-                            <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="notification-table-body"></tbody>
-                    </table>
                 </div>
 
-                <div id="pagination"></div>
+                <div class="pagination" id="pagination"></div>
             </div>
 
             <div id="notification-modal" class="notification-modal">
@@ -325,7 +359,7 @@
     <script src="/frontend/general/csrf-helper.js"></script>
     <script src="/frontend/general/toast-helper.js"></script>
     <script src="/frontend/general/confirmation-modal.js"></script>
-    <script src="/frontend/admin/admin-global.js"></script>
     <script src="/frontend/admin/admin-notifications.js"></script>
+    <script src="/frontend/admin/admin-global.js"></script>
 </body>
 </html>

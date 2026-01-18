@@ -16,7 +16,6 @@ const emailModal = document.getElementById('email-modal')
 const emailModalOverlay = document.getElementById('email-modal-overlay')
 const emailModalClose = document.getElementById('email-modal-close')
 
-
 document.addEventListener('DOMContentLoaded', () => {
     getUserInfo();
     getBuyerProfileInfo();

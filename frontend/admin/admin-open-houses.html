@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Houses Management</title>
     <link rel="stylesheet" href="/frontend/admin/admin-open-houses.css">
-    <link rel="stylesheet" href="/frontend/admin/admin-general.css">
+    <link rel="stylesheet" href="/frontend/admin/admin-global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="admin-layout">
+        <div class="admin-sidebar-overlay" id="admin-sidebar-overlay"></div>
         <aside class="admin-sidebar" id="adminSidebar">
             <div class="admin-sidebar-header">
                 <div class="admin-sidebar-logo">
@@ -106,43 +107,40 @@
             </header>
     
             <div class="admin-content">
-                <!-- Filters Section -->
-                <div class="open-house-filters-section">
-                    <div class="open-house-search-wrapper">
-                        <i class="fas fa-search open-house-search-icon"></i>
+                <div class="admin-filters">
+                    <div class="admin-search-wrapper">
+                        <i class="fas fa-search admin-search-icon"></i>
                         <input 
                             type="text" 
                             id="open-house-search-input" 
-                            class="open-house-search-field"
+                            class="admin-search-input"
                             placeholder="Search by property ID, host name, or location..."
                         />
                     </div>
 
-                    <div class="open-house-filter-controls">
-                        <div class="open-house-filter-item">
-                            <label class="open-house-filter-label">
-                                <i class="fas fa-calendar-check"></i>
-                                Status
-                            </label>
-                            <select id="open-house-status-filter" class="open-house-filter-select">
-                                <option value="all">All Statuses</option>
-                                <option value="Scheduled">Scheduled</option>
-                                <option value="Completed">Completed</option>
-                                <option value="Cancelled">Cancelled</option>
-                            </select>
-                        </div>
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-calendar-check"></i>
+                            Status
+                        </label>
+                        <select id="open-house-status-filter" class="admin-filter-select">
+                            <option value="all">All Statuses</option>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
 
-                        <div class="open-house-filter-item">
-                            <label class="open-house-filter-label">
-                                <i class="fas fa-clipboard-check"></i>
-                                RSVP Required
-                            </label>
-                            <select id="open-house-rsvp-filter" class="open-house-filter-select">
-                                <option value="all">All</option>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                            </select>
-                        </div>
+                    <div class="admin-filter-group">
+                        <label class="admin-filter-label">
+                            <i class="fas fa-clipboard-check"></i>
+                            RSVP Required
+                        </label>
+                        <select id="open-house-rsvp-filter" class="admin-filter-select">
+                            <option value="all">All</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
                     </div>
                 </div>
 
@@ -342,23 +340,22 @@
                     </div>
                 </div>
 
-                <!-- Table Section -->
-                <div class="open-house-table-container">
-                    <div class="open-house-table-card">
-                        <div class="open-house-table-header">
-                            <div class="open-house-table-header-content">
+                <div class="admin-table-container">
+                    <div class="admin-table-card">
+                        <div class="admin-table-header">
+                            <div class="admin-table-header-content">
                                 <i class="fas fa-list"></i>
                                 <h3>Open Houses List</h3>
                             </div>
-                            <button class="open-house-refresh-btn" id="open-house-refresh-btn">
+                            <button class="table-action-btn refresh-btn">
                                 <i class="fas fa-sync-alt"></i>
                                 Refresh
                             </button>
                         </div>
 
-                        <div class="open-house-table-wrapper">
-                            <table class="open-house-table" id="open-house-table">
-                                <thead class="open-house-table-head">
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table" id="open-house-table">
+                                <thead class="admin-table-head">
                                     <tr>
                                         <th>ID</th>
                                         <th>Property ID</th>
@@ -378,7 +375,7 @@
                             </table>
                         </div>
 
-                        <div class="open-house-empty-alert" id="open-house-empty-alert">
+                        <div class="admin-empty-alert" id="open-house-empty-alert">
                             <i class="fas fa-info-circle"></i>
                             <p>No open houses found</p>
                         </div>
@@ -386,7 +383,7 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="open-house-pagination" id="open-house-pagination"></div>
+                <div class="pagination" id="pagination"></div>
             </div>
         </main>
     </div>

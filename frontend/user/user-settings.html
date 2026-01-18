@@ -97,6 +97,99 @@
         </div>
     </nav>
 
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-overlay"></div>
+    <aside class="sidebar-nav">
+        <div class="sidebar-header">
+            <a href="/frontend/guest/index.html" class="sidebar-logo">
+                <i class="fas fa-home"></i>
+                <span>PrimeHomes</span>
+            </a>
+
+            <i class="bi bi-x sidebar-close-btn"></i>
+        </div>
+
+        <nav class="sidebar-menu">
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/buy.html" class="sidebar-nav-link">Buy</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/for-sale.html" class="sidebar-submenu-link">Homes for Sale</a>
+                    <a href="/frontend/guest/forclosures.html" class="sidebar-submenu-link">Foreclosures</a>
+                    <a href="/frontend/guest/new-construction.html" class="sidebar-submenu-link">New Construction</a>
+                    <a href="/frontend/guest/open-houses.html" class="sidebar-submenu-link">Open Houses</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/sell.html" class="sidebar-nav-link">Sell</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/sold.html" class="sidebar-submenu-link">Recently Sold Homes</a>
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-submenu-link">Find an Agent</a>
+                    <a href="/frontend/guest/home-value.html" class="sidebar-submenu-link">Home Value Estimate</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/rent.html" class="sidebar-nav-link">Rent</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/apartments-for-rent.html" class="sidebar-submenu-link">Apartments for Rent</a>
+                    <a href="/frontend/guest/houses-for-rent.html" class="sidebar-submenu-link">Houses for Rent</a>
+                    <a href="/frontend/guest/rental-listings.html" class="sidebar-submenu-link">All Rental Listings</a>
+                    <a href="/frontend/guest/manage-rentals.html" class="sidebar-submenu-link">Manage Rentals</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/mortgage.html" class="sidebar-nav-link">Mortgage</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/pre-approved.html" class="sidebar-submenu-link">Get pre-approved</a>
+                    <a href="/frontend/guest/mortgage-rates.html" class="sidebar-submenu-link">Mortgage Rates</a>
+                    <a href="/frontend/guest/mortgage-calculator.html" class="sidebar-submenu-link">Mortgage Calculator</a>
+                    <a href="/frontend/guest/affordability-calculator.html" class="sidebar-submenu-link">Affordability Calculator</a>
+                    <a href="/frontend/guest/refinance-calculator.html" class="sidebar-submenu-link">Refinance Calculator</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <button class="sidebar-menu-link">
+                    <a href="/frontend/guest/find-agent.html" class="sidebar-nav-link">Find an Agent</a>
+                    <i class="bi bi-chevron-down sidebar-arrow"></i>
+                </button>
+                <div class="sidebar-submenu">
+                    <a href="/frontend/guest/agents.html" class="sidebar-submenu-link">Real Estate Agents</a>
+                    <a href="/frontend/guest/property-managers.html" class="sidebar-submenu-link">Property Managers</a>
+                    <a href="/frontend/guest/home-builders.html" class="sidebar-submenu-link">Home Builders</a>
+                    <a href="#" class="sidebar-submenu-link">Create a Free Agent Account</a>
+                </div>
+            </div>
+
+            <div class="sidebar-menu-item">
+                <div class="sidebar-menu-link sidebar-single-link">
+                    <a href="/frontend/guest/get-help.html" class="sidebar-nav-link">Get help</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidebar-app-download">
+            <span>Find homes on the go!</span>
+            <a href="#">
+                <img src="/images/sidebar-app-download.svg" alt="Download on the App Store">
+            </a>
+        </div>
+    </aside>
+
     <div class="settings-container" id="settings-container">
         <div class="settings-header" id="settings-header">
             <h1 class="settings-greeting" id="settings-greeting"></h1>
@@ -140,7 +233,6 @@
                     </div>
                     
                     <div class="photo-modal-body">
-                        <!-- Upload Area (Initial State) -->
                         <div class="profile-upload-area" id="profileUploadArea">
                             <div class="profile-upload-icon">📁</div>
                             <div class="profile-upload-text">Click to upload or drag and drop</div>
@@ -148,7 +240,6 @@
                             <input type="file" id="profileFileInput" accept="image/png,image/jpg,image/jpeg" />
                         </div>
 
-                        <!-- Preview Area (After File Selection) -->
                         <div class="profile-preview-area" id="profilePreviewArea" style="display: none;">
                             <img class="profile-preview-image" id="profilePreviewImage" alt="Preview" />
                             <div class="profile-preview-info">
@@ -298,8 +389,8 @@
                             </div>
 
                             <div class="edit-profile-actions" id="edit-profile-actions">
-                                <button type="submit" class="edit-profile-save-btn" id="edit-profile-save-btn">Save Changes</button>
                                 <button type="button" class="edit-profile-cancel-btn" id="edit-profile-cancel-btn">Cancel</button>
+                                <button type="submit" class="edit-profile-save-btn" id="edit-profile-save-btn">Save Changes</button>
                             </div>
                         </form>
                     </div>

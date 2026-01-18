@@ -312,10 +312,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    document.getElementById('refresh-btn').addEventListener('click', () => {
-        location.reload();
-    })
-
     // Call this when the page loads
     loadUsers();
 

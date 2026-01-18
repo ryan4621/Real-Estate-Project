@@ -32,8 +32,6 @@ function setupEventListeners() {
     document.getElementById('exportCsv').addEventListener('click', () => exportData('csv'));
     document.getElementById('exportPdf').addEventListener('click', () => exportData('pdf'));
 
-	document.getElementById("support-refresh-btn").addEventListener("click", () => refreshData());
-
 	document.getElementById("closeModalBtn").addEventListener("click", () => {
 		closeModal();
 	});
@@ -199,12 +197,14 @@ function showErrorState(message) {
 
 	const emptyState = document.getElementById("emptyState");
 	emptyState.innerHTML = `
-		<div class="support-empty-icon">⚠️</div>
-		<h3>Error Loading Tickets</h3>
-		<p>${message}</p>
-		<button class="support-btn support-btn-primary" onclick="refreshData()">
-			Try Again
-		</button>
+		<div class="admin-empty-alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>Error Loading Tickets</h3>
+            <p>${message}</p>
+            <button class="support-btn support-btn-primary" onclick="refreshData()">
+                Try Again
+            </button>
+        </div>
 	`;
 }
 
@@ -251,22 +251,22 @@ function renderTicketRow(ticket) {
 			<td>
 				<div>
 					<strong>${customerInfo}</strong><br>
-					<small style="color: #7f8c8d;">${ticket.email}</small>
+					<small class="support-row-message">${ticket.email}</small>
 				</div>
 			</td>
 			<td>
 				<div>
 					<strong>${formatSubject(ticket.subject)}</strong><br>
-					<small style="color: #7f8c8d;">${truncateText(ticket.message, 50)}</small>
+					<small class="support-row-message">${truncateText(ticket.message, 50)}</small>
 				</div>
 			</td>
 			<td>
-				<span class="support-status-badge support-status-${ticket.status.replace("_", "-")}">
+				<span class="status-badge ${getStatusBadgeClass(ticket.status)}">
 					${formatStatus(ticket.status)}
 				</span>
 			</td>
 			<td>
-				<span class="support-priority-badge support-priority-${ticket.priority}">
+				<span class="status-badge ${getPriorityBadgeClass(ticket.priority)}">
 					${ticket.priority}
 				</span>
 			</td>
@@ -276,12 +276,12 @@ function renderTicketRow(ticket) {
 					<button class="support-action-btn support-action-view view-ticket-btn" 
 									data-id="${ticket.id}" 
 									title="View Details">
-						👁️
+						<i class="fas fa-eye"></i>
 					</button>
 					<button class="support-action-btn support-action-edit edit-ticket-btn" 
 									data-id="${ticket.id}" 
 									title="Edit Status">
-						✏️
+						<i class="fas fa-edit"></i>
 					</button>
 				</div>
 			</td>
@@ -401,52 +401,52 @@ function renderTicketDetails(ticket) {
 		: "Not responded";
 
 	document.getElementById("modalBody").innerHTML = `
-		<div style="display: grid; gap: 1.5rem;">
-			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-				<div>
-					<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Customer Information</h4>
+		<div class="support-modal-grid">
+			<div class="support-modal-info-grid">
+				<div class="support-modal-section">
+					<h4 class="support-modal-section-title">Customer Information</h4>
 					<p><strong>Name:</strong> ${ticket.name}</p>
 					<p><strong>Email:</strong> ${ticket.email}</p>
 					<p><strong>Account:</strong> ${ticket.user_id ? "Registered User" : "Guest"}</p>
 				</div>
-				<div>
-					<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Ticket Information</h4>
+				<div class="support-modal-section">
+					<h4 class="support-modal-section-title">Ticket Information</h4>
 					<p><strong>Subject:</strong> ${formatSubject(ticket.subject)}</p>
 					<p><strong>Priority:</strong> 
-						<span class="support-priority-badge support-priority-${ticket.priority}">
+						<span class="status-badge ${getPriorityBadgeClass(ticket.priority)}">
 							${ticket.priority}
 						</span>
 					</p>
 					<p><strong>Status:</strong> 
-						<span class="support-status-badge support-status-${ticket.status.replace("_", "-")}">
+						<span class="status-badge ${getStatusBadgeClass(ticket.status)}">
 							${formatStatus(ticket.status)}
 						</span>
 					</p>
 				</div>
 			</div>
 			
-			<div>
-				<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Message</h4>
-				<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #3498db;">
+			<div class="support-modal-section">
+				<h4 class="support-modal-section-title">Message</h4>
+				<div class="support-message-box">
 					${ticket.message.replace(/\n/g, "<br>")}
 				</div>
 			</div>
 
 			${ticket.admin_notes ? `
-				<div>
-					<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Admin Notes</h4>
-					<div style="background: #fff3cd; padding: 1rem; border-radius: 8px; border-left: 4px solid #f39c12;">
+				<div class="support-modal-section">
+					<h4 class="support-modal-section-title">Admin Notes</h4>
+					<div class="support-admin-notes-box">
 						${ticket.admin_notes.replace(/\n/g, "<br>")}
 					</div>
 				</div>
 			` : ""}
 
-			<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.9rem; color: #7f8c8d;">
+			<div class="support-modal-meta">
 				<p><strong>Created:</strong> ${createdDate}</p>
 				<p><strong>Responded:</strong> ${respondedDate}</p>
 			</div>
 
-			<div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+			<div class="support-modal-actions">
 				<button class="support-btn support-btn-secondary" onclick="closeModal()">
 					Close
 				</button>
@@ -464,20 +464,20 @@ function renderTicketEditForm(ticket) {
 
 	document.getElementById("modalBody").innerHTML = `
 		<form id="editTicketForm">
-			<div style="display: grid; gap: 1.5rem;">
-				<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-					<div>
-						<label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Status</label>
-						<select id="editStatus" class="support-filter-select" style="width: 100%;">
+			<div class="support-edit-form-grid">
+				<div class="support-edit-form-row">
+					<div class="support-form-group">
+						<label class="support-form-label">Status</label>
+						<select id="editStatus" class="support-form-select">
 							<option value="pending" ${ticket.status === "pending" ? "selected" : ""}>Pending</option>
 							<option value="in_progress" ${ticket.status === "in_progress" ? "selected" : ""}>In Progress</option>
 							<option value="resolved" ${ticket.status === "resolved" ? "selected" : ""}>Resolved</option>
 							<option value="closed" ${ticket.status === "closed" ? "selected" : ""}>Closed</option>
 						</select>
 					</div>
-					<div>
-						<label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Priority</label>
-						<select id="editPriority" class="support-filter-select" style="width: 100%;">
+					<div class="support-form-group">
+						<label class="support-form-label">Priority</label>
+						<select id="editPriority" class="support-form-select">
 							<option value="low" ${ticket.priority === "low" ? "selected" : ""}>Low</option>
 							<option value="normal" ${ticket.priority === "normal" ? "selected" : ""}>Normal</option>
 							<option value="high" ${ticket.priority === "high" ? "selected" : ""}>High</option>
@@ -486,20 +486,20 @@ function renderTicketEditForm(ticket) {
 					</div>
 				</div>
 
-				<div>
-					<label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Admin Notes</label>
+				<div class="support-form-group">
+					<label class="support-form-label">Admin Notes</label>
 					<textarea id="editAdminNotes" 
-										style="width: 100%; min-height: 120px; padding: 0.75rem; border: 2px solid #e9ecef; border-radius: 8px; font-family: inherit; resize: vertical;"
+										class="support-form-textarea"
 										placeholder="Add internal notes about this ticket...">${ticket.admin_notes || ""}</textarea>
-					<small style="color: #7f8c8d;">These notes are only visible to admins.</small>
+					<small class="support-form-hint">These notes are only visible to admins.</small>
 				</div>
 
-				<div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-					<h4 style="margin: 0 0 0.5rem 0; color: #2c3e50;">Original Message</h4>
-					<p style="margin: 0; color: #7f8c8d;">${ticket.message}</p>
+				<div class="support-original-message-box">
+					<h4>Original Message</h4>
+					<p>${ticket.message}</p>
 				</div>
 
-				<div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1rem;">
+				<div class="support-modal-actions">
 					<button type="button" class="support-btn support-btn-secondary" onclick="closeModal()">
 						Cancel
 					</button>
@@ -550,10 +550,12 @@ async function updateTicket(ticketId) {
 // Modal functions
 function showTicketModal() {
 	document.getElementById("ticketModal").style.display = "block";
+	document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
 	document.getElementById("ticketModal").style.display = "none";
+	document.body.style.overflow = "";
 }
 
 function showModalLoading() {
@@ -567,8 +569,8 @@ function showModalLoading() {
 
 function showModalError(message) {
 	document.getElementById("modalBody").innerHTML = `
-		<div style="text-align: center; padding: 2rem; color: #7f8c8d;">
-			<div style="font-size: 3rem; margin-bottom: 1rem;">⚠️</div>
+		<div class="support-modal-error">
+			<div class="support-modal-error-icon"><i class="fas fa-exclamation-triangle"></i></div>
 			<h3>Error</h3>
 			<p>${message}</p>
 			<button class="support-btn support-btn-primary" onclick="closeModal()">
@@ -616,4 +618,24 @@ function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, s => ({
         "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
     }[s]));
+}
+
+function getStatusBadgeClass(status) {
+    switch (status) {
+        case 'pending': return 'warning';
+        case 'in_progress': return 'info';
+        case 'resolved': return 'success';
+        case 'closed': return 'neutral';
+        default: return 'neutral';
+    }
+}
+
+function getPriorityBadgeClass(priority) {
+    switch (priority) {
+        case 'low': return 'success';
+        case 'normal': return 'info';
+        case 'high': return 'warning';
+        case 'urgent': return 'danger';
+        default: return 'neutral';
+    }
 }

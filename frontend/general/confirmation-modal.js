@@ -146,10 +146,6 @@ const styles = `
       padding-top: 60px;
     }
 
-    .confirm-modal {
-      max-width: 95%;
-    }
-
     .confirm-modal-header {
       padding: 20px 20px 12px 20px;
     }
@@ -161,15 +157,6 @@ const styles = `
     .confirm-modal-body {
       padding: 0 20px 20px 20px;
       font-size: 14px;
-    }
-
-    .confirm-modal-footer {
-      padding: 0 20px 20px 20px;
-      flex-direction: column-reverse;
-    }
-
-    .confirm-btn {
-      width: 100%;
     }
   }
 `;
@@ -260,6 +247,7 @@ function showModal() {
   // Trigger reflow
   confirmationModal.offsetHeight;
   confirmationModal.classList.add('show');
+  document.body.style.overflow = 'hidden'
 }
 
 function hideModal() {
@@ -267,6 +255,7 @@ function hideModal() {
     confirmationModal.classList.remove('show');
     setTimeout(() => {
       confirmationModal.style.display = 'none';
+      document.body.style.overflow = ''
     }, 300);
   }
 }

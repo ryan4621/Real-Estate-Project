@@ -41,9 +41,6 @@ function setupEventListeners() {
 	// Add property button
 	document.getElementById('add-property-btn').addEventListener('click', openAddModal);
 
-	// Refresh button
-	document.getElementById('refresh-btn').addEventListener('click', () => location.reload());
-
 	// Export buttons
 	document.getElementById('exportCsv').addEventListener('click', () => exportData('csv'));
 	document.getElementById('exportPdf').addEventListener('click', () => exportData('pdf'));
