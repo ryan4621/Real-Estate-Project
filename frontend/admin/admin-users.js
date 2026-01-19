@@ -65,6 +65,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             tbody.innerHTML = "";
 
             data.data.forEach(user => {
+                const lastVerificationSent = user.last_verification_sent ? new Date(user.last_verification_sent).toLocaleString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }) : null
                 const deactivatedAt = user.deactivated_at ? new Date(user.deactivated_at).toLocaleString() : null
                 const suspendedAt = user.suspended_at ? new Date(user.suspended_at).toLocaleString() : null
                 const deletedAt = user.deleted_at ? new Date(user.deleted_at).toLocaleString() : null
@@ -79,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <td>${escapeHtml(user.gender)}</td>
                     <td>${escapeHtml(user.country)}</td>
                     <td>${escapeHtml(user.email_verified)}</td>
-                    <td>${escapeHtml(user.last_verification_sent)}</td>
+                    <td>${escapeHtml(lastVerificationSent)}</td>
                     <td>${escapeHtml(user.verification_token)}</td>
                     <td>${escapeHtml(user.verification_token_expires)}</td>
                     <td>${new Date(user.created_at).toLocaleString()}</td>

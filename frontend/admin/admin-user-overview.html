@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - User Overview</title>
-  <link rel="stylesheet" href="/frontend/admin/admin-user-overview.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - User Overview</title>
+    <link rel="stylesheet" href="/frontend/admin/admin-user-overview.css">
     <link rel="stylesheet" href="/frontend/admin/admin-global.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="admin-layout">
@@ -91,17 +93,13 @@
             <header class="admin-header">
                 <div class="admin-header-content">
                     <h1 class="admin-page-title">
-                        <button id="back" class="btn-link" style="text-decoration:none; color:inherit; margin-right: 10px; border:none; background:none; font-size: 1.2rem;">
-                            <i class="fas fa-arrow-left"></i>
-                        </button>
                         User Overview
                     </h1>
                 </div>
             </header>
 
             <div class="admin-content">
-                <!-- Original Content Wrapper -->
-                <div class="container" style="padding: 0;"> <!-- overriding container padding as admin-content already has it -->
+                <div class="container" style="padding: 0;">
                     
                     <div id="loading" class="loading">
                     <div class="loading-spinner"></div>
@@ -188,7 +186,7 @@
                             <button id="change-status-btn" onclick="showStatusModal()">Change Status</button>
                             <button onclick="showEmailModal()">Send Email</button>
                             <button onclick="exportUserData()">Export Data</button>
-                            <button onclick="deleteUser()" style="background-color: #dc3545;">Delete User</button>
+                            <button onclick="deleteUser()" class="action-delete-btn">Delete User</button>
                         </div>
                         </div>
                     </div>

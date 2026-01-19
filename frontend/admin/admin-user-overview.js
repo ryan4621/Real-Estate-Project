@@ -365,11 +365,6 @@ async function deleteUser() {
 	}
 }
 
-// Back button
-document.getElementById("back").addEventListener("click", () => {
-	window.location.href = "/frontend/admin/admin-users.html";
-});
-
 // Initialize page
 document.addEventListener("DOMContentLoaded", loadUserData);
 

@@ -58,9 +58,31 @@ router.get("/amenities", requireAdmin, validatePagination, async (req, res) => {
 
         // Apply search
         if (q) {
-            const searchResult = applySearch(baseQuery, q, ["id", "property_id"]);
-            baseQuery = searchResult.query;
-            params = [...searchResult.params];
+            // List of all amenity column names
+            const amenityColumns = [
+                "swimming_pool", "elevator", "high_ceiling", "hardwood_floors",
+                "game_room", "gourmet_kitchen", "ensuite", "water_view", "city_view",
+                "pets_allowed", "guest_house", "single_story", "security_features",
+                "water_front", "gym", "community_gym", "library", "fitness_centre",
+                "club_house", "garage", "recreational_amenities", "tennis_court",
+                "fireplace", "multi_stories", "courtyard_style", "rv_parking"
+            ];
+            
+            // Convert search term to snake_case for matching (e.g., "swimming pool" -> "swimming_pool")
+            const searchTerm = q.toLowerCase().trim().replace(/\s+/g, '_');
+            
+            // Find matching amenity columns
+            const matchingColumns = amenityColumns.filter(col => col.includes(searchTerm));
+            
+            if (matchingColumns.length > 0) {
+                // Search for records where any matching amenity is TRUE
+                const conditions = matchingColumns.map(col => `${col} = 1`).join(" OR ");
+                baseQuery += ` WHERE (${conditions})`;
+            } else if (!isNaN(q)) {
+                // If it's a number, search by id or property_id
+                baseQuery += ` WHERE (id = ? OR property_id = ?)`;
+                params = [q, q];
+            }
         }
 
         // Get total count

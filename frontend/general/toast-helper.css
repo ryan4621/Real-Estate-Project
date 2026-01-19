@@ -1,16 +1,16 @@
 .toast {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 8px;
+    top: clamp(1rem, 2vw, 1.25rem);
+    right: clamp(1rem, 2vw, 1.25rem);
+    padding: clamp(0.75rem, 1.5vw, 0.938rem) clamp(1rem, 2vw, 1.25rem);
+    border-radius: 0.5rem;
     color: white;
     font-weight: 500;
     z-index: 20000;
-    max-width: 350px;
+    max-width: min(21.875rem, 90vw);
     opacity: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transform: translateX(10px);
+    box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.3);
+    transform: translateX(0.625rem);
     transition: opacity 250ms ease, transform 250ms ease-out;
     word-wrap: break-word;
 }

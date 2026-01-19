@@ -484,6 +484,7 @@ body {
     align-items: center;
     gap: clamp(0.3rem, 0.375vw, 0.375rem);
     flex-shrink: 0;
+    width: fit-content;
 }
 
 .table-action-btn i {

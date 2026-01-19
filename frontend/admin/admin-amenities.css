@@ -139,10 +139,10 @@
     background: white;
     border-radius: 0.75rem;
     width: 90%;
-    max-width: 50rem;
-    max-height: 90vh;
+    max-width: 40rem;
+    max-height: 75vh;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 2500;
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
 }
 
@@ -154,12 +154,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(1.2rem, 1.5vw, 1.5rem);
+    margin: clamp(0.875rem, 1vw, 1rem) clamp(1rem, 1.25vw, 1.25rem) 0;
     border-bottom: 0.0625rem solid #e9ecef;
 }
 
 .modal-header h3 {
-    font-size: clamp(1rem, 1.25vw, 1.25rem);
+    font-size: clamp(0.95rem, 1.1vw, 1.125rem);
     font-weight: 600;
     color: #1a1a1a;
 }
@@ -180,11 +180,11 @@
 
 /* Form */
 .amenities-form {
-    padding: clamp(1.2rem, 1.5vw, 1.5rem);
+    padding: clamp(0.875rem, 1vw, 1rem) clamp(1rem, 1.25vw, 1.25rem);
 }
 
 .form-group {
-    margin-bottom: clamp(1.2rem, 1.5vw, 1.5rem);
+    margin-bottom: clamp(0.75rem, 0.875vw, 0.875rem);
 }
 
 .form-label {
@@ -239,13 +239,11 @@
 /* Amenities Grid */
 .amenities-grid {
     display: grid;
-.amenities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
-    gap: clamp(0.6rem, 0.75vw, 0.75rem);
-    max-height: 25rem;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: clamp(0.5rem, 0.625vw, 0.625rem);
+    max-height: 20rem;
     overflow-y: auto;
-    padding: clamp(0.8rem, 1vw, 1rem);
+    padding: clamp(0.625rem, 0.75vw, 0.75rem);
     background: #f8f9fa;
     border-radius: 0.5rem;
 }
@@ -319,39 +317,42 @@
 .form-actions {
     display: flex;
     justify-content: flex-end;
-    gap: clamp(0.6rem, 0.75vw, 0.75rem);
-    margin-top: clamp(1.2rem, 1.5vw, 1.5rem);
-    padding-top: clamp(1.2rem, 1.5vw, 1.5rem);
+    gap: clamp(0.5rem, 0.625vw, 0.625rem);
+    margin-top: clamp(0.875rem, 1vw, 1rem);
+    padding-top: clamp(0.875rem, 1vw, 1rem);
     border-top: 0.0625rem solid #e9ecef;
 }
 
 .cancel-btn,
 .submit-btn {
-    padding: clamp(0.5rem, 0.6vw, 0.625rem) clamp(1.2rem, 1.5vw, 1.5rem);
+    padding: clamp(0.4rem, 0.5vw, 0.5rem) clamp(1rem, 1.25vw, 1.25rem);
     border: none;
-    border-radius: 0.375rem;
-    font-size: clamp(0.8em, 0.9vw, 0.875rem);
-    font-weight: 500;
+    border-radius: 0.25rem;
+    font-size: clamp(0.8rem, 0.875vw, 0.875rem);
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(0.3rem, 0.375vw, 0.375rem);
 }
 
 .cancel-btn {
-    background: #e9ecef;
-    color: #495057;
+    background-color: #f3f4f6;
+    color: #374151;
 }
 
 .cancel-btn:hover {
-    background: #dee2e6;
+    background-color: #e5e7eb;
 }
 
 .submit-btn {
-    background: #1a1a1a;
+    background-color: #10b981;
     color: white;
 }
 
 .submit-btn:hover {
-    background: #333;
+    background-color: #059669;
 }
 
 /* Responsive */
