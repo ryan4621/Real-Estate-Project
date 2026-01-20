@@ -323,11 +323,6 @@ async function sendEmailToUser() {
 	}
 }
 
-// Export user data
-function exportUserData() {
-	window.location.href = `${apiBase}/users/${currentUser.user.id}/export-overview`;
-}
-
 // Delete user
 async function deleteUser() {
 	const confirmed = await showConfirmation(
@@ -364,6 +359,15 @@ async function deleteUser() {
 		showToast("Failed to delete user: " + error.message, "error");
 	}
 }
+
+// Export user data
+function exportUserData() {
+	window.location.href = `${apiBase}/users/${currentUser.user.id}/export-overview`;
+};
+
+document.getElementById('back-btn').addEventListener('click', () => {
+	history.back()
+})
 
 // Initialize page
 document.addEventListener("DOMContentLoaded", loadUserData);
